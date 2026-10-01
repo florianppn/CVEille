@@ -1,0 +1,76 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: cveille-backend
+  main:
+    banner-mode: console
+
+cveille:
+  # Rolling window for CVE fetch (default: last 48 hours to account for NVD publishing delays)
+  window-hours: 48
+
+  # Target storage paths (relative to repository root or overridden by env)
+  data-dir: ${CVEILLE_DATA_DIR:data}
+  docs-dir: ${CVEILLE_DOCS_DIR:docs}
+  readme-path: ${CVEILLE_README_PATH:README.md}
+
+  # Monitored Enterprise Stack (Spring Boot + Angular + Infrastructure)
+  stack:
+    keywords:
+      # Java / Spring Boot ecosystem
+      - spring
+      - spring-boot
+      - spring-security
+      - spring-framework
+      - spring-cloud
+      - tomcat
+      - hibernate
+      - jackson
+      - log4j
+      - logback
+      # Angular / Frontend ecosystem
+      - angular
+      - typescript
+      - rxjs
+      - ngrx
+      - node.js
+      - npm
+      # Enterprise Infrastructure & Services
+      - docker
+      - kubernetes
+      - postgresql
+      - nginx
+      - keycloak
+
+  # Alert criteria for critical notifications
+  alert:
+    min-cvss: 7.5
+    alert-on-kev: true
+    min-epss: 0.20
+
+  # Threat Intel Feeds & Rate Limits
+  nvd:
+    api-url: https://services.nvd.nist.gov/rest/json/cves/2.0
+    api-key: ${NVD_API_KEY:}
+    page-size: 200
+    max-retries: 3
+    retry-delay-ms: 3000
+
+  cisa-kev:
+    feed-url: https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json
+
+  epss:
+    api-url: https://api.first.org/data/v1/epss
+    batch-size: 80
+
+  # Notification Channels
+  notifications:
+    discord:
+      enabled: true
+      webhook-url: ${DISCORD_WEBHOOK_URL:}
+    telegram:
+      enabled: false
+      bot-token: ${TELEGRAM_BOT_TOKEN:}
+      chat-id: ${TELEGRAM_CHAT_ID:}

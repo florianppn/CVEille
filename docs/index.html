@@ -1,13 +1,162 @@
-<!doctype html>
-<html lang="en" data-beasties-container>
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <title>Frontend</title>
-  <base href="/CVEille/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="stylesheet" href="styles-5INURTSO.css"></head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CVEille • Threat Intelligence Dashboard</title>
+  <meta name="description" content="Veille quotidienne automatisée des vulnérabilités de sécurité sur l'écosystème Spring Boot, Angular et infrastructure.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
 <body>
-  <app-root></app-root>
-<script src="main-IBQGGGFU.js" type="module"></script></body>
+  <div class="app-layout">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-brand">
+        <span class="brand-icon">🛡️</span>
+        <div>
+          <h1 class="brand-title">CVEille</h1>
+          <p class="brand-subtitle">Threat Intelligence Quotidienne • Spring Boot & Angular</p>
+        </div>
+      </div>
+
+      <div class="header-meta">
+        <div class="sync-badge">
+          <span class="status-pulse"></span>
+          <span id="last-sync-text">Chargement des données...</span>
+        </div>
+        <a href="https://github.com/florianppn/CVEille" target="_blank" rel="noopener" class="github-link">
+          <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+          </svg>
+          Code Source
+        </a>
+      </div>
+    </header>
+
+    <main>
+      <!-- KPIs -->
+      <section class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-icon kpi-blue">🛡️</div>
+          <div class="kpi-info">
+            <span class="kpi-value" id="kpi-total">-</span>
+            <span class="kpi-label">Vulnérabilités Suivies (Stack)</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon kpi-red">🔥</div>
+          <div class="kpi-info">
+            <span class="kpi-value" id="kpi-kev">-</span>
+            <span class="kpi-label">Exploits CISA KEV (Actifs)</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon kpi-orange">🚨</div>
+          <div class="kpi-info">
+            <span class="kpi-value" id="kpi-critical">-</span>
+            <span class="kpi-label">Failles Critiques (CVSS ≥ 9)</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-icon kpi-yellow">⚠️</div>
+          <div class="kpi-info">
+            <span class="kpi-value" id="kpi-high">-</span>
+            <span class="kpi-label">Failles Élevées (CVSS ≥ 7)</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Charts -->
+      <section class="charts-grid">
+        <div class="chart-card">
+          <h2 class="chart-title">Répartition par Sévérité (CVSS)</h2>
+          <div class="chart-box">
+            <canvas id="severityChart"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-card">
+          <h2 class="chart-title">Top Technologies Ciblées</h2>
+          <div class="chart-box">
+            <canvas id="techChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filter Controls -->
+      <section class="controls-panel">
+        <div class="search-field">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Rechercher par CVE ID, composant, mot-clé..." autocomplete="off">
+          <button id="clearSearchBtn" class="clear-btn" style="display:none;" title="Effacer">✕</button>
+        </div>
+
+        <div class="filter-actions">
+          <select id="severitySelect" class="custom-select">
+            <option value="ALL">Toutes les sévérités</option>
+            <option value="CRITICAL">Critique (CVSS ≥ 9.0)</option>
+            <option value="HIGH">Élevée (CVSS 7.0 - 8.9)</option>
+            <option value="MEDIUM">Moyenne (CVSS 4.0 - 6.9)</option>
+            <option value="LOW">Basse (CVSS &lt; 4.0)</option>
+          </select>
+
+          <label class="toggle-kev" id="kevToggleLabel">
+            <input type="checkbox" id="kevOnlyCheckbox">
+            🔥 KEV Actif Uniquement
+          </label>
+
+          <button id="resetFiltersBtn" class="reset-btn" style="display:none;">Réinitialiser</button>
+        </div>
+      </section>
+
+      <!-- Stack Filter Chips -->
+      <section class="tech-chips-bar" id="techChipsContainer">
+        <!-- Rendered dynamically by app.js -->
+      </section>
+
+      <!-- Table Section -->
+      <section class="table-section">
+        <div class="table-header">
+          <h2 class="table-title">Vulnérabilités Détectées (<span id="resultsCount">0</span>)</h2>
+        </div>
+
+        <div class="table-scroll">
+          <table class="cve-table">
+            <thead>
+              <tr>
+                <th>CVE ID</th>
+                <th>Sévérité</th>
+                <th>CVSS</th>
+                <th>EPSS (30j)</th>
+                <th>CISA KEV</th>
+                <th>Stack</th>
+                <th>Description</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="cveTableBody">
+              <tr>
+                <td colspan="8" class="table-loading">Chargement des données...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>
+        <strong>CVEille</strong> • Pipeline de Threat Intelligence automatisé propulsé par <strong>Spring Boot 3 (Java 21)</strong> & <strong>GitHub Actions</strong>.
+        Données issues de NVD 2.0 (NIST), CISA KEV et FIRST.org EPSS.
+      </p>
+    </footer>
+  </div>
+</body>
 </html>
