@@ -103,15 +103,15 @@ public class DataExporterService {
             objectMapper.writeValue(indexFile.toFile(), indexPayload);
             log.info("Updated index.json with {} total unique CVEs", sortedList.size());
 
-            // 4b. Mirror to docs directory for the GitHub Pages web dashboard
-            if (properties.docsDir() != null && !properties.docsDir().isBlank()) {
-                Path docsDataDir = Paths.get(properties.docsDir(), "data").normalize().toAbsolutePath();
-                if (!Files.exists(docsDataDir)) {
-                    Files.createDirectories(docsDataDir);
+            // 4b. Mirror to frontend directory for the GitHub Pages web dashboard
+            if (properties.frontendDir() != null && !properties.frontendDir().isBlank()) {
+                Path frontendDataDir = Paths.get(properties.frontendDir(), "data").normalize().toAbsolutePath();
+                if (!Files.exists(frontendDataDir)) {
+                    Files.createDirectories(frontendDataDir);
                 }
-                Path docsIndexFile = docsDataDir.resolve("index.json");
-                objectMapper.writeValue(docsIndexFile.toFile(), indexPayload);
-                log.info("Mirrored index.json to web dashboard at {}", docsIndexFile);
+                Path frontendIndexFile = frontendDataDir.resolve("index.json");
+                objectMapper.writeValue(frontendIndexFile.toFile(), indexPayload);
+                log.info("Mirrored index.json to frontend at {}", frontendIndexFile);
             }
 
             // 5. Update README.md dynamic sections

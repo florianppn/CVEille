@@ -52,7 +52,7 @@ Pour aller au-delà du simple score CVSS et mesurer le risque concret :
 - **Frontend** : `angular`, `typescript`, `rxjs`, `node.js`, `npm`
 - **Infrastructure** : `docker`, `kubernetes`, `postgresql`, `nginx`, `keycloak`
 
-*Paramétrable dans [`src/main/resources/application.yml`](src/main/resources/application.yml).*
+*Paramétrable dans [`backend/src/main/resources/application.yml`](backend/src/main/resources/application.yml).*
 
 ---
 
@@ -60,13 +60,13 @@ Pour aller au-delà du simple score CVSS et mesurer le risque concret :
 
 ```bash
 # 1. Lancer la synchronisation quotidienne (Mode CLI Batch)
-mvn spring-boot:run -Dspring-boot.run.arguments="--sync"
+cd backend && mvn spring-boot:run -Dspring-boot.run.arguments="--sync"
 
 # 2. Lancer les tests unitaires
-mvn test
+cd backend && mvn test
 
 # 3. Lancer le dashboard web localement
-python3 -m http.server 3000 --directory docs
+python3 -m http.server 3000 --directory frontend
 # Ouvrir http://localhost:3000
 ```
 

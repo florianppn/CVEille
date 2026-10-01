@@ -7,7 +7,7 @@ import java.util.List;
 public record CveilleProperties(
         int windowHours,
         String dataDir,
-        String docsDir,
+        String frontendDir,
         String readmePath,
         Stack stack,
         Alert alert,
