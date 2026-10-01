@@ -22,7 +22,7 @@ class RiskAnalyzerServiceTest {
     void setUp() {
         CveilleProperties.Alert alert = new CveilleProperties.Alert(7.5, true, 0.20);
         CveilleProperties properties = new CveilleProperties(
-                48, "data", "docs", "README.md", null, alert, null, null, null, null
+                48, "../data", "../frontend", "../README.md", null, alert, null, null, null, null
         );
         riskAnalyzerService = new RiskAnalyzerService(properties);
     }

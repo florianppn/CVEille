@@ -19,7 +19,7 @@ class StackFilterServiceTest {
                 List.of("spring", "spring-boot", "spring-security", "tomcat", "jackson", "angular", "typescript", "docker")
         );
         CveilleProperties properties = new CveilleProperties(
-                48, "data", "docs", "README.md", stack, null, null, null, null, null
+                48, "../data", "../frontend", "../README.md", stack, null, null, null, null, null
         );
         stackFilterService = new StackFilterService(properties);
     }

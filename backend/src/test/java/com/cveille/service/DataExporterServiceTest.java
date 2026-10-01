@@ -32,9 +32,9 @@ class DataExporterServiceTest {
 
         Files.writeString(readmePath, "# Project Title\n\nSome introductory text.\n\n<!-- CVEILLE_SUMMARY_START -->\nold\n<!-- CVEILLE_SUMMARY_END -->\n\nFooter.");
 
-        Path docsDir = tempDir.resolve("docs");
+        Path frontendDir = tempDir.resolve("frontend");
         CveilleProperties properties = new CveilleProperties(
-                48, dataDir.toString(), docsDir.toString(), readmePath.toString(), null, null, null, null, null, null
+                48, dataDir.toString(), frontendDir.toString(), readmePath.toString(), null, null, null, null, null, null
         );
         dataExporterService = new DataExporterService(properties);
     }
