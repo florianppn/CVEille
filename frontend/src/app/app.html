@@ -1,0 +1,251 @@
+<div class="cveille-app">
+  <!-- Top Navigation / Header -->
+  <header class="header">
+    <div class="header-left">
+      <div class="brand">
+        <span class="brand-icon">🛡️</span>
+        <div>
+          <h1 class="brand-title">CVEille</h1>
+          <p class="brand-subtitle">Threat Intelligence Quotidienne • Stack Spring Boot & Angular</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="sync-status">
+        <span class="status-dot"></span>
+        <span class="status-text">
+          @if (stats(); as s) {
+            Sync: {{ s.lastSyncTimestamp | date:'dd/MM/yyyy HH:mm' }} UTC
+          } @else {
+            Chargement des données...
+          }
+        </span>
+      </div>
+      <a href="https://github.com/florianppn/CVEille" target="_blank" class="github-btn" rel="noopener">
+        <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        GitHub
+      </a>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <!-- KPI Metrics Cards -->
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-blue">🛡️</div>
+        <div class="kpi-details">
+          <span class="kpi-value">{{ stats()?.totalTracked ?? 0 }}</span>
+          <span class="kpi-label">Vulnérabilités Suivies (Stack)</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-red">🔥</div>
+        <div class="kpi-details">
+          <span class="kpi-value">{{ stats()?.kevCount ?? 0 }}</span>
+          <span class="kpi-label">Exploits CISA KEV (Actifs)</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-orange">🚨</div>
+        <div class="kpi-details">
+          <span class="kpi-value">{{ stats()?.criticalCount ?? 0 }}</span>
+          <span class="kpi-label">Failles Critiques (CVSS ≥ 9)</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-icon kpi-purple">⚠️</div>
+        <div class="kpi-details">
+          <span class="kpi-value">{{ stats()?.highCount ?? 0 }}</span>
+          <span class="kpi-label">Failles Élevées (CVSS ≥ 7)</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Threat Intel Methodology Banner -->
+    <section class="methodology-banner">
+      <div class="methodology-item">
+        <span class="methodology-badge cvss">CVSS v3.1</span>
+        <p><strong>Gravité intrinsèque</strong> : mesure le potentiel technique d'impact de la vulnérabilité.</p>
+      </div>
+      <div class="methodology-item">
+        <span class="methodology-badge epss">EPSS (FIRST)</span>
+        <p><strong>Probabilité prédictive</strong> : estime le risque réel d'exploitation dans les 30 jours.</p>
+      </div>
+      <div class="methodology-item">
+        <span class="methodology-badge kev">CISA KEV</span>
+        <p><strong>Preuve d'exploitation</strong> : catalogue officiel des failles activement exploitées dans la nature.</p>
+      </div>
+    </section>
+
+    <!-- Visual Charts Row -->
+    <section class="charts-grid">
+      <div class="chart-card">
+        <h3 class="chart-title">Répartition par Sévérité</h3>
+        <div class="chart-container">
+          <canvas #severityCanvas></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <h3 class="chart-title">Technologies Ciblées (Top Composants)</h3>
+        <div class="chart-container">
+          <canvas #techCanvas></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Filters & Search Toolbar -->
+    <section class="filters-bar">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input 
+          type="text" 
+          placeholder="Rechercher par CVE ID, mot-clé, composant..." 
+          [ngModel]="searchQuery()" 
+          (ngModelChange)="searchQuery.set($event)" 
+        />
+        @if (searchQuery()) {
+          <button class="clear-search" (click)="searchQuery.set('')">✕</button>
+        }
+      </div>
+
+      <div class="filter-actions">
+        <select class="filter-select" [ngModel]="selectedSeverity()" (ngModelChange)="selectedSeverity.set($event)">
+          <option value="ALL">Toutes les sévérités</option>
+          <option value="CRITICAL">Critique (CVSS ≥ 9.0)</option>
+          <option value="HIGH">Élevée (CVSS 7.0 - 8.9)</option>
+          <option value="MEDIUM">Moyenne (CVSS 4.0 - 6.9)</option>
+          <option value="LOW">Basse (CVSS &lt; 4.0)</option>
+        </select>
+
+        <label class="kev-toggle" [class.active]="kevOnly()">
+          <input type="checkbox" [ngModel]="kevOnly()" (ngModelChange)="kevOnly.set($event)" />
+          🔥 KEV Actif Uniquement
+        </label>
+
+        @if (selectedSeverity() !== 'ALL' || kevOnly() || selectedTech() !== 'ALL' || searchQuery()) {
+          <button class="reset-btn" (click)="resetFilters()">Réinitialiser</button>
+        }
+      </div>
+    </section>
+
+    <!-- Tech Chips Navigation -->
+    <section class="tech-chips">
+      <span class="chips-label">Filtrer par stack :</span>
+      <button 
+        class="chip" 
+        [class.active]="selectedTech() === 'ALL'"
+        (click)="selectedTech.set('ALL')">
+        Tous
+      </button>
+      @for (tech of uniqueTechs(); track tech) {
+        <button 
+          class="chip" 
+          [class.active]="selectedTech() === tech"
+          (click)="setTechFilter(tech)">
+          {{ tech }}
+        </button>
+      }
+    </section>
+
+    <!-- Results Table -->
+    <section class="table-section">
+      <div class="table-header-info">
+        <h3>Vulnérabilités Détectées ({{ filteredCves().length }})</h3>
+      </div>
+
+      @if (loading()) {
+        <div class="loading-state">
+          <div class="spinner"></div>
+          <p>Chargement du catalogue de veille...</p>
+        </div>
+      } @else if (filteredCves().length === 0) {
+        <div class="empty-state">
+          <span class="empty-icon">🛡️</span>
+          <h4>Aucune vulnérabilité ne correspond à ces critères</h4>
+          <p>Essayez de réinitialiser vos filtres ou de modifier votre recherche.</p>
+        </div>
+      } @else {
+        <div class="table-wrapper">
+          <table class="cve-table">
+            <thead>
+              <tr>
+                <th>CVE ID</th>
+                <th>Sévérité</th>
+                <th>CVSS</th>
+                <th>EPSS (30j)</th>
+                <th>CISA KEV</th>
+                <th>Stack</th>
+                <th>Description</th>
+                <th>Publication</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (cve of filteredCves(); track cve.id) {
+                <tr [class.kev-highlight]="cve.inKev">
+                  <td class="cell-id">
+                    <a [href]="cve.nvdUrl" target="_blank" rel="noopener" class="cve-link">
+                      {{ cve.id }}
+                    </a>
+                  </td>
+                  <td>
+                    <span class="badge" [ngClass]="'badge-' + (cve.severity ? cve.severity.toLowerCase() : 'unknown')">
+                      {{ cve.severity || 'N/A' }}
+                    </span>
+                  </td>
+                  <td class="cell-score">
+                    @if (cve.cvssScore !== null) {
+                      <strong>{{ cve.cvssScore | number:'1.1-1' }}</strong>
+                    } @else {
+                      <span class="na-text">N/A</span>
+                    }
+                  </td>
+                  <td class="cell-score">
+                    @if (cve.epssScore !== null) {
+                      <span class="epss-pill">{{ (cve.epssScore * 100) | number:'1.1-1' }}%</span>
+                    } @else {
+                      <span class="na-text">N/A</span>
+                    }
+                  </td>
+                  <td>
+                    @if (cve.inKev) {
+                      <span class="badge badge-kev" title="Présente au catalogue CISA KEV (exploit actif)">🔥 EXPLOITÉ</span>
+                    } @else {
+                      <span class="badge badge-safe">Non</span>
+                    }
+                  </td>
+                  <td>
+                    <div class="tags-container">
+                      @for (tag of cve.matchedKeywords; track tag) {
+                        <span class="tag-pill">{{ tag }}</span>
+                      }
+                    </div>
+                  </td>
+                  <td class="cell-desc" [title]="cve.description">
+                    {{ cve.description }}
+                  </td>
+                  <td class="cell-date">
+                    {{ cve.publishedDate | date:'dd/MM/yyyy' }}
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      }
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <strong>CVEille</strong> • Veille automatisée conçue avec <strong>Spring Boot 3 (Java 21)</strong> & <strong>Angular</strong>.
+      Propulsé par NVD 2.0 (NIST), CISA KEV et EPSS (FIRST.org).
+    </p>
+  </footer>
+</div>
