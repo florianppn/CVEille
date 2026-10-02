@@ -1,29 +1,29 @@
 {
-  "lastSync" : "2026-10-01T12:36:34.086311565Z",
+  "lastSync" : "2026-10-02T11:39:13.564914848Z",
   "stats" : {
-    "totalTracked" : 21,
-    "criticalCount" : 4,
-    "highCount" : 8,
+    "totalTracked" : 14,
+    "criticalCount" : 3,
+    "highCount" : 3,
     "mediumCount" : 3,
     "lowCount" : 0,
     "kevCount" : 0,
-    "alertCount" : 11,
-    "avgEpss" : 0.0,
+    "alertCount" : 4,
+    "avgEpss" : 0.006,
     "severityDistribution" : {
-      "CRITICAL" : 4,
-      "HIGH" : 8,
+      "CRITICAL" : 3,
+      "HIGH" : 3,
       "MEDIUM" : 3,
       "LOW" : 0
     },
     "topTechnologies" : {
-      "node.js" : 9,
-      "docker" : 6,
+      "docker" : 5,
+      "node.js" : 4,
       "npm" : 3,
-      "spring" : 1,
-      "postgresql" : 1,
+      "kubernetes" : 1,
+      "keycloak" : 1,
       "nginx" : 1
     },
-    "lastSyncTimestamp" : "2026-10-01T12:36:34.086311565Z"
+    "lastSyncTimestamp" : "2026-10-02T11:39:13.564914848Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-53988",
@@ -44,6 +44,8 @@
     "cvssScore" : 9.8,
     "severity" : "CRITICAL",
     "inKev" : false,
+    "epssScore" : 0.00754,
+    "epssPercentile" : 0.5339,
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55494"
@@ -55,6 +57,8 @@
     "cvssScore" : 9.4,
     "severity" : "CRITICAL",
     "inKev" : false,
+    "epssScore" : 0.00682,
+    "epssPercentile" : 0.50693,
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55181"
@@ -66,6 +70,8 @@
     "cvssScore" : 9.1,
     "severity" : "CRITICAL",
     "inKev" : false,
+    "epssScore" : 0.00381,
+    "epssPercentile" : 0.29705,
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-62308"
@@ -110,6 +116,8 @@
     "cvssScore" : 8.1,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00345,
+    "epssPercentile" : 0.25674,
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-87004"
@@ -147,10 +155,21 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103088"
   }, {
+    "id" : "CVE-2026-103921",
+    "description" : "GraphQL Tools provides utilities for building, stitching, and mocking GraphQL schemas. Prior to 1.1.35, the executor-legacy-ws buildWSLegacyExecutor() function hardcodes TLS certificate rejection off for Node.js connections to wss:// endpoints. Applications using the executor directly, or url-loader with SubscriptionProtocol.LEGACY_WS, can therefore accept an attacker-controlled certificate when a network-positioned attacker intercepts the connection. Authentication material in connectionParams or headers can be disclosed, and subscription data can be modified. Browser WebSocket clients are unaffected because browsers enforce certificate validation. This issue is fixed in version 1.1.35.",
+    "publishedDate" : "2026-10-01T17:17:19.390",
+    "lastModifiedDate" : "2026-10-01T19:17:18.647",
+    "cvssScore" : 7.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103921"
+  }, {
     "id" : "CVE-2026-103251",
     "description" : "n8n versions before 1.123.80, from 2.0.0 before 2.39.6, and from 2.40.0 before 2.40.1 contain a validation bypass vulnerability in the community package installation handler for queue mode deployments. Attackers with Redis write access can bypass name validation, permission checks, checksum verification, and npm safety checks to install arbitrary npm packages across all cluster instances without authentication.",
     "publishedDate" : "2026-10-01T11:17:18.973",
-    "lastModifiedDate" : "2026-10-01T11:17:19.103",
+    "lastModifiedDate" : "2026-10-01T20:17:22.713",
     "cvssScore" : 7.1,
     "severity" : "HIGH",
     "inKev" : false,
@@ -169,6 +188,28 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-102639"
   }, {
+    "id" : "CVE-2026-103884",
+    "description" : "A flaw was found in the X.509 client certificate authenticator of Keycloak. When CRL Distribution Point checking is enabled, the server fails to properly validate the file paths provided in a client certificate. An attacker can provide a specially crafted certificate that causes the server to attempt to read sensitive files from the local system or exhaust memory by loading extremely large files, potentially leading to information disclosure or a system crash.",
+    "publishedDate" : "2026-10-01T18:17:12.683",
+    "lastModifiedDate" : "2026-10-01T20:36:15.187",
+    "cvssScore" : 6.5,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "keycloak" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103884"
+  }, {
+    "id" : "CVE-2026-104182",
+    "description" : "stream-json is a micro-library of stream components for processing JSON and JSONC with a minimal memory footprint. Prior to 3.6.0, the JSONC parser at stream-json/jsonc/parser.js and verifier at stream-json/jsonc/verifier.js restart comment-terminator scanning from the opening slash whenever a block or line comment spans an input chunk, while retaining the accumulated comment buffer. Delivering a large valid comment across many small chunks therefore causes quadratic CPU work and can stall the Node.js event loop. The maintainer characterizes the attack vector as local because the documented JSONC input is locally owned or user-controlled configuration, rather than input intended for the open internet. This JSONC-only scope does not include the plain JSON parser, which advances through and discards consumed string and number data. This issue is fixed in version 3.6.0.",
+    "publishedDate" : "2026-10-01T21:17:19.003",
+    "lastModifiedDate" : "2026-10-01T21:17:19.003",
+    "cvssScore" : 6.2,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104182"
+  }, {
     "id" : "CVE-2026-103053",
     "description" : "AiSOC versions 9.0.0 before 12.0.0 fail to enforce authentication on the response-action API endpoints when AISOC_DEV_MODE is enabled and AISOC_ACTIONS_SERVICE_TOKEN is empty in the default Docker Compose deployment. Unauthenticated attackers can list response-action integrations, submit and approve actions on behalf of arbitrary principals, and dispatch containment actions using vendor credentials.",
     "publishedDate" : "2026-09-30T01:16:36.563",
@@ -183,7 +224,7 @@
     "id" : "CVE-2026-103281",
     "description" : "Ghost (npm package 'ghost') versions from 3.23.0 up to, but not including, 6.23.0 expose API keys to users with low-privilege staff accounts. An authenticated low-privilege staff user can read API keys returned by the Admin API, which are intended to be available only to higher-privileged users.",
     "publishedDate" : "2026-10-01T11:17:24.073",
-    "lastModifiedDate" : "2026-10-01T11:17:24.073",
+    "lastModifiedDate" : "2026-10-01T15:06:17.330",
     "cvssScore" : 5.4,
     "severity" : "MEDIUM",
     "inKev" : false,
@@ -217,6 +258,8 @@
     "lastModifiedDate" : "2026-09-30T19:57:08.043",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00558,
+    "epssPercentile" : 0.44472,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-74864"
@@ -227,6 +270,8 @@
     "lastModifiedDate" : "2026-09-30T16:38:20.847",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00637,
+    "epssPercentile" : 0.48633,
     "matchedKeywords" : [ "npm" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-91860"
@@ -237,6 +282,8 @@
     "lastModifiedDate" : "2026-09-30T21:17:06.307",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00507,
+    "epssPercentile" : 0.41011,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-102990"
@@ -247,8 +294,20 @@
     "lastModifiedDate" : "2026-09-30T21:17:06.450",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00552,
+    "epssPercentile" : 0.4407,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-102992"
+  }, {
+    "id" : "CVE-2026-55252",
+    "description" : "OpenRun is an open-source, self-hosted GitOps platform for deploying web apps and internal tools to Docker or Kubernetes. Prior to version 0.17.7, the restrictions on redirect URLs in openrun can be bypassed by attackers, leading to open redirect attacks. This issue has been patched in version 0.17.7.",
+    "publishedDate" : "2026-10-01T20:17:26.110",
+    "lastModifiedDate" : "2026-10-01T20:17:26.110",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "kubernetes", "docker" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55252"
   } ]
 }
