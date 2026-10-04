@@ -17,8 +17,8 @@
 <!-- CVEILLE_SUMMARY_START -->
 ### 🛡️ État de la veille CVEille (Stack Spring Boot & Angular)
 
-> **Dernière synchronisation** : `2026-10-03T10:52:06.936980457Z`  
-> **Vulnérabilités suivies** : `16` | 🔥 **Exploits CISA KEV** : `0` | 🚨 **Critiques** : `0` | ⚠️ **Élevées** : `4`
+> **Dernière synchronisation** : `2026-10-04T11:34:25.263790232Z`  
+> **Vulnérabilités suivies** : `10` | 🔥 **Exploits CISA KEV** : `0` | 🚨 **Critiques** : `0` | ⚠️ **Élevées** : `2`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
@@ -26,7 +26,7 @@
 | [CVE-2026-55494](https://nvd.nist.gov/vuln/detail/CVE-2026-55494) | `CRITICAL` | 9.8 | 0.8% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
 | [CVE-2026-55181](https://nvd.nist.gov/vuln/detail/CVE-2026-55181) | `CRITICAL` | 9.4 | 0.7% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
 | [CVE-2026-62308](https://nvd.nist.gov/vuln/detail/CVE-2026-62308) | `CRITICAL` | 9.1 | 0.4% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
-| [CVE-2026-82039](https://nvd.nist.gov/vuln/detail/CVE-2026-82039) | `HIGH` | 8.8 | N/A | Non | `postgresql` | UTMStack before 11.2.16 contains a SQL injection vulnerability in UtmAssetGro... |
+| [CVE-2026-82039](https://nvd.nist.gov/vuln/detail/CVE-2026-82039) | `HIGH` | 8.8 | 0.3% | Non | `postgresql` | UTMStack before 11.2.16 contains a SQL injection vulnerability in UtmAssetGro... |
 | [CVE-2026-102676](https://nvd.nist.gov/vuln/detail/CVE-2026-102676) | `HIGH` | 8.3 | N/A | Non | `node.js` | Electron is a framework for writing cross-platform desktop applications using... |
 | [CVE-2026-102826](https://nvd.nist.gov/vuln/detail/CVE-2026-102826) | `HIGH` | 8.1 | N/A | Non | `node.js` | simple-git, an interface for running git commands in any node.js application,... |
 | [CVE-2026-102827](https://nvd.nist.gov/vuln/detail/CVE-2026-102827) | `HIGH` | 8.1 | N/A | Non | `node.js` | simple-git, an interface for running git commands in any node.js application,... |
