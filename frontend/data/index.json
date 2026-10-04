@@ -1,31 +1,28 @@
 {
-  "lastSync" : "2026-10-03T10:52:06.936980457Z",
+  "lastSync" : "2026-10-04T11:34:25.263790232Z",
   "stats" : {
-    "totalTracked" : 16,
+    "totalTracked" : 10,
     "criticalCount" : 0,
-    "highCount" : 4,
-    "mediumCount" : 3,
+    "highCount" : 2,
+    "mediumCount" : 0,
     "lowCount" : 0,
     "kevCount" : 0,
     "alertCount" : 2,
-    "avgEpss" : 0.002,
+    "avgEpss" : 0.003,
     "severityDistribution" : {
       "CRITICAL" : 0,
-      "HIGH" : 4,
-      "MEDIUM" : 3,
+      "HIGH" : 2,
+      "MEDIUM" : 0,
       "LOW" : 0
     },
     "topTechnologies" : {
-      "node.js" : 6,
+      "node.js" : 4,
       "typescript" : 3,
       "postgresql" : 2,
-      "npm" : 2,
-      "docker" : 2,
-      "kubernetes" : 1,
       "angular" : 1,
-      "keycloak" : 1
+      "docker" : 1
     },
-    "lastSyncTimestamp" : "2026-10-03T10:52:06.936980457Z"
+    "lastSyncTimestamp" : "2026-10-04T11:34:25.263790232Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-53988",
@@ -85,6 +82,8 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00339,
+    "epssPercentile" : 0.25008,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-82039"
@@ -175,6 +174,8 @@
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00425,
+    "epssPercentile" : 0.34571,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104861"
@@ -352,6 +353,8 @@
     "lastModifiedDate" : "2026-10-02T18:17:05.870",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00426,
+    "epssPercentile" : 0.34627,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-83745"
@@ -362,6 +365,8 @@
     "lastModifiedDate" : "2026-10-02T18:33:20.487",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00497,
+    "epssPercentile" : 0.40444,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104848"
@@ -372,6 +377,8 @@
     "lastModifiedDate" : "2026-10-02T18:33:20.487",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.0039,
+    "epssPercentile" : 0.30714,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104849"
@@ -382,6 +389,8 @@
     "lastModifiedDate" : "2026-10-02T18:17:01.837",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00174,
+    "epssPercentile" : 0.06188,
     "matchedKeywords" : [ "typescript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104853"
@@ -392,6 +401,8 @@
     "lastModifiedDate" : "2026-10-02T18:17:01.960",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00141,
+    "epssPercentile" : 0.02878,
     "matchedKeywords" : [ "typescript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104854"
@@ -402,6 +413,8 @@
     "lastModifiedDate" : "2026-10-02T18:44:11.270",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.0015,
+    "epssPercentile" : 0.03594,
     "matchedKeywords" : [ "docker", "typescript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104859"
@@ -412,6 +425,8 @@
     "lastModifiedDate" : "2026-10-02T21:16:54.870",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.0042,
+    "epssPercentile" : 0.34036,
     "matchedKeywords" : [ "angular" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104871"
@@ -419,9 +434,11 @@
     "id" : "CVE-2026-104055",
     "description" : "The postgresql-operator charm runs a Prometheus postgres_exporter to collect database metrics using a dedicated \"monitoring\" PostgreSQL user. On database connection errors, the exporter writes the monitoring user's password in cleartext to its logs. Any actor able to read those logs can recover the password, which grants read-only pg_monitor access to PostgreSQL. This is fixed in the dev track (14/edge) in revisions 1189 (arm64) and 1190 (amd64), and in the stable track (14/stable) in revisions 1216 (arm64) and 1217 (amd64).",
     "publishedDate" : "2026-10-02T21:16:54.607",
-    "lastModifiedDate" : "2026-10-02T21:16:54.607",
+    "lastModifiedDate" : "2026-10-03T16:16:34.450",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00293,
+    "epssPercentile" : 0.19863,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104055"
