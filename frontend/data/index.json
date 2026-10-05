@@ -1,28 +1,26 @@
 {
-  "lastSync" : "2026-10-04T11:34:25.263790232Z",
+  "lastSync" : "2026-10-05T13:08:03.331094260Z",
   "stats" : {
-    "totalTracked" : 10,
+    "totalTracked" : 5,
     "criticalCount" : 0,
     "highCount" : 2,
-    "mediumCount" : 0,
+    "mediumCount" : 3,
     "lowCount" : 0,
     "kevCount" : 0,
-    "alertCount" : 2,
-    "avgEpss" : 0.003,
+    "alertCount" : 1,
+    "avgEpss" : 0.0,
     "severityDistribution" : {
       "CRITICAL" : 0,
       "HIGH" : 2,
-      "MEDIUM" : 0,
+      "MEDIUM" : 3,
       "LOW" : 0
     },
     "topTechnologies" : {
-      "node.js" : 4,
-      "typescript" : 3,
-      "postgresql" : 2,
-      "angular" : 1,
-      "docker" : 1
+      "keycloak" : 3,
+      "kubernetes" : 1,
+      "node.js" : 1
     },
-    "lastSyncTimestamp" : "2026-10-04T11:34:25.263790232Z"
+    "lastSyncTimestamp" : "2026-10-05T13:08:03.331094260Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-53988",
@@ -180,6 +178,17 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104861"
   }, {
+    "id" : "CVE-2026-105219",
+    "description" : "Mammoth.js 1.3.0 before 1.12.3 contains a regular expression denial of service vulnerability in the style map tokeniser in lib/styles/parser/tokeniser.js due to overlapping regex alternatives. Attackers can supply a crafted .docx with an unterminated quoted string of repeated backslash escapes in mammoth/style-map to block the Node.js event loop.",
+    "publishedDate" : "2026-10-04T18:16:34.777",
+    "lastModifiedDate" : "2026-10-04T18:16:34.777",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105219"
+  }, {
     "id" : "CVE-2026-103921",
     "description" : "GraphQL Tools provides utilities for building, stitching, and mocking GraphQL schemas. Prior to 1.1.35, the executor-legacy-ws buildWSLegacyExecutor() function hardcodes TLS certificate rejection off for Node.js connections to wss:// endpoints. Applications using the executor directly, or url-loader with SubscriptionProtocol.LEGACY_WS, can therefore accept an attacker-controlled certificate when a network-positioned attacker intercepts the connection. Authentication material in connectionParams or headers can be disclosed, and subscription data can be modified. Browser WebSocket clients are unaffected because browsers enforce certificate validation. This issue is fixed in version 1.1.35.",
     "publishedDate" : "2026-10-01T17:17:19.390",
@@ -192,6 +201,17 @@
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103921"
+  }, {
+    "id" : "CVE-2026-105223",
+    "description" : "maclof kubernetes-client 0.17.0 before 0.32.0 disables TLS certificate verification in parseKubeconfig() and parseKubeconfigFile() when a kubeconfig lacks certificate-authority-data, ignoring insecure-skip-tls-verify. On-path attackers can impersonate the Kubernetes API server to capture Bearer tokens or Basic credentials and tamper with WebSocket or REST API traffic.",
+    "publishedDate" : "2026-10-05T01:16:28.480",
+    "lastModifiedDate" : "2026-10-05T01:16:28.480",
+    "cvssScore" : 7.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "kubernetes" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105223"
   }, {
     "id" : "CVE-2026-103251",
     "description" : "n8n versions before 1.123.80, from 2.0.0 before 2.39.6, and from 2.40.0 before 2.40.1 contain a validation bypass vulnerability in the community package installation handler for queue mode deployments. Attackers with Redis write access can bypass name validation, permission checks, checksum verification, and npm safety checks to install arbitrary npm packages across all cluster instances without authentication.",
@@ -230,6 +250,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103884"
   }, {
+    "id" : "CVE-2026-105306",
+    "description" : "A flaw was found in the Dynamic Client Registration flow of the Keycloak identity and access management server. The issue occurs because the registration process fails to filter security-sensitive client attributes when a new client is created. An attacker with a valid Initial Access Token can register a client that bypasses audience checks during token introspection. This allows the attacker to view sensitive identity information, roles, and session details from access tokens belonging to other applications in the same realm.",
+    "publishedDate" : "2026-10-05T06:16:58.530",
+    "lastModifiedDate" : "2026-10-05T06:16:58.530",
+    "cvssScore" : 6.5,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "keycloak" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105306"
+  }, {
     "id" : "CVE-2026-104182",
     "description" : "stream-json is a micro-library of stream components for processing JSON and JSONC with a minimal memory footprint. Prior to 3.6.0, the JSONC parser at stream-json/jsonc/parser.js and verifier at stream-json/jsonc/verifier.js restart comment-terminator scanning from the opening slash whenever a block or line comment spans an input chunk, while retaining the accumulated comment buffer. Delivering a large valid comment across many small chunks therefore causes quadratic CPU work and can stall the Node.js event loop. The maintainer characterizes the attack vector as local because the documented JSONC input is locally owned or user-controlled configuration, rather than input intended for the open internet. This JSONC-only scope does not include the plain JSON parser, which advances through and discards consumed string and number data. This issue is fixed in version 3.6.0.",
     "publishedDate" : "2026-10-01T21:17:19.003",
@@ -242,6 +273,17 @@
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104182"
+  }, {
+    "id" : "CVE-2026-105302",
+    "description" : "A flaw was found in the User Session Note mapper of the Keycloak identity and access management solution. The issue occurs because the mapper does not validate whether a requested session note contains sensitive internal credentials, such as federated access tokens from external identity providers. This allows a delegated client administrator to leak a user's upstream bearer tokens into the tokens issued to their managed application, potentially leading to unauthorized access to the user's data on external platforms.",
+    "publishedDate" : "2026-10-05T06:16:58.383",
+    "lastModifiedDate" : "2026-10-05T06:16:58.383",
+    "cvssScore" : 5.7,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "keycloak" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105302"
   }, {
     "id" : "CVE-2026-103053",
     "description" : "AiSOC versions 9.0.0 before 12.0.0 fail to enforce authentication on the response-action API endpoints when AISOC_DEV_MODE is enabled and AISOC_ACTIONS_SERVICE_TOKEN is empty in the default Docker Compose deployment. Unauthenticated attackers can list response-action integrations, submit and approve actions on behalf of arbitrary principals, and dispatch containment actions using vendor credentials.",
@@ -266,6 +308,17 @@
     "matchedKeywords" : [ "npm" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103281"
+  }, {
+    "id" : "CVE-2026-105301",
+    "description" : "A flaw was found in the X.509 client-certificate authenticator of Keycloak, a solution for identity and access management. The issue occurs when the server is configured to check certificate revocation using CRL Distribution Points or OCSP. An attacker can provide a specially crafted certificate that points to a malicious server, causing Keycloak to make unauthorized outbound requests to internal or external endpoints before the certificate is fully validated. This can lead to a blind server-side request forgery (SSRF) attack.",
+    "publishedDate" : "2026-10-05T06:16:58.207",
+    "lastModifiedDate" : "2026-10-05T06:16:58.207",
+    "cvssScore" : 4.0,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "keycloak" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105301"
   }, {
     "id" : "CVE-2026-102828",
     "description" : "simple-git, an interface for running git commands in any node.js application, enables applications to execute Git operations from JavaScript. From 3.15.0 until 4.0.1, the default blockUnsafeOperationsPlugin does not classify trailer.<token>.cmd as unsafe configuration. An application that passes attacker-controlled values through SimpleGitOptions.config or inline -c arguments can therefore allow Git to invoke an attacker-selected shell command when git interpret-trailers processes the configured trailer. The command executes with the operating-system identity and permissions of the Node.js process. This issue is fixed in 4.0.1.",
