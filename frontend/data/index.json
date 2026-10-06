@@ -1,26 +1,30 @@
 {
-  "lastSync" : "2026-10-05T13:08:03.331094260Z",
+  "lastSync" : "2026-10-06T12:30:02.414775455Z",
   "stats" : {
-    "totalTracked" : 5,
-    "criticalCount" : 0,
-    "highCount" : 2,
-    "mediumCount" : 3,
-    "lowCount" : 0,
+    "totalTracked" : 36,
+    "criticalCount" : 1,
+    "highCount" : 14,
+    "mediumCount" : 14,
+    "lowCount" : 4,
     "kevCount" : 0,
-    "alertCount" : 1,
-    "avgEpss" : 0.0,
+    "alertCount" : 8,
+    "avgEpss" : 0.002,
     "severityDistribution" : {
-      "CRITICAL" : 0,
-      "HIGH" : 2,
-      "MEDIUM" : 3,
-      "LOW" : 0
+      "CRITICAL" : 1,
+      "HIGH" : 14,
+      "MEDIUM" : 14,
+      "LOW" : 4
     },
     "topTechnologies" : {
-      "keycloak" : 3,
-      "kubernetes" : 1,
-      "node.js" : 1
+      "node.js" : 22,
+      "kubernetes" : 5,
+      "keycloak" : 4,
+      "docker" : 3,
+      "nginx" : 1,
+      "npm" : 1,
+      "hibernate" : 1
     },
-    "lastSyncTimestamp" : "2026-10-05T13:08:03.331094260Z"
+    "lastSyncTimestamp" : "2026-10-06T12:30:02.414775455Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-53988",
@@ -46,6 +50,17 @@
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55494"
+  }, {
+    "id" : "CVE-2026-105641",
+    "description" : "Plane is an open-source project management tool. Prior to 1.4.0, the deployments/aio/community/ and deployments/cli/community/ manifests provide fixed, publicly known SECRET_KEY and LIVE_SERVER_SECRET_KEY defaults that remain active when operators do not override them. The top-level setup.sh randomizes secrets only for the development Docker Compose path, leaving unchanged aio and cli community deployments with shared production secrets. Knowledge of SECRET_KEY enables attackers to forge Django-signed values and compromise accounts or sessions. Knowledge of LIVE_SERVER_SECRET_KEY bypasses live-service authentication on unchanged community deployments. This issue is fixed in 1.4.0.",
+    "publishedDate" : "2026-10-05T19:17:18.560",
+    "lastModifiedDate" : "2026-10-05T19:17:18.693",
+    "cvssScore" : 9.8,
+    "severity" : "CRITICAL",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105641"
   }, {
     "id" : "CVE-2026-55181",
     "description" : "Tugtainer is a self-hosted app for automating updates of Docker containers. Prior to version 1.30.3, Tugtainer's OIDC authentication can still be initiated even when OIDC_ENABLED=false. The /auth/oidc/enabled endpoint correctly reports that OIDC is disabled. However, a direct request to /auth/oidc/login still starts the OIDC login flow, returns HTTP 302, sets an oidc_state cookie, and redirects the user to the configured OIDC authorization endpoint. This bypasses the intended OIDC disable switch. This issue has been patched in version 1.30.3.",
@@ -85,6 +100,50 @@
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-82039"
+  }, {
+    "id" : "CVE-2026-92931",
+    "description" : "CWE-918: Server-Side Request Forgery in the Progress @progress/sitefinity-nextjs-sdk npm package versions 15.1.8326 through 15.4.8637 may allow a remote attacker to make server-side requests to an attacker-controlled host, potentially exposing sensitive information.",
+    "publishedDate" : "2026-10-05T14:17:21.323",
+    "lastModifiedDate" : "2026-10-06T04:18:24.270",
+    "cvssScore" : 8.8,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "npm" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-92931"
+  }, {
+    "id" : "CVE-2026-101919",
+    "description" : "A flaw was found in the HyperShift operator. The operator copies user-provided Kubernetes configuration (kubeconfig) secrets directly into the privileged control plane namespace without proper validation or sanitization. An authenticated user with cluster and secret creation permissions can exploit this vulnerability by supplying a configuration containing unauthorized executable plugins. When downstream controllers consume this configuration, an attacker can achieve arbitrary code execution within the control plane.",
+    "publishedDate" : "2026-10-05T18:17:30.907",
+    "lastModifiedDate" : "2026-10-05T18:17:30.907",
+    "cvssScore" : 8.8,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "kubernetes" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-101919"
+  }, {
+    "id" : "CVE-2026-105642",
+    "description" : "Ghost is a Node.js content management system. From 6.56.0 until 6.67.0, an image processing library bundled with Ghost contained a vulnerability in its SVG handling. Any staff user, including Contributors, could create a bookmark card for an attacker-controlled website, resulting in arbitrary commands being run on the Ghost server. This issue is fixed in version 6.67.0.",
+    "publishedDate" : "2026-10-05T19:17:18.733",
+    "lastModifiedDate" : "2026-10-05T20:17:12.860",
+    "cvssScore" : 8.8,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105642"
+  }, {
+    "id" : "CVE-2026-105985",
+    "description" : "Craft CMS 5.10.13.2 contains an authenticated remote code execution vulnerability in the Control Panel action app/render-components.\n\n\n\nAny authenticated user with basic Control Panel access can submit request-controlled component classes and property overrides. By first overriding an EntryType object’s uiLabelFormat and then rendering an Entry that resolves the same request-cached entry type, an attacker can cause arbitrary Twig supplied in the request to be evaluated by renderObjectTemplate().\n\n\n\nThis render path is not sandboxed. A Twig string callable can therefore reach PHP functions such as system(), resulting in operating-system command execution with the privileges of the PHP/web-server process.\n\n\n\nThe issue was reproduced with an active non-admin Craft Team user with no optional permissions enabled. No access to entry-editing, Settings, utility, user-management, project-config, filesystem, Kubernetes, or environment variables was required.",
+    "publishedDate" : "2026-10-06T11:17:16.857",
+    "lastModifiedDate" : "2026-10-06T11:17:16.857",
+    "cvssScore" : 8.8,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "kubernetes" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105985"
   }, {
     "id" : "CVE-2026-102676",
     "description" : "Electron is a framework for writing cross-platform desktop applications using JavaScript, HTML and CSS. Prior to 41.10.6, 42.9.2, 43.4.1, and 44.0.0-beta.5, an Electron <webview> guest could enable nodeIntegrationInWorker for its Web Workers even when the unsandboxed embedder had Node.js integration disabled, allowing untrusted guest content to create a Node-enabled worker with more privilege than the embedder granted. Applications that do not enable the <webview> tag or that keep the embedder sandboxed are not affected. This issue is fixed in versions 41.10.6, 42.9.2, 43.4.1, and 44.0.0-beta.5.",
@@ -131,6 +190,17 @@
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-87004"
+  }, {
+    "id" : "CVE-2026-105650",
+    "description" : "Ghost is a Node.js content management system. From 2.1.0 until 6.64.0, embedding a URL from an attacker-controlled website could result in untrusted scripts being stored in post content. These scripts could run in the Ghost editor, on the published site, and in newsletter emails, possibly resulting in compromise of a staff user's admin session. This issue is fixed in version 6.64.0.",
+    "publishedDate" : "2026-10-05T20:17:13.817",
+    "lastModifiedDate" : "2026-10-05T20:17:13.817",
+    "cvssScore" : 8.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105650"
   }, {
     "id" : "CVE-2026-102600",
     "description" : "Socket.IO enables bidirectional and low-latency communication for every platform. Prior to 0.1.1, @socket.io/cluster-engine uses inherited object properties when looking up attacker-controlled session IDs in clustered deployments. Special property names such as __proto__ or constructor can resolve through the object prototype chain instead of identifying an actual connected client, causing the Node.js process to crash and resulting in denial of service. Applications that do not use @socket.io/cluster-engine are not affected. This issue is fixed in version 0.1.1.",
@@ -181,13 +251,26 @@
     "id" : "CVE-2026-105219",
     "description" : "Mammoth.js 1.3.0 before 1.12.3 contains a regular expression denial of service vulnerability in the style map tokeniser in lib/styles/parser/tokeniser.js due to overlapping regex alternatives. Attackers can supply a crafted .docx with an unterminated quoted string of repeated backslash escapes in mammoth/style-map to block the Node.js event loop.",
     "publishedDate" : "2026-10-04T18:16:34.777",
-    "lastModifiedDate" : "2026-10-04T18:16:34.777",
+    "lastModifiedDate" : "2026-10-05T15:17:19.470",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "epssScore" : 0.00358,
+    "epssPercentile" : 0.27252,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105219"
+  }, {
+    "id" : "CVE-2026-105675",
+    "description" : "Ghost is a Node.js content management system. From 4.39.0 until 6.64.0, staff users with permission to view staff invites were able to discover the secret token of pending invites, including invites for roles with higher privileges than their own. This could allow a staff user to escalate their privileges by accepting a pending invite. This issue is fixed in version 6.64.0.",
+    "publishedDate" : "2026-10-05T20:17:14.367",
+    "lastModifiedDate" : "2026-10-05T20:17:14.367",
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105219"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105675"
   }, {
     "id" : "CVE-2026-103921",
     "description" : "GraphQL Tools provides utilities for building, stitching, and mocking GraphQL schemas. Prior to 1.1.35, the executor-legacy-ws buildWSLegacyExecutor() function hardcodes TLS certificate rejection off for Node.js connections to wss:// endpoints. Applications using the executor directly, or url-loader with SubscriptionProtocol.LEGACY_WS, can therefore accept an attacker-controlled certificate when a network-positioned attacker intercepts the connection. Authentication material in connectionParams or headers can be disclosed, and subscription data can be modified. Browser WebSocket clients are unaffected because browsers enforce certificate validation. This issue is fixed in version 1.1.35.",
@@ -205,13 +288,70 @@
     "id" : "CVE-2026-105223",
     "description" : "maclof kubernetes-client 0.17.0 before 0.32.0 disables TLS certificate verification in parseKubeconfig() and parseKubeconfigFile() when a kubeconfig lacks certificate-authority-data, ignoring insecure-skip-tls-verify. On-path attackers can impersonate the Kubernetes API server to capture Bearer tokens or Basic credentials and tamper with WebSocket or REST API traffic.",
     "publishedDate" : "2026-10-05T01:16:28.480",
-    "lastModifiedDate" : "2026-10-05T01:16:28.480",
+    "lastModifiedDate" : "2026-10-05T15:17:19.607",
     "cvssScore" : 7.4,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00199,
+    "epssPercentile" : 0.08761,
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105223"
+  }, {
+    "id" : "CVE-2026-105643",
+    "description" : "Ghost is a Node.js content management system. From version 6.34.0 until 6.67.0, embed cards in the Ghost editor could bypass protections against stored cross-site scripting. Any staff user, including Contributors, could store scripts in post content that ran when another staff user opened the post in the editor, potentially compromising that user’s admin session. Self-hosted sites should leave the new  security.embedPreviewUrl  configuration option at its default value. This issue is fixed in version 6.67.0.",
+    "publishedDate" : "2026-10-05T19:17:18.900",
+    "lastModifiedDate" : "2026-10-05T19:17:18.900",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105643"
+  }, {
+    "id" : "CVE-2026-105649",
+    "description" : "Ghost is a Node.js content management system. From 4.22.0 until 6.65.0, SVG media thumbnails and SVG images uploaded with a non-SVG file extension were stored without sanitization. This allowed any staff user, including Contributors, to host scripts on the site's domain, possibly resulting in compromise of other staff users' admin sessions. This issue is fixed in version 6.65.0.",
+    "publishedDate" : "2026-10-05T20:17:13.613",
+    "lastModifiedDate" : "2026-10-05T20:17:13.613",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105649"
+  }, {
+    "id" : "CVE-2026-105651",
+    "description" : "Ghost is a Node.js content management system. From 5.94.0 until 6.64.0, when creating a bookmark card, Ghost could store non-image files fetched from an external website as bookmark icons or thumbnails. This allowed any staff user, including Contributors, to host arbitrary HTML on the site's domain, possibly resulting in compromise of other staff users' admin sessions. This issue is fixed in version 6.64.0.",
+    "publishedDate" : "2026-10-05T20:17:14.010",
+    "lastModifiedDate" : "2026-10-05T20:17:14.010",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105651"
+  }, {
+    "id" : "CVE-2026-105679",
+    "description" : "Ghost is a Node.js content management system. From 6.22.1 until 6.64.0, Ghost restricted the content type used to serve uploaded files to prevent browsers from executing them. On sites using the default local storage adapter, this restriction was not applied, so files uploaded by any staff user were served with a content type derived from their file extension. This could be used to host scripts on the site's domain, possibly resulting in compromise of other staff users' admin sessions. This issue is fixed in version 6.64.0.",
+    "publishedDate" : "2026-10-05T20:17:15.107",
+    "lastModifiedDate" : "2026-10-05T20:17:15.107",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105679"
+  }, {
+    "id" : "CVE-2026-105677",
+    "description" : "Ghost is a Node.js content management system. From 6.10.3 until 6.64.0, a vulnerability in how Ghost loads theme translation files allowed an authenticated Administrator to execute arbitrary code on the server via a crafted theme. This issue is fixed in version 6.64.0.",
+    "publishedDate" : "2026-10-05T20:17:14.733",
+    "lastModifiedDate" : "2026-10-05T20:17:14.733",
+    "cvssScore" : 7.2,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105677"
   }, {
     "id" : "CVE-2026-103251",
     "description" : "n8n versions before 1.123.80, from 2.0.0 before 2.39.6, and from 2.40.0 before 2.40.1 contain a validation bypass vulnerability in the community package installation handler for queue mode deployments. Attackers with Redis write access can bypass name validation, permission checks, checksum verification, and npm safety checks to install arbitrary npm packages across all cluster instances without authentication.",
@@ -225,6 +365,28 @@
     "matchedKeywords" : [ "npm" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103251"
+  }, {
+    "id" : "CVE-2026-102282",
+    "description" : "adm-zip is a JavaScript library for creating and extracting ZIP archives in Node.js. Prior to 0.6.1, adm-zip applies the Unix permission bits stored in a zip entry directly to the extracted file via `fs.chmodSync()` when `keepOriginalPermission=true` is passed to `extractAllTo()`/`extractEntryTo()` — and it never filters the setuid/setgid/sticky bits out of those bits. A zip crafted by an attacker can therefore produce an extracted binary with mode `04755`. When extraction runs as root (the default posture in Docker builds, CI runners, and privileged install steps — the exact environments where this flag is used), the resulting root-owned setuid file is executed later by a lesser-privileged user, turning the attacker's code into a root execution. Version 0.6.1 fixes the issue.",
+    "publishedDate" : "2026-10-05T17:17:08.110",
+    "lastModifiedDate" : "2026-10-05T17:17:09.230",
+    "cvssScore" : 7.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker", "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-102282"
+  }, {
+    "id" : "CVE-2026-105644",
+    "description" : "Ghost is a Node.js content management system. From 4.0.0 until 6.67.0, SVG images included in content imports were stored without sanitization. An attacker who convinced an Administrator to import a crafted file could host scripts on the site's domain, possibly resulting in compromise of staff users' admin sessions. This issue is fixed in version 6.67.0.",
+    "publishedDate" : "2026-10-05T19:17:19.060",
+    "lastModifiedDate" : "2026-10-05T19:17:19.060",
+    "cvssScore" : 6.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105644"
   }, {
     "id" : "CVE-2026-102639",
     "description" : "MobilityDB version 1.3.0 and earlier contains an out-of-bounds read vulnerability in the MEOS binary and library WKB deserialization logic that allows unprivileged database users to crash the PostgreSQL backend process by supplying a crafted WKB payload with a negative length field. The negative length value wraps to a large unsigned size_t due to missing signed validation, bypasses an overflow-unsafe pointer arithmetic bounds check in wkb_parse_state_check(), and causes memcpy() in text_from_wkb_state() to operate with a corrupted unbounded length, resulting in a remote denial-of-service condition affecting all sessions on the PostgreSQL instance.",
@@ -253,13 +415,37 @@
     "id" : "CVE-2026-105306",
     "description" : "A flaw was found in the Dynamic Client Registration flow of the Keycloak identity and access management server. The issue occurs because the registration process fails to filter security-sensitive client attributes when a new client is created. An attacker with a valid Initial Access Token can register a client that bypasses audience checks during token introspection. This allows the attacker to view sensitive identity information, roles, and session details from access tokens belonging to other applications in the same realm.",
     "publishedDate" : "2026-10-05T06:16:58.530",
-    "lastModifiedDate" : "2026-10-05T06:16:58.530",
+    "lastModifiedDate" : "2026-10-05T15:17:20.767",
     "cvssScore" : 6.5,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00221,
+    "epssPercentile" : 0.11538,
     "matchedKeywords" : [ "keycloak" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105306"
+  }, {
+    "id" : "CVE-2026-105680",
+    "description" : "Ghost is a Node.js content management system. From 5.81.0 until 6.60.0, staff with the Author role could delete posts and pages that they did not author. This issue is fixed in version 6.60.0.",
+    "publishedDate" : "2026-10-05T20:17:15.903",
+    "lastModifiedDate" : "2026-10-05T20:17:15.903",
+    "cvssScore" : 6.5,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105680"
+  }, {
+    "id" : "CVE-2026-105681",
+    "description" : "Ghost is a Node.js content management system. From 5.9.0 until 6.44.1, an input validation issue allowed members to access comments they were not authorized to access. This issue is fixed in version 6.44.1.",
+    "publishedDate" : "2026-10-05T20:17:16.320",
+    "lastModifiedDate" : "2026-10-05T20:17:16.320",
+    "cvssScore" : 6.5,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105681"
   }, {
     "id" : "CVE-2026-104182",
     "description" : "stream-json is a micro-library of stream components for processing JSON and JSONC with a minimal memory footprint. Prior to 3.6.0, the JSONC parser at stream-json/jsonc/parser.js and verifier at stream-json/jsonc/verifier.js restart comment-terminator scanning from the opening slash whenever a block or line comment spans an input chunk, while retaining the accumulated comment buffer. Delivering a large valid comment across many small chunks therefore causes quadratic CPU work and can stall the Node.js event loop. The maintainer characterizes the attack vector as local because the documented JSONC input is locally owned or user-controlled configuration, rather than input intended for the open internet. This JSONC-only scope does not include the plain JSON parser, which advances through and discards consumed string and number data. This issue is fixed in version 3.6.0.",
@@ -277,10 +463,12 @@
     "id" : "CVE-2026-105302",
     "description" : "A flaw was found in the User Session Note mapper of the Keycloak identity and access management solution. The issue occurs because the mapper does not validate whether a requested session note contains sensitive internal credentials, such as federated access tokens from external identity providers. This allows a delegated client administrator to leak a user's upstream bearer tokens into the tokens issued to their managed application, potentially leading to unauthorized access to the user's data on external platforms.",
     "publishedDate" : "2026-10-05T06:16:58.383",
-    "lastModifiedDate" : "2026-10-05T06:16:58.383",
+    "lastModifiedDate" : "2026-10-05T15:17:20.637",
     "cvssScore" : 5.7,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00201,
+    "epssPercentile" : 0.09053,
     "matchedKeywords" : [ "keycloak" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105302"
@@ -309,16 +497,150 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103281"
   }, {
-    "id" : "CVE-2026-105301",
-    "description" : "A flaw was found in the X.509 client-certificate authenticator of Keycloak, a solution for identity and access management. The issue occurs when the server is configured to check certificate revocation using CRL Distribution Points or OCSP. An attacker can provide a specially crafted certificate that points to a malicious server, causing Keycloak to make unauthorized outbound requests to internal or external endpoints before the certificate is fully validated. This can lead to a blind server-side request forgery (SSRF) attack.",
-    "publishedDate" : "2026-10-05T06:16:58.207",
-    "lastModifiedDate" : "2026-10-05T06:16:58.207",
-    "cvssScore" : 4.0,
+    "id" : "CVE-2026-105305",
+    "description" : "A flaw was found in the OIDC implementation of Keycloak, specifically within the Device Authorization Grant flow. This component allows devices with limited input capabilities to obtain security tokens. The issue occurs because the flow fails to check the minimum authentication level required by a client configuration. This allows an attacker who has stolen a user's password to bypass mandatory multi-factor authentication and gain unauthorized access to the Keycloak Admin REST API.",
+    "publishedDate" : "2026-10-06T08:16:35.697",
+    "lastModifiedDate" : "2026-10-06T08:16:35.697",
+    "cvssScore" : 5.4,
     "severity" : "MEDIUM",
     "inKev" : false,
     "matchedKeywords" : [ "keycloak" ],
     "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105305"
+  }, {
+    "id" : "CVE-2026-105645",
+    "description" : "Ghost is a Node.js content management system. From 5.37.0 until 6.67.0, a crafted request to the external media inliner could cause excessive CPU usage, making the Ghost server unresponsive. Exploiting this requires Administrator access. This issue is fixed in version 6.67.0.",
+    "publishedDate" : "2026-10-05T19:17:19.223",
+    "lastModifiedDate" : "2026-10-05T20:17:13.013",
+    "cvssScore" : 4.9,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105645"
+  }, {
+    "id" : "CVE-2026-105646",
+    "description" : "Ghost is a Node.js content management system. From 4.0.0 until 6.67.0, a crafted content import file could cause excessive CPU usage, making the Ghost server unresponsive. Exploiting this requires Administrator access. This issue is fixed in version 6.67.0.",
+    "publishedDate" : "2026-10-05T19:17:19.373",
+    "lastModifiedDate" : "2026-10-05T19:17:19.373",
+    "cvssScore" : 4.9,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105646"
+  }, {
+    "id" : "CVE-2026-105676",
+    "description" : "Ghost is a Node.js content management system. From 1.20.0 until 6.64.0, a vulnerability in how Ghost loads theme translation files allowed an authenticated Administrator to read JSON files outside of the active theme's directory, potentially exposing server configuration secrets. This issue is fixed in version 6.64.0.",
+    "publishedDate" : "2026-10-05T20:17:14.547",
+    "lastModifiedDate" : "2026-10-05T20:17:14.547",
+    "cvssScore" : 4.9,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105676"
+  }, {
+    "id" : "CVE-2026-105678",
+    "description" : "Ghost is a Node.js content management system. From 0.5.0 until 6.64.0, staff users with the Editor or Super Editor role were able to assign their own role to Author and Contributor users, despite not having permission to assign that role. This issue is fixed in version 6.64.0.",
+    "publishedDate" : "2026-10-05T20:17:14.913",
+    "lastModifiedDate" : "2026-10-05T20:17:14.913",
+    "cvssScore" : 4.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105678"
+  }, {
+    "id" : "CVE-2026-103546",
+    "description" : "In MongoDB Controllers for Kubernetes, insufficient validation of Ops Manager backup configuration may allow a user who can modify an OpsManager custom resource to cause unintended administrative changes in Ops Manager. This affects deployments using Enterprise Ops Manager backup reconciliation.",
+    "publishedDate" : "2026-10-05T22:16:56.520",
+    "lastModifiedDate" : "2026-10-05T22:16:56.520",
+    "cvssScore" : 4.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "kubernetes" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103546"
+  }, {
+    "id" : "CVE-2026-105301",
+    "description" : "A flaw was found in the X.509 client-certificate authenticator of Keycloak, a solution for identity and access management. The issue occurs when the server is configured to check certificate revocation using CRL Distribution Points or OCSP. An attacker can provide a specially crafted certificate that points to a malicious server, causing Keycloak to make unauthorized outbound requests to internal or external endpoints before the certificate is fully validated. This can lead to a blind server-side request forgery (SSRF) attack.",
+    "publishedDate" : "2026-10-05T06:16:58.207",
+    "lastModifiedDate" : "2026-10-05T15:17:20.513",
+    "cvssScore" : 4.0,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.0012,
+    "epssPercentile" : 0.01618,
+    "matchedKeywords" : [ "keycloak" ],
+    "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105301"
+  }, {
+    "id" : "CVE-2026-105647",
+    "description" : "Ghost is a Node.js content management system. From 6.54.1 until 6.65.0, a validation issue allowed some functionality, such as Webmentions, to be abused by an unauthenticated user to make limited HTTP requests to hosts in the Ghost server's internal network. A successful attack would not result in any response data being returned. This issue is fixed in version 6.65.0.",
+    "publishedDate" : "2026-10-05T20:17:13.157",
+    "lastModifiedDate" : "2026-10-05T20:17:13.157",
+    "cvssScore" : 4.0,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105647"
+  }, {
+    "id" : "CVE-2026-105648",
+    "description" : "Ghost is a Node.js content management system. From 6.0.9 until 6.65.0, a validation issue allowed some functionality, such as Webmentions, to be abused by an unauthenticated user to make limited HTTP requests to hosts in the Ghost server's internal network on some network configurations. A successful attack would not result in any response data being returned. This issue is fixed in version 6.65.0.",
+    "publishedDate" : "2026-10-05T20:17:13.420",
+    "lastModifiedDate" : "2026-10-05T20:17:13.420",
+    "cvssScore" : 4.0,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105648"
+  }, {
+    "id" : "CVE-2026-105683",
+    "description" : "Ghost is a Node.js content management system. From 6.14.0 until 6.27.0, an input validation issue may have allowed staff users to access local files outside the intended data storage directories on the server. This issue is fixed in version 6.27.0.",
+    "publishedDate" : "2026-10-05T20:17:17.123",
+    "lastModifiedDate" : "2026-10-05T20:17:17.123",
+    "cvssScore" : 3.8,
+    "severity" : "LOW",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105683"
+  }, {
+    "id" : "CVE-2026-105652",
+    "description" : "Ghost is a Node.js content management system. From 0.7.2 until 6.64.0, any staff-level user was able to determine the relative ordering of other staff users' hashed passwords. This does not directly disclose password hashes, and does not provide a practical path to recovering a password. This issue is fixed in version 6.64.0.",
+    "publishedDate" : "2026-10-05T20:17:14.180",
+    "lastModifiedDate" : "2026-10-05T20:17:14.180",
+    "cvssScore" : 3.1,
+    "severity" : "LOW",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105652"
+  }, {
+    "id" : "CVE-2026-105766",
+    "description" : "Use of the backend-facing $scheme variable in the trailing-slash directory redirect in nginx.conf of Chainguard Academy (edu) from commit 0b75ff98057f69b044a3e7194e428066ac5ad0d4 before commit 93dc0e50739c225f5aee2e803800a47fc0feb906 allows an on-path network attacker to read or modify documentation content served to a victim via an HTTPS request for a slashless directory path, because TLS terminates at the load balancer in front of Nginx and the resulting 301 response redirects the client to a plaintext http:// URL. Browsers that ship the HSTS preload list are not affected, because the .dev top-level domain is preloaded; clients that do not enforce HSTS, such as command-line HTTP clients and scripts that follow redirects, are affected.",
+    "publishedDate" : "2026-10-05T20:17:20.620",
+    "lastModifiedDate" : "2026-10-05T20:17:20.620",
+    "cvssScore" : 3.1,
+    "severity" : "LOW",
+    "inKev" : false,
+    "matchedKeywords" : [ "nginx" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105766"
+  }, {
+    "id" : "CVE-2026-105682",
+    "description" : "Ghost is a Node.js content management system. From 1.18.0 until 6.27.0, an SSRF vulnerability in the webhooks feature allowed staff users to probe internal hosts from the Ghost server. This issue is fixed in version 6.27.0.",
+    "publishedDate" : "2026-10-05T20:17:16.647",
+    "lastModifiedDate" : "2026-10-05T20:17:16.647",
+    "cvssScore" : 2.7,
+    "severity" : "LOW",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105682"
   }, {
     "id" : "CVE-2026-102828",
     "description" : "simple-git, an interface for running git commands in any node.js application, enables applications to execute Git operations from JavaScript. From 3.15.0 until 4.0.1, the default blockUnsafeOperationsPlugin does not classify trailer.<token>.cmd as unsafe configuration. An application that passes attacker-controlled values through SimpleGitOptions.config or inline -c arguments can therefore allow Git to invoke an attacker-selected shell command when git interpret-trailers processes the configured trailer. The command executes with the operating-system identity and permissions of the Node.js process. This issue is fixed in 4.0.1.",
@@ -495,5 +817,35 @@
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104055"
+  }, {
+    "id" : "CVE-2026-86671",
+    "description" : "In Eclipse Che versions 7.29.0 and later, the GET `/api/scm/resolve` and `POST /api/factory/resolver` endpoints pass an attacker-controlled URL to `URLFetcher.fetch()`, which calls `new URL(url).openConnection()` with no scheme or host allow-list and returns the response body to the caller. Any authenticated Che user can read arbitrary local files via the file:// scheme (including the pod's Kubernetes service-account token at `file:///var/run/secrets/kubernetes.io/serviceaccount/token`), reach internal HTTP services and cloud instance metadata endpoints (169.254.169.254), and have their stored SCM personal access token attached as an `Authorization` header to a host of their choosing. The same credential-forwarding behavior also fires when a victim opens a workspace from a malicious devfile whose `parent.uri` points to an attacker-controlled server, enabling exfiltration of the victim's SCM PAT without direct API access. No fix is available.",
+    "publishedDate" : "2026-10-05T17:17:16.910",
+    "lastModifiedDate" : "2026-10-05T20:17:27.720",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "kubernetes" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-86671"
+  }, {
+    "id" : "CVE-2026-103433",
+    "description" : "Docker Buildx Bake does not request the expected fs.read approval for certain filesystem inputs. An untrusted Bake definition can expose a readable file through a pathless secret whose ID is interpreted as a client-side pathname, or consume a local OCI image layout outside the project after entitlement validation checks a different path representation. Users who run untrusted Bake definitions are affected.",
+    "publishedDate" : "2026-10-05T22:16:56.370",
+    "lastModifiedDate" : "2026-10-05T22:16:56.370",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103433"
+  }, {
+    "id" : "CVE-2026-98249",
+    "description" : "In the Linux kernel, the following vulnerability has been resolved:\n\narm64: hibernate: pass HVC_SET_VECTORS args to the resume hvc\n\nswsusp_arch_suspend_exit() reinstalls the restored kernel's hyp stub\nvectors with an hvc, but never passes the arguments. x0 is not set to\nHVC_SET_VECTORS and x1 is not set to the vector address, so the stub\ndispatch falls through and returns without writing vbar_el2. EL2 is\nleft pointing at the trans_pgd copy of the vectors, a page that\nswsusp_free() releases right after resume.\n\nSet the arguments up the same way __hyp_set_vectors() does.\n\nWithout this fix, Vladimir was able to trigger a hang when resuming from\nhibernation with CONFIG_PAGE_POISONING=y and page_poison=on.",
+    "publishedDate" : "2026-10-06T09:18:13.290",
+    "lastModifiedDate" : "2026-10-06T09:18:13.290",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "hibernate" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-98249"
   } ]
 }
