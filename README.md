@@ -17,19 +17,19 @@
 <!-- CVEILLE_SUMMARY_START -->
 ### 🛡️ État de la veille CVEille (Stack Spring Boot & Angular)
 
-> **Dernière synchronisation** : `2026-10-05T13:08:03.331094260Z`  
-> **Vulnérabilités suivies** : `5` | 🔥 **Exploits CISA KEV** : `0` | 🚨 **Critiques** : `0` | ⚠️ **Élevées** : `2`
+> **Dernière synchronisation** : `2026-10-06T12:30:02.414775455Z`  
+> **Vulnérabilités suivies** : `36` | 🔥 **Exploits CISA KEV** : `0` | 🚨 **Critiques** : `1` | ⚠️ **Élevées** : `14`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
 | [CVE-2026-53988](https://nvd.nist.gov/vuln/detail/CVE-2026-53988) | `CRITICAL` | 10.0 | N/A | Non | `docker` | Dockhand before 1.0.40 contains an authentication bypass vulnerability in its... |
 | [CVE-2026-55494](https://nvd.nist.gov/vuln/detail/CVE-2026-55494) | `CRITICAL` | 9.8 | 0.8% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
+| [CVE-2026-105641](https://nvd.nist.gov/vuln/detail/CVE-2026-105641) | `CRITICAL` | 9.8 | N/A | Non | `docker` | Plane is an open-source project management tool. Prior to 1.4.0, the deployme... |
 | [CVE-2026-55181](https://nvd.nist.gov/vuln/detail/CVE-2026-55181) | `CRITICAL` | 9.4 | 0.7% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
 | [CVE-2026-62308](https://nvd.nist.gov/vuln/detail/CVE-2026-62308) | `CRITICAL` | 9.1 | 0.4% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
 | [CVE-2026-82039](https://nvd.nist.gov/vuln/detail/CVE-2026-82039) | `HIGH` | 8.8 | 0.3% | Non | `postgresql` | UTMStack before 11.2.16 contains a SQL injection vulnerability in UtmAssetGro... |
-| [CVE-2026-102676](https://nvd.nist.gov/vuln/detail/CVE-2026-102676) | `HIGH` | 8.3 | N/A | Non | `node.js` | Electron is a framework for writing cross-platform desktop applications using... |
-| [CVE-2026-102826](https://nvd.nist.gov/vuln/detail/CVE-2026-102826) | `HIGH` | 8.1 | N/A | Non | `node.js` | simple-git, an interface for running git commands in any node.js application,... |
-| [CVE-2026-102827](https://nvd.nist.gov/vuln/detail/CVE-2026-102827) | `HIGH` | 8.1 | N/A | Non | `node.js` | simple-git, an interface for running git commands in any node.js application,... |
+| [CVE-2026-92931](https://nvd.nist.gov/vuln/detail/CVE-2026-92931) | `HIGH` | 8.8 | N/A | Non | `npm` | CWE-918: Server-Side Request Forgery in the Progress @progress/sitefinity-nex... |
+| [CVE-2026-101919](https://nvd.nist.gov/vuln/detail/CVE-2026-101919) | `HIGH` | 8.8 | N/A | Non | `kubernetes` | A flaw was found in the HyperShift operator. The operator copies user-provide... |
 
 *Données détaillées historisées chaque jour dans [`data/`](data/) • Alimenté par NVD 2.0, CISA KEV & EPSS*
 <!-- CVEILLE_SUMMARY_END -->
