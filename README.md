@@ -17,19 +17,19 @@
 <!-- CVEILLE_SUMMARY_START -->
 ### 🛡️ État de la veille CVEille (Stack Spring Boot & Angular)
 
-> **Dernière synchronisation** : `2026-10-06T12:30:02.414775455Z`  
-> **Vulnérabilités suivies** : `36` | 🔥 **Exploits CISA KEV** : `0` | 🚨 **Critiques** : `1` | ⚠️ **Élevées** : `14`
+> **Dernière synchronisation** : `2026-10-07T12:23:11.488551631Z`  
+> **Vulnérabilités suivies** : `42` | 🔥 **Exploits CISA KEV** : `0` | 🚨 **Critiques** : `1` | ⚠️ **Élevées** : `15`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
 | [CVE-2026-53988](https://nvd.nist.gov/vuln/detail/CVE-2026-53988) | `CRITICAL` | 10.0 | N/A | Non | `docker` | Dockhand before 1.0.40 contains an authentication bypass vulnerability in its... |
 | [CVE-2026-55494](https://nvd.nist.gov/vuln/detail/CVE-2026-55494) | `CRITICAL` | 9.8 | 0.8% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
-| [CVE-2026-105641](https://nvd.nist.gov/vuln/detail/CVE-2026-105641) | `CRITICAL` | 9.8 | N/A | Non | `docker` | Plane is an open-source project management tool. Prior to 1.4.0, the deployme... |
+| [CVE-2026-105641](https://nvd.nist.gov/vuln/detail/CVE-2026-105641) | `CRITICAL` | 9.8 | 0.5% | Non | `docker` | Plane is an open-source project management tool. Prior to 1.4.0, the deployme... |
 | [CVE-2026-55181](https://nvd.nist.gov/vuln/detail/CVE-2026-55181) | `CRITICAL` | 9.4 | 0.7% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
 | [CVE-2026-62308](https://nvd.nist.gov/vuln/detail/CVE-2026-62308) | `CRITICAL` | 9.1 | 0.4% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
 | [CVE-2026-82039](https://nvd.nist.gov/vuln/detail/CVE-2026-82039) | `HIGH` | 8.8 | 0.3% | Non | `postgresql` | UTMStack before 11.2.16 contains a SQL injection vulnerability in UtmAssetGro... |
-| [CVE-2026-92931](https://nvd.nist.gov/vuln/detail/CVE-2026-92931) | `HIGH` | 8.8 | N/A | Non | `npm` | CWE-918: Server-Side Request Forgery in the Progress @progress/sitefinity-nex... |
-| [CVE-2026-101919](https://nvd.nist.gov/vuln/detail/CVE-2026-101919) | `HIGH` | 8.8 | N/A | Non | `kubernetes` | A flaw was found in the HyperShift operator. The operator copies user-provide... |
+| [CVE-2026-92931](https://nvd.nist.gov/vuln/detail/CVE-2026-92931) | `HIGH` | 8.8 | 0.3% | Non | `npm` | CWE-918: Server-Side Request Forgery in the Progress @progress/sitefinity-nex... |
+| [CVE-2026-101919](https://nvd.nist.gov/vuln/detail/CVE-2026-101919) | `HIGH` | 8.8 | 0.4% | Non | `kubernetes` | A flaw was found in the HyperShift operator. The operator copies user-provide... |
 
 *Données détaillées historisées chaque jour dans [`data/`](data/) • Alimenté par NVD 2.0, CISA KEV & EPSS*
 <!-- CVEILLE_SUMMARY_END -->
