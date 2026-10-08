@@ -17,8 +17,8 @@
 <!-- CVEILLE_SUMMARY_START -->
 ### 🛡️ État de la veille CVEille (Stack Spring Boot & Angular)
 
-> **Dernière synchronisation** : `2026-10-07T12:23:11.488551631Z`  
-> **Vulnérabilités suivies** : `42` | 🔥 **Exploits CISA KEV** : `0` | 🚨 **Critiques** : `1` | ⚠️ **Élevées** : `15`
+> **Dernière synchronisation** : `2026-10-08T12:33:08.041725290Z`  
+> **Vulnérabilités suivies** : `21` | 🔥 **Exploits CISA KEV** : `0` | 🚨 **Critiques** : `0` | ⚠️ **Élevées** : `3`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
