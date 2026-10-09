@@ -58,7 +58,7 @@ public class NotificationService {
                 int color = cve.inKev() ? 0xFF0000 : (cve.cvssScore() != null && cve.cvssScore() >= 9.0 ? 0xE02424 : 0xF59E0B);
 
                 Map<String, Object> embed = new LinkedHashMap<>();
-                embed.put("title", "🚨 " + cve.id() + " - " + cve.severity());
+                embed.put("title", cve.id() + " - " + cve.severity());
                 embed.put("url", cve.nvdUrl());
                 embed.put("color", color);
 
@@ -70,7 +70,7 @@ public class NotificationService {
 
                 List<Map<String, Object>> fields = new ArrayList<>();
                 fields.add(Map.of("name", "CVSS Score", "value", cve.cvssScore() != null ? cve.cvssScore().toString() : "N/A", "inline", true));
-                fields.add(Map.of("name", "CISA KEV (Exploité)", "value", cve.inKev() ? "🔥 OUI" : "Non", "inline", true));
+                fields.add(Map.of("name", "CISA KEV (Exploité)", "value", cve.inKev() ? "Oui" : "Non", "inline", true));
                 fields.add(Map.of("name", "EPSS (30j)", "value", cve.epssScore() != null ? String.format(Locale.US, "%.2f%%", cve.epssScore() * 100) : "N/A", "inline", true));
                 fields.add(Map.of("name", "Stack ciblée", "value", cve.matchedKeywords() != null ? String.join(", ", cve.matchedKeywords()) : "Général", "inline", false));
 
@@ -80,7 +80,7 @@ public class NotificationService {
             }
 
             Map<String, Object> payload = Map.of(
-                    "username", "CVEille Bot",
+                    "username", "CVEille",
                     "avatar_url", "https://raw.githubusercontent.com/florianppn/CVEille/main/docs/assets/shield.png",
                     "embeds", embeds
             );

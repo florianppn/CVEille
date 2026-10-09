@@ -22,8 +22,6 @@
     searchInput: document.getElementById('searchInput'),
     clearSearchBtn: document.getElementById('clearSearchBtn'),
     severitySelect: document.getElementById('severitySelect'),
-    kevCheckbox: document.getElementById('kevOnlyCheckbox'),
-    kevToggleLabel: document.getElementById('kevToggleLabel'),
     resetBtn: document.getElementById('resetFiltersBtn'),
     chipsContainer: document.getElementById('techChipsContainer'),
     tableBody: document.getElementById('cveTableBody'),
@@ -178,16 +176,13 @@
   function applyFilters() {
     const query = elements.searchInput.value.trim().toLowerCase();
     const severity = elements.severitySelect.value;
-    const kevOnly = elements.kevCheckbox.checked;
 
     elements.clearSearchBtn.style.display = query ? 'inline-block' : 'none';
-    elements.kevToggleLabel.classList.toggle('active', kevOnly);
 
-    const isFiltered = query !== '' || severity !== 'ALL' || kevOnly || activeTech !== 'ALL';
+    const isFiltered = query !== '' || severity !== 'ALL' || activeTech !== 'ALL';
     elements.resetBtn.style.display = isFiltered ? 'inline-block' : 'none';
 
     const filtered = allCves.filter(cve => {
-      if (kevOnly && !cve.inKev) return false;
       if (severity !== 'ALL' && (cve.severity || '').toUpperCase() !== severity) return false;
       if (activeTech !== 'ALL') {
         if (!cve.matchedKeywords || !cve.matchedKeywords.includes(activeTech)) return false;
@@ -214,7 +209,7 @@
     const rows = cves.map(cve => {
       const sevClass = 'badge-' + (cve.severity ? cve.severity.toLowerCase() : 'unknown');
       const kevBadge = cve.inKev
-        ? '<span class="badge badge-kev" title="Vulnérabilité activement exploitée (CISA KEV)">Actif</span>'
+        ? '<span class="badge badge-kev">Oui</span>'
         : '<span class="badge-safe">—</span>';
 
       const cvssText = cve.cvssScore !== null && cve.cvssScore !== undefined
@@ -251,7 +246,6 @@
   function setupEventListeners() {
     elements.searchInput.addEventListener('input', applyFilters);
     elements.severitySelect.addEventListener('change', applyFilters);
-    elements.kevCheckbox.addEventListener('change', applyFilters);
 
     elements.clearSearchBtn.addEventListener('click', () => {
       elements.searchInput.value = '';
@@ -262,7 +256,6 @@
     elements.resetBtn.addEventListener('click', () => {
       elements.searchInput.value = '';
       elements.severitySelect.value = 'ALL';
-      elements.kevCheckbox.checked = false;
       activeTech = 'ALL';
       elements.chipsContainer.querySelectorAll('.chip-tag').forEach(b => {
         b.classList.toggle('active', b.getAttribute('data-tech') === 'ALL');

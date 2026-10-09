@@ -84,32 +84,6 @@
   border-color: var(--text-secondary);
 }
 
-.toggle-kev {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-color);
-  padding: 0.45rem 0.75rem;
-  border-radius: 6px;
-  font-size: 0.8125rem;
-  color: var(--text-secondary);
-  cursor: pointer;
-  user-select: none;
-  transition: all 0.15s;
-}
-
-.toggle-kev input {
-  accent-color: var(--color-critical);
-  cursor: pointer;
-}
-
-.toggle-kev.active {
-  border-color: rgba(239, 68, 68, 0.4);
-  background: rgba(239, 68, 68, 0.08);
-  color: #fca5a5;
-}
-
 .reset-btn {
   background: var(--bg-surface);
   border: 1px solid var(--border-color);

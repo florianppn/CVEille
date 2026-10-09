@@ -8,20 +8,20 @@ on:
 
 jobs:
   backend-tests:
-    name: ☕ Java 21 & Spring Boot Tests
+    name: Java 21 & Spring Boot Tests
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: ☕ Setup Java 21 (Temurin)
+      - name: Setup Java 21 (Temurin)
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '21'
           cache: 'maven'
 
-      - name: 🧪 Run Maven Unit Tests
+      - name: Run Maven Unit Tests
         run: |
           cd backend
           mvn -B test

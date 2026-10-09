@@ -20,10 +20,6 @@
       </div>
 
       <div class="header-meta">
-        <div class="sync-badge">
-          <span class="status-dot"></span>
-          <span id="last-sync-text">Chargement...</span>
-        </div>
         <a href="https://github.com/florianppn/CVEille" target="_blank" rel="noopener" class="github-link">
           <svg height="15" width="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
@@ -86,7 +82,7 @@
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
           <input type="text" id="searchInput" placeholder="Filtrer par CVE, composant, mot-clé..." autocomplete="off">
-          <button id="clearSearchBtn" class="clear-btn" style="display:none;" title="Effacer">✕</button>
+          <button id="clearSearchBtn" class="clear-btn" style="display:none;" title="Effacer">&times;</button>
         </div>
 
         <div class="filter-actions">
@@ -97,11 +93,6 @@
             <option value="MEDIUM">Moyenne (4.0 - 6.9)</option>
             <option value="LOW">Basse (&lt; 4.0)</option>
           </select>
-
-          <label class="toggle-kev" id="kevToggleLabel">
-            <input type="checkbox" id="kevOnlyCheckbox">
-            <span>CISA KEV actif</span>
-          </label>
 
           <button id="resetFiltersBtn" class="reset-btn" style="display:none;">Réinitialiser</button>
         </div>
@@ -145,9 +136,8 @@
 
     <!-- Footer -->
     <footer class="footer">
-      <p>
-        CVEille • Données synchronisées depuis NIST NVD 2.0, CISA KEV et FIRST.org EPSS via Spring Boot 3.
-      </p>
+      <p>CVEille • Données synchronisées depuis NIST NVD 2.0, CISA KEV et FIRST.org EPSS via Spring Boot 3.</p>
+      <p class="footer-sync">Dernière synchronisation : <span id="last-sync-text">—</span></p>
     </footer>
   </div>
 </body>

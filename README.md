@@ -1,4 +1,4 @@
-# 🛡️ CVEille
+# CVEille
 
 <p align="center">
   <a href="https://florianppn.github.io/CVEille/"><img src="https://img.shields.io/badge/Live_Dashboard-GitHub_Pages-0ea5e9?style=for-the-badge&logo=githubpages&logoColor=white" alt="Live Dashboard" /></a>
@@ -10,15 +10,15 @@
 > **CVEille** est un outil de veille quotidienne automatisée sur les vulnérabilités de sécurité (CVE).  
 > Propulsé par un pipeline **Spring Boot 3**, il filtre les failles ciblant l'écosystème **Spring Boot & Angular**, croise la criticité (**CVSS**), l'exploitation active (**CISA KEV**) et la prédiction de risque (**EPSS**), et publie chaque jour un dashboard web interactif.
 
-🌐 **Dashboard interactif en ligne** : **[https://florianppn.github.io/CVEille/](https://florianppn.github.io/CVEille/)**
+**Dashboard interactif en ligne** : **[https://florianppn.github.io/CVEille/](https://florianppn.github.io/CVEille/)**
 
 ---
 
 <!-- CVEILLE_SUMMARY_START -->
-### 🛡️ État de la veille CVEille (Stack Spring Boot & Angular)
+### État de la veille (Stack Spring Boot & Angular)
 
 > **Dernière synchronisation** : `2026-10-09T12:20:51.238598021Z`  
-> **Vulnérabilités suivies** : `40` | 🔥 **Exploits CISA KEV** : `0` | 🚨 **Critiques** : `3` | ⚠️ **Élevées** : `8`
+> **Vulnérabilités suivies** : `40` | **Exploits CISA KEV** : `0` | **Critiques** : `3` | **Élevées** : `8`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
@@ -36,7 +36,7 @@
 
 ---
 
-## 🔬 Méthode de priorisation
+## Méthode de priorisation
 
 Pour aller au-delà du simple score CVSS et mesurer le risque concret :
 
@@ -46,7 +46,7 @@ Pour aller au-delà du simple score CVSS et mesurer le risque concret :
 
 ---
 
-## 🛠️ Stack surveillée
+## Stack surveillée
 
 - **Java / Spring** : `spring`, `spring-boot`, `spring-security`, `tomcat`, `hibernate`, `jackson`, `log4j`, `logback`
 - **Frontend** : `angular`, `typescript`, `rxjs`, `node.js`, `npm`
@@ -56,7 +56,7 @@ Pour aller au-delà du simple score CVSS et mesurer le risque concret :
 
 ---
 
-## 🚀 Utilisation locale
+## Utilisation locale
 
 ```bash
 # 1. Lancer la synchronisation quotidienne (Mode CLI Batch)
@@ -72,7 +72,7 @@ python3 -m http.server 3000 --directory frontend
 
 ---
 
-## 🔐 Secrets GitHub (Optionnels)
+## Secrets GitHub (Optionnels)
 
 Dans **Settings > Secrets and variables > Actions** :
 - `DISCORD_WEBHOOK_URL` : Pour recevoir les alertes immédiates en cas de CVE critique ou KEV sur Discord.
@@ -80,5 +80,5 @@ Dans **Settings > Secrets and variables > Actions** :
 
 ---
 
-## 📜 Licence
+## Licence
 Projet distribué sous licence [MIT](LICENSE).
