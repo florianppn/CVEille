@@ -159,12 +159,12 @@ public class DataExporterService {
     private String generateReadmeSection(CveStats stats, List<EnrichedCve> cves) {
         StringBuilder sb = new StringBuilder();
         sb.append(SUMMARY_START_TAG).append("\n");
-        sb.append("### 🛡️ État de la veille CVEille (Stack Spring Boot & Angular)\n\n");
+        sb.append("### État de la veille (Stack Spring Boot & Angular)\n\n");
         sb.append("> **Dernière synchronisation** : `").append(stats.lastSyncTimestamp()).append("`  \n");
         sb.append("> **Vulnérabilités suivies** : `").append(stats.totalTracked()).append("` | ");
-        sb.append("🔥 **Exploits CISA KEV** : `").append(stats.kevCount()).append("` | ");
-        sb.append("🚨 **Critiques** : `").append(stats.criticalCount()).append("` | ");
-        sb.append("⚠️ **Élevées** : `").append(stats.highCount()).append("`\n\n");
+        sb.append("**Exploits CISA KEV** : `").append(stats.kevCount()).append("` | ");
+        sb.append("**Critiques** : `").append(stats.criticalCount()).append("` | ");
+        sb.append("**Élevées** : `").append(stats.highCount()).append("`\n\n");
 
         sb.append("| CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |\n");
         sb.append("|---|---|---|---|---|---|---|\n");
@@ -172,7 +172,7 @@ public class DataExporterService {
         int limit = Math.min(cves.size(), 8);
         for (int i = 0; i < limit; i++) {
             EnrichedCve cve = cves.get(i);
-            String kevBadge = cve.inKev() ? "🔥 **OUI**" : "Non";
+            String kevBadge = cve.inKev() ? "**Oui**" : "Non";
             String cvssStr = cve.cvssScore() != null ? String.valueOf(cve.cvssScore()) : "N/A";
             String epssStr = cve.epssScore() != null ? String.format(Locale.US, "%.1f%%", cve.epssScore() * 100) : "N/A";
             String stackTags = cve.matchedKeywords() != null ? String.join(", ", cve.matchedKeywords()) : "";
