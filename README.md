@@ -1,16 +1,8 @@
 # CVEille
 
-<p align="center">
-  <a href="https://florianppn.github.io/CVEille/"><img src="https://img.shields.io/badge/Live_Dashboard-GitHub_Pages-0ea5e9?style=for-the-badge&logo=githubpages&logoColor=white" alt="Live Dashboard" /></a>
-  <img src="https://img.shields.io/badge/Spring%20Boot-3.3.4-6DB33F?style=for-the-badge&logo=springboot&logoColor=white" alt="Spring Boot 3" />
-  <img src="https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white" alt="Java 21" />
-  <img src="https://img.shields.io/badge/Threat%20Intel-NVD%20%2B%20CISA%20KEV%20%2B%20EPSS-0052CC?style=for-the-badge" alt="Threat Intel" />
-</p>
+Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technologies Spring Boot et Angular. Les données proviennent du NIST NVD 2.0, du catalogue CISA KEV et des scores FIRST EPSS.
 
-> **CVEille** est un outil de veille quotidienne automatisée sur les vulnérabilités de sécurité (CVE).  
-> Propulsé par un pipeline **Spring Boot 3**, il filtre les failles ciblant l'écosystème **Spring Boot & Angular**, croise la criticité (**CVSS**), l'exploitation active (**CISA KEV**) et la prédiction de risque (**EPSS**), et publie chaque jour un dashboard web interactif.
-
-**Dashboard interactif en ligne** : **[https://florianppn.github.io/CVEille/](https://florianppn.github.io/CVEille/)**
+**Dashboard en ligne** : [https://florianppn.github.io/CVEille/](https://florianppn.github.io/CVEille/)
 
 ---
 
@@ -36,49 +28,48 @@
 
 ---
 
-## Méthode de priorisation
+## Structure
 
-Pour aller au-delà du simple score CVSS et mesurer le risque concret :
-
-- **NVD API 2.0 (NIST)** : gravité intrinsèque (**CVSS v3.1**).
-- **CISA KEV Catalog** : confirmation d'**exploitation active réelle** par des attaquants dans la nature.
-- **EPSS (FIRST.org)** : **probabilité prédictive** d'exploitation sous 30 jours.
-
----
+```
+├── backend/    # Service Spring Boot (ingestion NVD/KEV/EPSS, analyse, export JSON)
+├── frontend/   # Dashboard statique (HTML, CSS, JS) hébergé sur GitHub Pages
+└── data/       # Historique quotidien des vulnérabilités au format JSON
+```
 
 ## Stack surveillée
 
-- **Java / Spring** : `spring`, `spring-boot`, `spring-security`, `tomcat`, `hibernate`, `jackson`, `log4j`, `logback`
-- **Frontend** : `angular`, `typescript`, `rxjs`, `node.js`, `npm`
-- **Infrastructure** : `docker`, `kubernetes`, `postgresql`, `nginx`, `keycloak`
+- **Backend** : Spring, Spring Boot, Spring Security, Tomcat, Hibernate, Jackson, Log4j, Logback
+- **Frontend** : Angular, TypeScript, RxJS, Node.js, npm
+- **Infrastructure** : Docker, Kubernetes, PostgreSQL, Nginx, Keycloak
 
-*Paramétrable dans [`backend/src/main/resources/application.yml`](backend/src/main/resources/application.yml).*
+*Configurable dans `backend/src/main/resources/application.yml`.*
 
----
+## Lancement local
 
-## Utilisation locale
+### Backend (Java 21 / Maven)
 
 ```bash
-# 1. Lancer la synchronisation quotidienne (Mode CLI Batch)
-cd backend && mvn spring-boot:run -Dspring-boot.run.arguments="--sync"
+cd backend
 
-# 2. Lancer les tests unitaires
-cd backend && mvn test
+# Lancer la synchronisation
+mvn spring-boot:run -Dspring-boot.run.arguments="--sync"
 
-# 3. Lancer le dashboard web localement
+# Exécuter les tests unitaires
+mvn test
+```
+
+### Frontend
+
+```bash
 python3 -m http.server 3000 --directory frontend
 # Ouvrir http://localhost:3000
 ```
 
----
+## Variables d'environnement
 
-## Secrets GitHub (Optionnels)
-
-Dans **Settings > Secrets and variables > Actions** :
-- `DISCORD_WEBHOOK_URL` : Pour recevoir les alertes immédiates en cas de CVE critique ou KEV sur Discord.
-- `NVD_API_KEY` : Clé API NIST gratuite (augmente le débit de requêtes).
-
----
+- `NVD_API_KEY` *(optionnel)* : Clé d'API NIST NVD pour augmenter le quota de requêtes.
+- `DISCORD_WEBHOOK_URL` *(optionnel)* : Webhook Discord pour recevoir des notifications sur les vulnérabilités critiques.
 
 ## Licence
-Projet distribué sous licence [MIT](LICENSE).
+
+[MIT](LICENSE)
