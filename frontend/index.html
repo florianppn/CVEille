@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CVEille • Threat Intelligence Dashboard</title>
+  <title>CVEille • Veille des Vulnérabilités</title>
   <meta name="description" content="Veille quotidienne automatisée des vulnérabilités de sécurité sur l'écosystème Spring Boot, Angular et infrastructure.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23a1a1aa%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z%22/></svg>">
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" defer></script>
   <script src="app.js" defer></script>
@@ -15,74 +15,63 @@
     <!-- Header -->
     <header class="header">
       <div class="header-brand">
-        <span class="brand-icon">🛡️</span>
-        <div>
-          <h1 class="brand-title">CVEille</h1>
-          <p class="brand-subtitle">Threat Intelligence Quotidienne • Spring Boot & Angular</p>
-        </div>
+        <h1 class="brand-title">CVEille</h1>
+        <p class="brand-subtitle">Veille quotidienne des vulnérabilités • Stack Spring Boot & Angular</p>
       </div>
 
       <div class="header-meta">
         <div class="sync-badge">
-          <span class="status-pulse"></span>
-          <span id="last-sync-text">Chargement des données...</span>
+          <span class="status-dot"></span>
+          <span id="last-sync-text">Chargement...</span>
         </div>
         <a href="https://github.com/florianppn/CVEille" target="_blank" rel="noopener" class="github-link">
-          <svg height="18" width="18" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+          <svg height="15" width="15" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
             <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
           </svg>
-          Code Source
+          GitHub
         </a>
       </div>
     </header>
 
     <main>
-      <!-- KPIs -->
+      <!-- Metric Stats -->
       <section class="kpi-grid">
-        <div class="kpi-card">
-          <div class="kpi-icon kpi-blue">🛡️</div>
-          <div class="kpi-info">
-            <span class="kpi-value" id="kpi-total">-</span>
-            <span class="kpi-label">Vulnérabilités Suivies (Stack)</span>
-          </div>
+        <div class="metric-card">
+          <span class="metric-label">Vulnérabilités suivies</span>
+          <span class="metric-value" id="kpi-total">-</span>
         </div>
 
-        <div class="kpi-card">
-          <div class="kpi-icon kpi-red">🔥</div>
-          <div class="kpi-info">
-            <span class="kpi-value" id="kpi-kev">-</span>
-            <span class="kpi-label">Exploits CISA KEV (Actifs)</span>
-          </div>
+        <div class="metric-card">
+          <span class="metric-label">Exploits actifs (CISA KEV)</span>
+          <span class="metric-value metric-kev" id="kpi-kev">-</span>
         </div>
 
-        <div class="kpi-card">
-          <div class="kpi-icon kpi-orange">🚨</div>
-          <div class="kpi-info">
-            <span class="kpi-value" id="kpi-critical">-</span>
-            <span class="kpi-label">Failles Critiques (CVSS ≥ 9)</span>
-          </div>
+        <div class="metric-card">
+          <span class="metric-label">Critiques (CVSS ≥ 9)</span>
+          <span class="metric-value metric-critical" id="kpi-critical">-</span>
         </div>
 
-        <div class="kpi-card">
-          <div class="kpi-icon kpi-yellow">⚠️</div>
-          <div class="kpi-info">
-            <span class="kpi-value" id="kpi-high">-</span>
-            <span class="kpi-label">Failles Élevées (CVSS ≥ 7)</span>
-          </div>
+        <div class="metric-card">
+          <span class="metric-label">Élevées (CVSS ≥ 7)</span>
+          <span class="metric-value metric-high" id="kpi-high">-</span>
         </div>
       </section>
 
       <!-- Charts -->
       <section class="charts-grid">
         <div class="chart-card">
-          <h2 class="chart-title">Répartition par Sévérité (CVSS)</h2>
+          <div class="chart-header">
+            <h2 class="chart-title">Répartition par sévérité</h2>
+          </div>
           <div class="chart-box">
             <canvas id="severityChart"></canvas>
           </div>
         </div>
 
         <div class="chart-card">
-          <h2 class="chart-title">Top Technologies Ciblées</h2>
+          <div class="chart-header">
+            <h2 class="chart-title">Technologies ciblées</h2>
+          </div>
           <div class="chart-box">
             <canvas id="techChart"></canvas>
           </div>
@@ -92,23 +81,26 @@
       <!-- Filter Controls -->
       <section class="controls-panel">
         <div class="search-field">
-          <span class="search-icon">🔍</span>
-          <input type="text" id="searchInput" placeholder="Rechercher par CVE ID, composant, mot-clé..." autocomplete="off">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="searchInput" placeholder="Filtrer par CVE, composant, mot-clé..." autocomplete="off">
           <button id="clearSearchBtn" class="clear-btn" style="display:none;" title="Effacer">✕</button>
         </div>
 
         <div class="filter-actions">
           <select id="severitySelect" class="custom-select">
             <option value="ALL">Toutes les sévérités</option>
-            <option value="CRITICAL">Critique (CVSS ≥ 9.0)</option>
-            <option value="HIGH">Élevée (CVSS 7.0 - 8.9)</option>
-            <option value="MEDIUM">Moyenne (CVSS 4.0 - 6.9)</option>
-            <option value="LOW">Basse (CVSS &lt; 4.0)</option>
+            <option value="CRITICAL">Critique (≥ 9.0)</option>
+            <option value="HIGH">Élevée (7.0 - 8.9)</option>
+            <option value="MEDIUM">Moyenne (4.0 - 6.9)</option>
+            <option value="LOW">Basse (&lt; 4.0)</option>
           </select>
 
           <label class="toggle-kev" id="kevToggleLabel">
             <input type="checkbox" id="kevOnlyCheckbox">
-            🔥 KEV Actif Uniquement
+            <span>CISA KEV actif</span>
           </label>
 
           <button id="resetFiltersBtn" class="reset-btn" style="display:none;">Réinitialiser</button>
@@ -123,7 +115,8 @@
       <!-- Table Section -->
       <section class="table-section">
         <div class="table-header">
-          <h2 class="table-title">Vulnérabilités Détectées (<span id="resultsCount">0</span>)</h2>
+          <h2 class="table-title">Vulnérabilités répertoriées</h2>
+          <span class="table-counter"><span id="resultsCount">0</span> résultat(s)</span>
         </div>
 
         <div class="table-scroll">
@@ -133,9 +126,9 @@
                 <th>CVE ID</th>
                 <th>Sévérité</th>
                 <th>CVSS</th>
-                <th>EPSS (30j)</th>
+                <th>EPSS</th>
                 <th>CISA KEV</th>
-                <th>Stack</th>
+                <th>Composants</th>
                 <th>Description</th>
                 <th>Date</th>
               </tr>
@@ -153,8 +146,7 @@
     <!-- Footer -->
     <footer class="footer">
       <p>
-        <strong>CVEille</strong> • Pipeline de Threat Intelligence automatisé propulsé par <strong>Spring Boot 3 (Java 21)</strong> & <strong>GitHub Actions</strong>.
-        Données issues de NVD 2.0 (NIST), CISA KEV et FIRST.org EPSS.
+        CVEille • Données synchronisées depuis NIST NVD 2.0, CISA KEV et FIRST.org EPSS via Spring Boot 3.
       </p>
     </footer>
   </div>

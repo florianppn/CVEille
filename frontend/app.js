@@ -55,8 +55,8 @@
       })
       .catch((err) => {
         console.error('Erreur chargement index.json:', err);
-        elements.syncText.textContent = 'Données non disponibles';
-        elements.tableBody.innerHTML = '<tr><td colspan="8" class="table-empty">Impossible de charger data/index.json. Exécutez une synchronisation.</td></tr>';
+        elements.syncText.textContent = 'Données indisponibles';
+        elements.tableBody.innerHTML = '<tr><td colspan="8" class="table-empty">Impossible de charger data/index.json.</td></tr>';
       });
   }
 
@@ -70,7 +70,7 @@
       day: '2-digit', month: '2-digit', year: 'numeric',
       hour: '2-digit', minute: '2-digit'
     });
-    elements.syncText.textContent = 'Sync : ' + formatted;
+    elements.syncText.textContent = formatted + ' UTC';
   }
 
   function renderKpis(stats) {
@@ -95,9 +95,9 @@
           labels: ['Critique', 'Élevée', 'Moyenne', 'Basse'],
           datasets: [{
             data: [dist.CRITICAL || 0, dist.HIGH || 0, dist.MEDIUM || 0, dist.LOW || 0],
-            backgroundColor: ['#ef4444', '#f97316', '#eab308', '#3b82f6'],
+            backgroundColor: ['#ef4444', '#f97316', '#eab308', '#60a5fa'],
             borderWidth: 2,
-            borderColor: '#090d16'
+            borderColor: '#121215'
           }]
         },
         options: {
@@ -106,7 +106,7 @@
           plugins: {
             legend: {
               position: 'bottom',
-              labels: { color: '#94a3b8', font: { size: 11 } }
+              labels: { color: '#a1a1aa', font: { size: 11 } }
             }
           }
         }
@@ -127,8 +127,9 @@
           labels: labels,
           datasets: [{
             data: values,
-            backgroundColor: '#38bdf8',
-            borderRadius: 6
+            backgroundColor: '#3f3f46',
+            hoverBackgroundColor: '#71717a',
+            borderRadius: 4
           }]
         },
         options: {
@@ -136,12 +137,12 @@
           maintainAspectRatio: false,
           scales: {
             x: {
-              ticks: { color: '#94a3b8', font: { size: 11 } },
+              ticks: { color: '#71717a', font: { size: 11, family: 'ui-monospace, monospace' } },
               grid: { display: false }
             },
             y: {
-              ticks: { color: '#94a3b8', stepSize: 1 },
-              grid: { color: 'rgba(255, 255, 255, 0.05)' }
+              ticks: { color: '#71717a', stepSize: 1 },
+              grid: { color: 'rgba(255, 255, 255, 0.04)' }
             }
           },
           plugins: { legend: { display: false } }
@@ -206,23 +207,23 @@
 
   function renderTable(cves) {
     if (!cves || cves.length === 0) {
-      elements.tableBody.innerHTML = '<tr><td colspan="8" class="table-empty">Aucune vulnérabilité ne correspond aux critères sélectionnés.</td></tr>';
+      elements.tableBody.innerHTML = '<tr><td colspan="8" class="table-empty">Aucune vulnérabilité ne correspond aux critères.</td></tr>';
       return;
     }
 
     const rows = cves.map(cve => {
       const sevClass = 'badge-' + (cve.severity ? cve.severity.toLowerCase() : 'unknown');
       const kevBadge = cve.inKev
-        ? '<span class="badge badge-kev" title="Présente au catalogue officiel CISA KEV">🔥 EXPLOITÉ</span>'
-        : '<span class="badge badge-safe">Non</span>';
+        ? '<span class="badge badge-kev" title="Vulnérabilité activement exploitée (CISA KEV)">Actif</span>'
+        : '<span class="badge-safe">—</span>';
 
       const cvssText = cve.cvssScore !== null && cve.cvssScore !== undefined
-        ? `<strong>${cve.cvssScore.toFixed(1)}</strong>`
-        : '<span style="color:var(--text-dim)">N/A</span>';
+        ? `<span class="score-cell">${cve.cvssScore.toFixed(1)}</span>`
+        : '<span style="color:var(--text-tertiary)">—</span>';
 
       const epssText = cve.epssScore !== null && cve.epssScore !== undefined
         ? `<span class="epss-badge">${(cve.epssScore * 100).toFixed(1)}%</span>`
-        : '<span style="color:var(--text-dim)">N/A</span>';
+        : '<span style="color:var(--text-tertiary)">—</span>';
 
       const tagsHtml = Array.isArray(cve.matchedKeywords)
         ? cve.matchedKeywords.map(t => `<span class="pill-tag">${escapeHtml(t)}</span>`).join('')
@@ -239,7 +240,7 @@
           <td>${kevBadge}</td>
           <td>${tagsHtml}</td>
           <td class="desc-text" title="${escapeHtml(cve.description || '')}">${escapeHtml(cve.description || '')}</td>
-          <td style="white-space:nowrap;color:var(--text-dim);font-size:0.78rem;">${dateStr}</td>
+          <td style="white-space:nowrap;color:var(--text-tertiary);font-size:0.75rem;font-family:var(--font-mono);">${dateStr}</td>
         </tr>
       `;
     });
