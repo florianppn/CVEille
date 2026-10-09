@@ -85,4 +85,29 @@ class DataExporterServiceTest {
         assertThat(readmeContent).contains("Some introductory text.");
         assertThat(readmeContent).contains("Footer.");
     }
+
+    @Test
+    void shouldPurgeOldDailyFilesWhenExceedingRetentionLimit() throws IOException {
+        Files.createDirectories(dataDir);
+        for (int i = 1; i <= 18; i++) {
+            String day = String.format("%02d", i);
+            Files.writeString(dataDir.resolve("2026-09-" + day + ".json"), "{}");
+        }
+
+        Files.writeString(dataDir.resolve(".gitkeep"), "");
+        Files.writeString(dataDir.resolve("custom-notes.txt"), "");
+
+        dataExporterService.purgeOldDailyFiles(dataDir);
+
+        // Oldest 3 files (01, 02, 03) should be deleted, leaving 15 newest (04..18)
+        assertThat(Files.exists(dataDir.resolve("2026-09-01.json"))).isFalse();
+        assertThat(Files.exists(dataDir.resolve("2026-09-02.json"))).isFalse();
+        assertThat(Files.exists(dataDir.resolve("2026-09-03.json"))).isFalse();
+        assertThat(Files.exists(dataDir.resolve("2026-09-04.json"))).isTrue();
+        assertThat(Files.exists(dataDir.resolve("2026-09-18.json"))).isTrue();
+
+        // Non-daily files must be preserved
+        assertThat(Files.exists(dataDir.resolve(".gitkeep"))).isTrue();
+        assertThat(Files.exists(dataDir.resolve("custom-notes.txt"))).isTrue();
+    }
 }

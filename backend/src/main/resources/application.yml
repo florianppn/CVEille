@@ -16,6 +16,10 @@ cveille:
   frontend-dir: ${CVEILLE_FRONTEND_DIR:../frontend}
   readme-path: ${CVEILLE_README_PATH:../README.md}
 
+  # Retention policy for daily archives in data/
+  retention:
+    max-daily-files: 15
+
   # Monitored Enterprise Stack (Spring Boot + Angular + Infrastructure)
   stack:
     keywords:

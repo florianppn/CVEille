@@ -114,6 +114,9 @@ public class DataExporterService {
                 log.info("Mirrored index.json to frontend at {}", frontendIndexFile);
             }
 
+            // 4c. Enforce retention policy on daily archives in dataDir
+            purgeOldDailyFiles(dataDir);
+
             // 5. Update README.md dynamic sections
             updateReadme(summary.stats(), sortedList);
 
@@ -121,6 +124,35 @@ public class DataExporterService {
         } catch (IOException e) {
             log.error("Failed to export CVE data: {}", e.getMessage(), e);
             return false;
+        }
+    }
+
+    /**
+     * Retains only the most recent daily JSON files according to the retention policy.
+     */
+    void purgeOldDailyFiles(Path dataDir) {
+        int maxFiles = (properties.retention() != null) ? properties.retention().maxDailyFiles() : 15;
+        if (maxFiles <= 0 || !Files.exists(dataDir)) {
+            return;
+        }
+
+        try (var stream = Files.list(dataDir)) {
+            List<Path> dailyFiles = stream
+                    .filter(Files::isRegularFile)
+                    .filter(path -> path.getFileName().toString().matches("^\\d{4}-\\d{2}-\\d{2}\\.json$"))
+                    .sorted(Comparator.comparing(path -> path.getFileName().toString()))
+                    .toList();
+
+            if (dailyFiles.size() > maxFiles) {
+                int toDelete = dailyFiles.size() - maxFiles;
+                List<Path> filesToDelete = dailyFiles.subList(0, toDelete);
+                for (Path file : filesToDelete) {
+                    Files.deleteIfExists(file);
+                    log.info("Purged old daily CVE data file: {}", file.getFileName());
+                }
+            }
+        } catch (IOException e) {
+            log.warn("Failed to apply retention policy on {}: {}", dataDir, e.getMessage());
         }
     }
 
