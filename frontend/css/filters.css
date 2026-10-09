@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Filter & Search Controls
+   Filter & Search Controls (Minimalist UI)
    ========================================================================== */
 
 .controls-panel {
@@ -7,130 +7,155 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1rem;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
 }
 
 .search-field {
   display: flex;
   align-items: center;
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 0.5rem 0.85rem;
-  min-width: 320px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 0.45rem 0.75rem;
+  min-width: 280px;
   flex: 1;
-  position: relative;
+  transition: border-color 0.15s;
+}
+
+.search-field:focus-within {
+  border-color: var(--text-secondary);
 }
 
 .search-icon {
+  color: var(--text-tertiary);
   margin-right: 0.5rem;
-  font-size: 0.85rem;
+  flex-shrink: 0;
 }
 
 .search-field input {
   background: transparent;
   border: none;
   outline: none;
-  color: #fff;
-  font-size: 0.88rem;
+  color: var(--text-primary);
+  font-size: 0.8125rem;
+  font-family: var(--font-sans);
   width: 100%;
 }
 
 .search-field input::placeholder {
-  color: var(--text-dim);
+  color: var(--text-tertiary);
 }
 
 .clear-btn {
   background: none;
   border: none;
-  color: var(--text-muted);
+  color: var(--text-tertiary);
   cursor: pointer;
-  font-size: 0.85rem;
-  padding: 0 0.3rem;
+  font-size: 0.75rem;
+  padding: 0 0.25rem;
+  transition: color 0.15s;
+}
+
+.clear-btn:hover {
+  color: var(--text-primary);
 }
 
 .filter-actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
 }
 
 .custom-select {
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-main);
-  padding: 0.5rem 0.85rem;
-  border-radius: 8px;
-  font-size: 0.85rem;
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
   outline: none;
   cursor: pointer;
+  font-family: var(--font-sans);
+  transition: border-color 0.15s;
+}
+
+.custom-select:focus {
+  border-color: var(--text-secondary);
 }
 
 .toggle-kev {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  padding: 0.5rem 0.85rem;
-  border-radius: 8px;
-  font-size: 0.82rem;
+  border: 1px solid var(--border-color);
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
   cursor: pointer;
   user-select: none;
-  transition: all 0.2s;
+  transition: all 0.15s;
+}
+
+.toggle-kev input {
+  accent-color: var(--color-critical);
+  cursor: pointer;
 }
 
 .toggle-kev.active {
-  background: rgba(239, 68, 68, 0.15);
-  border-color: var(--color-critical);
+  border-color: rgba(239, 68, 68, 0.4);
+  background: rgba(239, 68, 68, 0.08);
   color: #fca5a5;
 }
 
 .reset-btn {
-  background: rgba(255, 255, 255, 0.08);
-  border: none;
-  color: var(--text-muted);
-  padding: 0.5rem 0.85rem;
-  border-radius: 8px;
-  font-size: 0.82rem;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.45rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
   cursor: pointer;
+  transition: all 0.15s;
 }
 
 .reset-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #fff;
+  background: var(--bg-surface-hover);
+  color: var(--text-primary);
+  border-color: var(--text-tertiary);
 }
 
-/* Tech Chips Bar */
+/* Stack Chips Bar */
 .tech-chips-bar {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.45rem;
+  gap: 0.35rem;
   margin-bottom: 1.5rem;
 }
 
 .chip-tag {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-muted);
-  padding: 0.25rem 0.65rem;
-  border-radius: 6px;
-  font-size: 0.78rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s;
 }
 
 .chip-tag:hover {
-  background: rgba(56, 189, 248, 0.1);
-  color: var(--color-accent);
-  border-color: rgba(56, 189, 248, 0.3);
+  color: var(--text-primary);
+  border-color: var(--text-tertiary);
 }
 
 .chip-tag.active {
-  background: var(--color-accent);
-  color: #090d16;
-  border-color: var(--color-accent);
-  font-weight: 700;
+  background: var(--text-primary);
+  color: var(--bg-app);
+  border-color: var(--text-primary);
+  font-weight: 600;
 }
