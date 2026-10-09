@@ -65,11 +65,6 @@ python3 -m http.server 3000 --directory frontend
 # Ouvrir http://localhost:3000
 ```
 
-## Variables d'environnement
-
-- `NVD_API_KEY` *(optionnel)* : Clé d'API NIST NVD pour augmenter le quota de requêtes.
-- `DISCORD_WEBHOOK_URL` *(optionnel)* : Webhook Discord pour recevoir des notifications sur les vulnérabilités critiques.
-
 ## Licence
 
 [MIT](LICENSE)

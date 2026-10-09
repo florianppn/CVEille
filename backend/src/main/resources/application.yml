@@ -68,7 +68,7 @@ cveille:
   # Notification Channels
   notifications:
     discord:
-      enabled: true
+      enabled: false
       webhook-url: ${DISCORD_WEBHOOK_URL:}
     telegram:
       enabled: false
