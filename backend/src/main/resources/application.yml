@@ -48,7 +48,7 @@ cveille:
       - nginx
       - keycloak
 
-  # Alert criteria for critical notifications
+  # Alert criteria for high-risk vulnerabilities
   alert:
     min-cvss: 7.5
     alert-on-kev: true
@@ -68,13 +68,3 @@ cveille:
   epss:
     api-url: https://api.first.org/data/v1/epss
     batch-size: 80
-
-  # Notification Channels
-  notifications:
-    discord:
-      enabled: false
-      webhook-url: ${DISCORD_WEBHOOK_URL:}
-    telegram:
-      enabled: false
-      bot-token: ${TELEGRAM_BOT_TOKEN:}
-      chat-id: ${TELEGRAM_CHAT_ID:}

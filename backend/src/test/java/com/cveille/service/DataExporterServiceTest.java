@@ -34,7 +34,7 @@ class DataExporterServiceTest {
 
         Path frontendDir = tempDir.resolve("frontend");
         CveilleProperties properties = new CveilleProperties(
-                48, dataDir.toString(), frontendDir.toString(), readmePath.toString(), null, null, null, null, null, null
+                48, dataDir.toString(), frontendDir.toString(), readmePath.toString(), null, null, null, null, null
         );
         dataExporterService = new DataExporterService(properties);
     }
