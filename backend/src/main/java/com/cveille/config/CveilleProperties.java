@@ -14,8 +14,7 @@ public record CveilleProperties(
         Alert alert,
         Nvd nvd,
         CisaKev cisaKev,
-        Epss epss,
-        Notifications notifications
+        Epss epss
 ) {
     public CveilleProperties(
             int windowHours,
@@ -26,10 +25,9 @@ public record CveilleProperties(
             Alert alert,
             Nvd nvd,
             CisaKev cisaKev,
-            Epss epss,
-            Notifications notifications
+            Epss epss
     ) {
-        this(windowHours, dataDir, frontendDir, readmePath, new Retention(15), stack, alert, nvd, cisaKev, epss, notifications);
+        this(windowHours, dataDir, frontendDir, readmePath, new Retention(15), stack, alert, nvd, cisaKev, epss);
     }
 
     public record Retention(int maxDailyFiles) {
@@ -64,12 +62,4 @@ public record CveilleProperties(
             String apiUrl,
             int batchSize
     ) {}
-
-    public record Notifications(
-            Discord discord,
-            Telegram telegram
-    ) {
-        public record Discord(boolean enabled, String webhookUrl) {}
-        public record Telegram(boolean enabled, String botToken, String chatId) {}
-    }
 }

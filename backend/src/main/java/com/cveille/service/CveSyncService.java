@@ -25,7 +25,6 @@ public class CveSyncService {
     private final StackFilterService stackFilterService;
     private final RiskAnalyzerService riskAnalyzerService;
     private final DataExporterService dataExporterService;
-    private final NotificationService notificationService;
 
     public CveSyncService(CveilleProperties properties,
                           NvdClient nvdClient,
@@ -33,8 +32,7 @@ public class CveSyncService {
                           EpssClient epssClient,
                           StackFilterService stackFilterService,
                           RiskAnalyzerService riskAnalyzerService,
-                          DataExporterService dataExporterService,
-                          NotificationService notificationService) {
+                          DataExporterService dataExporterService) {
         this.properties = properties;
         this.nvdClient = nvdClient;
         this.cisaKevClient = cisaKevClient;
@@ -42,7 +40,6 @@ public class CveSyncService {
         this.stackFilterService = stackFilterService;
         this.riskAnalyzerService = riskAnalyzerService;
         this.dataExporterService = dataExporterService;
-        this.notificationService = notificationService;
     }
 
     /**
@@ -108,16 +105,9 @@ public class CveSyncService {
                 alertList
         );
 
-        // 6. Export data and notify
-        log.info("Step 5/6: Exporting data to JSON and updating README...");
+        // 6. Export data
+        log.info("Step 5/5: Exporting data to JSON and updating README...");
         boolean hasNewData = dataExporterService.exportAll(summary);
-
-        if (!alertList.isEmpty()) {
-            log.info("Step 6/6: Dispatching {} critical alerts...", alertList.size());
-            notificationService.sendAlerts(alertList);
-        } else {
-            log.info("Step 6/6: No high-priority alerts to dispatch.");
-        }
 
         log.info("=== CVEille Sync Completed. New Data Saved: {} ===", hasNewData);
         return summary;
