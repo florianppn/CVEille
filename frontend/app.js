@@ -12,31 +12,36 @@
   let severityChart = null;
   let techChart = null;
 
-  // DOM Elements Cache
-  const elements = {
-    syncText: document.getElementById('last-sync-text'),
-    kpiTotal: document.getElementById('kpi-total'),
-    kpiKev: document.getElementById('kpi-kev'),
-    kpiCritical: document.getElementById('kpi-critical'),
-    kpiHigh: document.getElementById('kpi-high'),
-    searchInput: document.getElementById('searchInput'),
-    clearSearchBtn: document.getElementById('clearSearchBtn'),
-    severitySelect: document.getElementById('severitySelect'),
-    resetBtn: document.getElementById('resetFiltersBtn'),
-    chipsContainer: document.getElementById('techChipsContainer'),
-    tableBody: document.getElementById('cveTableBody'),
-    resultsCount: document.getElementById('resultsCount')
-  };
+  let elements = {};
 
-  document.addEventListener('DOMContentLoaded', initApp);
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initApp);
+  } else {
+    initApp();
+  }
 
   function initApp() {
+    elements = {
+      syncText: document.getElementById('last-sync-text'),
+      kpiTotal: document.getElementById('kpi-total'),
+      kpiKev: document.getElementById('kpi-kev'),
+      kpiCritical: document.getElementById('kpi-critical'),
+      kpiHigh: document.getElementById('kpi-high'),
+      searchInput: document.getElementById('searchInput'),
+      clearSearchBtn: document.getElementById('clearSearchBtn'),
+      severitySelect: document.getElementById('severitySelect'),
+      resetBtn: document.getElementById('resetFiltersBtn'),
+      chipsContainer: document.getElementById('techChipsContainer'),
+      tableBody: document.getElementById('cveTableBody'),
+      resultsCount: document.getElementById('resultsCount')
+    };
+
     setupEventListeners();
     fetchData();
   }
 
   function fetchData() {
-    fetch('data/index.json')
+    fetch('data/index.json?t=' + Date.now())
       .then((res) => {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.json();
@@ -53,8 +58,10 @@
       })
       .catch((err) => {
         console.error('Erreur chargement index.json:', err);
-        elements.syncText.textContent = 'Données indisponibles';
-        elements.tableBody.innerHTML = '<tr><td colspan="8" class="table-empty">Impossible de charger data/index.json.</td></tr>';
+        if (elements.syncText) elements.syncText.textContent = 'Données indisponibles';
+        if (elements.tableBody) {
+          elements.tableBody.innerHTML = '<tr><td colspan="8" class="table-empty">Impossible de charger data/index.json.</td></tr>';
+        }
       });
   }
 
@@ -244,24 +251,36 @@
   }
 
   function setupEventListeners() {
-    elements.searchInput.addEventListener('input', applyFilters);
-    elements.severitySelect.addEventListener('change', applyFilters);
+    if (elements.searchInput) {
+      elements.searchInput.addEventListener('input', applyFilters);
+    }
+    if (elements.severitySelect) {
+      elements.severitySelect.addEventListener('change', applyFilters);
+    }
 
-    elements.clearSearchBtn.addEventListener('click', () => {
-      elements.searchInput.value = '';
-      applyFilters();
-      elements.searchInput.focus();
-    });
-
-    elements.resetBtn.addEventListener('click', () => {
-      elements.searchInput.value = '';
-      elements.severitySelect.value = 'ALL';
-      activeTech = 'ALL';
-      elements.chipsContainer.querySelectorAll('.chip-tag').forEach(b => {
-        b.classList.toggle('active', b.getAttribute('data-tech') === 'ALL');
+    if (elements.clearSearchBtn) {
+      elements.clearSearchBtn.addEventListener('click', () => {
+        if (elements.searchInput) {
+          elements.searchInput.value = '';
+          elements.searchInput.focus();
+        }
+        applyFilters();
       });
-      applyFilters();
-    });
+    }
+
+    if (elements.resetBtn) {
+      elements.resetBtn.addEventListener('click', () => {
+        if (elements.searchInput) elements.searchInput.value = '';
+        if (elements.severitySelect) elements.severitySelect.value = 'ALL';
+        activeTech = 'ALL';
+        if (elements.chipsContainer) {
+          elements.chipsContainer.querySelectorAll('.chip-tag').forEach(b => {
+            b.classList.toggle('active', b.getAttribute('data-tech') === 'ALL');
+          });
+        }
+        applyFilters();
+      });
+    }
   }
 
   function escapeHtml(str) {
