@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CVEille • Veille des Vulnérabilités</title>
   <meta name="description" content="Veille quotidienne automatisée des vulnérabilités de sécurité sur l'écosystème Spring Boot, Angular et infrastructure.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23a1a1aa%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><path d=%22M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z%22/></svg>">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css?v=2">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" defer></script>
   <script src="app.js?v=2" defer></script>
@@ -31,7 +31,7 @@
 
     <main>
       <!-- Metric Stats -->
-      <section class="kpi-grid">
+      <div class="kpi-grid">
         <div class="metric-card">
           <span class="metric-label">Vulnérabilités suivies</span>
           <span class="metric-value" id="kpi-total">-</span>
@@ -51,10 +51,10 @@
           <span class="metric-label">Élevées (CVSS ≥ 7)</span>
           <span class="metric-value metric-high" id="kpi-high">-</span>
         </div>
-      </section>
+      </div>
 
       <!-- Charts -->
-      <section class="charts-grid">
+      <div class="charts-grid">
         <div class="chart-card">
           <div class="chart-header">
             <h2 class="chart-title">Répartition par sévérité</h2>
@@ -72,10 +72,10 @@
             <canvas id="techChart"></canvas>
           </div>
         </div>
-      </section>
+      </div>
 
       <!-- Filter Controls -->
-      <section class="controls-panel">
+      <div class="controls-panel">
         <div class="search-field">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="search-icon">
             <circle cx="11" cy="11" r="8"></circle>
@@ -96,12 +96,12 @@
 
           <button id="resetFiltersBtn" class="reset-btn" style="display:none;">Réinitialiser</button>
         </div>
-      </section>
+      </div>
 
       <!-- Stack Filter Chips -->
-      <section class="tech-chips-bar" id="techChipsContainer">
+      <div class="tech-chips-bar" id="techChipsContainer">
         <!-- Rendered dynamically by app.js -->
-      </section>
+      </div>
 
       <!-- Table Section -->
       <section class="table-section">
