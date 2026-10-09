@@ -17,19 +17,19 @@
 <!-- CVEILLE_SUMMARY_START -->
 ### 🛡️ État de la veille CVEille (Stack Spring Boot & Angular)
 
-> **Dernière synchronisation** : `2026-10-01T12:36:34.086311565Z`  
-> **Vulnérabilités suivies** : `21` | 🔥 **Exploits CISA KEV** : `0` | 🚨 **Critiques** : `4` | ⚠️ **Élevées** : `8`
+> **Dernière synchronisation** : `2026-10-09T12:20:51.238598021Z`  
+> **Vulnérabilités suivies** : `40` | 🔥 **Exploits CISA KEV** : `0` | 🚨 **Critiques** : `3` | ⚠️ **Élevées** : `8`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
 | [CVE-2026-53988](https://nvd.nist.gov/vuln/detail/CVE-2026-53988) | `CRITICAL` | 10.0 | N/A | Non | `docker` | Dockhand before 1.0.40 contains an authentication bypass vulnerability in its... |
-| [CVE-2026-55494](https://nvd.nist.gov/vuln/detail/CVE-2026-55494) | `CRITICAL` | 9.8 | N/A | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
-| [CVE-2026-55181](https://nvd.nist.gov/vuln/detail/CVE-2026-55181) | `CRITICAL` | 9.4 | N/A | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
-| [CVE-2026-62308](https://nvd.nist.gov/vuln/detail/CVE-2026-62308) | `CRITICAL` | 9.1 | N/A | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
-| [CVE-2026-102676](https://nvd.nist.gov/vuln/detail/CVE-2026-102676) | `HIGH` | 8.3 | N/A | Non | `node.js` | Electron is a framework for writing cross-platform desktop applications using... |
-| [CVE-2026-102826](https://nvd.nist.gov/vuln/detail/CVE-2026-102826) | `HIGH` | 8.1 | N/A | Non | `node.js` | simple-git, an interface for running git commands in any node.js application,... |
-| [CVE-2026-102827](https://nvd.nist.gov/vuln/detail/CVE-2026-102827) | `HIGH` | 8.1 | N/A | Non | `node.js` | simple-git, an interface for running git commands in any node.js application,... |
-| [CVE-2026-87004](https://nvd.nist.gov/vuln/detail/CVE-2026-87004) | `HIGH` | 8.1 | N/A | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
+| [CVE-2026-55494](https://nvd.nist.gov/vuln/detail/CVE-2026-55494) | `CRITICAL` | 9.8 | 0.8% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
+| [CVE-2026-105641](https://nvd.nist.gov/vuln/detail/CVE-2026-105641) | `CRITICAL` | 9.8 | 0.5% | Non | `docker` | Plane is an open-source project management tool. Prior to 1.4.0, the deployme... |
+| [CVE-2026-107699](https://nvd.nist.gov/vuln/detail/CVE-2026-107699) | `CRITICAL` | 9.8 | N/A | Non | `node.js` | ppt2png through 0.0.6 contains an OS command injection vulnerability that all... |
+| [CVE-2026-107700](https://nvd.nist.gov/vuln/detail/CVE-2026-107700) | `CRITICAL` | 9.8 | N/A | Non | `node.js` | dot-access 0.0.3 through 1.0.0 contains a code injection vulnerability that a... |
+| [CVE-2026-107703](https://nvd.nist.gov/vuln/detail/CVE-2026-107703) | `CRITICAL` | 9.8 | N/A | Non | `node.js` | @enmaso/node-convert through 1.0.0 contains an OS command injection vulnerabi... |
+| [CVE-2026-55181](https://nvd.nist.gov/vuln/detail/CVE-2026-55181) | `CRITICAL` | 9.4 | 0.7% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
+| [CVE-2026-62308](https://nvd.nist.gov/vuln/detail/CVE-2026-62308) | `CRITICAL` | 9.1 | 0.4% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
 
 *Données détaillées historisées chaque jour dans [`data/`](data/) • Alimenté par NVD 2.0, CISA KEV & EPSS*
 <!-- CVEILLE_SUMMARY_END -->
