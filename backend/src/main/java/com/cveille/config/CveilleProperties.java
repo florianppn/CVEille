@@ -16,18 +16,10 @@ public record CveilleProperties(
         CisaKev cisaKev,
         Epss epss
 ) {
-    public CveilleProperties(
-            int windowHours,
-            String dataDir,
-            String frontendDir,
-            String readmePath,
-            Stack stack,
-            Alert alert,
-            Nvd nvd,
-            CisaKev cisaKev,
-            Epss epss
-    ) {
-        this(windowHours, dataDir, frontendDir, readmePath, new Retention(15), stack, alert, nvd, cisaKev, epss);
+    public CveilleProperties {
+        if (retention == null) {
+            retention = new Retention(15);
+        }
     }
 
     public record Retention(int maxDailyFiles) {
