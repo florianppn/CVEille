@@ -8,17 +8,17 @@ on:
 
 jobs:
   backend-tests:
-    name: Java 21 & Spring Boot Tests
+    name: Java 25 & Spring Boot Tests
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Java 21 (Temurin)
+      - name: Setup Java 25 (Temurin)
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
+          java-version: '25'
           cache: 'maven'
 
       - name: Run Maven Unit Tests
