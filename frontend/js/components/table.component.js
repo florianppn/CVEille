@@ -12,14 +12,14 @@ export class TableComponent {
     this.resultsCount = document.getElementById('resultsCount');
   }
 
-  render(cves = []) {
+  render(cves = [], totalCount = cves.length) {
     if (this.resultsCount) {
-      this.resultsCount.textContent = cves.length;
+      this.resultsCount.textContent = totalCount;
     }
 
     if (!this.tableBody) return;
 
-    if (cves.length === 0) {
+    if (totalCount === 0 || cves.length === 0) {
       this.tableBody.innerHTML = '<tr><td colspan="8" class="table-empty">Aucune vulnérabilité ne correspond aux critères.</td></tr>';
       return;
     }

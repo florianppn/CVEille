@@ -20,6 +20,9 @@ export class Store {
       dateSort: 'DEFAULT'
     };
 
+    this.currentPage = 1;
+    this.pageSize = 20;
+
     this.listeners = [];
   }
 
@@ -130,6 +133,40 @@ export class Store {
     }
 
     this.filteredCves = result;
+    this.currentPage = 1;
     this.notify();
+  }
+
+  setPage(page) {
+    const totalPages = this.getTotalPages();
+    const targetPage = Math.max(1, Math.min(page, totalPages));
+    if (targetPage !== this.currentPage) {
+      this.currentPage = targetPage;
+      this.notify();
+    }
+  }
+
+  getTotalPages() {
+    return Math.max(1, Math.ceil(this.filteredCves.length / this.pageSize));
+  }
+
+  getPaginatedCves() {
+    const start = (this.currentPage - 1) * this.pageSize;
+    return this.filteredCves.slice(start, start + this.pageSize);
+  }
+
+  getPaginationInfo() {
+    const totalItems = this.filteredCves.length;
+    const totalPages = this.getTotalPages();
+    const startItem = totalItems === 0 ? 0 : (this.currentPage - 1) * this.pageSize + 1;
+    const endItem = Math.min(this.currentPage * this.pageSize, totalItems);
+    return {
+      currentPage: this.currentPage,
+      totalPages,
+      totalItems,
+      startItem,
+      endItem,
+      pageSize: this.pageSize
+    };
   }
 }

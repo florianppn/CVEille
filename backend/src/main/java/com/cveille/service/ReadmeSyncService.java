@@ -70,7 +70,7 @@ public class ReadmeSyncService {
 
     String buildSummaryMarkdown(CveStats stats, List<EnrichedCve> cves) {
         StringBuilder sb = new StringBuilder();
-        sb.append("### État de la veille (Stack Spring Boot & Angular)\n\n");
+        sb.append("### Top 8 des menaces les plus dangereuses et prioritaires\n\n");
 
         String timestamp = (stats != null && stats.lastSyncTimestamp() != null) ? stats.lastSyncTimestamp() : "N/A";
         int total = stats != null ? stats.totalTracked() : 0;
