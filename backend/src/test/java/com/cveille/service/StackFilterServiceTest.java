@@ -16,7 +16,7 @@ class StackFilterServiceTest {
     @BeforeEach
     void setUp() {
         CveilleProperties.Stack stack = new CveilleProperties.Stack(
-                List.of("spring", "spring-boot", "spring-security", "tomcat", "jackson", "angular", "typescript", "docker")
+                List.of("java", "javascript", "typescript", "spring", "spring-boot", "spring-security", "tomcat", "jackson", "angular", "docker")
         );
         CveilleProperties properties = new CveilleProperties(
                 48, "../data", "../frontend", "../README.md", new CveilleProperties.Retention(15), stack, null, null, null, null
@@ -34,6 +34,35 @@ class StackFilterServiceTest {
 
         assertThat(matched).contains("spring");
         assertThat(stackFilterService.matchesStack(cve)).isTrue();
+    }
+
+    @Test
+    void shouldMatchJavaRuntimeVulnerability() {
+        CveItem.Description desc = new CveItem.Description("en", "Vulnerability in Oracle Java SE, OpenJDK Java runtime environment allows sandbox escape");
+        CveItem cve = new CveItem("CVE-2024-20918", "oracle", "2024-01-16", "2024-01-17", "Analyzed",
+                List.of(desc), null, null);
+
+        List<String> matched = stackFilterService.findMatchedKeywords(cve);
+
+        assertThat(matched).contains("java");
+        assertThat(stackFilterService.matchesStack(cve)).isTrue();
+    }
+
+    @Test
+    void shouldMatchJavaScriptAndTypeScriptVulnerabilities() {
+        CveItem.Description descJs = new CveItem.Description("en", "Prototype pollution in JavaScript core utility");
+        CveItem cveJs = new CveItem("CVE-2024-1234", "mitre", "2024-02-01", "2024-02-02", "Analyzed",
+                List.of(descJs), null, null);
+
+        List<String> matchedJs = stackFilterService.findMatchedKeywords(cveJs);
+        assertThat(matchedJs).contains("javascript");
+
+        CveItem.Description descTs = new CveItem.Description("en", "Code execution in TypeScript compiler language service");
+        CveItem cveTs = new CveItem("CVE-2024-5678", "mitre", "2024-02-03", "2024-02-04", "Analyzed",
+                List.of(descTs), null, null);
+
+        List<String> matchedTs = stackFilterService.findMatchedKeywords(cveTs);
+        assertThat(matchedTs).contains("typescript");
     }
 
     @Test
