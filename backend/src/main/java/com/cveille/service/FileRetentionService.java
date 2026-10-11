@@ -1,6 +1,7 @@
 package com.cveille.service;
 
 import com.cveille.config.CveilleProperties;
+import com.cveille.model.EnrichedCve;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -9,10 +10,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 /**
- * Service responsible solely for managing the retention policy on archived daily CVE files.
+ * Service responsible solely for managing the retention policy on archived daily CVE files
+ * and the aggregated rolling index.
  */
 @Service
 public class FileRetentionService {
@@ -56,5 +60,48 @@ public class FileRetentionService {
     public void enforceRetention() {
         Path dataDir = Paths.get(properties.dataDir()).normalize().toAbsolutePath();
         enforceRetention(dataDir);
+    }
+
+    /**
+     * Evicts CVEs from the aggregated index map that are older than the configured retention threshold,
+     * while preserving actively exploited vulnerabilities (CISA KEV).
+     */
+    public void pruneOldIndexCves(Map<String, EnrichedCve> cvesMap, LocalDate referenceDate) {
+        int retentionDays = (properties.retention() != null) ? properties.retention().indexRetentionDays() : 30;
+        if (retentionDays <= 0 || cvesMap == null || cvesMap.isEmpty() || referenceDate == null) {
+            return;
+        }
+
+        LocalDate cutoffDate = referenceDate.minusDays(retentionDays);
+        int initialSize = cvesMap.size();
+
+        cvesMap.values().removeIf(cve -> {
+            if (cve == null) return true;
+            // Never prune active CISA KEV exploits
+            if (cve.inKev()) {
+                return false;
+            }
+            LocalDate pubDate = parsePublishedDate(cve.publishedDate());
+            return pubDate != null && pubDate.isBefore(cutoffDate);
+        });
+
+        int pruned = initialSize - cvesMap.size();
+        if (pruned > 0) {
+            log.info("Pruned {} CVEs older than {} days from index (cutoff date: {})", pruned, retentionDays, cutoffDate);
+        }
+    }
+
+    public static LocalDate parsePublishedDate(String dateStr) {
+        if (dateStr == null || dateStr.isBlank()) {
+            return null;
+        }
+        try {
+            if (dateStr.length() >= 10) {
+                return LocalDate.parse(dateStr.substring(0, 10));
+            }
+        } catch (Exception e) {
+            log.debug("Could not parse date string '{}': {}", dateStr, e.getMessage());
+        }
+        return null;
     }
 }

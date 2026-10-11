@@ -18,14 +18,21 @@ public record CveilleProperties(
 ) {
     public CveilleProperties {
         if (retention == null) {
-            retention = new Retention(15);
+            retention = new Retention(15, 30);
         }
     }
 
-    public record Retention(int maxDailyFiles) {
+    public record Retention(int maxDailyFiles, int indexRetentionDays) {
+        public Retention(int maxDailyFiles) {
+            this(maxDailyFiles, 30);
+        }
+
         public Retention {
             if (maxDailyFiles <= 0) {
                 maxDailyFiles = 15;
+            }
+            if (indexRetentionDays <= 0) {
+                indexRetentionDays = 30;
             }
         }
     }

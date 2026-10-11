@@ -1,6 +1,6 @@
 {
-  "lastSync" : "2026-10-11T16:36:31.656558188Z",
-  "newToday" : 18,
+  "lastSync" : "2026-10-11T19:33:16.149346430Z",
+  "newToday" : 16,
   "stats" : {
     "totalTracked" : 153,
     "criticalCount" : 10,
@@ -32,7 +32,7 @@
       "java" : 1,
       "spring-boot" : 1
     },
-    "lastSyncTimestamp" : "2026-10-11T16:36:31.817018657Z"
+    "lastSyncTimestamp" : "2026-10-11T19:33:16.289722178Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-53988",
@@ -646,7 +646,7 @@
     "id" : "CVE-2026-89301",
     "description" : "The rtMedia for WordPress, BuddyPress and bbPress plugin for WordPress is vulnerable to limited file deletion due to insufficient file path validation in the process function in all versions up to, and including, 4.7.13 This makes it possible for unauthenticated attackers to delete arbitrary safe files on the server.. The public nonce (rtmedia_upload_nonce) is emitted into frontend JavaScript on any page rendering the rtMedia gallery or upload shortcode, making it retrievable by unauthenticated visitors without any prior authentication or privileged action.",
     "publishedDate" : "2026-10-10T05:16:40.403",
-    "lastModifiedDate" : "2026-10-10T05:16:40.403",
+    "lastModifiedDate" : "2026-10-11T17:17:06.280",
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,

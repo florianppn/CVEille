@@ -65,7 +65,13 @@ public class DataExporterService {
             // 3. Save daily file archive
             cveRepository.saveDaily(dateStr, summary);
 
-            // 4. Sort aggregated CVEs (KEV first, then CVSS descending)
+            // 4. Enforce rolling index retention (e.g. 30 days)
+            LocalDate referenceDate = LocalDate.parse(dateStr);
+            if (fileRetentionService != null) {
+                fileRetentionService.pruneOldIndexCves(allCvesMap, referenceDate);
+            }
+
+            // 5. Sort aggregated CVEs (KEV first, then CVSS descending)
             List<EnrichedCve> sortedList = new ArrayList<>(allCvesMap.values());
             sortedList.sort((a, b) -> {
                 if (a.inKev() != b.inKev()) return Boolean.compare(b.inKev(), a.inKev());
