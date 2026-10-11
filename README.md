@@ -7,7 +7,7 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 ---
 
 <!-- CVEILLE_SUMMARY_START -->
-### État de la veille (Stack Spring Boot & Angular)
+### Top 8 des menaces les plus dangereuses et prioritaires
 
 > **Dernière synchronisation** : `2026-10-11T16:36:31.817018657Z`  
 > **Vulnérabilités suivies** : `153` | **Exploits CISA KEV** : `0` | **Critiques** : `10` | **Élevées** : `52`
