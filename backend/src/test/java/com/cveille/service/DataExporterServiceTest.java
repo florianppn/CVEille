@@ -4,6 +4,10 @@ import com.cveille.config.CveilleProperties;
 import com.cveille.model.CveStats;
 import com.cveille.model.EnrichedCve;
 import com.cveille.model.SyncSummary;
+import com.cveille.repository.CveRepository;
+import com.cveille.repository.FileCveRepository;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -22,6 +26,7 @@ class DataExporterServiceTest {
     Path tempDir;
 
     private DataExporterService dataExporterService;
+    private FileRetentionService fileRetentionService;
     private Path readmePath;
     private Path dataDir;
 
@@ -36,8 +41,14 @@ class DataExporterServiceTest {
         CveilleProperties properties = new CveilleProperties(
                 48, dataDir.toString(), frontendDir.toString(), readmePath.toString(), new CveilleProperties.Retention(15), null, null, null, null, null
         );
+
+        ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+        CveRepository cveRepository = new FileCveRepository(properties, objectMapper);
         RiskAnalyzerService riskAnalyzerService = new RiskAnalyzerService(properties);
-        dataExporterService = new DataExporterService(properties, riskAnalyzerService);
+        fileRetentionService = new FileRetentionService(properties);
+        ReadmeSyncService readmeSyncService = new ReadmeSyncService(properties);
+
+        dataExporterService = new DataExporterService(cveRepository, riskAnalyzerService, fileRetentionService, readmeSyncService);
     }
 
     @Test
@@ -62,17 +73,22 @@ class DataExporterServiceTest {
                 1, 1, 0, 0, 0, 1, 1, 0.85,
                 Map.of("CRITICAL", 1, "HIGH", 0, "MEDIUM", 0, "LOW", 0),
                 Map.of("spring", 1),
-                "2024-03-02T12:00:00Z"
+                "2024-03-02T10:00:00Z"
         );
 
         SyncSummary summary = new SyncSummary(
-                "2024-03-02", 50, 1, 1, stats, List.of(cve), List.of(cve)
+                "2024-03-02", 100, 5, 1, stats, List.of(cve), List.of(cve)
         );
 
-        boolean hasNewData = dataExporterService.exportAll(summary);
+        boolean exported = dataExporterService.exportAll(summary);
 
-        assertThat(hasNewData).isTrue();
+        assertThat(exported).isTrue();
 
+        // Verify daily file
+        Path dailyFile = dataDir.resolve("2024-03-02.json");
+        assertThat(Files.exists(dailyFile)).isTrue();
+
+        // Verify index.json file
         Path indexFile = dataDir.resolve("index.json");
         assertThat(Files.exists(indexFile)).isTrue();
         String indexContent = Files.readString(indexFile);
@@ -98,7 +114,7 @@ class DataExporterServiceTest {
         Files.writeString(dataDir.resolve(".gitkeep"), "");
         Files.writeString(dataDir.resolve("custom-notes.txt"), "");
 
-        dataExporterService.purgeOldDailyFiles(dataDir);
+        fileRetentionService.enforceRetention(dataDir);
 
         // Oldest 3 files (01, 02, 03) should be deleted, leaving 15 newest (04..18)
         assertThat(Files.exists(dataDir.resolve("2026-09-01.json"))).isFalse();

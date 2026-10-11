@@ -24,6 +24,7 @@ cveille:
   stack:
     keywords:
       # Java / Spring Boot ecosystem
+      - java
       - spring
       - spring-boot
       - spring-security
@@ -34,9 +35,10 @@ cveille:
       - jackson
       - log4j
       - logback
-      # Angular / Frontend ecosystem
-      - angular
+      # Frontend & Languages ecosystem
+      - javascript
       - typescript
+      - angular
       - rxjs
       - ngrx
       - node.js
