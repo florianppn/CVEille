@@ -21,7 +21,7 @@ export class Store {
     };
 
     this.currentPage = 1;
-    this.pageSize = 20;
+    this.pageSize = 10;
 
     this.listeners = [];
   }
