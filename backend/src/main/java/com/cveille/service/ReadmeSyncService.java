@@ -73,14 +73,7 @@ public class ReadmeSyncService {
         sb.append("### Top 8 des menaces les plus dangereuses et prioritaires\n\n");
 
         String timestamp = (stats != null && stats.lastSyncTimestamp() != null) ? stats.lastSyncTimestamp() : "N/A";
-        int total = stats != null ? stats.totalTracked() : 0;
-        int kev = stats != null ? stats.kevCount() : 0;
-        int critical = stats != null ? stats.criticalCount() : 0;
-        int high = stats != null ? stats.highCount() : 0;
-
-        sb.append(String.format("> **Dernière synchronisation** : `%s`  \n", timestamp));
-        sb.append(String.format("> **Vulnérabilités suivies** : `%d` | **Exploits CISA KEV** : `%d` | **Critiques** : `%d` | **Élevées** : `%d`\n\n",
-                total, kev, critical, high));
+        sb.append(String.format("> **Dernière synchronisation** : `%s`\n\n", timestamp));
 
         sb.append("| CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |\n");
         sb.append("|---|---|---|---|---|---|---|\n");

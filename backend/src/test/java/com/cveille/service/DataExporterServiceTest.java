@@ -98,7 +98,7 @@ class DataExporterServiceTest {
         // Verify README update
         String readmeContent = Files.readString(readmePath);
         assertThat(readmeContent).contains("CVE-2024-5555");
-        assertThat(readmeContent).contains("Exploits CISA KEV");
+        assertThat(readmeContent).contains("Top 8 des menaces");
         assertThat(readmeContent).contains("Some introductory text.");
         assertThat(readmeContent).contains("Footer.");
     }
