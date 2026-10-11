@@ -1,31 +1,27 @@
 {
-  "lastSync" : "2026-10-10T11:58:50.522712973Z",
+  "lastSync" : "2026-10-11T11:52:18.660675834Z",
   "stats" : {
-    "totalTracked" : 44,
-    "criticalCount" : 4,
-    "highCount" : 17,
-    "mediumCount" : 16,
-    "lowCount" : 1,
+    "totalTracked" : 15,
+    "criticalCount" : 1,
+    "highCount" : 10,
+    "mediumCount" : 2,
+    "lowCount" : 0,
     "kevCount" : 0,
-    "alertCount" : 20,
+    "alertCount" : 11,
     "avgEpss" : 0.004,
     "severityDistribution" : {
-      "CRITICAL" : 4,
-      "HIGH" : 17,
-      "MEDIUM" : 16,
-      "LOW" : 1
+      "CRITICAL" : 1,
+      "HIGH" : 10,
+      "MEDIUM" : 2,
+      "LOW" : 0
     },
     "topTechnologies" : {
-      "node.js" : 17,
-      "nginx" : 14,
-      "docker" : 7,
-      "keycloak" : 3,
+      "nginx" : 10,
       "kubernetes" : 2,
-      "spring" : 1,
-      "spring-boot" : 1,
-      "npm" : 1
+      "docker" : 2,
+      "postgresql" : 1
     },
-    "lastSyncTimestamp" : "2026-10-10T11:58:50.522712973Z"
+    "lastSyncTimestamp" : "2026-10-11T11:52:18.660675834Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-53988",
@@ -111,6 +107,8 @@
     "cvssScore" : 9.8,
     "severity" : "CRITICAL",
     "inKev" : false,
+    "epssScore" : 0.00342,
+    "epssPercentile" : 0.25717,
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105278"
@@ -224,6 +222,8 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.0039,
+    "epssPercentile" : 0.31035,
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103413"
@@ -235,6 +235,8 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00309,
+    "epssPercentile" : 0.21832,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107807"
@@ -246,6 +248,8 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00185,
+    "epssPercentile" : 0.07447,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107809"
@@ -257,6 +261,8 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00356,
+    "epssPercentile" : 0.27314,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107811"
@@ -268,6 +274,8 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00305,
+    "epssPercentile" : 0.21382,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107813"
@@ -279,6 +287,8 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.01548,
+    "epssPercentile" : 0.74337,
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55797"
@@ -375,6 +385,8 @@
     "cvssScore" : 8.1,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00409,
+    "epssPercentile" : 0.33182,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107808"
@@ -386,6 +398,8 @@
     "cvssScore" : 8.1,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00363,
+    "epssPercentile" : 0.28159,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107810"
@@ -521,6 +535,8 @@
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00443,
+    "epssPercentile" : 0.36572,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107805"
@@ -532,6 +548,8 @@
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00173,
+    "epssPercentile" : 0.06179,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107812"
@@ -846,6 +864,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107336"
   }, {
+    "id" : "CVE-2026-108604",
+    "description" : "Tabularis through 0.27.0 contains an incorrect authorization vulnerability in the MCP run_query safety gate that allows prompt-injected agents or untrusted MCP clients to bypass read-only mode by submitting side-effecting SELECT statements. Attackers can run statements like SELECT setval, nextval, or PostgreSQL query_to_xml with embedded DELETE to modify data without approval prompts.",
+    "publishedDate" : "2026-10-10T20:16:32.947",
+    "lastModifiedDate" : "2026-10-10T20:16:32.947",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "postgresql" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108604"
+  }, {
     "id" : "CVE-2026-104182",
     "description" : "stream-json is a micro-library of stream components for processing JSON and JSONC with a minimal memory footprint. Prior to 3.6.0, the JSONC parser at stream-json/jsonc/parser.js and verifier at stream-json/jsonc/verifier.js restart comment-terminator scanning from the opening slash whenever a block or line comment spans an input chunk, while retaining the accumulated comment buffer. Delivering a large valid comment across many small chunks therefore causes quadratic CPU work and can stall the Node.js event loop. The maintainer characterizes the attack vector as local because the documented JSONC input is locally owned or user-controlled configuration, rather than input intended for the open internet. This JSONC-only scope does not include the plain JSON parser, which advances through and discards consumed string and number data. This issue is fixed in version 3.6.0.",
     "publishedDate" : "2026-10-01T21:17:19.003",
@@ -1098,6 +1127,8 @@
     "cvssScore" : 5.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.0022,
+    "epssPercentile" : 0.11532,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107804"
@@ -1701,6 +1732,8 @@
     "lastModifiedDate" : "2026-10-09T17:16:45.270",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 7.5E-4,
+    "epssPercentile" : 7.9E-4,
     "matchedKeywords" : [ "docker" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-106581"
@@ -1711,6 +1744,8 @@
     "lastModifiedDate" : "2026-10-09T16:38:57.820",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00333,
+    "epssPercentile" : 0.24597,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107806"

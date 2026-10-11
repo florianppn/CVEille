@@ -9,8 +9,8 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### État de la veille (Stack Spring Boot & Angular)
 
-> **Dernière synchronisation** : `2026-10-10T11:58:50.522712973Z`  
-> **Vulnérabilités suivies** : `44` | **Exploits CISA KEV** : `0` | **Critiques** : `4` | **Élevées** : `17`
+> **Dernière synchronisation** : `2026-10-11T11:52:18.660675834Z`  
+> **Vulnérabilités suivies** : `15` | **Exploits CISA KEV** : `0` | **Critiques** : `1` | **Élevées** : `10`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
@@ -20,7 +20,7 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 | [CVE-2026-107699](https://nvd.nist.gov/vuln/detail/CVE-2026-107699) | `CRITICAL` | 9.8 | 1.5% | Non | `node.js` | ppt2png through 0.0.6 contains an OS command injection vulnerability that all... |
 | [CVE-2026-107700](https://nvd.nist.gov/vuln/detail/CVE-2026-107700) | `CRITICAL` | 9.8 | 0.5% | Non | `node.js` | dot-access 0.0.3 through 1.0.0 contains a code injection vulnerability that a... |
 | [CVE-2026-107703](https://nvd.nist.gov/vuln/detail/CVE-2026-107703) | `CRITICAL` | 9.8 | 1.8% | Non | `node.js` | @enmaso/node-convert through 1.0.0 contains an OS command injection vulnerabi... |
-| [CVE-2026-105278](https://nvd.nist.gov/vuln/detail/CVE-2026-105278) | `CRITICAL` | 9.8 | N/A | Non | `docker` | The published Docker image for openPDC includes a fixed administrative creden... |
+| [CVE-2026-105278](https://nvd.nist.gov/vuln/detail/CVE-2026-105278) | `CRITICAL` | 9.8 | 0.3% | Non | `docker` | The published Docker image for openPDC includes a fixed administrative creden... |
 | [CVE-2026-55181](https://nvd.nist.gov/vuln/detail/CVE-2026-55181) | `CRITICAL` | 9.4 | 0.7% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers. P... |
 
 *Données détaillées historisées chaque jour dans [`data/`](data/) • Alimenté par NVD 2.0, CISA KEV & EPSS*
