@@ -28,10 +28,12 @@ public class DataExporterService {
     private static final String SUMMARY_END_TAG = "<!-- CVEILLE_SUMMARY_END -->";
 
     private final CveilleProperties properties;
+    private final RiskAnalyzerService riskAnalyzerService;
     private final ObjectMapper objectMapper;
 
-    public DataExporterService(CveilleProperties properties) {
+    public DataExporterService(CveilleProperties properties, RiskAnalyzerService riskAnalyzerService) {
         this.properties = properties;
+        this.riskAnalyzerService = riskAnalyzerService;
         this.objectMapper = new ObjectMapper()
                 .enable(SerializationFeature.INDENT_OUTPUT);
     }
@@ -95,9 +97,15 @@ public class DataExporterService {
                 return Double.compare(cvssB, cvssA);
             });
 
+            // 4a. Compute aggregated stats across the full accumulated index
+            CveStats aggregatedStats = riskAnalyzerService != null
+                    ? riskAnalyzerService.computeStats(sortedList)
+                    : summary.stats();
+
             Map<String, Object> indexPayload = new LinkedHashMap<>();
             indexPayload.put("lastSync", summary.stats().lastSyncTimestamp());
-            indexPayload.put("stats", summary.stats());
+            indexPayload.put("newToday", summary.newCvesCount());
+            indexPayload.put("stats", aggregatedStats);
             indexPayload.put("cves", sortedList);
 
             objectMapper.writeValue(indexFile.toFile(), indexPayload);
@@ -118,7 +126,7 @@ public class DataExporterService {
             purgeOldDailyFiles(dataDir);
 
             // 5. Update README.md dynamic sections
-            updateReadme(summary.stats(), sortedList);
+            updateReadme(aggregatedStats, sortedList);
 
             return hasNewData;
         } catch (IOException e) {

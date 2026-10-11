@@ -41,6 +41,10 @@
   line-height: 1;
 }
 
+.metric-new {
+  color: var(--color-accent);
+}
+
 .metric-kev {
   color: var(--color-critical);
 }
