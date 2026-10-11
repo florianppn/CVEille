@@ -10,6 +10,7 @@ import { ChartsComponent } from './components/charts.component.js';
 import { ChipsComponent } from './components/chips.component.js';
 import { FiltersComponent } from './components/filters.component.js';
 import { TableComponent } from './components/table.component.js';
+import { PaginationComponent } from './components/pagination.component.js';
 
 export class App {
   constructor() {
@@ -19,6 +20,7 @@ export class App {
     this.kpi = new KpiComponent();
     this.charts = new ChartsComponent();
     this.table = new TableComponent();
+    this.pagination = new PaginationComponent(this.store);
 
     this.chips = new ChipsComponent((tech) => {
       this.store.setTech(tech);
@@ -34,7 +36,8 @@ export class App {
     this.store.subscribe((store) => {
       this.kpi.render(store);
       this.filters.render(store);
-      this.table.render(store.filteredCves);
+      this.table.render(store.getPaginatedCves(), store.filteredCves.length);
+      this.pagination.render(store);
     });
 
     // 2. Fetch dataset and initialize visualizations

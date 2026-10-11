@@ -8,7 +8,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="stylesheet" href="style.css?v=4">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" defer></script>
-  <script type="module" src="js/app.js?v=5"></script>
+  <script type="module" src="js/app.js?v=6"></script>
 </head>
 <body>
   <div class="app-layout">
@@ -136,6 +136,12 @@
               </tr>
             </tbody>
           </table>
+        </div>
+
+        <!-- Table Pagination Footer -->
+        <div class="table-footer" id="paginationContainer">
+          <div class="pagination-info" id="paginationInfo"></div>
+          <nav class="pagination-nav" id="paginationNav" aria-label="Pagination"></nav>
         </div>
       </section>
     </main>
