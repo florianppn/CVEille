@@ -9,8 +9,8 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### État de la veille (Stack Spring Boot & Angular)
 
-> **Dernière synchronisation** : `2026-10-11T11:52:18.660675834Z`  
-> **Vulnérabilités suivies** : `15` | **Exploits CISA KEV** : `0` | **Critiques** : `1` | **Élevées** : `10`
+> **Dernière synchronisation** : `2026-10-11T16:13:40.061604870Z`  
+> **Vulnérabilités suivies** : `137` | **Exploits CISA KEV** : `0` | **Critiques** : `9` | **Élevées** : `46`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|

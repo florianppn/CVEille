@@ -1,27 +1,36 @@
 {
-  "lastSync" : "2026-10-11T11:52:18.660675834Z",
+  "lastSync" : "2026-10-11T16:13:39.937477857Z",
+  "newToday" : 9,
   "stats" : {
-    "totalTracked" : 15,
-    "criticalCount" : 1,
-    "highCount" : 10,
-    "mediumCount" : 2,
-    "lowCount" : 0,
+    "totalTracked" : 137,
+    "criticalCount" : 9,
+    "highCount" : 46,
+    "mediumCount" : 46,
+    "lowCount" : 7,
     "kevCount" : 0,
-    "alertCount" : 11,
-    "avgEpss" : 0.004,
+    "alertCount" : 42,
+    "avgEpss" : 0.003,
     "severityDistribution" : {
-      "CRITICAL" : 1,
-      "HIGH" : 10,
-      "MEDIUM" : 2,
-      "LOW" : 0
+      "CRITICAL" : 9,
+      "HIGH" : 46,
+      "MEDIUM" : 46,
+      "LOW" : 7
     },
     "topTechnologies" : {
-      "nginx" : 10,
-      "kubernetes" : 2,
-      "docker" : 2,
-      "postgresql" : 1
+      "node.js" : 56,
+      "docker" : 20,
+      "nginx" : 18,
+      "kubernetes" : 14,
+      "keycloak" : 9,
+      "postgresql" : 7,
+      "npm" : 7,
+      "typescript" : 6,
+      "spring" : 2,
+      "angular" : 1,
+      "spring-boot" : 1,
+      "hibernate" : 1
     },
-    "lastSyncTimestamp" : "2026-10-11T11:52:18.660675834Z"
+    "lastSyncTimestamp" : "2026-10-11T16:13:40.061604870Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-53988",
@@ -236,7 +245,7 @@
     "severity" : "HIGH",
     "inKev" : false,
     "epssScore" : 0.00309,
-    "epssPercentile" : 0.21832,
+    "epssPercentile" : 0.21868,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107807"
@@ -249,7 +258,7 @@
     "severity" : "HIGH",
     "inKev" : false,
     "epssScore" : 0.00185,
-    "epssPercentile" : 0.07447,
+    "epssPercentile" : 0.07449,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107809"
@@ -262,7 +271,7 @@
     "severity" : "HIGH",
     "inKev" : false,
     "epssScore" : 0.00356,
-    "epssPercentile" : 0.27314,
+    "epssPercentile" : 0.27355,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107811"
@@ -275,7 +284,7 @@
     "severity" : "HIGH",
     "inKev" : false,
     "epssScore" : 0.00305,
-    "epssPercentile" : 0.21382,
+    "epssPercentile" : 0.21422,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107813"
@@ -288,7 +297,7 @@
     "severity" : "HIGH",
     "inKev" : false,
     "epssScore" : 0.01548,
-    "epssPercentile" : 0.74337,
+    "epssPercentile" : 0.74353,
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55797"
@@ -386,7 +395,7 @@
     "severity" : "HIGH",
     "inKev" : false,
     "epssScore" : 0.00409,
-    "epssPercentile" : 0.33182,
+    "epssPercentile" : 0.33227,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107808"
@@ -399,7 +408,7 @@
     "severity" : "HIGH",
     "inKev" : false,
     "epssScore" : 0.00363,
-    "epssPercentile" : 0.28159,
+    "epssPercentile" : 0.28198,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107810"
@@ -549,7 +558,7 @@
     "severity" : "HIGH",
     "inKev" : false,
     "epssScore" : 0.00173,
-    "epssPercentile" : 0.06179,
+    "epssPercentile" : 0.06175,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107812"
@@ -871,6 +880,8 @@
     "cvssScore" : 6.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00131,
+    "epssPercentile" : 0.02349,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108604"

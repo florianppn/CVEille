@@ -36,7 +36,8 @@ class DataExporterServiceTest {
         CveilleProperties properties = new CveilleProperties(
                 48, dataDir.toString(), frontendDir.toString(), readmePath.toString(), new CveilleProperties.Retention(15), null, null, null, null, null
         );
-        dataExporterService = new DataExporterService(properties);
+        RiskAnalyzerService riskAnalyzerService = new RiskAnalyzerService(properties);
+        dataExporterService = new DataExporterService(properties, riskAnalyzerService);
     }
 
     @Test

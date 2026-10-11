@@ -23,7 +23,7 @@
   function initApp() {
     elements = {
       syncText: document.getElementById('last-sync-text'),
-      kpiTotal: document.getElementById('kpi-total'),
+      kpiNew: document.getElementById('kpi-new'),
       kpiKev: document.getElementById('kpi-kev'),
       kpiCritical: document.getElementById('kpi-critical'),
       kpiHigh: document.getElementById('kpi-high'),
@@ -48,13 +48,14 @@
         return res.json();
       })
       .then((data) => {
-        statsData = data.stats || null;
         allCves = Array.isArray(data.cves) ? data.cves : [];
+        const computedStats = computeStatsFromCves(allCves);
+        statsData = computedStats;
 
-        renderSyncDate(data.lastSync || (statsData ? statsData.lastSyncTimestamp : null));
-        renderKpis(statsData);
-        renderCharts(statsData);
-        renderChips(statsData);
+        renderSyncDate(data.lastSync || (data.stats ? data.stats.lastSyncTimestamp : null));
+        renderKpis(computedStats, data.newToday);
+        renderCharts(computedStats);
+        renderChips(computedStats);
         applyFilters();
       })
       .catch((err) => {
@@ -64,6 +65,47 @@
           elements.tableBody.innerHTML = '<tr><td colspan="8" class="table-empty">Impossible de charger data/index.json.</td></tr>';
         }
       });
+  }
+
+  function computeStatsFromCves(cves) {
+    let critical = 0;
+    let high = 0;
+    let medium = 0;
+    let low = 0;
+    let kev = 0;
+    const techCounts = {};
+
+    cves.forEach(cve => {
+      const sev = (cve.severity || '').toUpperCase();
+      if (sev === 'CRITICAL') critical++;
+      else if (sev === 'HIGH') high++;
+      else if (sev === 'MEDIUM') medium++;
+      else if (sev === 'LOW') low++;
+
+      if (cve.inKev) kev++;
+
+      if (Array.isArray(cve.matchedKeywords)) {
+        cve.matchedKeywords.forEach(t => {
+          techCounts[t] = (techCounts[t] || 0) + 1;
+        });
+      }
+    });
+
+    return {
+      totalTracked: cves.length,
+      criticalCount: critical,
+      highCount: high,
+      mediumCount: medium,
+      lowCount: low,
+      kevCount: kev,
+      severityDistribution: {
+        CRITICAL: critical,
+        HIGH: high,
+        MEDIUM: medium,
+        LOW: low
+      },
+      topTechnologies: techCounts
+    };
   }
 
   function renderSyncDate(isoDate) {
@@ -79,12 +121,21 @@
     elements.syncText.textContent = formatted + ' UTC';
   }
 
-  function renderKpis(stats) {
+  function renderKpis(stats, newToday) {
+    if (elements.kpiNew) {
+      if (typeof newToday === 'number') {
+        elements.kpiNew.textContent = newToday;
+      } else {
+        const now = Date.now();
+        const oneDayMs = 24 * 60 * 60 * 1000;
+        const recent = allCves.filter(c => c.publishedDate && (now - new Date(c.publishedDate).getTime() <= oneDayMs)).length;
+        elements.kpiNew.textContent = recent;
+      }
+    }
     if (!stats) return;
-    elements.kpiTotal.textContent = stats.totalTracked || 0;
-    elements.kpiKev.textContent = stats.kevCount || 0;
-    elements.kpiCritical.textContent = stats.criticalCount || 0;
-    elements.kpiHigh.textContent = stats.highCount || 0;
+    if (elements.kpiKev) elements.kpiKev.textContent = stats.kevCount || 0;
+    if (elements.kpiCritical) elements.kpiCritical.textContent = stats.criticalCount || 0;
+    if (elements.kpiHigh) elements.kpiHigh.textContent = stats.highCount || 0;
   }
 
   function renderCharts(stats) {
