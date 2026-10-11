@@ -30,6 +30,7 @@
       searchInput: document.getElementById('searchInput'),
       clearSearchBtn: document.getElementById('clearSearchBtn'),
       severitySelect: document.getElementById('severitySelect'),
+      dateSortSelect: document.getElementById('dateSortSelect'),
       resetBtn: document.getElementById('resetFiltersBtn'),
       chipsContainer: document.getElementById('techChipsContainer'),
       tableBody: document.getElementById('cveTableBody'),
@@ -183,10 +184,11 @@
   function applyFilters() {
     const query = elements.searchInput.value.trim().toLowerCase();
     const severity = elements.severitySelect.value;
+    const dateSort = elements.dateSortSelect ? elements.dateSortSelect.value : 'DEFAULT';
 
     elements.clearSearchBtn.style.display = query ? 'inline-block' : 'none';
 
-    const isFiltered = query !== '' || severity !== 'ALL' || activeTech !== 'ALL';
+    const isFiltered = query !== '' || severity !== 'ALL' || activeTech !== 'ALL' || dateSort !== 'DEFAULT';
     elements.resetBtn.style.display = isFiltered ? 'inline-block' : 'none';
 
     const filtered = allCves.filter(cve => {
@@ -202,6 +204,20 @@
       }
       return true;
     });
+
+    if (dateSort === 'DESC') {
+      filtered.sort((a, b) => {
+        const timeA = a.publishedDate ? new Date(a.publishedDate).getTime() : 0;
+        const timeB = b.publishedDate ? new Date(b.publishedDate).getTime() : 0;
+        return timeB - timeA;
+      });
+    } else if (dateSort === 'ASC') {
+      filtered.sort((a, b) => {
+        const timeA = a.publishedDate ? new Date(a.publishedDate).getTime() : 0;
+        const timeB = b.publishedDate ? new Date(b.publishedDate).getTime() : 0;
+        return timeA - timeB;
+      });
+    }
 
     elements.resultsCount.textContent = filtered.length;
     renderTable(filtered);
@@ -257,6 +273,9 @@
     if (elements.severitySelect) {
       elements.severitySelect.addEventListener('change', applyFilters);
     }
+    if (elements.dateSortSelect) {
+      elements.dateSortSelect.addEventListener('change', applyFilters);
+    }
 
     if (elements.clearSearchBtn) {
       elements.clearSearchBtn.addEventListener('click', () => {
@@ -272,6 +291,7 @@
       elements.resetBtn.addEventListener('click', () => {
         if (elements.searchInput) elements.searchInput.value = '';
         if (elements.severitySelect) elements.severitySelect.value = 'ALL';
+        if (elements.dateSortSelect) elements.dateSortSelect.value = 'DEFAULT';
         activeTech = 'ALL';
         if (elements.chipsContainer) {
           elements.chipsContainer.querySelectorAll('.chip-tag').forEach(b => {

@@ -6,9 +6,9 @@
   <title>CVEille • Veille des Vulnérabilités</title>
   <meta name="description" content="Veille quotidienne automatisée des vulnérabilités de sécurité sur l'écosystème Spring Boot, Angular et infrastructure.">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js" defer></script>
-  <script src="app.js?v=2" defer></script>
+  <script src="app.js?v=3" defer></script>
 </head>
 <body>
   <div class="app-layout">
@@ -86,12 +86,18 @@
         </div>
 
         <div class="filter-actions">
-          <select id="severitySelect" class="custom-select">
-            <option value="ALL">Toutes les sévérités</option>
+          <select id="severitySelect" class="custom-select" aria-label="Sévérités">
+            <option value="ALL">Sévérités</option>
             <option value="CRITICAL">Critique (≥ 9.0)</option>
             <option value="HIGH">Élevée (7.0 - 8.9)</option>
             <option value="MEDIUM">Moyenne (4.0 - 6.9)</option>
             <option value="LOW">Basse (&lt; 4.0)</option>
+          </select>
+
+          <select id="dateSortSelect" class="custom-select" aria-label="Dates">
+            <option value="DEFAULT">Dates</option>
+            <option value="DESC">Dates (décroissante)</option>
+            <option value="ASC">Dates (croissante)</option>
           </select>
 
           <button id="resetFiltersBtn" class="reset-btn" style="display:none;">Réinitialiser</button>
