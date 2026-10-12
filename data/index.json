@@ -1,38 +1,38 @@
 {
-  "lastSync" : "2026-10-11T19:33:16.149346430Z",
-  "newToday" : 16,
+  "lastSync" : "2026-10-12T13:59:40.126938705Z",
+  "newToday" : 23,
   "stats" : {
-    "totalTracked" : 153,
+    "totalTracked" : 167,
     "criticalCount" : 10,
-    "highCount" : 52,
-    "mediumCount" : 54,
-    "lowCount" : 8,
+    "highCount" : 53,
+    "mediumCount" : 66,
+    "lowCount" : 9,
     "kevCount" : 0,
-    "alertCount" : 49,
+    "alertCount" : 50,
     "avgEpss" : 0.003,
     "severityDistribution" : {
       "CRITICAL" : 10,
-      "HIGH" : 52,
-      "MEDIUM" : 54,
-      "LOW" : 8
+      "HIGH" : 53,
+      "MEDIUM" : 66,
+      "LOW" : 9
     },
     "topTechnologies" : {
       "node.js" : 56,
-      "docker" : 20,
-      "nginx" : 18,
-      "javascript" : 15,
+      "docker" : 21,
+      "nginx" : 19,
+      "javascript" : 16,
       "kubernetes" : 14,
-      "keycloak" : 9,
+      "java" : 11,
+      "keycloak" : 10,
       "npm" : 7,
       "postgresql" : 7,
       "typescript" : 6,
       "spring" : 2,
       "hibernate" : 1,
       "angular" : 1,
-      "java" : 1,
       "spring-boot" : 1
     },
-    "lastSyncTimestamp" : "2026-10-11T19:33:16.289722178Z"
+    "lastSyncTimestamp" : "2026-10-12T13:59:40.194620856Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-53988",
@@ -368,6 +368,17 @@
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-96227"
+  }, {
+    "id" : "CVE-2026-108980",
+    "description" : "Blinko through 1.8.8 allows directory traversal, overwriting startup files as root, via installPlugin. It builds the plugin install path from an unsanitized name in server/routerTrpc/plugin.ts, and the plugin.installPlugin tRPC procedure is open to any authenticated user. Thus, a name containing ../ sequences writes the downloaded plugin files outside the plugins directory. Because the official Docker image runs as root, an authenticated attacker overwrites a root-owned startup file and achieves remote code execution as root. Self-registration for an account may be possible.",
+    "publishedDate" : "2026-10-12T02:16:57.297",
+    "lastModifiedDate" : "2026-10-12T02:16:57.297",
+    "cvssScore" : 8.8,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108980"
   }, {
     "id" : "CVE-2026-102676",
     "description" : "Electron is a framework for writing cross-platform desktop applications using JavaScript, HTML and CSS. Prior to 41.10.6, 42.9.2, 43.4.1, and 44.0.0-beta.5, an Electron <webview> guest could enable nodeIntegrationInWorker for its Web Workers even when the unsandboxed embedder had Node.js integration disabled, allowing untrusted guest content to create a Node-enabled worker with more privilege than the embedder granted. Applications that do not enable the <webview> tag or that keep the embedder sandboxed are not affected. This issue is fixed in versions 41.10.6, 42.9.2, 43.4.1, and 44.0.0-beta.5.",
@@ -864,6 +875,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-81156"
   }, {
+    "id" : "CVE-2026-109082",
+    "description" : "A flaw was found in the Client-Initiated Backchannel Authentication CIBA implementation within the keycloak-services component of Keycloak. This component handles advanced authentication flows where a client initiates a login on behalf of a user. The issue occurs because Keycloak fails to verify that a client is authorized to use the CIBA flow, allowing public clients to bypass security requirements. An attacker could use this flaw to trick a user into approving a login request, eventually gaining full access to the users account without needing a client secret.",
+    "publishedDate" : "2026-10-12T07:16:36.303",
+    "lastModifiedDate" : "2026-10-12T08:17:19.787",
+    "cvssScore" : 6.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "keycloak" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-109082"
+  }, {
     "id" : "CVE-2026-102639",
     "description" : "MobilityDB version 1.3.0 and earlier contains an out-of-bounds read vulnerability in the MEOS binary and library WKB deserialization logic that allows unprivileged database users to crash the PostgreSQL backend process by supplying a crafted WKB payload with a negative length field. The negative length value wraps to a large unsigned size_t due to missing signed validation, bypasses an overflow-unsafe pointer arithmetic bounds check in wkb_parse_state_check(), and causes memcpy() in text_from_wkb_state() to operate with a corrupted unbounded length, resulting in a remote denial-of-service condition affecting all sessions on the PostgreSQL instance.",
     "publishedDate" : "2026-09-29T18:17:09.173",
@@ -992,6 +1014,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107336"
   }, {
+    "id" : "CVE-2026-108784",
+    "description" : "A vulnerability was detected in macrozheng mall up to 1.0.3. This vulnerability affects the function AlipayServiceImpl.pay of the file com/macro/mall/portal/service/impl/AlipayServiceImpl.java of the component Payment Endpoint. The manipulation of the argument total_amount results in business logic errors. The attack can be launched remotely. The exploit is now public and may be used. The patch is identified as dcaa93b3150352e5044708d7211b5bed0af4509f. A patch should be applied to remediate this issue.",
+    "publishedDate" : "2026-10-12T02:16:56.390",
+    "lastModifiedDate" : "2026-10-12T02:16:56.390",
+    "cvssScore" : 6.5,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108784"
+  }, {
     "id" : "CVE-2026-97340",
     "description" : "The Avada | Website Builder For WordPress & WooCommerce theme for WordPress is vulnerable to Stored Cross-Site Scripting via the user profile 'Author Page' social link contact-method fields (author_facebook, author_twitter, author_linkedin, author_dribble, author_whatsapp, author_email) in versions up to, and including, 7.16.1. Avada registers these fields through the user_contactmethods filter and, on the author archive, emits them inside an anchor href using only esc_attr() in Fusion_Social_Icon::get_markup(), which escapes HTML metacharacters but does not reject dangerous URL schemes such as javascript:. This makes it possible for authenticated attackers, with Subscriber-level access and above, to inject arbitrary web scripts in pages that will execute whenever a user accesses their author page and clicks the injected social icon (a click is required, and the site must have 'Open Social Icons in a New Window' set to Off so the browser doesn't block the javascript: URL from opening in a new tab).",
     "publishedDate" : "2026-10-10T08:17:08.307",
@@ -1028,6 +1061,105 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108684"
+  }, {
+    "id" : "CVE-2026-108773",
+    "description" : "A vulnerability was detected in erzhongxmu JEEWMS up to 2026.09.27-W39. Impacted is the function docheck of the file src/main/java/com/zzjee/wm/controller/WmOmNoticeHController.java. Performing a manipulation of the argument goodscode results in sql injection. The attack may be initiated remotely. The exploit is now public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-11T23:16:56.917",
+    "lastModifiedDate" : "2026-10-11T23:16:56.917",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108773"
+  }, {
+    "id" : "CVE-2026-108774",
+    "description" : "A flaw has been found in erzhongxmu JEEWMS up to 2026.09.27-W39. The affected element is the function getbinall/getbinallagv of the file src/main/java/com/zzjee/md/controller/MdBinController.java. Executing a manipulation of the argument binstore/binid/des/cengshu can lead to sql injection. The attack may be launched remotely. The exploit has been published and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-12T00:17:01.200",
+    "lastModifiedDate" : "2026-10-12T00:17:01.200",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108774"
+  }, {
+    "id" : "CVE-2026-108775",
+    "description" : "A vulnerability has been found in erzhongxmu JEEWMS up to 2026.09.27-W39. The impacted element is the function WvNoticeController.list of the file com/zzjee/wmapi/controller/WvNoticeController.java of the component Search Endpoint. The manipulation of the argument searchstr leads to sql injection. Remote exploitation of the attack is possible. The exploit has been disclosed to the public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-12T00:17:01.370",
+    "lastModifiedDate" : "2026-10-12T00:17:01.370",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108775"
+  }, {
+    "id" : "CVE-2026-108777",
+    "description" : "A vulnerability was found in erzhongxmu JEEWMS up to 2026.09.27-W39. This affects the function WvGiController.list of the file src/main/java/com/zzjee/wmapi/controller/WvGiController.java. The manipulation of the argument searchstr results in sql injection. The attack can be executed remotely. The exploit has been made public and could be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-12T00:17:01.533",
+    "lastModifiedDate" : "2026-10-12T00:17:01.533",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108777"
+  }, {
+    "id" : "CVE-2026-108778",
+    "description" : "A vulnerability was determined in erzhongxmu JEEWMS up to 2026.09.27-W39. This impacts the function WmInQmIController.list of the file src/main/java/com/zzjee/wm/controller/WmInQmIController.java of the component Inbound Quality Check Pda Interface. This manipulation of the argument searchstr causes sql injection. The attack is possible to be carried out remotely. The exploit has been publicly disclosed and may be utilized. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-12T00:17:01.700",
+    "lastModifiedDate" : "2026-10-12T00:17:01.700",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108778"
+  }, {
+    "id" : "CVE-2026-108779",
+    "description" : "A vulnerability was identified in erzhongxmu JEEWMS up to 2026.09.27-W39. Affected is the function WmSttInGoodsController.list of the file src/main/java/com/zzjee/wm/controller/WmSttInGoodsController.java. Such manipulation of the argument searchstr leads to sql injection. The attack may be performed from remote. The exploit is publicly available and might be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-12T01:16:29.617",
+    "lastModifiedDate" : "2026-10-12T01:16:29.617",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108779"
+  }, {
+    "id" : "CVE-2026-108781",
+    "description" : "A security flaw has been discovered in erzhongxmu JEEWMS up to 2026.09.27-W39. Affected by this vulnerability is the function WmToMoveGoodsController.list of the file src/main/java/com/zzjee/wm/controller/WmToMoveGoodsController.java of the component PDA Interface. Performing a manipulation of the argument searchstr results in sql injection. It is possible to initiate the attack remotely. The exploit has been released to the public and may be used for attacks. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-12T01:16:29.783",
+    "lastModifiedDate" : "2026-10-12T01:16:29.783",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108781"
+  }, {
+    "id" : "CVE-2026-108782",
+    "description" : "A weakness has been identified in erzhongxmu JEEWMS up to 2026.09.27-W39. Affected by this issue is the function CommonServiceImpl.getAutoList of the file src/main/java/org/jeecgframework/core/common/service/impl/CommonServiceImpl.java of the component Autocomplete Handler. Executing a manipulation of the argument trem/searchField/entityName can lead to sql injection. It is possible to launch the attack remotely. The exploit has been made available to the public and could be used for attacks. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-12T02:16:56.040",
+    "lastModifiedDate" : "2026-10-12T02:16:56.040",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108782"
+  }, {
+    "id" : "CVE-2026-108824",
+    "description" : "A flaw has been found in DataEase up to 3.0.0. The impacted element is the function Utils.buildCalcField of the file io/dataease/engine/utils/Utils.java. This manipulation of the argument calculated field causes sql injection. It is possible to initiate the attack remotely. The exploit has been published and may be used. Patch name: 8509e218e6c1f0080eee9e379f269b2104785ef7. It is recommended to apply a patch to fix this issue.",
+    "publishedDate" : "2026-10-12T11:17:10.447",
+    "lastModifiedDate" : "2026-10-12T11:17:10.637",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108824"
   }, {
     "id" : "CVE-2026-104182",
     "description" : "stream-json is a micro-library of stream components for processing JSON and JSONC with a minimal memory footprint. Prior to 3.6.0, the JSONC parser at stream-json/jsonc/parser.js and verifier at stream-json/jsonc/verifier.js restart comment-terminator scanning from the opening slash whenever a block or line comment spans an input chunk, while retaining the accumulated comment buffer. Delivering a large valid comment across many small chunks therefore causes quadratic CPU work and can stall the Node.js event loop. The maintainer characterizes the attack vector as local because the documented JSONC input is locally owned or user-controlled configuration, rather than input intended for the open internet. This JSONC-only scope does not include the plain JSON parser, which advances through and discards consumed string and number data. This issue is fixed in version 3.6.0.",
@@ -1391,6 +1523,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107604"
   }, {
+    "id" : "CVE-2026-48212",
+    "description" : "An OTRS administrator can enter arbitrary JavaScript into the content of an OTRS Custom Page, which is stored by the application and subsequently executed in the browser of users accessing that page.\n\nThis issue affects OTRS:\n\n  *  7.0.X\n  *  8.0.X\n  *  2023.X\n  *  2024.X\n  *  2025.X\n  *  2026.X before 2026.7.X",
+    "publishedDate" : "2026-10-12T07:16:36.610",
+    "lastModifiedDate" : "2026-10-12T07:16:36.610",
+    "cvssScore" : 4.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-48212"
+  }, {
     "id" : "CVE-2026-108852",
     "description" : "Deep Chat through 2.5.1 contains a cross-site scripting vulnerability that allows attackers to inject javascript: links because RemarkableConfig.createNew disables Remarkable link validation. Attackers can place crafted Markdown links in AI responses, addMessage content, or loaded history to execute script in the embedding page when victims click them.",
     "publishedDate" : "2026-10-11T14:17:04.827",
@@ -1557,6 +1700,17 @@
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107296"
+  }, {
+    "id" : "CVE-2026-108981",
+    "description" : "ngx_cache_purge before 3.0.4 can allow file deletion via a symlink attack in certain situations where nginx and a served application (e.g., WordPress) run under the same user account. The attacker must be able to create a symlink inside the cache path. Version 3.0.4 fixes this for the case of a symlink created at an arbitrary earlier time, but does not resolve an applicable TOCTOU race condition. (The ngx_cache_purge module follows symlinks while walking the cache directory tree during purge operations. The module relies on nginx's ngx_walk_tree(), which relies on stat() and therefore follows symlinks.)",
+    "publishedDate" : "2026-10-12T03:17:18.503",
+    "lastModifiedDate" : "2026-10-12T03:17:18.503",
+    "cvssScore" : 3.6,
+    "severity" : "LOW",
+    "inKev" : false,
+    "matchedKeywords" : [ "nginx" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108981"
   }, {
     "id" : "CVE-2026-106487",
     "description" : "Backstage is an open framework for building developer portals. Prior to 0.21.10, the @backstage/plugin-kubernetes-backend package is affected by unsupported catalog cluster authentication mode in kubernetes backend. Deployments using catalog cluster discovery may be affected when catalog contributors can create or modify kubernetes-cluster Resource entities. With the required endpoint permissions and pod RBAC, the backend can use its local in-cluster identity, potentially exposing Kubernetes resources readable by that identity. The credential is used only with the local in-cluster API endpoint and is not sent to the catalog-supplied endpoint. This issue is fixed in version 0.21.10.",
