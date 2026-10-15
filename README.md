@@ -9,18 +9,18 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### Top 8 des menaces les plus dangereuses et prioritaires
 
-> **Dernière synchronisation** : `2026-10-14T10:57:35.048817705Z`
+> **Dernière synchronisation** : `2026-10-15T10:39:36.469865425Z`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
 | [CVE-2026-53988](https://nvd.nist.gov/vuln/detail/CVE-2026-53988) | `CRITICAL` | 10.0 | N/A | Non | `docker` | Dockhand before 1.0.40 contains an authentication bypass vulnerability in i... |
-| [CVE-2026-65162](https://nvd.nist.gov/vuln/detail/CVE-2026-65162) | `CRITICAL` | 10.0 | N/A | Non | `kubernetes` | NVIDIA AIStore for Linux contains a vulnerability in the legacy ETL Kuberne... |
-| [CVE-2026-77459](https://nvd.nist.gov/vuln/detail/CVE-2026-77459) | `CRITICAL` | 9.9 | N/A | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
+| [CVE-2026-65162](https://nvd.nist.gov/vuln/detail/CVE-2026-65162) | `CRITICAL` | 10.0 | 0.7% | Non | `kubernetes` | NVIDIA AIStore for Linux contains a vulnerability in the legacy ETL Kuberne... |
+| [CVE-2026-77459](https://nvd.nist.gov/vuln/detail/CVE-2026-77459) | `CRITICAL` | 9.9 | 0.7% | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
+| [CVE-2026-77524](https://nvd.nist.gov/vuln/detail/CVE-2026-77524) | `CRITICAL` | 9.9 | N/A | Non | `kubernetes` | KEDA is a Kubernetes-based Event Driven Autoscaling component. In version 2... |
 | [CVE-2026-55494](https://nvd.nist.gov/vuln/detail/CVE-2026-55494) | `CRITICAL` | 9.8 | 0.8% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers.... |
 | [CVE-2026-105641](https://nvd.nist.gov/vuln/detail/CVE-2026-105641) | `CRITICAL` | 9.8 | 0.5% | Non | `docker` | Plane is an open-source project management tool. Prior to 1.4.0, the deploy... |
 | [CVE-2026-107699](https://nvd.nist.gov/vuln/detail/CVE-2026-107699) | `CRITICAL` | 9.8 | 1.5% | Non | `node.js` | ppt2png through 0.0.6 contains an OS command injection vulnerability that a... |
 | [CVE-2026-107700](https://nvd.nist.gov/vuln/detail/CVE-2026-107700) | `CRITICAL` | 9.8 | 0.5% | Non | `node.js` | dot-access 0.0.3 through 1.0.0 contains a code injection vulnerability that... |
-| [CVE-2026-107703](https://nvd.nist.gov/vuln/detail/CVE-2026-107703) | `CRITICAL` | 9.8 | 1.8% | Non | `node.js` | @enmaso/node-convert through 1.0.0 contains an OS command injection vulnera... |
 
 *Données détaillées historisées chaque jour dans [`data/`](data/) • Alimenté par NVD 2.0, CISA KEV & EPSS*
 <!-- CVEILLE_SUMMARY_END -->
