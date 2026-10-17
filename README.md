@@ -9,7 +9,7 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### Top 8 des menaces les plus dangereuses et prioritaires
 
-> **Dernière synchronisation** : `2026-10-16T10:25:32.835520952Z`
+> **Dernière synchronisation** : `2026-10-17T09:56:30.942909460Z`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
@@ -17,7 +17,7 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 | [CVE-2026-65162](https://nvd.nist.gov/vuln/detail/CVE-2026-65162) | `CRITICAL` | 10.0 | 0.7% | Non | `kubernetes` | NVIDIA AIStore for Linux contains a vulnerability in the legacy ETL Kuberne... |
 | [CVE-2026-77459](https://nvd.nist.gov/vuln/detail/CVE-2026-77459) | `CRITICAL` | 9.9 | 0.7% | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
 | [CVE-2026-77524](https://nvd.nist.gov/vuln/detail/CVE-2026-77524) | `CRITICAL` | 9.9 | 0.6% | Non | `kubernetes` | KEDA is a Kubernetes-based Event Driven Autoscaling component. In version 2... |
-| [CVE-2026-105037](https://nvd.nist.gov/vuln/detail/CVE-2026-105037) | `CRITICAL` | 9.9 | N/A | Non | `docker` | EnergizeLab station-middleware (NestJS) Docker images 1.6.5 through 1.8.2 a... |
+| [CVE-2026-105037](https://nvd.nist.gov/vuln/detail/CVE-2026-105037) | `CRITICAL` | 9.9 | 0.4% | Non | `docker` | EnergizeLab station-middleware (NestJS) Docker images 1.6.5 through 1.8.2 a... |
 | [CVE-2026-55494](https://nvd.nist.gov/vuln/detail/CVE-2026-55494) | `CRITICAL` | 9.8 | 0.8% | Non | `docker` | Tugtainer is a self-hosted app for automating updates of Docker containers.... |
 | [CVE-2026-105641](https://nvd.nist.gov/vuln/detail/CVE-2026-105641) | `CRITICAL` | 9.8 | 0.5% | Non | `docker` | Plane is an open-source project management tool. Prior to 1.4.0, the deploy... |
 | [CVE-2026-107699](https://nvd.nist.gov/vuln/detail/CVE-2026-107699) | `CRITICAL` | 9.8 | 1.5% | Non | `node.js` | ppt2png through 0.0.6 contains an OS command injection vulnerability that a... |
