@@ -1,30 +1,30 @@
 {
-  "lastSync" : "2026-10-17T09:56:30.878799933Z",
-  "newToday" : 64,
+  "lastSync" : "2026-10-18T10:08:50.957366021Z",
+  "newToday" : 19,
   "stats" : {
-    "totalTracked" : 436,
+    "totalTracked" : 442,
     "criticalCount" : 37,
-    "highCount" : 127,
-    "mediumCount" : 190,
+    "highCount" : 129,
+    "mediumCount" : 193,
     "lowCount" : 15,
     "kevCount" : 0,
-    "alertCount" : 140,
+    "alertCount" : 142,
     "avgEpss" : 0.004,
     "severityDistribution" : {
       "CRITICAL" : 37,
-      "HIGH" : 127,
-      "MEDIUM" : 190,
+      "HIGH" : 129,
+      "MEDIUM" : 193,
       "LOW" : 15
     },
     "topTechnologies" : {
-      "javascript" : 152,
+      "javascript" : 155,
       "node.js" : 108,
       "nginx" : 43,
+      "java" : 39,
       "docker" : 38,
-      "java" : 38,
       "kubernetes" : 27,
+      "keycloak" : 14,
       "postgresql" : 13,
-      "keycloak" : 12,
       "typescript" : 9,
       "npm" : 8,
       "spring" : 4,
@@ -33,7 +33,7 @@
       "hibernate" : 1,
       "spring-boot" : 1
     },
-    "lastSyncTimestamp" : "2026-10-17T09:56:30.942909460Z"
+    "lastSyncTimestamp" : "2026-10-18T10:08:51.045259483Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-53988",
@@ -1234,6 +1234,17 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-97205"
   }, {
+    "id" : "CVE-2026-111882",
+    "description" : "phpMyFAQ 3.2.0-alpha before 4.1.9 and 4.2.0-alpha before 4.2.0-beta contains an authentication bypass vulnerability that allows IdP-authenticated users to skip TOTP two-factor authentication through the Keycloak and Entra ID SSO callbacks. Attackers holding a valid or phished IdP identity linked to a 2FA-enabled account can complete the OIDC flow and obtain a fully authenticated session, including administrator accounts.",
+    "publishedDate" : "2026-10-17T19:16:29.240",
+    "lastModifiedDate" : "2026-10-17T19:16:29.360",
+    "cvssScore" : 8.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "keycloak" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111882"
+  }, {
     "id" : "CVE-2026-85965",
     "description" : "Progress MarkLogic Server 12.x releases before 12.1.0 and 11.x releases before 11.3.7 contain memory-safety defects in the JavaScript engine integration that could result in memory corruption, controlled process failure, or server instability.",
     "publishedDate" : "2026-10-12T17:17:37.007",
@@ -1819,6 +1830,17 @@
     "matchedKeywords" : [ "jackson" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-68498"
+  }, {
+    "id" : "CVE-2026-111898",
+    "description" : "phpMyFAQ 4.2.0-alpha before 4.2.0-beta contains an authentication bypass vulnerability that allows Keycloak users to take over local accounts by matching preferred_username or email. Attackers controlling a Keycloak identity with a colliding username or unverified email can log in through /auth/keycloak/authorize to bind their subject and gain superadmin privileges.",
+    "publishedDate" : "2026-10-17T19:16:31.647",
+    "lastModifiedDate" : "2026-10-17T19:16:31.757",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "keycloak" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111898"
   }, {
     "id" : "CVE-2026-103921",
     "description" : "GraphQL Tools provides utilities for building, stitching, and mocking GraphQL schemas. Prior to 1.1.35, the executor-legacy-ws buildWSLegacyExecutor() function hardcodes TLS certificate rejection off for Node.js connections to wss:// endpoints. Applications using the executor directly, or url-loader with SubscriptionProtocol.LEGACY_WS, can therefore accept an attacker-controlled certificate when a network-positioned attacker intercepts the connection. Authentication material in connectionParams or headers can be disclosed, and subscription data can be modified. Browser WebSocket clients are unaffected because browsers enforce certificate validation. This issue is fixed in version 1.1.35.",
@@ -2764,6 +2786,17 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-109402"
+  }, {
+    "id" : "CVE-2026-111868",
+    "description" : "A vulnerability was determined in datastax pulsar-jms up to 9.0.3. This issue affects the function decode of the file pulsar-jms/src/main/java/com/datastax/oss/pulsar/jms/messages/PulsarObjectMessage.java. This manipulation causes deserialization. It is possible to initiate the attack remotely. The exploit has been publicly disclosed and may be utilized. The project was informed of the problem early through an issue report but has not responded yet.",
+    "publishedDate" : "2026-10-18T01:16:34.483",
+    "lastModifiedDate" : "2026-10-18T01:16:34.483",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111868"
   }, {
     "id" : "CVE-2026-104182",
     "description" : "stream-json is a micro-library of stream components for processing JSON and JSONC with a minimal memory footprint. Prior to 3.6.0, the JSONC parser at stream-json/jsonc/parser.js and verifier at stream-json/jsonc/verifier.js restart comment-terminator scanning from the opening slash whenever a block or line comment spans an input chunk, while retaining the accumulated comment buffer. Delivering a large valid comment across many small chunks therefore causes quadratic CPU work and can stall the Node.js event loop. The maintainer characterizes the attack vector as local because the documented JSONC input is locally owned or user-controlled configuration, rather than input intended for the open internet. This JSONC-only scope does not include the plain JSON parser, which advances through and discards consumed string and number data. This issue is fixed in version 3.6.0.",
@@ -4035,6 +4068,28 @@
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111713"
+  }, {
+    "id" : "CVE-2026-111894",
+    "description" : "phpMyFAQ 3.2.1 before 4.1.9 and 4.2.0-alpha before 4.2.0-beta contains a stored cross-site scripting vulnerability that allows authenticated content authors to inject JavaScript by embedding iframes with data:text/html sources in FAQ or News content. Attackers can bypass the hostless media-host allowlist in FaqHelper::cleanUpContent(), which is rendered via Twig's raw filter, to run phishing interfaces or top-frame redirects for viewers.",
+    "publishedDate" : "2026-10-17T19:16:31.017",
+    "lastModifiedDate" : "2026-10-17T19:16:31.130",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111894"
+  }, {
+    "id" : "CVE-2026-111903",
+    "description" : "phpMyFAQ 4.2.0-alpha before 4.2.0-beta contains a stored cross-site scripting vulnerability in SvgSanitizer that allows users with FAQ_EDIT permission to bypass sanitization using XML DTD custom entities. Attackers can upload an SVG defining an entity that expands to javascript in an anchor href, executing script when viewers click it to hijack admin sessions.",
+    "publishedDate" : "2026-10-17T19:16:32.253",
+    "lastModifiedDate" : "2026-10-17T19:16:32.367",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111903"
   }, {
     "id" : "CVE-2026-106563",
     "description" : "Backstage is an open framework for building developer portals. Prior to 0.21.8, the @backstage/plugin-kubernetes-backend package is affected by improper entity validation in deprecated kubernetes services endpoint. An authenticated user with Kubernetes read permissions could access Kubernetes workload data beyond their intended scope by supplying crafted entity data to the deprecated services endpoint. The exposure is limited to read-only access to Kubernetes object metadata across configured clusters. This issue is fixed in version 0.21.8.",
@@ -5568,5 +5623,15 @@
     "matchedKeywords" : [ "docker" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-86009"
+  }, {
+    "id" : "CVE-2026-110981",
+    "description" : "The WP Photo Album Plus WordPress plugin before 9.2.11.002 does not properly escape a category navigation value before reflecting it into a JavaScript event handler on its gallery breadcrumb links, allowing unauthenticated attackers to inject arbitrary script that executes in the browser of anyone who follows a crafted gallery link and clicks the breadcrumb, including a logged-in administrator.",
+    "publishedDate" : "2026-10-18T07:16:52.817",
+    "lastModifiedDate" : "2026-10-18T07:16:52.817",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-110981"
   } ]
 }
