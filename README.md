@@ -9,7 +9,7 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### Top 8 des menaces les plus dangereuses et prioritaires
 
-> **Dernière synchronisation** : `2026-10-17T09:56:30.942909460Z`
+> **Dernière synchronisation** : `2026-10-18T10:08:51.045259483Z`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
