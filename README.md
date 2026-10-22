@@ -9,7 +9,7 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### Top 8 des menaces les plus dangereuses et prioritaires
 
-> **Dernière synchronisation** : `2026-10-21T10:56:58.990331510Z`
+> **Dernière synchronisation** : `2026-10-22T11:03:28.341396596Z`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
@@ -18,9 +18,9 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 | [CVE-2026-77459](https://nvd.nist.gov/vuln/detail/CVE-2026-77459) | `CRITICAL` | 9.9 | 0.7% | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
 | [CVE-2026-77524](https://nvd.nist.gov/vuln/detail/CVE-2026-77524) | `CRITICAL` | 9.9 | 0.6% | Non | `kubernetes` | KEDA is a Kubernetes-based Event Driven Autoscaling component. In version 2... |
 | [CVE-2026-105037](https://nvd.nist.gov/vuln/detail/CVE-2026-105037) | `CRITICAL` | 9.9 | 0.4% | Non | `docker` | EnergizeLab station-middleware (NestJS) Docker images 1.6.5 through 1.8.2 a... |
-| [CVE-2026-105312](https://nvd.nist.gov/vuln/detail/CVE-2026-105312) | `CRITICAL` | 9.9 | N/A | Non | `kubernetes` | A Kubernetes tenant with create permission on Console custom resources can ... |
-| [CVE-2026-113672](https://nvd.nist.gov/vuln/detail/CVE-2026-113672) | `CRITICAL` | 9.9 | N/A | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
-| [CVE-2026-113708](https://nvd.nist.gov/vuln/detail/CVE-2026-113708) | `CRITICAL` | 9.9 | N/A | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
+| [CVE-2026-105312](https://nvd.nist.gov/vuln/detail/CVE-2026-105312) | `CRITICAL` | 9.9 | 0.3% | Non | `kubernetes` | A Kubernetes tenant with create permission on Console custom resources can ... |
+| [CVE-2026-113672](https://nvd.nist.gov/vuln/detail/CVE-2026-113672) | `CRITICAL` | 9.9 | 0.8% | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
+| [CVE-2026-113708](https://nvd.nist.gov/vuln/detail/CVE-2026-113708) | `CRITICAL` | 9.9 | 0.7% | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
 
 *Données détaillées historisées chaque jour dans [`data/`](data/) • Alimenté par NVD 2.0, CISA KEV & EPSS*
 <!-- CVEILLE_SUMMARY_END -->
