@@ -9,13 +9,13 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### Top 8 des menaces les plus dangereuses et prioritaires
 
-> **Dernière synchronisation** : `2026-10-23T10:47:48.440284938Z`
+> **Dernière synchronisation** : `2026-10-24T10:02:33.958276784Z`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
 | [CVE-2026-53988](https://nvd.nist.gov/vuln/detail/CVE-2026-53988) | `CRITICAL` | 10.0 | N/A | Non | `docker` | Dockhand before 1.0.40 contains an authentication bypass vulnerability in i... |
 | [CVE-2026-65162](https://nvd.nist.gov/vuln/detail/CVE-2026-65162) | `CRITICAL` | 10.0 | 0.7% | Non | `kubernetes` | NVIDIA AIStore for Linux contains a vulnerability in the legacy ETL Kuberne... |
-| [CVE-2026-83938](https://nvd.nist.gov/vuln/detail/CVE-2026-83938) | `CRITICAL` | 10.0 | N/A | Non | `kubernetes` | Missing authentication for critical function in Azure Kubernetes Configurat... |
+| [CVE-2026-83938](https://nvd.nist.gov/vuln/detail/CVE-2026-83938) | `CRITICAL` | 10.0 | 0.7% | Non | `kubernetes` | Missing authentication for critical function in Azure Kubernetes Configurat... |
 | [CVE-2026-77459](https://nvd.nist.gov/vuln/detail/CVE-2026-77459) | `CRITICAL` | 9.9 | 0.7% | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
 | [CVE-2026-77524](https://nvd.nist.gov/vuln/detail/CVE-2026-77524) | `CRITICAL` | 9.9 | 0.6% | Non | `kubernetes` | KEDA is a Kubernetes-based Event Driven Autoscaling component. In version 2... |
 | [CVE-2026-105037](https://nvd.nist.gov/vuln/detail/CVE-2026-105037) | `CRITICAL` | 9.9 | 0.4% | Non | `docker` | EnergizeLab station-middleware (NestJS) Docker images 1.6.5 through 1.8.2 a... |
