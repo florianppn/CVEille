@@ -1,25 +1,25 @@
 {
-  "lastSync" : "2026-10-24T10:02:33.828485235Z",
-  "newToday" : 65,
+  "lastSync" : "2026-10-25T10:27:42.154825944Z",
+  "newToday" : 37,
   "stats" : {
-    "totalTracked" : 719,
-    "criticalCount" : 52,
-    "highCount" : 183,
-    "mediumCount" : 312,
-    "lowCount" : 44,
+    "totalTracked" : 723,
+    "criticalCount" : 53,
+    "highCount" : 185,
+    "mediumCount" : 314,
+    "lowCount" : 45,
     "kevCount" : 0,
-    "alertCount" : 195,
+    "alertCount" : 196,
     "avgEpss" : 0.004,
     "severityDistribution" : {
-      "CRITICAL" : 52,
-      "HIGH" : 183,
-      "MEDIUM" : 312,
-      "LOW" : 44
+      "CRITICAL" : 53,
+      "HIGH" : 185,
+      "MEDIUM" : 314,
+      "LOW" : 45
     },
     "topTechnologies" : {
       "javascript" : 236,
       "node.js" : 171,
-      "java" : 121,
+      "java" : 125,
       "docker" : 50,
       "nginx" : 45,
       "kubernetes" : 44,
@@ -34,7 +34,7 @@
       "hibernate" : 1,
       "spring-boot" : 1
     },
-    "lastSyncTimestamp" : "2026-10-24T10:02:33.958276784Z"
+    "lastSyncTimestamp" : "2026-10-25T10:27:42.275373341Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-53988",
@@ -445,6 +445,8 @@
     "cvssScore" : 9.8,
     "severity" : "CRITICAL",
     "inKev" : false,
+    "epssScore" : 0.01095,
+    "epssPercentile" : 0.65308,
     "matchedKeywords" : [ "tomcat" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-46652"
@@ -591,6 +593,8 @@
     "cvssScore" : 9.3,
     "severity" : "CRITICAL",
     "inKev" : false,
+    "epssScore" : 0.00458,
+    "epssPercentile" : 0.38828,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55486"
@@ -698,6 +702,17 @@
     "matchedKeywords" : [ "typescript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-114607"
+  }, {
+    "id" : "CVE-2026-114820",
+    "description" : "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JSSE).  Supported versions that are affected are Oracle Java SE: 8u511-b32, 8u511-perf-b32, 11.0.33.0.2, 17.0.21.0.2, 21.0.13.0.2, 25.0.5.0.2, 27.0.1.0.2; Oracle GraalVM for JDK: 17.0.21.0.2 and  21.0.13.0.2; Oracle GraalVM Enterprise Edition: 21.3.20.0.2. Easily exploitable vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized access to critical data or complete access to all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+    "publishedDate" : "2026-10-24T19:17:04.413",
+    "lastModifiedDate" : "2026-10-25T04:17:07.843",
+    "cvssScore" : 9.1,
+    "severity" : "CRITICAL",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-114820"
   }, {
     "id" : "CVE-2026-82039",
     "description" : "UTMStack before 11.2.16 contains a SQL injection vulnerability in UtmAssetGroupService.searchQueryBuilder() that allows authenticated attackers to inject arbitrary SQL by supplying malicious assetType and groupName values that are inserted unsanitized into a native PostgreSQL query via String.format(). Attackers can exploit the GET /api/utm-asset-groups/searchGroupsByFilter endpoint to execute arbitrary SQL with DBA privileges, enabling full database read, data modification, and potential filesystem access.",
@@ -1131,6 +1146,8 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.0045,
+    "epssPercentile" : 0.38189,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-56840"
@@ -1142,6 +1159,8 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00567,
+    "epssPercentile" : 0.46336,
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-57117"
@@ -1153,6 +1172,8 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00558,
+    "epssPercentile" : 0.45778,
     "matchedKeywords" : [ "javascript", "node.js" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115895"
@@ -1268,6 +1289,8 @@
     "cvssScore" : 8.7,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00424,
+    "epssPercentile" : 0.35639,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-10632"
@@ -1279,6 +1302,8 @@
     "cvssScore" : 8.7,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00424,
+    "epssPercentile" : 0.3564,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-50053"
@@ -1290,6 +1315,8 @@
     "cvssScore" : 8.7,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00356,
+    "epssPercentile" : 0.28137,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-93639"
@@ -1351,6 +1378,8 @@
     "cvssScore" : 8.4,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00487,
+    "epssPercentile" : 0.41089,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-63120"
@@ -2510,6 +2539,8 @@
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00742,
+    "epssPercentile" : 0.5422,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115887"
@@ -2638,6 +2669,8 @@
     "cvssScore" : 7.4,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00366,
+    "epssPercentile" : 0.29364,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105482"
@@ -2649,6 +2682,8 @@
     "cvssScore" : 7.4,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00238,
+    "epssPercentile" : 0.14123,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105483"
@@ -2660,6 +2695,8 @@
     "cvssScore" : 7.4,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00238,
+    "epssPercentile" : 0.14123,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-106069"
@@ -2671,6 +2708,8 @@
     "cvssScore" : 7.4,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00478,
+    "epssPercentile" : 0.40387,
     "matchedKeywords" : [ "javascript", "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115570"
@@ -2778,6 +2817,17 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111210"
+  }, {
+    "id" : "CVE-2026-116006",
+    "description" : "A vulnerability was detected in YunaiV/zhijiantianya ruoyi-vue-pro up to 2026.09. The affected element is an unknown function of the file AuthController.java of the component SMS Code Verification. The manipulation of the argument mobile/code results in improper authentication. The attack can be launched remotely. The exploit is now public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-25T04:17:34.083",
+    "lastModifiedDate" : "2026-10-25T04:17:34.503",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116006"
   }, {
     "id" : "CVE-2026-105677",
     "description" : "Ghost is a Node.js content management system. From 6.10.3 until 6.64.0, a vulnerability in how Ghost loads theme translation files allowed an authenticated Administrator to execute arbitrary code on the server via a crafted theme. This issue is fixed in version 6.64.0.",
@@ -2992,9 +3042,24 @@
     "cvssScore" : 7.1,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.0041,
+    "epssPercentile" : 0.34171,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115457"
+  }, {
+    "id" : "CVE-2026-112207",
+    "description" : "The Download Monitor WordPress plugin before 5.3.4 does not properly validate that a clicked link belongs to the site before fetching it client-side and rendering part of the response in the page, which allows unauthenticated attackers to execute arbitrary JavaScript in the browser of any user who is tricked into clicking a crafted link.",
+    "publishedDate" : "2026-10-24T06:16:36.143",
+    "lastModifiedDate" : "2026-10-24T15:16:56.453",
+    "cvssScore" : 7.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "epssScore" : 0.00235,
+    "epssPercentile" : 0.13741,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112207"
   }, {
     "id" : "CVE-2026-111440",
     "description" : "在 openGauss-connector-jdbc 的 pgjdbc/src/main/java/org/postgresql/log/LogFactory.java 中，LogFactory 根据 JDBC 连接参数中的 logger 类名调用 Class.forName 加载类后，直接反射调用以 String 为参数的构造函数，再转换为 Log。缺少 asSubclass(Log.class) 校验，非 Log 实现类也会在类型检查前被实例化。因此，当攻击者可控制 JDBC URL 或连接属性中的 logger 类名，且客户端 classpath 中存在可被加载的类时，可能在客户端触发非预期的类加载与构造副作用。\n\n此漏洞自 JDBC 1.1.0引入，影响 1.1.0 及之后的 2.x、3.x、5.x、6.x 各版本及补丁（含 6.0.0 分支最新 6.0.6），以及 7.0.0-RC1、7.0.0-RC2、7.0.0-RC3，并在 7.0.0-LTS 版本修复。修复在 Class.forName 之后先执行 asSubclass(Log.class)，仅允许 Log 子类进入构造。修复pr见https://gitcode.com/opengauss/openGauss-connector-jdbc/pull/423。",
@@ -3165,6 +3230,19 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-91398"
   }, {
+    "id" : "CVE-2026-105199",
+    "description" : "The Pixel Tag Manager for WooCommerce  WordPress plugin before 2.2.3 does not perform a capability check in one of its AJAX actions, and exposes the nonce protecting it to any user able to access the admin dashboard, allowing users with a role as low as Contributor to overwrite the Pixel Tag Manager for WooCommerce  WordPress plugin before 2.2.3's tracking configuration and have arbitrary JavaScript executed in the browsers of all visitors, including administrators.",
+    "publishedDate" : "2026-10-24T06:16:34.453",
+    "lastModifiedDate" : "2026-10-24T15:16:49.687",
+    "cvssScore" : 6.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00208,
+    "epssPercentile" : 0.10348,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105199"
+  }, {
     "id" : "CVE-2026-102672",
     "description" : "Electron is a framework for writing cross-platform desktop applications using JavaScript, HTML and CSS. Prior to 39.8.10, 41.10.5, and 42.0.0-beta.2, Electron applications on macOS that use Squirrel.Mac-based automatic updates are vulnerable to a local race in the privileged ShipIt helper. The helper did not bind the validated update target to one canonical application-bundle path for the full installation, allowing a local attacker to redirect the root-level write so that it overwrites another application's files instead of the application that initiated the update. Applications on other platforms and macOS applications that do not use Squirrel.Mac-based automatic updates are not affected. This issue is fixed in versions 39.8.10, 41.10.5, and 42.0.0-beta.2.",
     "publishedDate" : "2026-10-13T16:17:09.343",
@@ -3185,6 +3263,8 @@
     "cvssScore" : 6.7,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00306,
+    "epssPercentile" : 0.22305,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-106072"
@@ -3610,6 +3690,8 @@
     "cvssScore" : 6.5,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00567,
+    "epssPercentile" : 0.4633,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-114623"
@@ -3621,6 +3703,8 @@
     "cvssScore" : 6.5,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00236,
+    "epssPercentile" : 0.13768,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105481"
@@ -3936,6 +4020,17 @@
     "matchedKeywords" : [ "docker" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-54631"
+  }, {
+    "id" : "CVE-2026-115997",
+    "description" : "A flaw has been found in pig-mesh pig up to 4.1.0. This impacts the function orderItem.getColumn of the file pig-common/pig-common-data/src/main/java/com/pig4cloud/pig/common/data/resolver/SqlFilterArgumentResolver.java. Executing a manipulation of the argument ascs/descs can lead to sql injection. The attack may be launched remotely. The exploit has been published and may be used. Upgrading to version 4.1.1 will fix this issue. This patch is called 9b6311161e346d7626c81d993044072fed2dca07. It is suggested to upgrade the affected component. The vendor was contacted early about this disclosure.",
+    "publishedDate" : "2026-10-25T00:16:45.047",
+    "lastModifiedDate" : "2026-10-25T00:16:46.110",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115997"
   }, {
     "id" : "CVE-2026-104182",
     "description" : "stream-json is a micro-library of stream components for processing JSON and JSONC with a minimal memory footprint. Prior to 3.6.0, the JSONC parser at stream-json/jsonc/parser.js and verifier at stream-json/jsonc/verifier.js restart comment-terminator scanning from the opening slash whenever a block or line comment spans an input chunk, while retaining the accumulated comment buffer. Delivering a large valid comment across many small chunks therefore causes quadratic CPU work and can stall the Node.js event loop. The maintainer characterizes the attack vector as local because the documented JSONC input is locally owned or user-controlled configuration, rather than input intended for the open internet. This JSONC-only scope does not include the plain JSON parser, which advances through and discards consumed string and number data. This issue is fixed in version 3.6.0.",
@@ -4428,6 +4523,8 @@
     "cvssScore" : 6.1,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00286,
+    "epssPercentile" : 0.20091,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-93638"
@@ -6509,6 +6606,8 @@
     "cvssScore" : 4.8,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00253,
+    "epssPercentile" : 0.15933,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-106074"
@@ -6921,6 +7020,8 @@
     "cvssScore" : 4.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00374,
+    "epssPercentile" : 0.30225,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115803"
@@ -6984,6 +7085,8 @@
     "cvssScore" : 4.2,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00305,
+    "epssPercentile" : 0.22159,
     "matchedKeywords" : [ "npm" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115752"
@@ -7333,9 +7436,22 @@
     "cvssScore" : 3.7,
     "severity" : "LOW",
     "inKev" : false,
+    "epssScore" : 0.00324,
+    "epssPercentile" : 0.24307,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-106070"
+  }, {
+    "id" : "CVE-2026-116007",
+    "description" : "A flaw has been found in YunaiV/zhijiantianya ruoyi-vue-pro up to 2026.09. The impacted element is the function SmsCodeServiceImpl.validateSmsCode0 of the file /service/sms/SmsCodeServiceImpl.java of the component SMS Code Verification. This manipulation causes improper restriction of excessive authentication attempts. The attack may be initiated remotely. The complexity of an attack is rather high. The exploitability is regarded as difficult. The exploit has been published and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-25T04:17:34.610",
+    "lastModifiedDate" : "2026-10-25T04:17:34.793",
+    "cvssScore" : 3.7,
+    "severity" : "LOW",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116007"
   }, {
     "id" : "CVE-2026-108981",
     "description" : "ngx_cache_purge before 3.0.4 can allow file deletion via a symlink attack in certain situations where nginx and a served application (e.g., WordPress) run under the same user account. The attacker must be able to create a symlink inside the cache path. Version 3.0.4 fixes this for the case of a symlink created at an arbitrary earlier time, but does not resolve an applicable TOCTOU race condition. (The ngx_cache_purge module follows symlinks while walking the cache directory tree during purge operations. The module relies on nginx's ngx_walk_tree(), which relies on stat() and therefore follows symlinks.)",
@@ -7370,6 +7486,8 @@
     "cvssScore" : 3.6,
     "severity" : "LOW",
     "inKev" : false,
+    "epssScore" : 0.0014,
+    "epssPercentile" : 0.03015,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-106071"
@@ -7446,6 +7564,8 @@
     "cvssScore" : 3.3,
     "severity" : "LOW",
     "inKev" : false,
+    "epssScore" : 0.00159,
+    "epssPercentile" : 0.04723,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-106073"
@@ -7457,6 +7577,8 @@
     "cvssScore" : 3.3,
     "severity" : "LOW",
     "inKev" : false,
+    "epssScore" : 0.00178,
+    "epssPercentile" : 0.06968,
     "matchedKeywords" : [ "javascript", "typescript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115569"
@@ -9052,6 +9174,8 @@
     "lastModifiedDate" : "2026-10-23T19:57:42.660",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00164,
+    "epssPercentile" : 0.05319,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-54711"
@@ -9062,6 +9186,8 @@
     "lastModifiedDate" : "2026-10-23T19:57:42.660",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00593,
+    "epssPercentile" : 0.47717,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55826"
@@ -9072,6 +9198,8 @@
     "lastModifiedDate" : "2026-10-23T21:17:21.717",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00224,
+    "epssPercentile" : 0.1234,
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-113951"
@@ -9082,6 +9210,8 @@
     "lastModifiedDate" : "2026-10-23T22:16:57.970",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00161,
+    "epssPercentile" : 0.04935,
     "matchedKeywords" : [ "docker" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115885"
@@ -9092,28 +9222,10 @@
     "lastModifiedDate" : "2026-10-23T22:16:59.153",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00394,
+    "epssPercentile" : 0.32502,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115897"
-  }, {
-    "id" : "CVE-2026-105199",
-    "description" : "The Pixel Tag Manager for WooCommerce  WordPress plugin before 2.2.3 does not perform a capability check in one of its AJAX actions, and exposes the nonce protecting it to any user able to access the admin dashboard, allowing users with a role as low as Contributor to overwrite the Pixel Tag Manager for WooCommerce  WordPress plugin before 2.2.3's tracking configuration and have arbitrary JavaScript executed in the browsers of all visitors, including administrators.",
-    "publishedDate" : "2026-10-24T06:16:34.453",
-    "lastModifiedDate" : "2026-10-24T06:16:34.453",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105199"
-  }, {
-    "id" : "CVE-2026-112207",
-    "description" : "The Download Monitor WordPress plugin before 5.3.4 does not properly validate that a clicked link belongs to the site before fetching it client-side and rendering part of the response in the page, which allows unauthenticated attackers to execute arbitrary JavaScript in the browser of any user who is tricked into clicking a crafted link.",
-    "publishedDate" : "2026-10-24T06:16:36.143",
-    "lastModifiedDate" : "2026-10-24T06:16:36.143",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112207"
   } ]
 }
