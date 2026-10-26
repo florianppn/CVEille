@@ -1,0 +1,213 @@
+{
+  "syncDate" : "2026-10-26",
+  "totalNvdFetched" : 277,
+  "totalMatchedStack" : 15,
+  "newCvesCount" : 15,
+  "stats" : {
+    "totalTracked" : 15,
+    "criticalCount" : 1,
+    "highCount" : 2,
+    "mediumCount" : 8,
+    "lowCount" : 1,
+    "kevCount" : 0,
+    "alertCount" : 1,
+    "avgEpss" : 0.003,
+    "severityDistribution" : {
+      "CRITICAL" : 1,
+      "HIGH" : 2,
+      "MEDIUM" : 8,
+      "LOW" : 1
+    },
+    "topTechnologies" : {
+      "javascript" : 8,
+      "java" : 6,
+      "keycloak" : 1
+    },
+    "lastSyncTimestamp" : "2026-10-26T11:57:21.762529357Z"
+  },
+  "cves" : [ {
+    "id" : "CVE-2026-114820",
+    "description" : "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JSSE).  Supported versions that are affected are Oracle Java SE: 8u511-b32, 8u511-perf-b32, 11.0.33.0.2, 17.0.21.0.2, 21.0.13.0.2, 25.0.5.0.2, 27.0.1.0.2; Oracle GraalVM for JDK: 17.0.21.0.2 and  21.0.13.0.2; Oracle GraalVM Enterprise Edition: 21.3.20.0.2. Easily exploitable vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized access to critical data or complete access to all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+    "publishedDate" : "2026-10-24T19:17:04.413",
+    "lastModifiedDate" : "2026-10-25T04:17:07.843",
+    "cvssScore" : 9.1,
+    "severity" : "CRITICAL",
+    "inKev" : false,
+    "epssScore" : 0.00253,
+    "epssPercentile" : 0.16638,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-114820"
+  }, {
+    "id" : "CVE-2026-115997",
+    "description" : "A flaw has been found in pig-mesh pig up to 4.1.0. This impacts the function orderItem.getColumn of the file pig-common/pig-common-data/src/main/java/com/pig4cloud/pig/common/data/resolver/SqlFilterArgumentResolver.java. Executing a manipulation of the argument ascs/descs can lead to sql injection. The attack may be launched remotely. The exploit has been published and may be used. Upgrading to version 4.1.1 will fix this issue. This patch is called 9b6311161e346d7626c81d993044072fed2dca07. It is suggested to upgrade the affected component. The vendor was contacted early about this disclosure.",
+    "publishedDate" : "2026-10-25T00:16:45.047",
+    "lastModifiedDate" : "2026-10-25T00:16:46.110",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00234,
+    "epssPercentile" : 0.1414,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115997"
+  }, {
+    "id" : "CVE-2026-116006",
+    "description" : "A vulnerability was detected in YunaiV/zhijiantianya ruoyi-vue-pro up to 2026.09. The affected element is an unknown function of the file AuthController.java of the component SMS Code Verification. The manipulation of the argument mobile/code results in improper authentication. The attack can be launched remotely. The exploit is now public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-25T04:17:34.083",
+    "lastModifiedDate" : "2026-10-25T04:17:34.503",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "epssScore" : 0.00384,
+    "epssPercentile" : 0.32159,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116006"
+  }, {
+    "id" : "CVE-2026-116007",
+    "description" : "A flaw has been found in YunaiV/zhijiantianya ruoyi-vue-pro up to 2026.09. The impacted element is the function SmsCodeServiceImpl.validateSmsCode0 of the file /service/sms/SmsCodeServiceImpl.java of the component SMS Code Verification. This manipulation causes improper restriction of excessive authentication attempts. The attack may be initiated remotely. The complexity of an attack is rather high. The exploitability is regarded as difficult. The exploit has been published and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-25T04:17:34.610",
+    "lastModifiedDate" : "2026-10-25T04:17:34.793",
+    "cvssScore" : 3.7,
+    "severity" : "LOW",
+    "inKev" : false,
+    "epssScore" : 0.0037,
+    "epssPercentile" : 0.30678,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116007"
+  }, {
+    "id" : "CVE-2026-116139",
+    "description" : "WWBN AVideo 26.0 through 29.3.0 contains a stored cross-site scripting vulnerability that allows authenticated commenters to inject JavaScript because markDownToHTML() preserves event-handler attributes in leading HTML blocks. Attackers can post a comment starting with an img tag carrying an onerror handler, which bypasses the inline sanitizer and executes in viewers' browsers under the application origin.",
+    "publishedDate" : "2026-10-25T14:16:51.610",
+    "lastModifiedDate" : "2026-10-25T14:16:51.730",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116139"
+  }, {
+    "id" : "CVE-2026-116167",
+    "description" : "SiYuan from 2.9.0 before 3.8.7 contains a cross-site scripting vulnerability in the unauthenticated /check-auth page that assigns the to parameter to window.location.href without scheme validation. Attackers can send a crafted link with a javascript: URI that executes after victim login, invoking kernel APIs to read or modify workspace content and settings.",
+    "publishedDate" : "2026-10-25T14:16:55.733",
+    "lastModifiedDate" : "2026-10-25T14:16:55.877",
+    "cvssScore" : 6.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116167"
+  }, {
+    "id" : "CVE-2026-116169",
+    "description" : "SiYuan from 2.10.0 before 3.8.7 contains a stored cross-site scripting vulnerability that allows users with edit permission to inject script by placing javascript: URLs in math block content rendered with KaTeX trust enabled. Attackers can store \\href, \\url, or \\includegraphics payloads that mathRender assigns via innerHTML, executing script in the application origin when a reader clicks the rendered link.",
+    "publishedDate" : "2026-10-25T14:16:56.080",
+    "lastModifiedDate" : "2026-10-25T15:17:02.733",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116169"
+  }, {
+    "id" : "CVE-2026-116203",
+    "description" : "YesWiki before 4.7.0 contains a stored cross-site scripting vulnerability in the filtertags action, which echoes attacker-controlled token values without output encoding. Anonymous attackers can inject markup via action-attribute parameters that bypasses the allow_raw_html gate, executing JavaScript for every page viewer.",
+    "publishedDate" : "2026-10-25T14:17:01.187",
+    "lastModifiedDate" : "2026-10-25T14:17:01.303",
+    "cvssScore" : 6.1,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116203"
+  }, {
+    "id" : "CVE-2026-116206",
+    "description" : "YesWiki from 4.2.0 before 4.7.0 contains a stored cross-site scripting vulnerability that allows authenticated users to inject script into comment bodies using the wakka raw-HTML syntax. Attackers can post comments via the /api/comments endpoint that render unescaped through the Twig raw filter, executing JavaScript in administrators' and visitors' sessions.",
+    "publishedDate" : "2026-10-25T14:17:01.690",
+    "lastModifiedDate" : "2026-10-25T14:17:01.803",
+    "cvssScore" : 6.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116206"
+  }, {
+    "id" : "CVE-2026-116058",
+    "description" : "A vulnerability was found in Alfresco Activiti up to 7.21.0-rc.692. Affected by this issue is the function JuelScriptEngine.eval of the file JuelScriptEngine.java. Performing a manipulation results in code injection. The attack can be initiated remotely. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-25T16:16:50.350",
+    "lastModifiedDate" : "2026-10-25T16:16:50.350",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116058"
+  }, {
+    "id" : "CVE-2026-116117",
+    "description" : "A flaw has been found in halo-dev halo up to 2.27.0-beta.1. Affected by this vulnerability is the function run.halo.app.theme.DefaultViewNameResolver.resolveViewNameOrDefault of the file application/src/main/java/run/halo/app/theme/DefaultViewNameResolver.java of the component View Name Resolver. Executing a manipulation of the argument template can lead to path traversal. The attack may be launched remotely. The exploit has been published and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-26T05:17:54.180",
+    "lastModifiedDate" : "2026-10-26T05:17:54.317",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116117"
+  }, {
+    "id" : "CVE-2026-115425",
+    "description" : "Multiple cross site scripting (XSS) vulnerabilities affect OPNsense firewall vesrion 26.7.1_1 and earlier allows low privileged attacker to execute Javascript in the context of another user visiting a specific page or clicking on a specifically crafted link.",
+    "publishedDate" : "2026-10-26T09:16:34.620",
+    "lastModifiedDate" : "2026-10-26T09:16:34.620",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115425"
+  }, {
+    "id" : "CVE-2026-95663",
+    "description" : "Insufficient Session Expiration vulnerability in Apache Camel Keycloak component.\n\n\n\nThis issue affects Apache Camel: from 4.16.0 before 4.18.5, from 4.19.0 before 4.22.2.\n\n\n\nWhen token introspection is enabled on the camel-keycloak KeycloakSecurityPolicy (useTokenIntrospection=true), the security processor validates the access token of a request by sending it to Keycloak's OAuth 2.0 token introspection endpoint, and accepts the token while the response reports it as active. The introspection endpoint reports a token as inactive once its exp (expiration) time has passed, so on this path the active flag is what enforces token expiry. Introspection results are cached by default (introspectionCacheEnabled=true, introspectionCacheTtl=60 seconds), and both cache implementations shipped with the component, ConcurrentMapTokenCache and CaffeineTokenCache, expired an entry a fixed time after it was inserted, without bounding that lifetime by the exp claim that the cached response already carried. KeycloakSecurityProcessor in turn checked only the active flag of the result, on every path that uses introspection, and never compared exp with the current time. A response cached shortly before the token expired was therefore served to later requests carrying the same token for up to the configured time-to-live after the token's expiry, and those requests were admitted with the roles and permissions the expired token had carried, although RFC 7662, which defines token introspection, states that a response containing exp must not be cached beyond that time. The access token is supplied by the caller with each request, typically as a bearer token in the Authorization header, so a caller holding a token that was valid moments earlier could keep using it after it expired, for as long as the cached entry lived. The window is bounded by introspectionCacheTtl, which is 60 seconds by default and 300 to 600 seconds where the documentation's recommendation for internal services was followed, and it opens only for a token that the same Camel process introspected and cached while the token was still active. The issue grants nothing beyond what the token already carried: it allows no token forgery and no privilege escalation, and token introspection is not enabled by default, which is why the severity is assessed medium. The local JWT verification path, used when introspection is disabled, is not affected by this issue.\n\n\n\nUsers are recommended to upgrade to version 4.23.0, which fixes the issue. If users are on the 4.22.x releases stream, then they are suggested to upgrade to 4.22.2. If users are on the 4.18.x releases stream, then they are suggested to upgrade to 4.18.5. The 4.16.x, 4.17.x and 4.19.x to 4.21.x release lines reached end of life before this issue was resolved and will not receive a fix, so deployments on them must move to a supported release. For deployments that cannot upgrade immediately, set introspectionCacheEnabled=false on the KeycloakSecurityPolicy, so that every request is checked against the introspection endpoint, which reports an expired token as inactive, at the cost of one introspection call per request. Lowering introspectionCacheTtl only narrows the window and does not close it.",
+    "publishedDate" : "2026-10-26T09:16:37.003",
+    "lastModifiedDate" : "2026-10-26T09:16:37.003",
+    "cvssScore" : 4.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "keycloak" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-95663"
+  }, {
+    "id" : "CVE-2026-103377",
+    "description" : "A reflected Cross-Site Scripting (XSS) vulnerability has been identified in the web application of the Castile-La Mancha Regional Parliament’s video library. The application embeds user-supplied content into the page without properly sanitising it before it is rendered by the browser. Exploitation of this vulnerability could allow a remote attacker to execute arbitrary JavaScript code in the browser of a victim who interacts with the content crafted for the attack.",
+    "publishedDate" : "2026-10-26T10:16:50.867",
+    "lastModifiedDate" : "2026-10-26T10:16:50.867",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103377"
+  }, {
+    "id" : "CVE-2026-4316",
+    "description" : "Reflected Cross-Site Scripting (XSS) in Gym Management Software IsMyGym by Zuinq Studio affecting the reservation endpoint where the 'ret' parameter is reflected in the HTTP response without any proper sanitization. Successfull explotation of this vulnerability could allow an attacker to inject arbitrary JavaScript code executed in the context of the victim’s browser.",
+    "publishedDate" : "2026-10-26T10:16:53.250",
+    "lastModifiedDate" : "2026-10-26T10:16:53.250",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-4316"
+  } ],
+  "alerts" : [ {
+    "id" : "CVE-2026-114820",
+    "description" : "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: JSSE).  Supported versions that are affected are Oracle Java SE: 8u511-b32, 8u511-perf-b32, 11.0.33.0.2, 17.0.21.0.2, 21.0.13.0.2, 25.0.5.0.2, 27.0.1.0.2; Oracle GraalVM for JDK: 17.0.21.0.2 and  21.0.13.0.2; Oracle GraalVM Enterprise Edition: 21.3.20.0.2. Easily exploitable vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data as well as  unauthorized access to critical data or complete access to all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 9.1 (Confidentiality and Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N).",
+    "publishedDate" : "2026-10-24T19:17:04.413",
+    "lastModifiedDate" : "2026-10-25T04:17:07.843",
+    "cvssScore" : 9.1,
+    "severity" : "CRITICAL",
+    "inKev" : false,
+    "epssScore" : 0.00253,
+    "epssPercentile" : 0.16638,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-114820"
+  } ]
+}

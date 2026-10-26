@@ -1,30 +1,30 @@
 {
-  "lastSync" : "2026-10-25T10:27:42.154825944Z",
-  "newToday" : 37,
+  "lastSync" : "2026-10-26T11:57:21.762529357Z",
+  "newToday" : 15,
   "stats" : {
-    "totalTracked" : 723,
+    "totalTracked" : 734,
     "criticalCount" : 53,
-    "highCount" : 185,
-    "mediumCount" : 314,
+    "highCount" : 186,
+    "mediumCount" : 321,
     "lowCount" : 45,
     "kevCount" : 0,
     "alertCount" : 196,
     "avgEpss" : 0.004,
     "severityDistribution" : {
       "CRITICAL" : 53,
-      "HIGH" : 185,
-      "MEDIUM" : 314,
+      "HIGH" : 186,
+      "MEDIUM" : 321,
       "LOW" : 45
     },
     "topTechnologies" : {
-      "javascript" : 236,
+      "javascript" : 244,
       "node.js" : 171,
-      "java" : 125,
+      "java" : 127,
       "docker" : 50,
       "nginx" : 45,
       "kubernetes" : 44,
       "postgresql" : 22,
-      "keycloak" : 17,
+      "keycloak" : 18,
       "typescript" : 17,
       "npm" : 10,
       "tomcat" : 9,
@@ -34,7 +34,7 @@
       "hibernate" : 1,
       "spring-boot" : 1
     },
-    "lastSyncTimestamp" : "2026-10-25T10:27:42.275373341Z"
+    "lastSyncTimestamp" : "2026-10-26T11:57:21.882359698Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-53988",
@@ -710,6 +710,8 @@
     "cvssScore" : 9.1,
     "severity" : "CRITICAL",
     "inKev" : false,
+    "epssScore" : 0.00253,
+    "epssPercentile" : 0.16638,
     "matchedKeywords" : [ "java" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-114820"
@@ -2825,9 +2827,22 @@
     "cvssScore" : 7.3,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00384,
+    "epssPercentile" : 0.32159,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116006"
+  }, {
+    "id" : "CVE-2026-116117",
+    "description" : "A flaw has been found in halo-dev halo up to 2.27.0-beta.1. Affected by this vulnerability is the function run.halo.app.theme.DefaultViewNameResolver.resolveViewNameOrDefault of the file application/src/main/java/run/halo/app/theme/DefaultViewNameResolver.java of the component View Name Resolver. Executing a manipulation of the argument template can lead to path traversal. The attack may be launched remotely. The exploit has been published and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-26T05:17:54.180",
+    "lastModifiedDate" : "2026-10-26T05:17:54.317",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116117"
   }, {
     "id" : "CVE-2026-105677",
     "description" : "Ghost is a Node.js content management system. From 6.10.3 until 6.64.0, a vulnerability in how Ghost loads theme translation files allowed an authenticated Administrator to execute arbitrary code on the server via a crafted theme. This issue is fixed in version 6.64.0.",
@@ -3242,6 +3257,17 @@
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105199"
+  }, {
+    "id" : "CVE-2026-116167",
+    "description" : "SiYuan from 2.9.0 before 3.8.7 contains a cross-site scripting vulnerability in the unauthenticated /check-auth page that assigns the to parameter to window.location.href without scheme validation. Attackers can send a crafted link with a javascript: URI that executes after victim login, invoking kernel APIs to read or modify workspace content and settings.",
+    "publishedDate" : "2026-10-25T14:16:55.733",
+    "lastModifiedDate" : "2026-10-25T14:16:55.877",
+    "cvssScore" : 6.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116167"
   }, {
     "id" : "CVE-2026-102672",
     "description" : "Electron is a framework for writing cross-platform desktop applications using JavaScript, HTML and CSS. Prior to 39.8.10, 41.10.5, and 42.0.0-beta.2, Electron applications on macOS that use Squirrel.Mac-based automatic updates are vulnerable to a local race in the privileged ShipIt helper. The helper did not bind the validated update target to one canonical application-bundle path for the full installation, allowing a local attacker to redirect the root-level write so that it overwrites another application's files instead of the application that initiated the update. Applications on other platforms and macOS applications that do not use Squirrel.Mac-based automatic updates are not affected. This issue is fixed in versions 39.8.10, 41.10.5, and 42.0.0-beta.2.",
@@ -3787,6 +3813,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-81812"
   }, {
+    "id" : "CVE-2026-116206",
+    "description" : "YesWiki from 4.2.0 before 4.7.0 contains a stored cross-site scripting vulnerability that allows authenticated users to inject script into comment bodies using the wakka raw-HTML syntax. Attackers can post comments via the /api/comments endpoint that render unescaped through the Twig raw filter, executing JavaScript in administrators' and visitors' sessions.",
+    "publishedDate" : "2026-10-25T14:17:01.690",
+    "lastModifiedDate" : "2026-10-25T14:17:01.803",
+    "cvssScore" : 6.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116206"
+  }, {
     "id" : "CVE-2026-108604",
     "description" : "Tabularis through 0.27.0 contains an incorrect authorization vulnerability in the MCP run_query safety gate that allows prompt-injected agents or untrusted MCP clients to bypass read-only mode by submitting side-effecting SELECT statements. Attackers can run statements like SELECT setval, nextval, or PostgreSQL query_to_xml with embedded DELETE to modify data without approval prompts.",
     "publishedDate" : "2026-10-10T20:16:32.947",
@@ -4028,9 +4065,22 @@
     "cvssScore" : 6.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00234,
+    "epssPercentile" : 0.1414,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115997"
+  }, {
+    "id" : "CVE-2026-116058",
+    "description" : "A vulnerability was found in Alfresco Activiti up to 7.21.0-rc.692. Affected by this issue is the function JuelScriptEngine.eval of the file JuelScriptEngine.java. Performing a manipulation results in code injection. The attack can be initiated remotely. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-10-25T16:16:50.350",
+    "lastModifiedDate" : "2026-10-25T16:16:50.350",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116058"
   }, {
     "id" : "CVE-2026-104182",
     "description" : "stream-json is a micro-library of stream components for processing JSON and JSONC with a minimal memory footprint. Prior to 3.6.0, the JSONC parser at stream-json/jsonc/parser.js and verifier at stream-json/jsonc/verifier.js restart comment-terminator scanning from the opening slash whenever a block or line comment spans an input chunk, while retaining the accumulated comment buffer. Delivering a large valid comment across many small chunks therefore causes quadratic CPU work and can stall the Node.js event loop. The maintainer characterizes the attack vector as local because the documented JSONC input is locally owned or user-controlled configuration, rather than input intended for the open internet. This JSONC-only scope does not include the plain JSON parser, which advances through and discards consumed string and number data. This issue is fixed in version 3.6.0.",
@@ -4528,6 +4578,17 @@
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-93638"
+  }, {
+    "id" : "CVE-2026-116203",
+    "description" : "YesWiki before 4.7.0 contains a stored cross-site scripting vulnerability in the filtertags action, which echoes attacker-controlled token values without output encoding. Anonymous attackers can inject markup via action-attribute parameters that bypasses the allow_raw_html gate, executing JavaScript for every page viewer.",
+    "publishedDate" : "2026-10-25T14:17:01.187",
+    "lastModifiedDate" : "2026-10-25T14:17:01.303",
+    "cvssScore" : 6.1,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116203"
   }, {
     "id" : "CVE-2026-91649",
     "description" : "Vulnerability in Oracle Essbase (component: Java Based Agent).   The supported version that is affected is 21.8.3.0.0. Easily exploitable vulnerability allows high privileged attacker with logon to the infrastructure where Oracle Essbase executes to compromise Oracle Essbase.  While the vulnerability is in Oracle Essbase, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized access to critical data or complete access to all Oracle Essbase accessible data. CVSS 3.1 Base Score 6.0 (Confidentiality impacts).  CVSS Vector: (CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:H/I:N/A:N).",
@@ -5927,6 +5988,28 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59188"
   }, {
+    "id" : "CVE-2026-116139",
+    "description" : "WWBN AVideo 26.0 through 29.3.0 contains a stored cross-site scripting vulnerability that allows authenticated commenters to inject JavaScript because markDownToHTML() preserves event-handler attributes in leading HTML blocks. Attackers can post a comment starting with an img tag carrying an onerror handler, which bypasses the inline sanitizer and executes in viewers' browsers under the application origin.",
+    "publishedDate" : "2026-10-25T14:16:51.610",
+    "lastModifiedDate" : "2026-10-25T14:16:51.730",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116139"
+  }, {
+    "id" : "CVE-2026-116169",
+    "description" : "SiYuan from 2.10.0 before 3.8.7 contains a stored cross-site scripting vulnerability that allows users with edit permission to inject script by placing javascript: URLs in math block content rendered with KaTeX trust enabled. Attackers can store \\href, \\url, or \\includegraphics payloads that mathRender assigns via innerHTML, executing script in the application origin when a reader clicks the rendered link.",
+    "publishedDate" : "2026-10-25T14:16:56.080",
+    "lastModifiedDate" : "2026-10-25T15:17:02.733",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116169"
+  }, {
     "id" : "CVE-2026-106563",
     "description" : "Backstage is an open framework for building developer portals. Prior to 0.21.8, the @backstage/plugin-kubernetes-backend package is affected by improper entity validation in deprecated kubernetes services endpoint. An authenticated user with Kubernetes read permissions could access Kubernetes workload data beyond their intended scope by supplying crafted entity data to the deprecated services endpoint. The exposure is limited to read-only access to Kubernetes object metadata across configured clusters. This issue is fixed in version 0.21.8.",
     "publishedDate" : "2026-10-07T15:17:17.860",
@@ -6611,6 +6694,17 @@
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-106074"
+  }, {
+    "id" : "CVE-2026-95663",
+    "description" : "Insufficient Session Expiration vulnerability in Apache Camel Keycloak component.\n\n\n\nThis issue affects Apache Camel: from 4.16.0 before 4.18.5, from 4.19.0 before 4.22.2.\n\n\n\nWhen token introspection is enabled on the camel-keycloak KeycloakSecurityPolicy (useTokenIntrospection=true), the security processor validates the access token of a request by sending it to Keycloak's OAuth 2.0 token introspection endpoint, and accepts the token while the response reports it as active. The introspection endpoint reports a token as inactive once its exp (expiration) time has passed, so on this path the active flag is what enforces token expiry. Introspection results are cached by default (introspectionCacheEnabled=true, introspectionCacheTtl=60 seconds), and both cache implementations shipped with the component, ConcurrentMapTokenCache and CaffeineTokenCache, expired an entry a fixed time after it was inserted, without bounding that lifetime by the exp claim that the cached response already carried. KeycloakSecurityProcessor in turn checked only the active flag of the result, on every path that uses introspection, and never compared exp with the current time. A response cached shortly before the token expired was therefore served to later requests carrying the same token for up to the configured time-to-live after the token's expiry, and those requests were admitted with the roles and permissions the expired token had carried, although RFC 7662, which defines token introspection, states that a response containing exp must not be cached beyond that time. The access token is supplied by the caller with each request, typically as a bearer token in the Authorization header, so a caller holding a token that was valid moments earlier could keep using it after it expired, for as long as the cached entry lived. The window is bounded by introspectionCacheTtl, which is 60 seconds by default and 300 to 600 seconds where the documentation's recommendation for internal services was followed, and it opens only for a token that the same Camel process introspected and cached while the token was still active. The issue grants nothing beyond what the token already carried: it allows no token forgery and no privilege escalation, and token introspection is not enabled by default, which is why the severity is assessed medium. The local JWT verification path, used when introspection is disabled, is not affected by this issue.\n\n\n\nUsers are recommended to upgrade to version 4.23.0, which fixes the issue. If users are on the 4.22.x releases stream, then they are suggested to upgrade to 4.22.2. If users are on the 4.18.x releases stream, then they are suggested to upgrade to 4.18.5. The 4.16.x, 4.17.x and 4.19.x to 4.21.x release lines reached end of life before this issue was resolved and will not receive a fix, so deployments on them must move to a supported release. For deployments that cannot upgrade immediately, set introspectionCacheEnabled=false on the KeycloakSecurityPolicy, so that every request is checked against the introspection endpoint, which reports an expired token as inactive, at the cost of one introspection call per request. Lowering introspectionCacheTtl only narrows the window and does not close it.",
+    "publishedDate" : "2026-10-26T09:16:37.003",
+    "lastModifiedDate" : "2026-10-26T09:16:37.003",
+    "cvssScore" : 4.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "keycloak" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-95663"
   }, {
     "id" : "CVE-2026-108852",
     "description" : "Deep Chat through 2.5.1 contains a cross-site scripting vulnerability that allows attackers to inject javascript: links because RemarkableConfig.createNew disables Remarkable link validation. Attackers can place crafted Markdown links in AI responses, addMessage content, or loaded history to execute script in the embedding page when victims click them.",
@@ -7449,6 +7543,8 @@
     "cvssScore" : 3.7,
     "severity" : "LOW",
     "inKev" : false,
+    "epssScore" : 0.0037,
+    "epssPercentile" : 0.30678,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116007"
@@ -9227,5 +9323,35 @@
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115897"
+  }, {
+    "id" : "CVE-2026-115425",
+    "description" : "Multiple cross site scripting (XSS) vulnerabilities affect OPNsense firewall vesrion 26.7.1_1 and earlier allows low privileged attacker to execute Javascript in the context of another user visiting a specific page or clicking on a specifically crafted link.",
+    "publishedDate" : "2026-10-26T09:16:34.620",
+    "lastModifiedDate" : "2026-10-26T09:16:34.620",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115425"
+  }, {
+    "id" : "CVE-2026-103377",
+    "description" : "A reflected Cross-Site Scripting (XSS) vulnerability has been identified in the web application of the Castile-La Mancha Regional Parliament’s video library. The application embeds user-supplied content into the page without properly sanitising it before it is rendered by the browser. Exploitation of this vulnerability could allow a remote attacker to execute arbitrary JavaScript code in the browser of a victim who interacts with the content crafted for the attack.",
+    "publishedDate" : "2026-10-26T10:16:50.867",
+    "lastModifiedDate" : "2026-10-26T10:16:50.867",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103377"
+  }, {
+    "id" : "CVE-2026-4316",
+    "description" : "Reflected Cross-Site Scripting (XSS) in Gym Management Software IsMyGym by Zuinq Studio affecting the reservation endpoint where the 'ret' parameter is reflected in the HTTP response without any proper sanitization. Successfull explotation of this vulnerability could allow an attacker to inject arbitrary JavaScript code executed in the context of the victim’s browser.",
+    "publishedDate" : "2026-10-26T10:16:53.250",
+    "lastModifiedDate" : "2026-10-26T10:16:53.250",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-4316"
   } ]
 }
