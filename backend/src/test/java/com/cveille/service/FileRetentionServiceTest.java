@@ -27,7 +27,7 @@ class FileRetentionServiceTest {
     void setUp() {
         CveilleProperties properties = new CveilleProperties(
                 48, tempDir.toString(), null, null,
-                new CveilleProperties.Retention(15, 30),
+                new CveilleProperties.Retention(14, 14),
                 null, null, null, null, null
         );
         fileRetentionService = new FileRetentionService(properties);
@@ -43,9 +43,9 @@ class FileRetentionServiceTest {
                 8.0, "HIGH", false, null, 0.01, 0.5, List.of("java"), false, null
         );
 
-        // 2. Old CVE (40 days old, not in KEV) -> prune
+        // 2. Old CVE (20 days old, not in KEV) -> prune
         EnrichedCve oldCve = new EnrichedCve(
-                "CVE-2026-OLD", "Desc", "2026-09-01T10:00:00Z", "2026-09-01",
+                "CVE-2026-OLD", "Desc", "2026-09-20T10:00:00Z", "2026-09-20",
                 7.5, "HIGH", false, null, 0.01, 0.5, List.of("docker"), false, null
         );
 
@@ -80,10 +80,10 @@ class FileRetentionServiceTest {
 
         try (var stream = Files.list(dataDir)) {
             List<String> remaining = stream.map(p -> p.getFileName().toString()).toList();
-            assertThat(remaining).hasSize(15);
-            // 2026-09-01 to 2026-09-05 should be purged
-            assertThat(remaining).doesNotContain("2026-09-01.json", "2026-09-05.json");
-            assertThat(remaining).contains("2026-09-20.json", "2026-09-06.json");
+            assertThat(remaining).hasSize(14);
+            // 2026-09-01 to 2026-09-06 should be purged
+            assertThat(remaining).doesNotContain("2026-09-01.json", "2026-09-06.json");
+            assertThat(remaining).contains("2026-09-20.json", "2026-09-07.json");
         }
     }
 

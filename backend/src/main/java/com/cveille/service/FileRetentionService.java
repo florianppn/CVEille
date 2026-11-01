@@ -33,7 +33,7 @@ public class FileRetentionService {
      * Retains only the most recent daily JSON files according to the configured retention limit.
      */
     public void enforceRetention(Path dataDir) {
-        int maxFiles = (properties.retention() != null) ? properties.retention().maxDailyFiles() : 15;
+        int maxFiles = (properties.retention() != null) ? properties.retention().maxDailyFiles() : 14;
         if (maxFiles <= 0 || !Files.exists(dataDir)) {
             return;
         }
@@ -67,7 +67,7 @@ public class FileRetentionService {
      * while preserving actively exploited vulnerabilities (CISA KEV).
      */
     public void pruneOldIndexCves(Map<String, EnrichedCve> cvesMap, LocalDate referenceDate) {
-        int retentionDays = (properties.retention() != null) ? properties.retention().indexRetentionDays() : 30;
+        int retentionDays = (properties.retention() != null) ? properties.retention().indexRetentionDays() : 14;
         if (retentionDays <= 0 || cvesMap == null || cvesMap.isEmpty() || referenceDate == null) {
             return;
         }

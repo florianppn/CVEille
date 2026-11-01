@@ -39,7 +39,7 @@ class DataExporterServiceTest {
 
         Path frontendDir = tempDir.resolve("frontend");
         CveilleProperties properties = new CveilleProperties(
-                48, dataDir.toString(), frontendDir.toString(), readmePath.toString(), new CveilleProperties.Retention(15), null, null, null, null, null
+                48, dataDir.toString(), frontendDir.toString(), readmePath.toString(), new CveilleProperties.Retention(14), null, null, null, null, null
         );
 
         ObjectMapper objectMapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
@@ -116,11 +116,12 @@ class DataExporterServiceTest {
 
         fileRetentionService.enforceRetention(dataDir);
 
-        // Oldest 3 files (01, 02, 03) should be deleted, leaving 15 newest (04..18)
+        // Oldest 4 files (01, 02, 03, 04) should be deleted, leaving 14 newest (05..18)
         assertThat(Files.exists(dataDir.resolve("2026-09-01.json"))).isFalse();
         assertThat(Files.exists(dataDir.resolve("2026-09-02.json"))).isFalse();
         assertThat(Files.exists(dataDir.resolve("2026-09-03.json"))).isFalse();
-        assertThat(Files.exists(dataDir.resolve("2026-09-04.json"))).isTrue();
+        assertThat(Files.exists(dataDir.resolve("2026-09-04.json"))).isFalse();
+        assertThat(Files.exists(dataDir.resolve("2026-09-05.json"))).isTrue();
         assertThat(Files.exists(dataDir.resolve("2026-09-18.json"))).isTrue();
 
         // Non-daily files must be preserved

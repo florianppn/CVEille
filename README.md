@@ -32,7 +32,7 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 ```
 ├── backend/    # Service Spring Boot (ingestion NVD/KEV/EPSS, analyse, export JSON)
 ├── frontend/   # Dashboard statique (HTML, CSS, JS) hébergé sur GitHub Pages
-└── data/       # Historique quotidien des vulnérabilités au format JSON (15 fichiers max)
+└── data/       # Historique quotidien des vulnérabilités au format JSON (14 fichiers max / 2 semaines)
 ```
 
 ## Stack surveillée
