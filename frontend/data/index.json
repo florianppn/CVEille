@@ -1,40 +1,40 @@
 {
-  "lastSync" : "2026-10-31T11:29:40.277870665Z",
-  "newToday" : 86,
+  "lastSync" : "2026-11-01T12:24:04.488924720Z",
+  "newToday" : 35,
   "stats" : {
-    "totalTracked" : 934,
+    "totalTracked" : 931,
     "criticalCount" : 55,
-    "highCount" : 226,
-    "mediumCount" : 397,
+    "highCount" : 225,
+    "mediumCount" : 395,
     "lowCount" : 57,
     "kevCount" : 0,
-    "alertCount" : 229,
+    "alertCount" : 230,
     "avgEpss" : 0.003,
     "severityDistribution" : {
       "CRITICAL" : 55,
-      "HIGH" : 226,
-      "MEDIUM" : 397,
+      "HIGH" : 225,
+      "MEDIUM" : 395,
       "LOW" : 57
     },
     "topTechnologies" : {
       "javascript" : 386,
-      "node.js" : 177,
-      "java" : 147,
+      "node.js" : 175,
+      "java" : 148,
       "docker" : 57,
-      "kubernetes" : 52,
+      "kubernetes" : 51,
       "nginx" : 47,
       "postgresql" : 39,
-      "keycloak" : 23,
+      "keycloak" : 22,
       "typescript" : 21,
-      "npm" : 11,
       "tomcat" : 9,
+      "npm" : 9,
       "spring" : 6,
       "angular" : 5,
       "jackson" : 4,
-      "hibernate" : 1,
+      "hibernate" : 2,
       "spring-boot" : 1
     },
-    "lastSyncTimestamp" : "2026-10-31T11:29:40.399898417Z"
+    "lastSyncTimestamp" : "2026-11-01T12:24:04.621286550Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-65162",
@@ -473,6 +473,8 @@
     "cvssScore" : 9.8,
     "severity" : "CRITICAL",
     "inKev" : false,
+    "epssScore" : 0.00507,
+    "epssPercentile" : 0.43295,
     "matchedKeywords" : [ "angular" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-61737"
@@ -736,6 +738,8 @@
     "cvssScore" : 9.1,
     "severity" : "CRITICAL",
     "inKev" : false,
+    "epssScore" : 0.00787,
+    "epssPercentile" : 0.56156,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103882"
@@ -1261,6 +1265,8 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00431,
+    "epssPercentile" : 0.37306,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119662"
@@ -1272,9 +1278,22 @@
     "cvssScore" : 8.8,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00242,
+    "epssPercentile" : 0.1537,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119332"
+  }, {
+    "id" : "CVE-2026-120203",
+    "description" : "ShowDoc 2.8.14 before 3.9.6 contains a code injection vulnerability in its Mock feature that allows authenticated users to execute shell commands through mockjs templates. Attackers can store a template via MockController::add with escaped parentheses that mockjs evaluates with eval(), then trigger it through MockController::infoByKey to run commands, as root in the official Docker image.",
+    "publishedDate" : "2026-10-31T18:17:08.237",
+    "lastModifiedDate" : "2026-10-31T18:17:08.237",
+    "cvssScore" : 8.8,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120203"
   }, {
     "id" : "CVE-2026-18529",
     "description" : "IBM Maximo Application Suite - Location Service for Esri Component 9.2, 9.1, and 9.0 is vulnerable to command injection due to improper sanitisation of a user-controlled value passed to a shell command in a Kubernetes operator task.",
@@ -1426,6 +1445,8 @@
     "cvssScore" : 8.7,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00188,
+    "epssPercentile" : 0.08467,
     "matchedKeywords" : [ "kubernetes", "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119572"
@@ -1539,6 +1560,8 @@
     "cvssScore" : 8.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00317,
+    "epssPercentile" : 0.24626,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119978"
@@ -1663,6 +1686,8 @@
     "cvssScore" : 8.2,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00778,
+    "epssPercentile" : 0.55872,
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-62331"
@@ -1674,6 +1699,8 @@
     "cvssScore" : 8.2,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00127,
+    "epssPercentile" : 0.02357,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116247"
@@ -1919,6 +1946,8 @@
     "cvssScore" : 8.1,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00284,
+    "epssPercentile" : 0.21017,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-61804"
@@ -2951,6 +2980,8 @@
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00339,
+    "epssPercentile" : 0.27358,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-62297"
@@ -2962,22 +2993,11 @@
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00365,
+    "epssPercentile" : 0.30319,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-63341"
-  }, {
-    "id" : "CVE-2026-103921",
-    "description" : "GraphQL Tools provides utilities for building, stitching, and mocking GraphQL schemas. Prior to 1.1.35, the executor-legacy-ws buildWSLegacyExecutor() function hardcodes TLS certificate rejection off for Node.js connections to wss:// endpoints. Applications using the executor directly, or url-loader with SubscriptionProtocol.LEGACY_WS, can therefore accept an attacker-controlled certificate when a network-positioned attacker intercepts the connection. Authentication material in connectionParams or headers can be disclosed, and subscription data can be modified. Browser WebSocket clients are unaffected because browsers enforce certificate validation. This issue is fixed in version 1.1.35.",
-    "publishedDate" : "2026-10-01T17:17:19.390",
-    "lastModifiedDate" : "2026-10-02T18:44:45.660",
-    "cvssScore" : 7.4,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00268,
-    "epssPercentile" : 0.17175,
-    "matchedKeywords" : [ "node.js" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103921"
   }, {
     "id" : "CVE-2026-105223",
     "description" : "maclof kubernetes-client 0.17.0 before 0.32.0 disables TLS certificate verification in parseKubeconfig() and parseKubeconfigFile() when a kubeconfig lacks certificate-authority-data, ignoring insecure-skip-tls-verify. On-path attackers can impersonate the Kubernetes API server to capture Bearer tokens or Basic credentials and tamper with WebSocket or REST API traffic.",
@@ -3439,6 +3459,8 @@
     "cvssScore" : 7.2,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00528,
+    "epssPercentile" : 0.44721,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112365"
@@ -3450,22 +3472,11 @@
     "cvssScore" : 7.2,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00383,
+    "epssPercentile" : 0.32417,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-109234"
-  }, {
-    "id" : "CVE-2026-103251",
-    "description" : "n8n versions before 1.123.80, from 2.0.0 before 2.39.6, and from 2.40.0 before 2.40.1 contain a validation bypass vulnerability in the community package installation handler for queue mode deployments. Attackers with Redis write access can bypass name validation, permission checks, checksum verification, and npm safety checks to install arbitrary npm packages across all cluster instances without authentication.",
-    "publishedDate" : "2026-10-01T11:17:18.973",
-    "lastModifiedDate" : "2026-10-01T20:17:22.713",
-    "cvssScore" : 7.1,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00201,
-    "epssPercentile" : 0.09056,
-    "matchedKeywords" : [ "npm" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103251"
   }, {
     "id" : "CVE-2026-102282",
     "description" : "adm-zip is a JavaScript library for creating and extracting ZIP archives in Node.js. Prior to 0.6.1, adm-zip applies the Unix permission bits stored in a zip entry directly to the extracted file via `fs.chmodSync()` when `keepOriginalPermission=true` is passed to `extractAllTo()`/`extractEntryTo()` — and it never filters the setuid/setgid/sticky bits out of those bits. A zip crafted by an attacker can therefore produce an extracted binary with mode `04755`. When extraction runs as root (the default posture in Docker builds, CI runners, and privileged install steps — the exact environments where this flag is used), the resulting root-owned setuid file is executed later by a lesser-privileged user, turning the attacker's code into a root execution. Version 0.6.1 fixes the issue.",
@@ -3890,6 +3901,8 @@
     "cvssScore" : 6.8,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00317,
+    "epssPercentile" : 0.24644,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119764"
@@ -3919,19 +3932,6 @@
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-106072"
-  }, {
-    "id" : "CVE-2026-103884",
-    "description" : "A flaw was found in the X.509 client certificate authenticator of Keycloak. When CRL Distribution Point checking is enabled, the server fails to properly validate the file paths provided in a client certificate. An attacker can provide a specially crafted certificate that causes the server to attempt to read sensitive files from the local system or exhaust memory by loading extremely large files, potentially leading to information disclosure or a system crash.",
-    "publishedDate" : "2026-10-01T18:17:12.683",
-    "lastModifiedDate" : "2026-10-01T20:36:15.187",
-    "cvssScore" : 6.5,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00213,
-    "epssPercentile" : 0.10513,
-    "matchedKeywords" : [ "keycloak" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103884"
   }, {
     "id" : "CVE-2026-105306",
     "description" : "A flaw was found in the Dynamic Client Registration flow of the Keycloak identity and access management server. The issue occurs because the registration process fails to filter security-sensitive client attributes when a new client is created. An attacker with a valid Initial Access Token can register a client that bypasses audience checks during token introspection. This allows the attacker to view sensitive identity information, roles, and session details from access tokens belonging to other applications in the same realm.",
@@ -4447,6 +4447,8 @@
     "cvssScore" : 6.5,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00151,
+    "epssPercentile" : 0.04273,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119117"
@@ -4458,6 +4460,8 @@
     "cvssScore" : 6.5,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00258,
+    "epssPercentile" : 0.17463,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116252"
@@ -4469,6 +4473,8 @@
     "cvssScore" : 6.5,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00276,
+    "epssPercentile" : 0.20119,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103997"
@@ -4857,22 +4863,11 @@
     "cvssScore" : 6.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00193,
+    "epssPercentile" : 0.09016,
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-63121"
-  }, {
-    "id" : "CVE-2026-104182",
-    "description" : "stream-json is a micro-library of stream components for processing JSON and JSONC with a minimal memory footprint. Prior to 3.6.0, the JSONC parser at stream-json/jsonc/parser.js and verifier at stream-json/jsonc/verifier.js restart comment-terminator scanning from the opening slash whenever a block or line comment spans an input chunk, while retaining the accumulated comment buffer. Delivering a large valid comment across many small chunks therefore causes quadratic CPU work and can stall the Node.js event loop. The maintainer characterizes the attack vector as local because the documented JSONC input is locally owned or user-controlled configuration, rather than input intended for the open internet. This JSONC-only scope does not include the plain JSON parser, which advances through and discards consumed string and number data. This issue is fixed in version 3.6.0.",
-    "publishedDate" : "2026-10-01T21:17:19.003",
-    "lastModifiedDate" : "2026-10-02T18:47:49.947",
-    "cvssScore" : 6.2,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00138,
-    "epssPercentile" : 0.02707,
-    "matchedKeywords" : [ "node.js" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104182"
   }, {
     "id" : "CVE-2026-107389",
     "description" : "music-metadata is a metadata parser for audio and video media files. Prior to 11.16.0, the Matroska and WebM EBML parser decodes an attacker-controlled VINT element length and uses it for string-token or Uint8Array allocation before confirming that the leaf fits within its parent or available input. Crafted WebM, MKV, or MKA inputs can cause disproportionate allocations, out-of-memory denial of service, or, for a demonstrated parseFile path on Node.js 26.7.0, an uncatchable V8 fatal abort. The exact failure mode depends on the tokenizer, parser API, and runtime, but the affected leaf-length validation flaw is shared and has availability impact only. This issue is fixed in version 11.16.0.",
@@ -5513,6 +5508,8 @@
     "cvssScore" : 6.1,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.0029,
+    "epssPercentile" : 0.21602,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2015-20130"
@@ -5524,6 +5521,8 @@
     "cvssScore" : 6.1,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00268,
+    "epssPercentile" : 0.1901,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-7004"
@@ -6001,6 +6000,8 @@
     "cvssScore" : 5.9,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00264,
+    "epssPercentile" : 0.18313,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-63402"
@@ -6225,19 +6226,6 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115398"
-  }, {
-    "id" : "CVE-2026-103281",
-    "description" : "Ghost (npm package 'ghost') versions from 3.23.0 up to, but not including, 6.23.0 expose API keys to users with low-privilege staff accounts. An authenticated low-privilege staff user can read API keys returned by the Admin API, which are intended to be available only to higher-privileged users.",
-    "publishedDate" : "2026-10-01T11:17:24.073",
-    "lastModifiedDate" : "2026-10-01T15:06:17.330",
-    "cvssScore" : 5.4,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00156,
-    "epssPercentile" : 0.04137,
-    "matchedKeywords" : [ "npm" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103281"
   }, {
     "id" : "CVE-2026-105305",
     "description" : "A flaw was found in the OIDC implementation of Keycloak, specifically within the Device Authorization Grant flow. This component allows devices with limited input capabilities to obtain security tokens. The issue occurs because the flow fails to check the minimum authentication level required by a client configuration. This allows an attacker who has stolen a user's password to bypass mandatory multi-factor authentication and gain unauthorized access to the Keycloak Admin REST API.",
@@ -7208,6 +7196,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118959"
   }, {
+    "id" : "CVE-2026-120200",
+    "description" : "Nexterm through 1.2.2-BETA contains a missing authorization vulnerability that allows authenticated users to hibernate, resume, or terminate other users' remote sessions via session lifecycle routes. Attackers who obtain a session ID can call the hibernate, resume, or DELETE connection endpoints to disrupt live SSH, RDP, VNC, or SFTP sessions.",
+    "publishedDate" : "2026-10-31T18:17:07.713",
+    "lastModifiedDate" : "2026-10-31T18:17:07.713",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "hibernate" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120200"
+  }, {
     "id" : "CVE-2026-106563",
     "description" : "Backstage is an open framework for building developer portals. Prior to 0.21.8, the @backstage/plugin-kubernetes-backend package is affected by improper entity validation in deprecated kubernetes services endpoint. An authenticated user with Kubernetes read permissions could access Kubernetes workload data beyond their intended scope by supplying crafted entity data to the deprecated services endpoint. The exposure is limited to read-only access to Kubernetes object metadata across configured clusters. This issue is fixed in version 0.21.8.",
     "publishedDate" : "2026-10-07T15:17:17.860",
@@ -7759,6 +7758,8 @@
     "cvssScore" : 5.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00294,
+    "epssPercentile" : 0.2204,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-7003"
@@ -7770,6 +7771,8 @@
     "cvssScore" : 5.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00433,
+    "epssPercentile" : 0.37626,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119342"
@@ -7781,6 +7784,8 @@
     "cvssScore" : 5.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00236,
+    "epssPercentile" : 0.14684,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-62860"
@@ -8295,6 +8300,8 @@
     "cvssScore" : 4.4,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00273,
+    "epssPercentile" : 0.19735,
     "matchedKeywords" : [ "kubernetes", "nginx" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119573"
@@ -8603,6 +8610,8 @@
     "cvssScore" : 4.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00332,
+    "epssPercentile" : 0.26423,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119542"
@@ -9475,18 +9484,6 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-91335"
-  }, {
-    "id" : "CVE-2026-55252",
-    "description" : "OpenRun is an open-source, self-hosted GitOps platform for deploying web apps and internal tools to Docker or Kubernetes. Prior to version 0.17.7, the restrictions on redirect URLs in openrun can be bypassed by attackers, leading to open redirect attacks. This issue has been patched in version 0.17.7.",
-    "publishedDate" : "2026-10-01T20:17:26.110",
-    "lastModifiedDate" : "2026-10-02T18:47:49.947",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00321,
-    "epssPercentile" : 0.22901,
-    "matchedKeywords" : [ "kubernetes", "docker" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55252"
   }, {
     "id" : "CVE-2026-83745",
     "description" : "Memory allocation with excessive size value, Improper handling of length parameter inconsistency vulnerability in Apache Thrift \nnodejs and D lang bindings.\n\nBoth bindings' WebSocket server transports read the payload length out of the frame header and allocate that many bytes immediately, without checking that the bytes have arrived. A single ~14-byte frame therefore commits as much memory as it cares to declare -- measured at 513 MiB against the Node.js server and 2 GiB against the D transport -- and in the Node.js case the connection is left open afterwards, so the frame can simply be sent again.\n\n\n\n\nThis issue affects Apache Thrift before 0.25.0.\n\n\n\nUsers are recommended to upgrade to version 0.25.0, which fixes the issue.",
@@ -11784,6 +11781,8 @@
     "lastModifiedDate" : "2026-10-30T19:37:07.073",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.0024,
+    "epssPercentile" : 0.15205,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119680"
@@ -11794,6 +11793,8 @@
     "lastModifiedDate" : "2026-10-30T19:37:07.073",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.0045,
+    "epssPercentile" : 0.39125,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105456"
@@ -11804,6 +11805,8 @@
     "lastModifiedDate" : "2026-10-30T19:39:14.897",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00348,
+    "epssPercentile" : 0.28446,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-39375"
@@ -11814,6 +11817,8 @@
     "lastModifiedDate" : "2026-10-30T17:17:26.867",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00385,
+    "epssPercentile" : 0.32567,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-61789"
@@ -11824,6 +11829,8 @@
     "lastModifiedDate" : "2026-10-30T19:39:14.897",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00357,
+    "epssPercentile" : 0.2952,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-61586"
@@ -11834,8 +11841,20 @@
     "lastModifiedDate" : "2026-10-30T23:17:12.457",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00505,
+    "epssPercentile" : 0.4318,
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-62284"
+  }, {
+    "id" : "CVE-2026-120135",
+    "description" : "Uncontrolled Recursion vulnerability in Apache Thrift Java bindings.\n\n\n\nThis issue affects Apache Thrift: before 0.24.0.\n\n\n\nUsers are recommended to upgrade to version 0.24.0, which fixes the issue.",
+    "publishedDate" : "2026-10-31T21:16:53.397",
+    "lastModifiedDate" : "2026-10-31T21:16:53.397",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120135"
   } ]
 }
