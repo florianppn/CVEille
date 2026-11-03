@@ -1,39 +1,39 @@
 {
-  "lastSync" : "2026-11-02T14:19:41.552398243Z",
-  "newToday" : 19,
+  "lastSync" : "2026-11-03T13:19:53.310326589Z",
+  "newToday" : 97,
   "stats" : {
-    "totalTracked" : 528,
+    "totalTracked" : 588,
     "criticalCount" : 25,
-    "highCount" : 104,
-    "mediumCount" : 212,
+    "highCount" : 118,
+    "mediumCount" : 209,
     "lowCount" : 42,
     "kevCount" : 0,
-    "alertCount" : 102,
+    "alertCount" : 118,
     "avgEpss" : 0.003,
     "severityDistribution" : {
       "CRITICAL" : 25,
-      "HIGH" : 104,
-      "MEDIUM" : 212,
+      "HIGH" : 118,
+      "MEDIUM" : 209,
       "LOW" : 42
     },
     "topTechnologies" : {
-      "javascript" : 236,
-      "java" : 111,
-      "node.js" : 80,
-      "kubernetes" : 27,
-      "postgresql" : 27,
+      "javascript" : 248,
+      "java" : 163,
+      "node.js" : 78,
       "docker" : 26,
+      "postgresql" : 26,
+      "kubernetes" : 25,
       "typescript" : 15,
-      "keycloak" : 9,
       "tomcat" : 9,
-      "nginx" : 5,
+      "keycloak" : 8,
+      "nginx" : 6,
       "npm" : 4,
-      "spring" : 3,
+      "spring" : 2,
       "jackson" : 2,
       "hibernate" : 1,
       "angular" : 1
     },
-    "lastSyncTimestamp" : "2026-11-02T14:19:41.637004154Z"
+    "lastSyncTimestamp" : "2026-11-03T13:19:53.385523474Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-83938",
@@ -52,10 +52,12 @@
     "id" : "CVE-2026-120338",
     "description" : "Prefab UI's Generative UI sandbox runs caller-supplied Python inside Pyodide, Python compiled to WebAssembly, in a Deno subprocess. The feature is documented as isolation for untrusted code, including LLM-written UI. From prefab-ui 0.14.0 through 0.20.2 the launcher starts Deno with unrestricted --allow-read, --allow-write, and --allow-net, and the runner leaves the Deno API on the JavaScript global object. Pyodide's js module proxies that global, so the Python can call Deno.readTextFileSync and Deno.writeTextFileSync. A caller who can supply the code can read and write files as the server OS user, and can persist code execution by writing a .pth file into the server virtualenv's site-packages. The usual remote path is FastMCP's GenerativeUI provider, which registers the MCP tool generate_prefab_ui and forwards that tool's code argument into this sandbox. On a FastMCP server with no authentication configured, any client who can reach the server can call the tool. With authentication, any client allowed to call tools can. Generative UI is opt-in, and the host must have Deno installed. Confirmed on prefab-ui 0.20.2. Fixed in 0.21.0: after the runtime and Prefab sources load, the runner revokes Deno read, write, and network permission before it accepts code, the process is started with --no-prompt so a permission request cannot grant them again, and bootstrap network access is limited to cdn.jsdelivr.net. The fix is commit 030f074 (pull request 538).",
     "publishedDate" : "2026-11-01T16:18:14.970",
-    "lastModifiedDate" : "2026-11-01T16:18:14.970",
+    "lastModifiedDate" : "2026-11-02T20:17:40.677",
     "cvssScore" : 10.0,
     "severity" : "CRITICAL",
     "inKev" : false,
+    "epssScore" : 0.00771,
+    "epssPercentile" : 0.55672,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120338"
@@ -159,19 +161,6 @@
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120307"
-  }, {
-    "id" : "CVE-2026-109432",
-    "description" : "Camunda 7.24.0 before 7.24.14 and 7.23.0 before 7.23.17 contains an expression injection vulnerability where AdhocQueryValidator.validate() fails to check sub-query expression maps within the orQueries field exposed by TaskQueryDto, allowing authenticated users to bypass the enableExpressionsInAdhocQueries restriction. Attackers can supply a malicious JUEL expression such as dueAfterExpression inside an orQueries entry to achieve arbitrary Java reflection and invoke java.lang.Runtime.exec, resulting in operating-system command execution as the engine service user.",
-    "publishedDate" : "2026-10-19T16:17:02.487",
-    "lastModifiedDate" : "2026-10-19T21:14:14.150",
-    "cvssScore" : 9.8,
-    "severity" : "CRITICAL",
-    "inKev" : false,
-    "epssScore" : 0.00558,
-    "epssPercentile" : 0.45434,
-    "matchedKeywords" : [ "java" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-109432"
   }, {
     "id" : "CVE-2026-75128",
     "description" : "Langchain-Chatchat through 0.3.1.3 exposes a POST /tools/call API endpoint that invokes any registered tool by name without authentication, leaving the always-registered shell tool callable. Remote attackers can send a single request naming the shell tool to execute arbitrary OS commands as the server user (root in the shipped Docker image).",
@@ -277,6 +266,17 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55486"
   }, {
+    "id" : "CVE-2026-105769",
+    "description" : "kaniko before 1.25.20 can send a Microsoft Entra ID (Azure AD) access token for Azure Resource Manager to an attacker-controlled registry host. kaniko uses the Azure Container Registry credential helper github.com/chrismellard/docker-credential-acr-env, which decides whether a host is an ACR registry with an unanchored regular expression, so any hostname containing .azurecr.io, .azurecr.cn, .azurecr.de or .azurecr.us is accepted. kaniko consults this helper for any registry that has no credentials in the Docker config and is not a Google or Amazon ECR registry, before contacting the registry. A Dockerfile that references an image on a lookalike host, such as FROM x.azurecr.io.attacker.com/img or COPY --from=<image>, causes the helper to obtain a token from the build's Azure identity (service principal environment variables, federated workload identity token, or managed identity) and POST it to https://<host>/oauth2/exchange. The attacker can use the token against Azure Resource Manager with the identity's role assignments until it expires, and can exchange it for credentials to any ACR registry the identity can access. No RUN instruction or push is required. This issue is fixed in 1.25.20.",
+    "publishedDate" : "2026-11-02T17:17:32.670",
+    "lastModifiedDate" : "2026-11-02T19:34:23.993",
+    "cvssScore" : 9.3,
+    "severity" : "CRITICAL",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105769"
+  }, {
     "id" : "CVE-2026-101356",
     "description" : "Incorrect object recycling and re-use vulnerability in Apache Tomcat affecting HTTP/2 processing of asynchronous servlets can trigger request and/or response mix-up between users.\n\n\n\nThis issue affects Apache Tomcat: from 11.0.22 through 11.0.26, from 10.1.55 through 10.1.60, from 9.0.118 through 9.0.122.\n\n\n\nUsers are recommended to upgrade to version 11.0.27, 10.1.61 or 9.0.123, which fixes the issue.",
     "publishedDate" : "2026-10-20T14:16:55.767",
@@ -367,32 +367,6 @@
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-61719"
-  }, {
-    "id" : "CVE-2026-78165",
-    "description" : "Deserialization of Untrusted Data vulnerability in Apache Camel Spring Redis component.\n\n\n\nThis issue affects Apache Camel: from 2.11.0 before 4.18.5, from 4.19.0 before 4.22.1.\n\n\n\nRedisConfiguration.getSerializer lazily built a bare JdkSerializationRedisSerializer whenever no serializer option was configured, and that instance was used for every read the component performs. Spring's implementation delegates through DeserializingConverter to DefaultDeserializer, which reads the bytes with a ConfigurableObjectInputStream and installs no java.io.ObjectInputFilter on the stream, so an arbitrary serialized class graph was materialised and its readObject method executed. RedisConsumer.setBody applied that serializer to the raw bytes of every message published to the subscribed channels, before the Exchange was constructed and therefore before any route logic could inspect the message, so an actor able to issue PUBLISH on a subscribed channel reached the deserialization sink directly. The same default serializer backed the RedisTemplate built by RedisConfiguration.createDefaultTemplate, so the producer read commands GET, HGET, HGETALL and HVALS deserialized whatever was stored in the Redis keyspace, and SpringRedisIdempotentRepository shared that template. Configuring a custom redisTemplate did not close the consumer path, because RedisConsumer.setBody reads getSerializer directly rather than the serializer attached to the template, so a deployment that had wired a String serializer into its own template remained exposed on the consumer side unless it also set the serializer option. The component never constructed a java.io.ObjectInputStream itself, which is why earlier passes over the Camel codebase for unfiltered Java deserialization did not reach it. The behaviour dates back to the introduction of the component, first released in 2.11.0, and was unchanged until this fix.\n\n\n\nUsers are recommended to upgrade to version 4.23.0, which fixes the issue. If users are on the 4.22.x releases stream, then they are suggested to upgrade to 4.22.1. If users are on the 4.18.x releases stream, then they are suggested to upgrade to 4.18.5. The 4.14.x releases stream and earlier reached end of life before this issue was resolved and will not receive a fix, so deployments on those lines must move to a supported release. For deployments that cannot upgrade immediately, set the JVM-wide jdk.serialFilter system property, which the affected code path honours because it reads through a java.io.ObjectInputStream, for example -Djdk.serialFilter=!java.net.**;java.**;javax.**;org.apache.camel.**;!* ; or set the serializer endpoint option to a serializer that does not use Java serialization, such as StringRedisSerializer, noting that this must be set as the serializer option and not only on a custom redisTemplate. As defence in depth, require authentication on the Redis instance and restrict which clients may publish to the subscribed channels, and do not expose a Redis instance consumed by Camel to untrusted networks.",
-    "publishedDate" : "2026-10-19T11:17:19.643",
-    "lastModifiedDate" : "2026-10-20T14:17:01.450",
-    "cvssScore" : 8.8,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00769,
-    "epssPercentile" : 0.54846,
-    "matchedKeywords" : [ "spring", "java" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-78165"
-  }, {
-    "id" : "CVE-2026-88900",
-    "description" : "Deserialization of Untrusted Data vulnerability in Apache Camel Camel-Jgroups component.\n\n\n\nThis issue affects Apache Camel: from 4.0.0 before 4.18.5, from 4.19.0 before 4.22.1.\n\n\n\nJGroupsEndpoint.createExchange(Message), which CamelJGroupsReceiver calls for every message the jgroups consumer receives before the exchange is routed, set the exchange body from org.jgroups.Message.getObject(). For an ObjectMessage, which is the message type the Camel jgroups producer sends, JGroups Java-deserializes the payload through an ObjectInputStream on its own receive thread as the message arrives, and getObject() returns the resulting object. No java.io.ObjectInputFilter was applied on that path unless the deployment had set a JVM-wide serialization filter: camel-jgroups installed none, and the JGroups versions shipped with the affected releases apply none of their own, so any serializable class on the application classpath could be instantiated and its deserialization callbacks run. Unless a channel or the channelProperties option is configured, the consumer creates its channel with new JChannel(), the stock JGroups protocol stack, which multicasts over UDP without the AUTH protocol and without encryption, so any host able to reach the cluster's multicast group or bind port can join the cluster and send messages to the consumer without credentials. Such a host could send a crafted serialized object that leads to remote code execution in the Camel process when a usable deserialization gadget chain is present on the classpath, and no non-default option was required on the consumer. Because JGroups materializes the object before Camel's receiver runs, a check performed by Camel can only inspect the deserialized result and cannot stop code that runs during deserialization, so closing the issue also requires a control that applies before the payload is read, as described in the mitigation. Exploitation requires network access to the cluster's multicast group or bind port, which with the default UDP multicast transport means a host on an adjacent network, and a usable gadget chain on the classpath, which is why the severity is assessed as high rather than critical.\n\n\n\nUsers are recommended to upgrade to version 4.23.0, which fixes the issue. If users are on the 4.22.x releases stream, then they are suggested to upgrade to 4.22.1. If users are on the 4.18.x releases stream, then they are suggested to upgrade to 4.18.5. The 4.14.x releases stream and earlier, and the 4.15.x to 4.17.x and 4.19.x to 4.21.x release lines, reached end of life before this issue was resolved and will not receive a fix, so deployments on those lines must move to a supported release.",
-    "publishedDate" : "2026-10-19T12:17:11.980",
-    "lastModifiedDate" : "2026-10-20T04:17:06.427",
-    "cvssScore" : 8.8,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00323,
-    "epssPercentile" : 0.23872,
-    "matchedKeywords" : [ "java" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-88900"
   }, {
     "id" : "CVE-2026-85683",
     "description" : "The Jane Menu WordPress plugin before 1.5.1 does not have any capability or nonce checks on one of its form handlers, which is reachable by unauthenticated users, allowing them to bind any published page to a remote document of their choosing. The plugin then fetches that document and outputs its head and body into the page without escaping, so an unauthenticated attacker can run arbitrary JavaScript in the browser of any visitor to that page, including an administrator.",
@@ -534,6 +508,17 @@
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120203"
+  }, {
+    "id" : "CVE-2026-120460",
+    "description" : "Jpom through 2.11.12 contains a cross-workspace authorization bypass vulnerability that allows authenticated users to manage other workspaces' Docker hosts by supplying foreign Docker asset ids. Attackers with Docker permission in any workspace can control containers, images, volumes and networks, including creating privileged containers with host bind mounts.",
+    "publishedDate" : "2026-11-02T15:17:30.053",
+    "lastModifiedDate" : "2026-11-02T18:18:52.267",
+    "cvssScore" : 8.8,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120460"
   }, {
     "id" : "CVE-2026-114636",
     "description" : "Traefik v3.7.13 before v3.7.14 contains an access-control bypass in the Kubernetes Ingress NGINX provider, where the HTTP router generated for ssl-passthrough Ingresses on non-TLS entry points never applies the Ingress's access-control annotations. Unauthenticated attackers reaching the HTTP entry point with the Ingress host can access backends protected by auth-type, auth-url, or whitelist-source-range annotations, with nothing logged.",
@@ -730,6 +715,215 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-63120"
   }, {
+    "id" : "CVE-2026-28588",
+    "description" : "In shouldBlockDirectoryFromTree of ExternalStorageProvider.java, there is a possible way to access protected data due to a logic error in the code. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:41.713",
+    "lastModifiedDate" : "2026-11-03T05:18:42.473",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-28588"
+  }, {
+    "id" : "CVE-2026-28597",
+    "description" : "In writeGrantedUriPermissions of UriGrantsManagerService.java, there is a possible permission bypass due to improper input validation. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:41.907",
+    "lastModifiedDate" : "2026-11-03T05:18:42.673",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-28597"
+  }, {
+    "id" : "CVE-2026-45514",
+    "description" : "In multiple functions of SaveUi.java, there is a possible bypass of package installation requirements due to a logic error in the code. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:42.607",
+    "lastModifiedDate" : "2026-11-03T05:18:42.963",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-45514"
+  }, {
+    "id" : "CVE-2026-49922",
+    "description" : "In queryRemoteConnectionServices of ConnectionServiceWrapper.java, there is a possible permission bypass due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:42.830",
+    "lastModifiedDate" : "2026-11-03T05:18:43.343",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-49922"
+  }, {
+    "id" : "CVE-2026-49923",
+    "description" : "In onResult of AccountManagerService.java, there is a possible untrusted/misleading UI issue due to a logic error in the code. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:42.940",
+    "lastModifiedDate" : "2026-11-03T05:18:43.600",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-49923"
+  }, {
+    "id" : "CVE-2026-55257",
+    "description" : "In UsbDialogHelper of UsbDialogHelper.java, there is a possible UI confusion due to misleading or insufficient UI. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:43.983",
+    "lastModifiedDate" : "2026-11-03T05:18:44.010",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55257"
+  }, {
+    "id" : "CVE-2026-55262",
+    "description" : "In setNotificationListenerAccessGrantedForUserInternal of NotificationManagerService.java, there is a possible  policy desynchronization due to improper input validation. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:44.217",
+    "lastModifiedDate" : "2026-11-03T05:18:44.183",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55262"
+  }, {
+    "id" : "CVE-2026-55287",
+    "description" : "In onCreate of GrantCredentialsPermissionActivity.java, there is a possible way to trick the user into granting account credentials due to misleading or insufficient UI. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:45.017",
+    "lastModifiedDate" : "2026-11-03T05:18:44.890",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55287"
+  }, {
+    "id" : "CVE-2026-58866",
+    "description" : "In setAccessibilityWindowAttributes of AccessibilityWindowManager.java, there is a possible untrusted/misleading UI issue due to a missing permission check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:49.013",
+    "lastModifiedDate" : "2026-11-03T05:18:47.603",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58866"
+  }, {
+    "id" : "CVE-2026-58884",
+    "description" : "In startTetheredHotspotRequest of WifiServiceImpl.java, there is a possible permission bypass due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:50.280",
+    "lastModifiedDate" : "2026-11-03T05:18:47.973",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58884"
+  }, {
+    "id" : "CVE-2026-58934",
+    "description" : "In prepareWindowToDisplayDuringRelayout of WindowState.java, there is a possible permission bypass due to a logic error in the code. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:50.720",
+    "lastModifiedDate" : "2026-11-03T05:18:48.543",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58934"
+  }, {
+    "id" : "CVE-2026-58943",
+    "description" : "In run of AddAccountSettings.java, there is a possible background activity launch due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:51.290",
+    "lastModifiedDate" : "2026-11-03T05:18:48.970",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58943"
+  }, {
+    "id" : "CVE-2026-58944",
+    "description" : "In moveTaskToFrontLocked of ActivityTaskManagerService.java, there is a possible background application launch (bal) issue due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:51.393",
+    "lastModifiedDate" : "2026-11-03T05:18:49.187",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58944"
+  }, {
+    "id" : "CVE-2026-58946",
+    "description" : "In navigateUpTo of ActivityClientController.java, there is a possible permission bypass due to a logic error in the code. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:51.610",
+    "lastModifiedDate" : "2026-11-03T05:18:49.403",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58946"
+  }, {
+    "id" : "CVE-2026-58957",
+    "description" : "In resolveToHeavyWeightSwitcherIfNeeded of ActivityStarter.java, there is a possible background activity launch due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:52.280",
+    "lastModifiedDate" : "2026-11-03T05:18:49.677",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58957"
+  }, {
+    "id" : "CVE-2026-58965",
+    "description" : "In handleAudioEffectBroadcast of MusicFxHelper.java, there is a possible permission bypass due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:52.807",
+    "lastModifiedDate" : "2026-11-03T05:18:49.913",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58965"
+  }, {
+    "id" : "CVE-2026-58970",
+    "description" : "In deliverResult of AppTimeTracker.java, there is a possible background activity launch due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:53.263",
+    "lastModifiedDate" : "2026-11-03T05:18:50.127",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58970"
+  }, {
+    "id" : "CVE-2026-59028",
+    "description" : "In resolveAidConflictLocked of RegisteredAidCache.java, there is a possible permission bypass due to a confused deputy. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:57.257",
+    "lastModifiedDate" : "2026-11-03T05:18:50.763",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59028"
+  }, {
+    "id" : "CVE-2026-58873",
+    "description" : "In addDragDropListener of WindowManagerService.java, there is a possible permission bypass due to a missing permission check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T21:17:35.373",
+    "lastModifiedDate" : "2026-11-02T22:17:21.960",
+    "cvssScore" : 8.4,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58873"
+  }, {
     "id" : "CVE-2026-59179",
     "description" : "OpenHop is a tool for creating interactive data-flow diagrams. Prior to 0.3.7, `@openhop/server` passes unauthenticated flow route parameters from `GET /api/flows/:id` and `DELETE /api/flows/:id` in `packages/server/src/routes.ts` to `FlowStore.filePath()` in `packages/server/src/store.ts` without an identifier allow-list. The router applies `decodeURIComponent` to the id, and `path.join()` then normalizes traversal outside the configured flow directory after appending the .yaml extension. An attacker can read accessible YAML files as YAML-parsed JSON or permanently delete accessible .yaml files outside that directory, exposing configuration or secrets and disrupting dependent services. In `packages/server/src/index.ts`, CORS `origin: true` permits any browser origin, enabling a malicious webpage to target a loopback-bound instance. Docker deployments default to `HOST=0.0.0.0` and permit direct unauthenticated network access. This issue is fixed in repository release 0.3.7.",
     "publishedDate" : "2026-10-28T14:17:04.907",
@@ -742,17 +936,6 @@
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59179"
-  }, {
-    "id" : "CVE-2026-78164",
-    "description" : "Improper Neutralization of Special Elements Used in a Template Engine and Exposure of Sensitive Information to an Unauthorized Actor vulnerability in Apache Camel HTTP, Netty HTTP, Undertow and Vert.x HTTP components.\n\n\n\nThis issue affects Apache Camel: from 4.0.0 before 4.18.5, from 4.19.0 before 4.22.1.\n\n\n\nThe Camel HTTP producer families let an inbound message override the endpoint URI through the CamelHttpUri and CamelRestHttpUri headers, and then passed that message-supplied string through CamelContext.resolvePropertyPlaceholders() before using it. Property-placeholder resolution is a configuration-resolution facility, not a URI-parsing step: it reaches operating-system environment variables, JVM system properties, every PropertiesFunction registered on the classpath - including the AWS, Azure, GCP, HashiCorp, IBM, CyberArk and Kubernetes secret functions - and, through camel-bean, the invocation of a no-argument method on any bean in the registry. Applying it to Exchange content therefore turned a URI string into a configuration- and bean-evaluation context. A route author opted into none of this: a plain static to(\"http://backend/api\") was sufficient. Seven call sites were affected: HttpHelper.createURL and HttpHelper.createMethod in camel-http-common, HttpMethodHelper.createMethod in camel-http, VertxHttpHelper.resolveHttpURI in camel-vertx-http, UndertowHelper.createURL and UndertowHelper.createMethod in camel-undertow, and NettyHttpHelper.createURL in camel-netty-http. The bridgeEndpoint option did not bound the exposure: it suppresses the CamelHttpUri override in the createURL family but not in the createMethod family, so a route using the documented bridging configuration still resolved placeholders taken from the header, and CamelRestHttpUri was consumed before any bridgeEndpoint check in all four components. Only camel-http offered an opt-out, skipControlHeaders, which defaults to false. Reaching the headers did not always require header injection, because several Camel HTTP consumers populate CamelHttpUri from the request line themselves as a documented reverse-proxy feature. An unresolvable placeholder additionally produced a RuntimeExchangeException whose message echoed the URI, which distinguishes a set from an unset configuration key even where no outbound request is made. The behaviour predates the 4.x line; it dates back to the camel-http4 and camel-netty4 components. This advisory continues the alignment CAMEL-24282 applied to the toD and enrich dynamic-URI EIPs in 4.22.0, extending the same build-time-resolution contract to the HTTP producer components.\n\n\n\nUsers are recommended to upgrade to version 4.23.0, which fixes the issue. If users are on the 4.22.x releases stream, then they are suggested to upgrade to 4.22.1. If users are on the 4.18.x releases stream, then they are suggested to upgrade to 4.18.5. The 4.14.x releases stream and earlier reached end of life before this issue was resolved and will not receive a fix, so deployments on those lines must move to a supported release. For deployments that cannot upgrade immediately, strip the override headers at the trust boundary before the producer with removeHeader(\"CamelHttpUri\") and removeHeader(\"CamelRestHttpUri\"), or set skipControlHeaders=true on camel-http endpoints, which is the only component offering that option. Note that bridgeEndpoint=true is not a workaround: it suppresses the header override when the outbound URL is built but not when the header is re-parsed for the query string. Percent-encoding the placeholder delimiters is likewise not a mitigation for camel-netty-http, whose binding decodes the request path before the value reaches the header, so proxy or WAF rules written against the raw delimiters do not help there. As defence in depth, ensure consumers exposed to untrusted senders apply a strict inbound HeaderFilterStrategy over the Camel namespace, and resolve secrets through a vault rather than through environment variables or system properties that a placeholder can name.",
-    "publishedDate" : "2026-10-19T11:17:19.403",
-    "lastModifiedDate" : "2026-10-19T11:17:19.403",
-    "cvssScore" : 8.2,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "matchedKeywords" : [ "kubernetes" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-78164"
   }, {
     "id" : "CVE-2026-112353",
     "description" : "GFI KerioConnect (Kerio Connect) before 10.0.8 Patch 2 contains a stored cross-site scripting vulnerability in the Webmail component that allows a remote attacker to run JavaScript in a victim's authenticated Webmail session by uploading a crafted SVG email attachment that bypasses sanitization of event-handler attributes. Attackers can exploit the temporary-download endpoint's insufficient Content-Security-Policy sandbox to execute scripts when the attachment is opened, enabling theft of the victim's credentials and mailbox contents. Proofpoint Threat Research has observed exploitation in the wild as a credential and mailbox stealer.",
@@ -871,19 +1054,6 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-61804"
   }, {
-    "id" : "CVE-2026-112264",
-    "description" : "BentoML through 1.4.39 contains a Dockerfile instruction injection vulnerability that allows attackers to add arbitrary build instructions by embedding newlines in docker.env mapping keys rendered by the legacy base.j2 template. Attackers can supply a crafted bentofile.yaml or imported bento archive so that bentoml containerize executes injected RUN instructions during docker build, accessing build secrets and poisoning images.",
-    "publishedDate" : "2026-10-19T14:17:03.003",
-    "lastModifiedDate" : "2026-10-19T21:13:39.973",
-    "cvssScore" : 7.8,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00218,
-    "epssPercentile" : 0.11573,
-    "matchedKeywords" : [ "docker" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112264"
-  }, {
     "id" : "CVE-2026-116576",
     "description" : "systeminformation is a System and OS information library for node.js. Prior to 5.33.16, services() in lib/processes.js inserts a caller-supplied service name into a PowerShell Get-CimInstance filter after processing it with sanitizeShellString() in lib/util.js. On Windows, the sanitizer removes ASCII quotes but permits Unicode quotation marks that PowerShell accepts as string delimiters, allowing crafted input to terminate the filter and place a PowerShell expression in the command executed by util.powerShell(). The expression runs with the Node.js process account's permissions and may read or change accessible files, alter application data, or disrupt the service. The package does not expose a network service itself, so remote reachability depends on a consuming application forwarding attacker-controlled input to services() or getDynamicData(). This issue is fixed in version 5.33.16.",
     "publishedDate" : "2026-10-26T21:18:13.720",
@@ -910,6 +1080,28 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59176"
   }, {
+    "id" : "CVE-2026-120438",
+    "description" : "QuickJS-NG before 0.16.0 contains an integer overflow in js_proxy_get_own_property_names() in quickjs.c that causes a heap buffer overflow on 32-bit hosts. Attackers running JavaScript can return a large array-like object from a Proxy ownKeys trap to wrap the allocation size, causing crashes or potential code execution.",
+    "publishedDate" : "2026-11-02T15:17:25.767",
+    "lastModifiedDate" : "2026-11-02T19:34:23.993",
+    "cvssScore" : 7.8,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120438"
+  }, {
+    "id" : "CVE-2026-58836",
+    "description" : "In handlePackagePostInstall of InstallPackageHelper.java, there is a possible Enhanced Confirmation Mode (ECM) bypass vulnerability that allows a sideloaded application to modify the package source during a self-update due to a logic error in the code. This could lead to local escalation of privilege with User execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:48.053",
+    "lastModifiedDate" : "2026-11-03T05:18:46.363",
+    "cvssScore" : 7.8,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58836"
+  }, {
     "id" : "CVE-2026-105311",
     "description" : "The StreamsHub Console operator acts as a confused deputy: a Kubernetes tenant with permission to create a Console custom resource can set spec.kafkaClusters[].credentials.kafkaUser.namespace to any namespace. The operator, running with cluster-wide Secrets RBAC, reads the victim-namespace KafkaUser Secret (SASL credentials or TLS private keys) and writes the plaintext material into a Secret in the attacker's namespace. No same-namespace check or allowlist exists anywhere in the code path.",
     "publishedDate" : "2026-10-20T12:17:28.550",
@@ -922,32 +1114,6 @@
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105311"
-  }, {
-    "id" : "CVE-2026-112366",
-    "description" : "Picomatch through 4.0.7 contains a regular expression denial of service vulnerability that allows attackers to block the event loop by supplying single-branch repeated extglob patterns. Attackers can provide globs like +(*) or +(*a), which analyzeRepeatedExtglob in lib/parse.js skips, causing exponential backtracking against short crafted strings and denying service to Node.js applications.",
-    "publishedDate" : "2026-10-19T16:17:07.500",
-    "lastModifiedDate" : "2026-10-19T21:13:39.973",
-    "cvssScore" : 7.5,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00339,
-    "epssPercentile" : 0.2588,
-    "matchedKeywords" : [ "node.js" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112366"
-  }, {
-    "id" : "CVE-2026-12148",
-    "description" : "IBM MQ Operator could allow an authenticated attacker to cause a denial of service or potentially execute arbitrary code due to unrestricted Java deserialization in the MQ Classes for Java.",
-    "publishedDate" : "2026-10-19T17:17:17.120",
-    "lastModifiedDate" : "2026-10-20T13:16:42.850",
-    "cvssScore" : 7.5,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00288,
-    "epssPercentile" : 0.20051,
-    "matchedKeywords" : [ "java" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-12148"
   }, {
     "id" : "CVE-2026-111764",
     "description" : "A2A Java SDK is the official Java SDK for the Agent2Agent (A2A) Protocol. Prior to 1.3.0.Final, the default InMemoryTaskStore configuration performs no authorization on task reads: the no-argument constructor sets authorizationProvider to null, and InMemoryTaskStore.get(String taskId) returns the stored task without checking the caller or owner. Authorization depends on supplying a TaskAuthorizationProvider and routing requests through AuthorizationRequestHandlerDecorator, whether installed through CDI or explicitly by the application. Default store wiring and manually constructed DefaultRequestHandler.builder().build() handlers, including integrations such as Spring, leave task reads unprotected when no effective authorization-provider and decorator check is installed. In a multi-caller deployment using the default configuration, a caller who knows or guesses another caller's task ID can retrieve the task status, context ID, message history, and artifacts. The default/reference transport endpoints do not enforce authentication, so the task-read disclosure is reachable by an unauthenticated caller rather than requiring a privileged account. This issue is fixed in version 1.3.0.Final.",
@@ -1352,32 +1518,6 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-63341"
   }, {
-    "id" : "CVE-2026-103314",
-    "description" : "A flaw was found in Red Hat Advanced Cluster Security for Kubernetes (RHACS). The Central SAML authentication ACS endpoint does not retain used SAML assertion or response identifiers to prevent replay. An attacker who obtains a valid, unexpired signed SAML response can submit it multiple times and receive distinct Central authentication tokens for the mapped identity.",
-    "publishedDate" : "2026-10-19T13:16:53.617",
-    "lastModifiedDate" : "2026-10-20T13:16:38.277",
-    "cvssScore" : 7.4,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00264,
-    "epssPercentile" : 0.17123,
-    "matchedKeywords" : [ "kubernetes" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103314"
-  }, {
-    "id" : "CVE-2026-3295",
-    "description" : "IBM Cloud Pak System 2.3.6.0, and 2.3.6.1 is vulnerable to cross site scripting. The web app user‑supplied input is not properly sanitized or HTML‑encoded before being stored and rendered. An authenticated attacker could exploit this vulnerability by entering specially crafted payloads containing malicious JavaScript which are saved within the app and later executed automatically when user views affected pages, resulting in Stored Cross‑Site Scripting (Stored XSS).",
-    "publishedDate" : "2026-10-19T18:17:07.263",
-    "lastModifiedDate" : "2026-10-19T20:55:02.217",
-    "cvssScore" : 7.4,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00289,
-    "epssPercentile" : 0.20196,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-3295"
-  }, {
     "id" : "CVE-2026-113727",
     "description" : "OpenChoreo is a developer platform for Kubernetes. From 1.0.0 until 1.0.6, 1.1.7, and 1.2.5, the PUT .../workflowruns/{runName} update route authorizes a request using the openchoreo.dev/project and openchoreo.dev/component labels in the submitted body while selecting the stored WorkflowRun by the URL path. An authenticated caller with workflowrun:update for one project or component in the same namespace can name another run in the path, submit ownership labels for a scope they control, and rewrite the victim run's ownership labels. Subsequent authorization then treats the attacker as authorized to read build logs and Kubernetes events, delete the run, modify pending spec.workflow.parameters, or place the run into a permanent ComponentValidationFailed state. The namespace comes from the URL, so the issue is cross-project or cross-component within one namespace and is not anonymously reachable or cross-tenant. This issue is fixed in 1.0.6, 1.1.7, and 1.2.5.",
     "publishedDate" : "2026-10-20T22:19:29.570",
@@ -1664,19 +1804,6 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112207"
   }, {
-    "id" : "CVE-2026-111440",
-    "description" : "在 openGauss-connector-jdbc 的 pgjdbc/src/main/java/org/postgresql/log/LogFactory.java 中，LogFactory 根据 JDBC 连接参数中的 logger 类名调用 Class.forName 加载类后，直接反射调用以 String 为参数的构造函数，再转换为 Log。缺少 asSubclass(Log.class) 校验，非 Log 实现类也会在类型检查前被实例化。因此，当攻击者可控制 JDBC URL 或连接属性中的 logger 类名，且客户端 classpath 中存在可被加载的类时，可能在客户端触发非预期的类加载与构造副作用。\n\n此漏洞自 JDBC 1.1.0引入，影响 1.1.0 及之后的 2.x、3.x、5.x、6.x 各版本及补丁（含 6.0.0 分支最新 6.0.6），以及 7.0.0-RC1、7.0.0-RC2、7.0.0-RC3，并在 7.0.0-LTS 版本修复。修复在 Class.forName 之后先执行 asSubclass(Log.class)，仅允许 Log 子类进入构造。修复pr见https://gitcode.com/opengauss/openGauss-connector-jdbc/pull/423。",
-    "publishedDate" : "2026-10-19T04:17:03.657",
-    "lastModifiedDate" : "2026-10-19T20:56:36.663",
-    "cvssScore" : 7.0,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00221,
-    "epssPercentile" : 0.11882,
-    "matchedKeywords" : [ "java", "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111440"
-  }, {
     "id" : "CVE-2026-91415",
     "description" : "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: 2D).  Supported versions that are affected are Oracle Java SE: 8u503, 8u503-perf, 11.0.32.1, 17.0.20.1, 21.0.12.1, 25.0.4.1, 27; Oracle GraalVM for JDK: 17.0.20.1 and  21.0.12.1; Oracle GraalVM Enterprise Edition: 21.3.19.1.1. Difficult to exploit vulnerability allows unauthenticated attacker with network access via multiple protocols to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  Successful attacks of this vulnerability can result in unauthorized ability to cause a hang or frequently repeatable crash (complete DOS) of Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition as well as  unauthorized update, insert or delete access to some of Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data and  unauthorized read access to a subset of Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 7.0 (Confidentiality, Integrity and Availability impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:L/I:L/A:H).",
     "publishedDate" : "2026-10-20T22:20:44.937",
@@ -1703,18 +1830,16 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118905"
   }, {
-    "id" : "CVE-2026-106933",
-    "description" : "The Blaze Demo Importer WordPress plugin before 1.0.17 does not sanitize uploaded SVG files and registers the SVG MIME type for the WordPress media library unconditionally, allowing authenticated users with the Author role or higher to upload a crafted SVG that executes arbitrary JavaScript in the browser of any user who opens the file.",
-    "publishedDate" : "2026-10-19T06:17:20.817",
-    "lastModifiedDate" : "2026-10-19T21:04:50.950",
-    "cvssScore" : 6.8,
-    "severity" : "MEDIUM",
+    "id" : "CVE-2026-120439",
+    "description" : "QuickJS-NG before 0.16.0 contains an integer overflow in js_typed_array_sort() in quickjs.c that allows attackers to cause a heap buffer overflow on 32-bit hosts. Attackers who can run JavaScript can call TypedArray.prototype.sort with a comparator on a typed array near 2^30 elements, wrapping the allocation size and writing indices past the buffer to crash or potentially execute code.",
+    "publishedDate" : "2026-11-02T15:17:25.937",
+    "lastModifiedDate" : "2026-11-02T19:34:23.993",
+    "cvssScore" : 7.0,
+    "severity" : "HIGH",
     "inKev" : false,
-    "epssScore" : 0.0017,
-    "epssPercentile" : 0.0598,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-106933"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120439"
   }, {
     "id" : "CVE-2026-91398",
     "description" : "Vulnerability in the Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition product of Oracle Java SE (component: Networking).  Supported versions that are affected are Oracle Java SE: 8u503, 8u503-perf, 11.0.32.1, 17.0.20.1, 21.0.12.1, 25.0.4.1, 27;    Oracle GraalVM for JDK: 17.0.20.1 and  21.0.12.1;   Oracle GraalVM Enterprise Edition: 21.3.19.1.1. Difficult to exploit vulnerability allows unauthenticated attacker with network access via SOCKS5 to compromise Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition.  While the vulnerability is in Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized creation, deletion or modification access to critical data or all Oracle Java SE, Oracle GraalVM for JDK, Oracle GraalVM Enterprise Edition accessible data. Note: This vulnerability can be exploited by using APIs in the specified Component, e.g., through a web service which supplies data to the APIs. This vulnerability also applies to Java deployments, typically in clients running sandboxed Java Web Start applications or sandboxed Java applets, that load and run untrusted code (e.g., code that comes from the internet) and rely on the Java sandbox for security. CVSS 3.1 Base Score 6.8 (Integrity impacts).  CVSS Vector: (CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N).",
@@ -1845,6 +1970,17 @@
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119764"
+  }, {
+    "id" : "CVE-2026-28645",
+    "description" : "In onStrongAuthRequiredChanged of UsbService.java, there is a possible unauthenticated enabling of USB data due to a logic error in the code. This could lead to physical escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:42.373",
+    "lastModifiedDate" : "2026-11-02T21:17:30.900",
+    "cvssScore" : 6.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-28645"
   }, {
     "id" : "CVE-2026-106072",
     "description" : "A flaw in Node.js TLS hostname verification allows a certificate with only a DNS SAN to authenticate an IP endpoint when the client connects using a non-canonical IPv4 spelling, such as `0177.0.0.1`, `0x7f.0.0.1`, `2130706433` or `127.1`.\n\n`tls.checkServerIdentity()` did not classify these hosts as IP addresses, but normalized them to their canonical form and matched the result against the certificate DNS names. A certificate containing `DNS:127.0.0.1` and no `IP Address:127.0.0.1` SAN was therefore accepted, while the same certificate is correctly rejected for `127.0.0.1`. Exploitation requires a certificate with a numeric DNS SAN issued by a CA trusted by the client, and a platform resolver that accepts these spellings, such as glibc.\n\nThis vulnerability affects Node.js **26.x**, **24.x**, and **22.x**.",
@@ -2312,32 +2448,6 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120319"
   }, {
-    "id" : "CVE-2023-38375",
-    "description" : "IBM Cloud Pak System 2.3.6.0, and 2.3.6.1 is vulnerable to cross-site scripting. This vulnerability allows users to embed arbitrary JavaScript code in the Web UI thus altering the intended functionality potentially leading to credentials disclosure within a trusted session.",
-    "publishedDate" : "2026-10-19T18:16:57.533",
-    "lastModifiedDate" : "2026-10-20T17:17:25.953",
-    "cvssScore" : 6.1,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00253,
-    "epssPercentile" : 0.15784,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2023-38375"
-  }, {
-    "id" : "CVE-2026-4413",
-    "description" : "IBM Concert 1.0 through 3.0.0 is vulnerable to cross-site scripting. This vulnerability allows an unauthenticated attacker to embed arbitrary JavaScript code in the Web UI thus altering the intended functionality potentially leading to credentials disclosure within a trusted session.",
-    "publishedDate" : "2026-10-19T18:17:07.753",
-    "lastModifiedDate" : "2026-10-19T20:55:02.217",
-    "cvssScore" : 6.1,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00275,
-    "epssPercentile" : 0.18759,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-4413"
-  }, {
     "id" : "CVE-2026-110306",
     "description" : "fast-uri is a dependency-free RFC 3986 URI parser and serializer for Node.js. In versions before 2.4.8, from 3.0.0 through 3.1.8, and from 4.0.0 through 4.2.2, fast-uri percent-decodes the scheme component with the legacy global unescape() function before validating it, so an input whose decoded scheme is a dangerous token is emitted as a live scheme even though RFC 3986 does not allow percent-encoding in a scheme and no other parser accepts it. An application that screens dangerous schemes on the raw input and then stores or renders the normalized or resolved result can turn an inert string into an executable javascript, data, or vbscript URL, producing a stored or reflected cross-site scripting vector, and the equal() comparison treats an encoded and a plain scheme as the same, which can bypass equality-based allowlists. The issue is fixed in fast-uri 2.4.8, 3.1.9, and 4.2.3, and users should upgrade to one of these versions or later. As a workaround, reject input whose scheme part contains a percent sign, or check the parsed scheme against an allowlist after normalization and use that same parsed result rather than the raw string.",
     "publishedDate" : "2026-10-20T07:17:08.810",
@@ -2720,6 +2830,39 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-7004"
   }, {
+    "id" : "CVE-2026-120428",
+    "description" : "PandaWiki 3.65.0 through 3.87.5 contains a stored cross-site scripting vulnerability that allows unauthenticated attackers to upload HTML files with image extensions via /share/v1/common/file/upload. Attackers can lure administrators to /static-file/<key>?a=.pdf, bypassing the nginx attachment header to serve HTML inline and steal the panda_wiki_token JWT for session takeover.",
+    "publishedDate" : "2026-11-02T15:17:24.010",
+    "lastModifiedDate" : "2026-11-02T19:35:33.347",
+    "cvssScore" : 6.1,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "nginx" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120428"
+  }, {
+    "id" : "CVE-2026-2102",
+    "description" : "wrensec-commons contains a reflected cross-site scripting (XSS) vulnerability in the CREST framework's HTTP binding. The HttpUtils.prepareResponse() method used the _mimeType request parameter to set the Content-Type response header without proper sanitization. By sending a GET request with _mimeType=text/html, an attacker could cause the browser to interpret a CREST JSON response as HTML, enabling execution of arbitrary JavaScript in the victim's browser. The vulnerability is exploitable by tricking a user into visiting a crafted URL targeting any deployed CREST endpoint. The issue is fixed in versions 22.6.2 and 23.0.0.",
+    "publishedDate" : "2026-11-02T16:17:40.697",
+    "lastModifiedDate" : "2026-11-02T17:17:43.960",
+    "cvssScore" : 6.1,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-2102"
+  }, {
+    "id" : "CVE-2025-5769",
+    "description" : "The authentication endpoint does not properly encode user-supplied input before rendering it within the web page. This lack of output encoding allows an attacker to inject malicious JavaScript payloads into the authentication flow, which are then executed by the victim's browser.\n\nBy exploiting this vulnerability, an attacker can redirect the user's browser to a malicious website, modify the content of the web page displayed to the user, or exfiltrate information from the browser. However, due to the implementation of the httpOnly flag on session-related sensitive cookies, session hijacking and similar attacks are not possible.",
+    "publishedDate" : "2026-11-03T07:17:41.527",
+    "lastModifiedDate" : "2026-11-03T07:17:41.527",
+    "cvssScore" : 6.1,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2025-5769"
+  }, {
     "id" : "CVE-2026-91649",
     "description" : "Vulnerability in Oracle Essbase (component: Java Based Agent).   The supported version that is affected is 21.8.3.0.0. Easily exploitable vulnerability allows high privileged attacker with logon to the infrastructure where Oracle Essbase executes to compromise Oracle Essbase.  While the vulnerability is in Oracle Essbase, attacks may significantly impact additional products (scope change).  Successful attacks of this vulnerability can result in  unauthorized access to critical data or complete access to all Oracle Essbase accessible data. CVSS 3.1 Base Score 6.0 (Confidentiality impacts).  CVSS Vector: (CVSS:3.1/AV:L/AC:L/PR:H/UI:N/S:C/C:H/I:N/A:N).",
     "publishedDate" : "2026-10-20T22:21:05.123",
@@ -2732,19 +2875,6 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-91649"
-  }, {
-    "id" : "CVE-2026-85248",
-    "description" : "Concurrent Execution using Shared Resource with Improper Synchronization ('Race Condition') vulnerability in Apache Camel PQC component.\n\nThis issue affects Apache Camel: from 4.12.0 before 4.18.5, from 4.19.0 before 4.22.1.\n\n\n\n\nThe producer held a single java.security.Signature instance and used it for every exchange without synchronizing access. Signature is stateful and is not thread safe: update() accumulates the data to be signed or verified, and verify() consumes that accumulated state. With concurrent exchanges sharing one instance the update and verify calls of different messages interleave, so a verification can complete against data that belongs to another exchange, or against a partially accumulated buffer. The outcome is non-deterministic and includes a verification reporting success for a message whose signature was never actually checked, which defeats the guarantee the component exists to provide. Reaching it requires concurrent traffic through the same endpoint, which is the ordinary condition for a Camel route under load.\n\nUpgrade to Apache Camel 4.23.0, which fixes the issue. Users on the 4.18.x LTS releases stream should upgrade to 4.18.5. Users on the 4.22.x LTS releases stream should upgrade to 4.22.1. The Signature instance is no longer shared across concurrent exchanges. For deployments that cannot upgrade immediately, restrict the affected route to a single concurrent consumer so that no two exchanges use the instance at once.",
-    "publishedDate" : "2026-10-19T11:17:22.970",
-    "lastModifiedDate" : "2026-10-19T20:45:51.597",
-    "cvssScore" : 5.9,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00362,
-    "epssPercentile" : 0.28605,
-    "matchedKeywords" : [ "java" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-85248"
   }, {
     "id" : "CVE-2026-112950",
     "description" : "Vitest is a Vite-native testing framework for JavaScript and TypeScript projects. From 4.1.11 until 4.1.12 and 5.0.3, isFileLoadingAllowed and the filesystem read interpret backslashes differently on Windows in packages/mocker/src/node/interceptorPlugin.ts. When a client can reach the Vite dev server on Windows and register a redirect mock containing backslash traversal, POSIX joining preserves a Windows backslash traversal that the later filesystem read interprets as a path separator, so the client can read a file outside server.fs.allow that the Vitest process can access. This issue is fixed in versions 4.1.12 and 5.0.3.",
@@ -3035,7 +3165,7 @@
     "id" : "CVE-2026-120216",
     "description" : "fastify is a web framework for Node.js. In versions 5.8.0 through 5.12.7, when the server is configured with a nonzero handlerTimeout and a route returns a streaming response, a request whose stream has already sent its headers but stays open past the timeout crashes the server. When the timeout fires, Fastify tries to send a new error response on a response that has already started, raising an uncaught ERR_HTTP_HEADERS_SENT that terminates the Node.js process and interrupts any other in-flight requests. An unauthenticated remote client can trigger this with a single request to an affected streaming endpoint, so the impact is availability only, and exploitation requires the non-default handlerTimeout to be set. The default handlerTimeout of 0 is not affected. The issue is fixed in fastify 5.12.8, and users should upgrade to 5.12.8 or later. As a workaround, set handlerTimeout to 0, which disables the affected timeout path.",
     "publishedDate" : "2026-11-02T11:17:31.553",
-    "lastModifiedDate" : "2026-11-02T11:17:31.553",
+    "lastModifiedDate" : "2026-11-02T17:17:39.870",
     "cvssScore" : 5.9,
     "severity" : "MEDIUM",
     "inKev" : false,
@@ -3403,31 +3533,16 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120200"
   }, {
-    "id" : "CVE-2026-112363",
-    "description" : "Crawl4AI from 0.8.7 through 0.9.5 contains a server-side request forgery vulnerability in the Docker API server that allows unauthenticated attackers to bypass destination checks via URL userinfo parsing differences. Attackers can set fetch_ssl_certificate=true with crafted userinfo URLs so SSLCertificate.from_url connects to internal hosts on port 443, probing reachability and leaking certificate details.",
-    "publishedDate" : "2026-10-19T16:17:07.350",
-    "lastModifiedDate" : "2026-10-19T21:14:14.150",
-    "cvssScore" : 5.3,
+    "id" : "CVE-2026-119735",
+    "description" : "Munshi (by Petpooja) before 2026-07-13 contained a stored cross-site scripting vulnerability that allows authenticated users to inject malicious markup through item descriptions or messages submitted in the Purchase Inquiry thread (/purchase-inquiry/thread/{thread-id}), which is assigned to innerHTML during rendering before text cleaning completes. Attackers can store a payload that executes in the browser of another user who opens the affected thread, achieving JavaScript execution and full-page defacement that re-triggers whenever the thread is reopened.",
+    "publishedDate" : "2026-11-02T19:18:02.367",
+    "lastModifiedDate" : "2026-11-02T19:35:33.347",
+    "cvssScore" : 5.4,
     "severity" : "MEDIUM",
     "inKev" : false,
-    "epssScore" : 0.0017,
-    "epssPercentile" : 0.06053,
-    "matchedKeywords" : [ "docker" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112363"
-  }, {
-    "id" : "CVE-2026-111757",
-    "description" : "Hono is a Web application framework that provides support for any JavaScript runtime. From 4.12.4 until 4.13.11, serveStatic can interpret a malformed percent-encoded path differently from upstream routing middleware and bypass protection for a static prefix. The root cause is serveStatic decodes a routed request path a second time before filesystem lookup. The attack mechanism is malformed percent encoding survives the first routing interpretation and becomes a protected path only during the later static-file decode. The affected component is serveStatic. The trigger conditions are an application protects a static prefix with upstream middleware and serveStatic receives an attacker-controlled malformed percent-encoded path. The impact is unauthorized disclosure of a static file that upstream middleware was intended to protect. The issue does not permit traversal outside the configured static root. This issue is fixed in version 4.13.11.",
-    "publishedDate" : "2026-10-19T18:17:00.407",
-    "lastModifiedDate" : "2026-10-20T17:17:29.443",
-    "cvssScore" : 5.3,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00223,
-    "epssPercentile" : 0.1208,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111757"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119735"
   }, {
     "id" : "CVE-2026-113385",
     "description" : "A vulnerability has been found in LeeDrOiD Labs Shortcutter 2 App 9.0.48 on Android. This issue affects the function Class.forName of the file ToggleGeneric.java. The manipulation of the argument Class leads to improper export of android application components. Local access is required to approach this attack. The exploit has been disclosed to the public and may be used. Upgrading to version 9.0.90 is capable of addressing this issue. It is suggested to upgrade the affected component. The vendor was contacted early, responded in a very professional manner and quickly released a fixed version of the affected product.",
@@ -3807,13 +3922,26 @@
     "id" : "CVE-2026-120233",
     "description" : "A security flaw has been discovered in ag-ui-protocol ag-ui up to 0.0.58. This affects an unknown function of the file sdks/typescript/packages/client/src/agent/http.ts of the component HttpAgent. Performing a manipulation results in information disclosure. The attack can be initiated remotely. The exploit has been released to the public and may be used for attacks. The pull request to fix this issue awaits acceptance.",
     "publishedDate" : "2026-11-01T16:18:14.290",
-    "lastModifiedDate" : "2026-11-01T16:18:14.290",
+    "lastModifiedDate" : "2026-11-02T16:19:19.997",
     "cvssScore" : 5.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00414,
+    "epssPercentile" : 0.35661,
     "matchedKeywords" : [ "typescript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120233"
+  }, {
+    "id" : "CVE-2026-120440",
+    "description" : "QuickJS-NG before 0.16.0 contains a memory leak vulnerability in js_atomics_store() in quickjs.c that fails to free the converted value when returning a RangeError. Attackers running JavaScript can repeatedly call Atomics.store with a valueOf that detaches or shrinks the buffer to exhaust heap memory and cause denial of service.",
+    "publishedDate" : "2026-11-02T15:17:26.103",
+    "lastModifiedDate" : "2026-11-02T19:34:23.993",
+    "cvssScore" : 5.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120440"
   }, {
     "id" : "CVE-2026-59396",
     "description" : "A denial-of-service vulnerability exists in UAA's private_key_jwt client-authentication mechanism. When UAA retrieves a remote JWKS URI, it caches the response. Invalid authentication attempts can trigger full deserialization of this cached data. An attacker with prerequisites (write access to clients or a compromised endpoint) can send anonymous requests that force repeated parsing of large cached objects, causing excessive CPU usage and potential Java heap exhaustion via OutOfMemoryError, resulting in service unavailability.",
@@ -3827,19 +3955,6 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59396"
-  }, {
-    "id" : "CVE-2026-85301",
-    "description" : "Improper Authentication vulnerability in Apache Camel Keycloak component.\n\nThis issue affects Apache Camel: from 4.15.0 before 4.18.5, from 4.19.0 before 4.22.1.\n\n\n\n\nThe security processor validated the issuer of an introspected token only when the introspection response actually carried an iss claim. When the claim was absent the check was skipped rather than treated as a failure, so a token that the configured issuer did not mint could be accepted provided the introspection endpoint answered without naming an issuer. Reaching this requires an introspection endpoint that omits iss and accepts tokens from more than one issuer, which is not the default Keycloak arrangement, hence the low severity; where that arrangement exists the consequence is that the deployment authenticates a caller it should have rejected.\n\nUpgrade to Apache Camel 4.23.0, which fixes the issue. Users on the 4.18.x LTS releases stream should upgrade to 4.18.5. Users on the 4.22.x LTS releases stream should upgrade to 4.22.1. An absent iss claim is now treated as a validation failure rather than as a reason to skip the check. For deployments that cannot upgrade immediately, ensure the introspection endpoint returns the iss claim, and that it serves exactly one issuer.",
-    "publishedDate" : "2026-10-19T11:17:24.290",
-    "lastModifiedDate" : "2026-10-19T20:45:51.597",
-    "cvssScore" : 4.8,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00354,
-    "epssPercentile" : 0.27661,
-    "matchedKeywords" : [ "keycloak" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-85301"
   }, {
     "id" : "CVE-2026-110180",
     "description" : "fast-uri is a dependency-free RFC 3986 URI parser and serializer for Node.js. In versions from 2.4.2 through 2.4.7, from 3.1.3 through 3.1.8, and from 4.0.1 through 4.2.2, for HTTP-family schemes the canonicalizeHost() function passes the parsed host to the WHATWG URL parser and adopts its hostname without checking that the parser consumed the entire input as a host, so the authority can be silently rewritten: data before an at-sign is dropped and tab, carriage-return, and line-feed characters are stripped, with no error reported. An application that enforces host-based policy such as denylists, loopback filtering, redirect validation, or outbound proxy routing on one representation can then see the canonical host diverge from what it checked, allowing traffic to be steered to an unintended destination. The issue is fixed in fast-uri 2.4.8, 3.1.9, and 4.2.3, and users should upgrade to one of these versions or later. As a workaround, reject an authority that contains more than one at-sign or any tab, carriage-return, or line-feed before calling fast-uri, or treat any non-empty parse error as fatal and compare hosts only from the same parse result.",
@@ -3995,19 +4110,6 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118777"
   }, {
-    "id" : "CVE-2026-112290",
-    "description" : "Intelligence Community UI Kit @ukic/canary-web-components 3.0.0-canary.12 before 3.0.0-canary.48 contains a DOM-based cross-site scripting vulnerability in ic-tree-item that re-parses router-item slot text as HTML. When tree item truncation is enabled, attackers who influence a tree item label can have escaped markup decoded by truncateTreeItemLabel() and executed as JavaScript in visitors' browsers.",
-    "publishedDate" : "2026-10-19T14:17:07.600",
-    "lastModifiedDate" : "2026-10-19T21:13:39.973",
-    "cvssScore" : 4.7,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00183,
-    "epssPercentile" : 0.07396,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112290"
-  }, {
     "id" : "CVE-2026-112949",
     "description" : "Vitest is a Vite-native testing framework for JavaScript and TypeScript projects. From 2.1.0-beta.7 until 4.1.12 and 5.0.3, an unauthenticated non-browser WebSocket client that can reach a development server using interceptorPlugin can register a manual mock whose attacker-controlled url createManualModuleSource inserts unescaped into generated module source. When the developer browser loads the affected module, attacker-controlled JavaScript executes on the development-server origin. This issue is fixed in versions 4.1.12 and 5.0.3.",
     "publishedDate" : "2026-10-20T16:17:05.660",
@@ -4137,19 +4239,6 @@
     "matchedKeywords" : [ "kubernetes", "nginx" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119573"
-  }, {
-    "id" : "CVE-2025-6623",
-    "description" : "The carbon console accepts user-supplied XML input without sufficiently encoding potentially executable content, allowing for the injection of malicious scripts.\n\nSuccessful exploitation allows a remote attacker to execute arbitrary JavaScript in the context of a victim's browser, leading to actions such as redirecting the user to a malicious website or modifying the web page's user interface. Session hijacking is not possible as sensitive session cookies are protected by the httpOnly flag.",
-    "publishedDate" : "2026-10-19T17:16:59.797",
-    "lastModifiedDate" : "2026-10-20T20:17:11.003",
-    "cvssScore" : 4.3,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00222,
-    "epssPercentile" : 0.12047,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2025-6623"
   }, {
     "id" : "CVE-2026-112952",
     "description" : "ApostropheCMS is an open-source Node.js content management system. Prior to 4.34.0, 'POST /api/v1/@apostrophecms/doc/slugTaken' with body { \"slug\": \"target-slug\" } returns a boolean indicating whether a slug is in use across all document types and visibility levels, with no permission or type filter. Any logged-in user (including editors) can enumerate the slug space of private pages, drafts, and archived content. This issue is fixed in version 4.34.0.",
@@ -4349,10 +4438,12 @@
     "id" : "CVE-2026-120235",
     "description" : "A security vulnerability has been detected in ag-ui-protocol ag-ui up to 0.0.58. Affected is the function parseSSEStream of the file sdks/typescript/packages/client/src/transform/sse.ts of the component SSE Parser. The manipulation leads to resource consumption. The attack may be initiated remotely. The exploit has been disclosed publicly and may be used. The identifier of the patch is 9e7b2b00bce215bbf731f1e6094f63812527c432. The affected component should be upgraded.",
     "publishedDate" : "2026-11-01T16:18:14.757",
-    "lastModifiedDate" : "2026-11-01T16:18:14.757",
+    "lastModifiedDate" : "2026-11-02T18:18:48.030",
     "cvssScore" : 4.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00354,
+    "epssPercentile" : 0.29059,
     "matchedKeywords" : [ "typescript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120235"
@@ -4360,10 +4451,12 @@
     "id" : "CVE-2026-120237",
     "description" : "A flaw has been found in ag-ui-protocol ag-ui up to 0.0.58. Affected by this issue is the function isInterruptExpired of the file sdks/typescript/packages/client/src/interrupts/index.ts of the component Interrupt expiry. This manipulation causes resource consumption. Remote exploitation of the attack is possible. The exploit has been published and may be used. The pull request to fix this issue awaits acceptance.",
     "publishedDate" : "2026-11-01T18:17:13.497",
-    "lastModifiedDate" : "2026-11-01T18:17:13.497",
+    "lastModifiedDate" : "2026-11-02T16:19:19.997",
     "cvssScore" : 4.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00407,
+    "epssPercentile" : 0.34937,
     "matchedKeywords" : [ "typescript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120237"
@@ -4746,7 +4839,7 @@
     "id" : "CVE-2026-120215",
     "description" : "@fastify/cors is the CORS plugin for the Fastify web framework. In versions 8.2.0 through 11.3.x, an application that registers the plugin with the non-default onSend hook option crashes on a CORS preflight. On an OPTIONS request that carries the Origin and Access-Control-Request-Method headers, the plugin calls reply.send from inside the onSend hook and re-enters the send pipeline, so a second write of the response headers throws an uncaught ERR_HTTP_HEADERS_SENT that can terminate the Node.js process when no process-level handler is installed. An unauthenticated remote client can trigger this with a single preflight request, so the impact is availability only, and exploitation requires the non-default onSend configuration. The issue is fixed in @fastify/cors 11.4.0, where onSend is no longer an accepted hook value and registration fails with a clear error instead of crashing at request time, and users should upgrade to 11.4.0 or later. As a workaround, use any other hook such as the default onRequest, or set preflight to false.",
     "publishedDate" : "2026-11-02T11:17:31.413",
-    "lastModifiedDate" : "2026-11-02T11:17:31.413",
+    "lastModifiedDate" : "2026-11-02T17:17:39.737",
     "cvssScore" : 3.7,
     "severity" : "LOW",
     "inKev" : false,
@@ -4974,52 +5067,6 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-91335"
-  }, {
-    "id" : "CVE-2026-112184",
-    "description" : "MISP contains a reflected cross-site scripting (XSS) vulnerability in the workflow module interface. Parameter names returned by the misp-modules service are rendered as raw HTML form labels on the workflow module page without output encoding. An attacker who can influence the parameter names reported by the misp-modules service can inject arbitrary HTML or JavaScript that executes in the context of an authenticated MISP user's browser.\n\nPreconditions:\n\n- The attacker must be able to control or influence parameter names reported by the misp-modules service.\n\n- A victim must be authenticated and view the affected workflow module page.\n\nImpact:\n\n- Execution of arbitrary JavaScript in the victim's browser session.\n\n- Potential theft of session tokens, manipulation of the MISP interface, or initiation of unauthorized actions on behalf of the victim.\n\nAffected versions: <2.5.48.",
-    "publishedDate" : "2026-10-19T10:16:47.210",
-    "lastModifiedDate" : "2026-10-19T18:17:03.870",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112184"
-  }, {
-    "id" : "CVE-2026-78162",
-    "description" : "Deserialization of Untrusted Data vulnerability in Apache Camel.\n\n\n\nThis issue affects Apache Camel: from 4.0.0 before 4.18.5, from 4.19.0 before 4.22.1.\n\n\n\nThe camel-hazelcast component applies a default Hazelcast JavaSerializationFilterConfig to the instances it creates from its own configuration, a protection introduced by CVE-2026-43865. That change did not reach two of the configuration paths Camel builds itself, so those paths continued to create Hazelcast instances whose Java deserialization is unrestricted. ReplicatedHazelcastAggregationRepository extends HazelcastAggregationRepository but overrides doStart() without calling super.doStart(), keeping its own copy of the bootstrap block, and therefore never received the filter: a route using it without supplying a hazelcastInstance starts a Hazelcast member that deserializes values read from the backing ReplicatedMap with no class restriction. HazelcastDefaultComponent#getOrCreateHzClientInstance() builds its own ClientConfig when hazelcastMode=client is selected and neither a referenced ClientConfig nor hazelcastConfigUri is supplied, and likewise applied no filter, so client-mode endpoints behaved differently from node-mode endpoints for an otherwise identical configuration. In both cases an attacker able to publish into the Hazelcast cluster that the affected instance is attached to can cause a serialized Java object of their choosing to be deserialized inside Hazelcast's own serialization layer, before Camel processes the exchange, resulting in remote code execution. Hazelcast clusters have neither authentication nor TLS enabled by default. Selecting client mode is a topology choice rather than a security option, so neither path required the deployment to opt in to unsafe behaviour.\n\n\n\nUsers are recommended to upgrade to version 4.23.0, which fixes the issue. If users are on the 4.22.x releases stream, then they are suggested to upgrade to 4.22.1. If users are on the 4.18.x releases stream, then they are suggested to upgrade to 4.18.5. The 4.14.x releases stream and earlier reached end of life before this issue was resolved and will not receive a fix, so deployments on those lines must move to a supported release. For deployments that cannot upgrade immediately, supply an explicit Hazelcast configuration carrying a JavaSerializationFilterConfig, or inject a pre-built HazelcastInstance, since a user-supplied configuration is never overwritten by Camel. Alternatively set the JVM-wide filter -Djdk.serialFilter=!java.net.;java.;javax.;org.apache.camel.;!* and enable Hazelcast cluster authentication and TLS to restrict who can reach the cluster.",
-    "publishedDate" : "2026-10-19T11:17:19.037",
-    "lastModifiedDate" : "2026-10-20T04:17:02.327",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.01263,
-    "epssPercentile" : 0.69296,
-    "matchedKeywords" : [ "java" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-78162"
-  }, {
-    "id" : "CVE-2026-111755",
-    "description" : "follow-redirects is a Node.js HTTP and HTTPS client wrapper that automatically follows redirects. From 1.16.0 until 1.16.1, escapeRegex leaves valid header-name metacharacters unescaped in sensitiveHeaders. When an application declares a sensitive header whose name contains ^ or | and follows a cross-origin or HTTPS-to-HTTP redirect, unescaped regular-expression metacharacters prevent the generated filter from matching the declared header name, and the credential header is forwarded to an attacker-controlled redirect target. This issue is fixed in version 1.16.1.",
-    "publishedDate" : "2026-10-19T18:17:00.260",
-    "lastModifiedDate" : "2026-10-19T21:13:39.973",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00436,
-    "epssPercentile" : 0.36598,
-    "matchedKeywords" : [ "node.js" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111755"
-  }, {
-    "id" : "CVE-2026-112778",
-    "description" : "Traefik before 2.11.46, 3.x before 3.6.17, and 3.7.0 lack namespace validation for Ingress and Service annotations in the Kubernetes Ingress provider, allowing references to Middlewares, ServersTransports, and TLSOptions in other namespaces. Attackers able to create or update Ingress or Service resources in one namespace can set router.middlewares or service.serverstransport annotations to obtain another tenant's injected credentials or reuse its client certificates, bypassing namespace-based tenant isolation.",
-    "publishedDate" : "2026-10-19T20:17:55.187",
-    "lastModifiedDate" : "2026-10-19T22:17:08.513",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00188,
-    "epssPercentile" : 0.0792,
-    "matchedKeywords" : [ "kubernetes" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112778"
   }, {
     "id" : "CVE-2026-86467",
     "description" : "Apache Airflow Amazon provider: the AWS auth manager's SAML login flow does not bind the authentication response to the browser that began it. The login handler discards the AuthnRequest ID and the callback validates the assertion without requiring a matching InResponseTo, so an unauthenticated attacker who can cause a victim to load a page can complete a SAML login in the victim's browser using the attacker's own assertion, silently logging the victim into the attacker's Airflow account. Subsequent work the victim performs lands in a session the attacker controls.\n\nAffects deployments using the AWS auth manager with SAML authentication. The victim needs only to visit an attacker-controlled page; no Airflow account or credential is required of the attacker. This is the same login-CSRF class fixed in the Keycloak auth manager as CVE-2026-40948.\n\nUsers of apache-airflow-providers-amazon are recommended to upgrade to version 9.38.0, which fixes the issue.",
@@ -6624,7 +6671,7 @@
     "id" : "CVE-2026-111089",
     "description" : "Apache Wicket reads texts from the application's resource bundles — a localized label, a css class name — and writes some of them into the JavaScript and the markup it generates for a component. Those texts are placed inside single-quoted JavaScript string literals and inside quoted attribute values without being escaped for that context, so a text containing a quote ends the literal or the attribute, and what follows is parsed as script or as markup in the application's origin when the page loads.\n\nA resource bundle entry is authored for the application and does not say where the framework will write it. The same key is read by the framework into element text, where Wicket escapes it, and into the contexts below, where it did not. A text containing an apostrophe, which is ordinary in several languages, is enough to break the page; a text under the influence of another party is enough to run script.\n\nIn org.apache.wicket:wicket-core, org.apache.wicket.markup.html.form.upload.MultiFileUploadField writes the org.apache.wicket.mfu.delete message into a JavaScript string literal, and org.apache.wicket.markup.html.form.Form writes the hidden-fields css class into the class attribute of the container it renders for its hidden fields; on 8.0.0 through 8.19.0 and 9.0.0 through 9.24.0 Form#appendDefaultButtonField writes the same css class into a second container. In org.apache.wicket:wicket-extensions, UploadProgressBar writes its UploadProgressBar.starting text into a JavaScript string literal, FilterForm writes the hidden-fields css class into the class attribute of its hidden input markup, and on 9.0.0 through 9.24.0 and 10.0.0 through 10.11.0 TrapFocusBehavior writes its current css class into a JavaScript string literal.\n\nThe Content-Security-Policy that Apache Wicket 9.x and 10.x send by default does not prevent the JavaScript cases: the generated script is written into a script element carrying the per-response nonce, so the injected code is part of a script the policy admits. It does prevent an inline event handler injected through the attribute cases.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0, from 9.0.0 through 9.24.0, from 10.0.0 through 10.11.0. Users of Apache Wicket 7.x or older, which are no longer supported, should upgrade to a supported version. Users are recommended to upgrade to version 8.20.0, 9.25.0 or 10.12.0, which fix the issue.",
     "publishedDate" : "2026-11-01T23:17:28.697",
-    "lastModifiedDate" : "2026-11-01T23:17:28.697",
+    "lastModifiedDate" : "2026-11-02T16:13:27.570",
     "severity" : "UNKNOWN",
     "inKev" : false,
     "matchedKeywords" : [ "javascript" ],
@@ -6634,7 +6681,7 @@
     "id" : "CVE-2026-82956",
     "description" : "Improper neutralization of input during web page generation in Apache Wicket.\n\norg.apache.wicket.ajax.AjaxNewWindowNotifyingBehavior notices that a page instance has been opened in a second browser window or tab. It asks the browser for the value of window.name, which reaches the server as the request parameter windowName, and remembers what the browser reported in a field of the behaviour. That field is part of the page's serialized state, so the remembered value stays in the page store for as long as the page instance does.\n\nOn every later render of that page instance the behaviour builds the precondition of its Ajax call by substituting the remembered value into a single-quoted JavaScript string literal, and Wicket writes that precondition into the page as raw JavaScript, because the precondition of an Ajax call listener is script supplied by the caller and is emitted without quoting or escaping. Nothing on that path escapes the value. The window name is client-supplied and Wicket applies no validation to it, so a remembered name containing a single quote ends the literal and the rest of it runs as script in the application's origin, every time that page instance is rendered.\n\nAn application is affected only where it has explicitly added AjaxNewWindowNotifyingBehavior to a component. No part of the framework installs the behaviour, so an application that does not use it is not affected. The name the behaviour generates for itself, when the browser reports no name at all, is a random UUID and is not client-supplied.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0, from 9.0.0 through 9.24.0, from 10.0.0 through 10.11.0.\n\nUsers are recommended to upgrade to version 8.20.0, 9.25.0 or 10.12.0, which fix the issue.",
     "publishedDate" : "2026-11-01T23:17:29.130",
-    "lastModifiedDate" : "2026-11-01T23:17:29.130",
+    "lastModifiedDate" : "2026-11-02T16:13:27.570",
     "severity" : "UNKNOWN",
     "inKev" : false,
     "matchedKeywords" : [ "javascript" ],
@@ -6644,7 +6691,7 @@
     "id" : "CVE-2026-83559",
     "description" : "Improper encoding or escaping of output in Apache Wicket.\n\norg.apache.wicket.core.util.string.JavaScriptUtils#escapeQuotes() replaces each single quote in its input with a backslash and a single quote, and each double quote with a backslash and a double quote, so that the value can be placed inside a JavaScript string literal. It does not escape the backslash, which is the character that has to be escaped, and escaped first, for the rest of that escaping to hold. A value that already holds a backslash immediately before a quote therefore ends up with two backslashes in front of that quote: the first escapes the second, the quote itself is left unescaped, and it closes the literal. Whatever the value carries after that point is no longer text but JavaScript, and it runs in the application's origin and in the session of the user looking at the page. The method is public, is not deprecated, and its documentation states that its result can be part of a JavaScript call such as an alert; the only limitation it notes concerns JSON values, which need different escaping.\n\nAn application is affected wherever it calls the method itself and places the result inside a JavaScript string literal, from its own code or from a component of its own or of a third party, and the value it escapes holds data an attacker can influence. There is no further condition, and no component of Wicket has to be involved: the application is using the method for what its documentation offers, and the method does not deliver it.\n\nTwo components shipped with Wicket Extensions pass a value through the method. org.apache.wicket.extensions.ajax.markup.html.AjaxEditableLabel writes the editor's first error feedback message into a single-quoted JavaScript string literal in the Ajax response, so an application is affected through that component where the message shown for a failed edit holds data an attacker can influence, whether that is the submitted value itself or another variable the application sets on the validation error. A validation message can carry the submitted value, because input is a message variable that every form component supplies for its own validation errors, and the documentation shows overriding a validator's message to include it; none of the message bundles shipped with Wicket interpolates it, so an application that has not written such a message is not affected through this component. org.apache.wicket.extensions.ajax.markup.html.repeater.AjaxListPanel passes the serialized markup tag of an appended component through the method and is not affected: the tag comes from the panel's own markup file, and a quote in any of its attribute values, the component's markup id included, is written as a character reference by the tag serialization and cannot close the literal.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0, from 9.0.0 through 9.24.0, from 10.0.0 through 10.11.0. Users of Apache Wicket 7.x or older, which are no longer supported, should upgrade to a supported version.\n\nUsers are recommended to upgrade to version 8.20.0, 9.25.0 or 10.12.0, which fix the issue.",
     "publishedDate" : "2026-11-01T23:17:29.513",
-    "lastModifiedDate" : "2026-11-01T23:17:29.513",
+    "lastModifiedDate" : "2026-11-02T16:13:27.570",
     "severity" : "UNKNOWN",
     "inKev" : false,
     "matchedKeywords" : [ "javascript" ],
@@ -6654,7 +6701,7 @@
     "id" : "CVE-2026-83594",
     "description" : "Memory allocation with an excessive size value in Apache Wicket.\n\norg.apache.wicket.markup.html.form.upload.resource.FileUploadToResourceField uploads files to a separately mounted resource rather than through a form, and is told the outcome afterwards over its own Ajax callback. That callback reads the request parameter filesInfo, a JSON array carrying a client file name, a size and a content type for each file, and turns it into the list of FileUploadToResourceField.UploadInfo that onUploadSuccess() receives. Nothing binds that JSON to an upload the resource performed and nothing re-derives it from the stored files, so the number of entries and every value in them are whatever the request supplied. The callback URL is rendered into the page, no prior upload is required, and both GET and POST reach it, so any client that can load the page can have the component report files that were never uploaded, without authenticating beyond whatever the page itself requires and without any user interaction.\n\nUploadInfo#get(), which the class offers as the way to obtain the bytes of an upload, allocates a byte array from UploadInfo#getSize() before it opens the file. The array is therefore sized by the number the request supplied, and the allocation happens even for a file that was never stored. One small request can cost the server close to two gigabytes of heap, and the request is trivially repeatable, so a few of them exhaust the heap for every request the Java virtual machine is serving. A size that the conversion to int turns negative instead throws NegativeArraySizeException, which the exception handler inside that method does not cover, so it escapes into the application.\n\nAn application is affected where it uses FileUploadToResourceField, which is not the ordinary upload path through FileUploadField and Form and has to be extended and mounted deliberately. The allocation additionally requires the application to call UploadInfo#get() rather than reading UploadInfo#getFile() itself. Where the application denies the ENABLE action on the field through its authorization strategy, the callback is refused like any other listener. The 8.x line does not contain this component and is not affected.\n\nThis issue affects Apache Wicket: from 9.14.0 through 9.24.0, from 10.0.0 through 10.11.0. Users are recommended to upgrade to version 9.25.0 or 10.12.0, which fix the issue.",
     "publishedDate" : "2026-11-01T23:17:29.723",
-    "lastModifiedDate" : "2026-11-01T23:17:29.723",
+    "lastModifiedDate" : "2026-11-02T16:13:27.570",
     "severity" : "UNKNOWN",
     "inKev" : false,
     "matchedKeywords" : [ "java" ],
@@ -6664,7 +6711,7 @@
     "id" : "CVE-2026-84177",
     "description" : "Incorrect behavior order in Apache Wicket: a file path is validated before the framework appends the attributes that complete it.\n\norg.apache.wicket.request.resource.PackageResource asks the configured package resource guard about a path built from the scope class' package and the file name in the request URL, and then hands that same path to the resource stream locator together with a style, a variation and a locale. Those three attributes are decoded from the name of the first query parameter and never appear in the string the guard was given. org.apache.wicket.core.util.resource.locator.ResourceNameIterator appends them to that path, each preceded by an underscore, in the order variation, style, locale, before the file extension, so the file that is opened is not the file the guard approved.\n\norg.apache.wicket.markup.html.PackageResourceGuard decides whether an HTML file is a component's markup template by looking for a class file of the same name beside it, stripping one underscore-delimited suffix at a time as it goes. HTML is on the default allow list, so that check is the only thing separating a static HTML file, which may be served, from a markup template, which may not. Asked about the name of a template, the guard refuses it correctly. Asked about a shorter name for which no class exists, it accepts, and a style supplied in the URL then completes that name into the markup template of a component class, which is written to the response.\n\nAn application is affected if the simple name of any of its component classes contains an underscore and no shorter part of that name is itself a class, such as Report_v2 or Wizard_Step1; an application with no such class name is not affected. No unusual deployment, packaging or configuration is required, and running in deployment rather than development mode does not prevent it. Java naming conventions discourage underscores in class names and no module Wicket ships has one, so no framework markup is exposed; what an application exposes this way is its own. A component whose class name has no underscore is not reachable, and neither is its localized or styled markup, because the guard finds the class file under the base name and refuses the request. The attributes cannot change the file extension and cannot leave the component's package, so nothing beyond HTML files in that package is reachable. Access is read-only, and what is disclosed is developer-authored template content: component structure, developer comments, markup that is rendered only under some conditions, inline script, and the endpoints a template names. No user data, credential or session material is reachable this way. An attacker has to name a class in the target package and the component itself, and Wicket writes fully qualified class names into the URL of every package resource it renders.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0, from 9.0.0 through 9.24.0, from 10.0.0 through 10.11.0. Users of Apache Wicket 7.x or older, which are no longer supported, should upgrade to a supported version. Users are recommended to upgrade to version 8.20.0, 9.25.0 or 10.12.0, which fix the issue.",
     "publishedDate" : "2026-11-01T23:17:30.317",
-    "lastModifiedDate" : "2026-11-01T23:17:30.317",
+    "lastModifiedDate" : "2026-11-02T16:13:27.570",
     "severity" : "UNKNOWN",
     "inKev" : false,
     "matchedKeywords" : [ "java" ],
@@ -6674,7 +6721,7 @@
     "id" : "CVE-2026-84231",
     "description" : "Improper neutralization of input during web page generation in Apache Wicket.\n\norg.apache.wicket.markup.html.link.ExternalLink builds a JavaScript click handler and writes it into the tag's onclick attribute whenever the markup tag the component is bound to is not an a, link or area element. The URL held in the component's model is concatenated into a single-quoted JavaScript string literal in that handler without being escaped for that context. The same happens on the neighbouring branch, taken when popup settings are attached, where the value is concatenated into the window.open() call built by org.apache.wicket.markup.html.link.PopupSettings#getPopupJavaScript(). The only escaping applied is the markup escaping that every attribute value receives as the tag is written, which replaces an apostrophe with a character reference. A browser decodes character references in an attribute value before it compiles the event handler, so the apostrophe is restored, closes the string literal, and the rest of the model value is executed as script in the application's origin.\n\nAn application is affected where it binds an ExternalLink to a markup tag that is not an anchor, such as a button or a span, and the URL in the model holds data an attacker can influence, which is the ordinary use of the component rather than a misuse of it. Nothing runs until a user activates the element.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0. Users of Apache Wicket 7.x or older, which are no longer supported, should upgrade to a supported version.\n\nUsers are recommended to upgrade to version 8.20.0, which fixes the issue.",
     "publishedDate" : "2026-11-01T23:17:30.550",
-    "lastModifiedDate" : "2026-11-01T23:17:30.550",
+    "lastModifiedDate" : "2026-11-02T16:13:27.570",
     "severity" : "UNKNOWN",
     "inKev" : false,
     "matchedKeywords" : [ "javascript" ],
@@ -6684,11 +6731,541 @@
     "id" : "CVE-2026-95863",
     "description" : "Improper neutralization of input during web page generation in Apache Wicket.\n\nApache Wicket generates JavaScript that refers to the elements it renders, and\nwrites into that JavaScript two values it derives itself: a component's markup\nid, and the input name of a form component, which is built from component ids.\nBoth are placed inside single-quoted JavaScript string literals without being\nescaped for that context, so a value containing a single quote or a backslash\nends the literal, and what follows is parsed as script and runs in the\napplication's origin when the page loads.\n\nA markup id is the value passed to org.apache.wicket.Component#setMarkupId(String),\nor the id attribute written in the component's markup, or an id Wicket\ngenerates, in that order. The first two are supplied by the application in an\nHTML context, where both characters are legal and where Wicket escapes them\ncorrectly when it writes the same value into the id attribute of the element; a\ngenerated id cannot contain either. An input name is derived from the ids of the\ncomponents between the form and the form component, and a component id was\nrejected only for ':' and '~'.\n\nIn org.apache.wicket:wicket-core on 9.x and 10.x,\norg.apache.wicket.markup.head.OnEventHeaderItem#forMarkupId(String, String,\nCharSequence) quotes the id it is given into a Wicket.Event.add call, and\ncomponents in both wicket-core and wicket-extensions reach it through\n#forComponent(Component, String, CharSequence). On every affected version,\norg.apache.wicket.markup.html.form.Form writes its markup id and the id of its\nhidden-fields container into such literals,\norg.apache.wicket.markup.html.form.FormComponentUpdatingBehavior writes an input\nname, and org.apache.wicket.markup.html.form.upload.MultiFileUploadField writes\ntwo markup ids and an input name. On 8.x, Form also writes an input name into the\naction of a submitting link, and on 8.x and 9.x Form#appendDefaultButtonField\nwrites an input name into a name attribute with no escaping at all, so a value\ncontaining a double quote escapes the attribute into markup.\n\norg.apache.wicket:wicket-extensions is affected in its own right and not only\nthrough wicket-core: AjaxEditableLabel, AjaxIndicatorAppender,\nAjaxDisableComponentListener, UploadProgressBar, KittenCaptchaPanel, Palette,\nFilterForm and, on 9.x and 10.x, TrapFocusBehavior and AjaxListPanel each build\ntheir own JavaScript containing a markup id.\n\nAn application is affected where a markup id or a component id carries one of\nthose characters. Wicket does not put one there itself, so the value comes from\nthe application: an id set on a component, an id attribute in a template, or a\ncomponent id derived from data. None of those is a JavaScript context from the\napplication's point of view.\n\nThe Content-Security-Policy that Apache Wicket 9.x and 10.x send by default does\nnot prevent this. The generated script is written into a script element carrying\nthe per-response nonce, so the injected code is part of a script the policy\nadmits.\n\nThe fixed versions check an id where it enters instead of escaping each place it\nis written. A component id and a markup id may no longer contain a quote, a\nbackquote, a backslash, braces, angle brackets, a semicolon, an ampersand or a\ncontrol character, and a markup id may not contain parentheses or square\nbrackets either; a component constructed with such an id, or given such a markup\nid, fails with an exception.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0, from 9.0.0 through\n9.24.0, from 10.0.0 through 10.11.0. Users of Apache Wicket 7.x or older, which\nare no longer supported, should upgrade to a supported version. Users are\nrecommended to upgrade to version 8.20.0, 9.25.0 or 10.12.0, which fix the issue.",
     "publishedDate" : "2026-11-01T23:17:30.943",
-    "lastModifiedDate" : "2026-11-01T23:17:30.943",
+    "lastModifiedDate" : "2026-11-02T16:13:27.570",
     "severity" : "UNKNOWN",
     "inKev" : false,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-95863"
+  }, {
+    "id" : "CVE-2026-111048",
+    "description" : "FOSSBilling is an open source billing and client-management platform. From 0.1.0 until 0.8.9, the admin/support/note_create endpoint stores the note parameter without sanitization in the support_ticket_note table, and src/modules/Support/templates/admin/mod_support_tickets.html.twig renders each stored support ticket note through innerHTML in the admin ticket list. A staff user with only the support.manage_tickets permission can store HTML or JavaScript that executes when another staff member opens the ticket notes. The script runs with the viewing staff member's session and privileges, can read a CSRF token and accessible client or invoice data, and can perform administrative actions available to the viewer, including a Super Administrator. The ticket detail page is not affected because its Twig rendering uses autoescaping. This issue is fixed in version 0.8.9.",
+    "publishedDate" : "2026-11-02T18:18:35.530",
+    "lastModifiedDate" : "2026-11-02T18:18:35.687",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111048"
+  }, {
+    "id" : "CVE-2026-28621",
+    "description" : "In getRingtone of RingtoneFactory.java, there is a possible unprivileged access risk due to a missing permission check. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:42.033",
+    "lastModifiedDate" : "2026-11-02T20:17:42.033",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-28621"
+  }, {
+    "id" : "CVE-2026-28665",
+    "description" : "In onCreate of SettingsApplication.java, there is a possible cross-profile consent dialog label injection due to improper input validation. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:42.490",
+    "lastModifiedDate" : "2026-11-02T20:17:42.490",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-28665"
+  }, {
+    "id" : "CVE-2026-49924",
+    "description" : "In ShortcutInfo of ShortcutInfo.java, there is a possible way to crash the launcher via unauthorized shortcuts due to resource exhaustion. This could lead to local denial of service with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:43.057",
+    "lastModifiedDate" : "2026-11-02T20:17:43.057",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-49924"
+  }, {
+    "id" : "CVE-2026-49934",
+    "description" : "In multiple functions of MmiUtils.java, there is a possible risk of USSD/MMI code execution due to improper input validation. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:43.293",
+    "lastModifiedDate" : "2026-11-02T20:17:43.293",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-49934"
+  }, {
+    "id" : "CVE-2026-49935",
+    "description" : "In getXmlFileNameForUser of LocaleManagerService.java, there is a possible permission bypass due to a confusable path traversal. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:43.483",
+    "lastModifiedDate" : "2026-11-02T20:17:43.483",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-49935"
+  }, {
+    "id" : "CVE-2026-55263",
+    "description" : "In multiple functions of AllowBindAppWidgetActivity.java, there is a possible misunderstanding of reject/consent actions due to misleading or insufficient UI. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:44.330",
+    "lastModifiedDate" : "2026-11-02T20:17:44.330",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55263"
+  }, {
+    "id" : "CVE-2026-55264",
+    "description" : "In checkWhetherCallingAppHasAccess of DownloadProvider.java, there is a possible information leak due to a confused deputy. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:44.450",
+    "lastModifiedDate" : "2026-11-02T20:17:44.450",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55264"
+  }, {
+    "id" : "CVE-2026-55272",
+    "description" : "In loadDescription of DeviceAdminAdd.java, there is a possible denial of service due to improper input validation. This could lead to local denial of service with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:44.677",
+    "lastModifiedDate" : "2026-11-02T21:17:32.817",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55272"
+  }, {
+    "id" : "CVE-2026-55288",
+    "description" : "In validEfCfis of SIMRecords.java, there is a possible way to cause a denial of service due to an uncaught exception. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:45.150",
+    "lastModifiedDate" : "2026-11-02T20:17:45.150",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55288"
+  }, {
+    "id" : "CVE-2026-58814",
+    "description" : "In parseContentType of PduParser.java, there is a possible denial of service due to an integer overflow. This could lead to remote denial of service with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:46.960",
+    "lastModifiedDate" : "2026-11-02T20:17:46.960",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58814"
+  }, {
+    "id" : "CVE-2026-58817",
+    "description" : "In parseKnownActivityEmbeddingCerts of ParsingUtils.java, there is a possible permanent denial of service due to improper input validation. This could lead to local denial of service with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:47.083",
+    "lastModifiedDate" : "2026-11-02T20:17:47.083",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58817"
+  }, {
+    "id" : "CVE-2026-58821",
+    "description" : "In multiple functions of SearchRequestDatabaseUtil.java, there is a possible way to access protected data due to SQL injection. This could lead to local denial of service with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:47.200",
+    "lastModifiedDate" : "2026-11-02T20:17:47.200",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58821"
+  }, {
+    "id" : "CVE-2026-58838",
+    "description" : "In multiple functions of Helpers.java, there is a possible information disclosure due to improper input validation. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:48.287",
+    "lastModifiedDate" : "2026-11-02T20:17:48.287",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58838"
+  }, {
+    "id" : "CVE-2026-58867",
+    "description" : "In getMessenger of WifiP2pServiceImpl.java, there is a possible permission bypass due to a missing permission check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:49.137",
+    "lastModifiedDate" : "2026-11-02T20:17:49.137",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58867"
+  }, {
+    "id" : "CVE-2026-58870",
+    "description" : "In onPersistentGroupsChanged of WifiP2pServiceImpl.java, there is a possible permission bypass due to a missing permission check. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:49.363",
+    "lastModifiedDate" : "2026-11-02T20:17:49.363",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58870"
+  }, {
+    "id" : "CVE-2026-58877",
+    "description" : "In checkNearbyDevicesPermission of WifiP2pServiceImpl.java, there is a possible permission bypass due to a confused deputy. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:49.820",
+    "lastModifiedDate" : "2026-11-02T20:17:49.820",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58877"
+  }, {
+    "id" : "CVE-2026-58882",
+    "description" : "In decodeWapPdu of WapPushOverSms.java, there is a possible out of bounds read due to an integer overflow. This could lead to a remote denial of service with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:50.057",
+    "lastModifiedDate" : "2026-11-02T20:17:50.057",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58882"
+  }, {
+    "id" : "CVE-2026-58886",
+    "description" : "In updateInputWindows of InputMonitor.java, there is a possible tapjacking issue due to a logic error in the code. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:50.493",
+    "lastModifiedDate" : "2026-11-03T05:18:48.390",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58886"
+  }, {
+    "id" : "CVE-2026-58955",
+    "description" : "In updateNotificationChannel of PreferencesHelper.java, there is a possible ui obfuscation issue due to a logic error in the code. This could lead to local denial of service with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:52.060",
+    "lastModifiedDate" : "2026-11-02T20:17:52.060",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58955"
+  }, {
+    "id" : "CVE-2026-58961",
+    "description" : "In moveTaskToFrontLocked of ActivityTaskManagerService.java, there is a possible background activity launch due to a logic error in the code. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:52.387",
+    "lastModifiedDate" : "2026-11-02T20:17:52.387",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58961"
+  }, {
+    "id" : "CVE-2026-58962",
+    "description" : "In moveTaskToFrontLocked of ActivityTaskManagerService.java, there is a possible permission bypass due to a missing permission check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:52.490",
+    "lastModifiedDate" : "2026-11-02T20:17:52.490",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58962"
+  }, {
+    "id" : "CVE-2026-58964",
+    "description" : "In checkDestination of SmsUsageMonitor.java, there is a possible permission bypass due to improper input validation. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:52.700",
+    "lastModifiedDate" : "2026-11-02T20:17:52.700",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58964"
+  }, {
+    "id" : "CVE-2026-58969",
+    "description" : "In multiple functions of MediaQualityService.java, there is a possible permission bypass due to a missing permission check. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:53.150",
+    "lastModifiedDate" : "2026-11-02T20:17:53.150",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58969"
+  }, {
+    "id" : "CVE-2026-58976",
+    "description" : "In getSelectionBySubIds of ProviderUtil.java, there is a possible cross-user data leak due to a logic error in the code. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:53.717",
+    "lastModifiedDate" : "2026-11-02T20:17:53.717",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58976"
+  }, {
+    "id" : "CVE-2026-58979",
+    "description" : "In canPresent of PresentationController.java, there is a possible permission bypass due to a logic error in the code. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:53.930",
+    "lastModifiedDate" : "2026-11-02T20:17:53.930",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58979"
+  }, {
+    "id" : "CVE-2026-58986",
+    "description" : "In notifyPictureProfileHandleSelection of MediaQualityService.java, there is a possible permission bypass due to a missing permission check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:54.270",
+    "lastModifiedDate" : "2026-11-02T20:17:54.270",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58986"
+  }, {
+    "id" : "CVE-2026-58989",
+    "description" : "In setOemUnlockAllowedByUser of OemLockService.java, there is a possible way to bypass FRP due to a missing permission check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:54.500",
+    "lastModifiedDate" : "2026-11-02T20:17:54.500",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58989"
+  }, {
+    "id" : "CVE-2026-58994",
+    "description" : "In multiple functions of NfcService.java, there is a possible permission bypass due to a missing permission check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:54.717",
+    "lastModifiedDate" : "2026-11-02T20:17:54.717",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58994"
+  }, {
+    "id" : "CVE-2026-59001",
+    "description" : "In checkQueryPermission of TelephonyProvider.java, there is a possible permission bypass due to a logic error in the code. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:55.170",
+    "lastModifiedDate" : "2026-11-02T20:17:55.170",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59001"
+  }, {
+    "id" : "CVE-2026-59002",
+    "description" : "In handleMessage of UsbDeviceManager.java, there is a possible lock-screen bypass due to a logic error in the code. This could lead to physical information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:55.283",
+    "lastModifiedDate" : "2026-11-02T20:17:55.283",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59002"
+  }, {
+    "id" : "CVE-2026-59003",
+    "description" : "In getSubscriptionProperty of SubscriptionManagerService.java, there is a possible information disclosure due to a missing permission check. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:55.423",
+    "lastModifiedDate" : "2026-11-02T20:17:55.423",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59003"
+  }, {
+    "id" : "CVE-2026-59005",
+    "description" : "In insertInternal of MmsProvider.java, there is a possible multiuser isolation issue due to a missing permission check. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:55.720",
+    "lastModifiedDate" : "2026-11-02T20:17:55.720",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59005"
+  }, {
+    "id" : "CVE-2026-59006",
+    "description" : "In getTouchOcclusionMode of WindowState.java, there is a possible tapjacking issue due to a tapjacking/overlay attack. This could lead to local information disclosure with no additional execution privileges needed. User interaction is needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:55.847",
+    "lastModifiedDate" : "2026-11-02T20:17:55.847",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59006"
+  }, {
+    "id" : "CVE-2026-59008",
+    "description" : "In setApplicationRestrictions of DevicePolicyManagerService.java, there is a possible denial of service due to resource exhaustion. This could lead to local denial of service with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:56.107",
+    "lastModifiedDate" : "2026-11-02T20:17:56.107",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59008"
+  }, {
+    "id" : "CVE-2026-59012",
+    "description" : "In checkLastKnownCellIdAccessPermission of TelephonyPermissions.java, there is a possible permission bypass due to a missing permission check. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:56.450",
+    "lastModifiedDate" : "2026-11-02T20:17:56.450",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59012"
+  }, {
+    "id" : "CVE-2026-59016",
+    "description" : "In sendAnomalyProfile of ProfilingService.java, there is a possible path traversal issue due to path traversal. This could lead to local escalation of privilege with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:56.797",
+    "lastModifiedDate" : "2026-11-02T20:17:56.797",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59016"
+  }, {
+    "id" : "CVE-2026-59020",
+    "description" : "In removeUserData of DevicePolicyManagerService.java, there is a possible denial of service due to a race condition. This could lead to local denial of service with User execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:56.920",
+    "lastModifiedDate" : "2026-11-02T20:17:56.920",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59020"
+  }, {
+    "id" : "CVE-2026-59022",
+    "description" : "In multiple functions of MediaProvider.java, there is a possible permission bypass due to a logic error in the code. This could lead to local information disclosure with no additional execution privileges needed. User interaction is not needed for exploitation.",
+    "publishedDate" : "2026-11-02T20:17:57.147",
+    "lastModifiedDate" : "2026-11-02T20:17:57.147",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59022"
+  }, {
+    "id" : "CVE-2026-120091",
+    "description" : "Temporal Server compiles a Worker Controller Instance module, go.temporal.io/auto-scaled-workers, into its Worker Service, and that module registers a compute provider named k8s whose function is to manage workers running in a Kubernetes cluster. The k8s provider built its Kubernetes client from the client configuration supplied in the caller's request rather than from operator configuration, and building and using that client could run a command of the caller's choosing on the Worker Service host, under the account the server process runs as. Two frontend operations reach the provider. CreateWorkerDeploymentVersion requires a namespace write role. ValidateWorkerDeploymentVersionComputeConfig is registered as a read-only namespace operation, so an authenticated caller holding only a read role in a single namespace can reach the provider through it, and that route does not require a worker deployment to already exist. Execution happens while the submitted configuration is validated, so no scaling decision, task arrival, or unusual request sequence is required. Because the Worker Service process holds the persistence credentials for every namespace in the cluster and the cluster's TLS material, the consequence reaches beyond the caller's namespace to the cluster as a whole. The provider is present in the official temporal-server binaries and container images for the affected releases. The control that keeps it unreachable is the compute provider allowlist, the dynamic configuration setting workercontroller.compute_providers.enabled. On Temporal Server 1.31.0 through 1.31.2 that allowlist does not deny by default: when the setting is unset the check is skipped and every registered compute provider is permitted, k8s included, so a stock deployment of those releases is exposed. On 1.31.3 and later 1.31 releases, and on 1.32.0 and later 1.32 releases, the allowlist denies by default, and a deployment is exposed only where k8s has been added to it. The 1.30 release line does not include the Worker Controller Instance module and is unaffected. To determine whether a deployment is affected, check the following together. The deployed Temporal Server version is in an affected range. The Worker Service is running, which it is in the default service set and therefore in a stock deployment. The effective value of workercontroller.compute_providers.enabled contains k8s, or, on 1.31.0 through 1.31.2 only, is unset; check both the global value and every namespace-constrained override, because an override can add k8s for a single namespace. And authorization is configured, meaning a real authorizer and claim mapper are in place; a deployment running with no authorizer already grants every caller unrestricted access to every namespace, so it has no namespace boundary for this to cross. Deployments that use a custom authorizer should also check whether it permits ValidateWorkerDeploymentVersionComputeConfig to callers without namespace write access. The separate per-namespace dynamic configuration setting workercontroller.enabled does not gate the affected path on any affected release.",
+    "publishedDate" : "2026-11-02T22:17:20.567",
+    "lastModifiedDate" : "2026-11-02T22:17:20.567",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "kubernetes" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120091"
+  }, {
+    "id" : "CVE-2026-120988",
+    "description" : "billboard.js before 4.1.3 allows an attacker to execute malicious JavaScript due to improper sanitization of series ids during legend template rendering.",
+    "publishedDate" : "2026-11-03T08:17:15.070",
+    "lastModifiedDate" : "2026-11-03T08:17:15.070",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120988"
+  }, {
+    "id" : "CVE-2026-120332",
+    "description" : "The HTML content of mails and tracked URLs are rendered unescaped in the backend module. Backend users with access to the mail module can inject arbitrary HTML and JavaScript, which is executed in the context of other backend users viewing the mail preview or report.",
+    "publishedDate" : "2026-11-03T10:17:18.123",
+    "lastModifiedDate" : "2026-11-03T10:17:18.123",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120332"
+  }, {
+    "id" : "CVE-2026-108050",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability in Alosuite that affects the delivery note functionality. Insufficient sanitization and encoding of the specified fields allow JavaScript to be stored, which executes in other users’ browsers when they view the affected records. Exploitation requires authenticated access to the affected functionality. The code can alter the displayed content and perform actions within the context of the victim’s session. The list of features, parameters, and endpoints is as follows:\n\nCVE-2026-108050: ReferenceOtherParty in ‘/Documents/DeliveryNotes/Edit/{id}’;",
+    "publishedDate" : "2026-11-03T13:17:17.783",
+    "lastModifiedDate" : "2026-11-03T13:17:17.783",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108050"
+  }, {
+    "id" : "CVE-2026-108051",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability in Alosuite that affects the delivery note functionality. Insufficient sanitization and encoding of the specified fields allow JavaScript to be stored, which executes in other users’ browsers when they view the affected records. Exploitation requires authenticated access to the affected functionality. The code can alter the displayed content and perform actions within the context of the victim’s session. The list of features, parameters, and endpoints is as follows:\n\nCVE-2026-108051: Nombre in ‘/Articulos/Create’;",
+    "publishedDate" : "2026-11-03T13:17:17.937",
+    "lastModifiedDate" : "2026-11-03T13:17:17.937",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108051"
+  }, {
+    "id" : "CVE-2026-108052",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability in Alosuite that affects the delivery note functionality. Insufficient sanitization and encoding of the specified fields allow JavaScript to be stored, which executes in other users’ browsers when they view the affected records. Exploitation requires authenticated access to the affected functionality. The code can alter the displayed content and perform actions within the context of the victim’s session. The list of features, parameters, and endpoints is as follows:\n\nCVE-2026-108052: Codigo in ‘/CategoriasFicheros/Edit/{id}’;",
+    "publishedDate" : "2026-11-03T13:17:18.073",
+    "lastModifiedDate" : "2026-11-03T13:17:18.073",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108052"
+  }, {
+    "id" : "CVE-2026-108053",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability in Alosuite that affects the delivery note functionality. Insufficient sanitization and encoding of the specified fields allow JavaScript to be stored, which executes in other users’ browsers when they view the affected records. Exploitation requires authenticated access to the affected functionality. The code can alter the displayed content and perform actions within the context of the victim’s session. The list of features, parameters, and endpoints is as follows:\n\nCVE-2026-108053: Nombre in ‘/CuentasCorrientes/Create’;",
+    "publishedDate" : "2026-11-03T13:17:18.227",
+    "lastModifiedDate" : "2026-11-03T13:17:18.227",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108053"
+  }, {
+    "id" : "CVE-2026-108054",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability in Alosuite that affects the delivery note functionality. Insufficient sanitization and encoding of the specified fields allow JavaScript to be stored, which executes in other users’ browsers when they view the affected records. Exploitation requires authenticated access to the affected functionality. The code can alter the displayed content and perform actions within the context of the victim’s session. The list of features, parameters, and endpoints is as follows:\n\nCVE-2026-108054: Nombre in ‘/Familias/Edit/{id}’;",
+    "publishedDate" : "2026-11-03T13:17:18.377",
+    "lastModifiedDate" : "2026-11-03T13:17:18.377",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108054"
+  }, {
+    "id" : "CVE-2026-108055",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability in Alosuite that affects the delivery note functionality. Insufficient sanitization and encoding of the specified fields allow JavaScript to be stored, which executes in other users’ browsers when they view the affected records. Exploitation requires authenticated access to the affected functionality. The code can alter the displayed content and perform actions within the context of the victim’s session. The list of features, parameters, and endpoints is as follows:\n\nCVE-2026-108055: Nombre in ‘/Inmuebles/Create’;",
+    "publishedDate" : "2026-11-03T13:17:18.527",
+    "lastModifiedDate" : "2026-11-03T13:17:18.527",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108055"
+  }, {
+    "id" : "CVE-2026-108056",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability in Alosuite that affects the delivery note functionality. Insufficient sanitization and encoding of the specified fields allow JavaScript to be stored, which executes in other users’ browsers when they view the affected records. Exploitation requires authenticated access to the affected functionality. The code can alter the displayed content and perform actions within the context of the victim’s session. The list of features, parameters, and endpoints is as follows:\n\nCVE-2026-108056: NombrePF in ‘/Empresas/Create’;",
+    "publishedDate" : "2026-11-03T13:17:18.680",
+    "lastModifiedDate" : "2026-11-03T13:17:18.680",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108056"
+  }, {
+    "id" : "CVE-2026-108057",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability in Alosuite that affects the delivery note functionality. Insufficient sanitization and encoding of the specified fields allow JavaScript to be stored, which executes in other users’ browsers when they view the affected records. Exploitation requires authenticated access to the affected functionality. The code can alter the displayed content and perform actions within the context of the victim’s session. The list of features, parameters, and endpoints is as follows:\n\nCVE-2026-108057: Nombre in ‘/PlantillasPdf/Edit/1273129’;",
+    "publishedDate" : "2026-11-03T13:17:18.830",
+    "lastModifiedDate" : "2026-11-03T13:17:18.830",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108057"
+  }, {
+    "id" : "CVE-2026-108058",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability in Alosuite that affects the delivery note functionality. Insufficient sanitization and encoding of the specified fields allow JavaScript to be stored, which executes in other users’ browsers when they view the affected records. Exploitation requires authenticated access to the affected functionality. The code can alter the displayed content and perform actions within the context of the victim’s session. The list of features, parameters, and endpoints is as follows:\n\nCVE-2026-108058: Nombre in ‘/PlantillasMail/Edit’;",
+    "publishedDate" : "2026-11-03T13:17:18.980",
+    "lastModifiedDate" : "2026-11-03T13:17:18.980",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108058"
+  }, {
+    "id" : "CVE-2026-108059",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability in Alosuite that affects the delivery note functionality. Insufficient sanitization and encoding of the specified fields allow JavaScript to be stored, which executes in other users’ browsers when they view the affected records. Exploitation requires authenticated access to the affected functionality. The code can alter the displayed content and perform actions within the context of the victim’s session. The list of features, parameters, and endpoints is as follows:\n\nCVE-2026-108059: Observaciones in ‘/Terceros/Create’;",
+    "publishedDate" : "2026-11-03T13:17:19.127",
+    "lastModifiedDate" : "2026-11-03T13:17:19.127",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108059"
+  }, {
+    "id" : "CVE-2026-108060",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability in Alosuite that affects the delivery note functionality. Insufficient sanitization and encoding of the specified fields allow JavaScript to be stored, which executes in other users’ browsers when they view the affected records. Exploitation requires authenticated access to the affected functionality. The code can alter the displayed content and perform actions within the context of the victim’s session. The list of features, parameters, and endpoints is as follows:CVE-2026-108060: Nombre in ‘/Trabajadores/Create’.",
+    "publishedDate" : "2026-11-03T13:17:19.277",
+    "lastModifiedDate" : "2026-11-03T13:17:19.277",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108060"
   } ]
 }

@@ -9,12 +9,12 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### Top 8 des menaces les plus dangereuses et prioritaires
 
-> **Dernière synchronisation** : `2026-11-02T14:19:41.637004154Z`
+> **Dernière synchronisation** : `2026-11-03T13:19:53.385523474Z`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
 | [CVE-2026-83938](https://nvd.nist.gov/vuln/detail/CVE-2026-83938) | `CRITICAL` | 10.0 | 0.7% | Non | `kubernetes` | Missing authentication for critical function in Azure Kubernetes Configurat... |
-| [CVE-2026-120338](https://nvd.nist.gov/vuln/detail/CVE-2026-120338) | `CRITICAL` | 10.0 | N/A | Non | `javascript` | Prefab UI's Generative UI sandbox runs caller-supplied Python inside Pyodid... |
+| [CVE-2026-120338](https://nvd.nist.gov/vuln/detail/CVE-2026-120338) | `CRITICAL` | 10.0 | 0.8% | Non | `javascript` | Prefab UI's Generative UI sandbox runs caller-supplied Python inside Pyodid... |
 | [CVE-2026-105312](https://nvd.nist.gov/vuln/detail/CVE-2026-105312) | `CRITICAL` | 9.9 | 0.3% | Non | `kubernetes` | A Kubernetes tenant with create permission on Console custom resources can ... |
 | [CVE-2026-113672](https://nvd.nist.gov/vuln/detail/CVE-2026-113672) | `CRITICAL` | 9.9 | 0.8% | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
 | [CVE-2026-113708](https://nvd.nist.gov/vuln/detail/CVE-2026-113708) | `CRITICAL` | 9.9 | 0.7% | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
