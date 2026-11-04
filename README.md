@@ -9,18 +9,18 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### Top 8 des menaces les plus dangereuses et prioritaires
 
-> **Dernière synchronisation** : `2026-11-03T13:19:53.385523474Z`
+> **Dernière synchronisation** : `2026-11-04T13:32:36.947119927Z`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
 | [CVE-2026-83938](https://nvd.nist.gov/vuln/detail/CVE-2026-83938) | `CRITICAL` | 10.0 | 0.7% | Non | `kubernetes` | Missing authentication for critical function in Azure Kubernetes Configurat... |
 | [CVE-2026-120338](https://nvd.nist.gov/vuln/detail/CVE-2026-120338) | `CRITICAL` | 10.0 | 0.8% | Non | `javascript` | Prefab UI's Generative UI sandbox runs caller-supplied Python inside Pyodid... |
-| [CVE-2026-105312](https://nvd.nist.gov/vuln/detail/CVE-2026-105312) | `CRITICAL` | 9.9 | 0.3% | Non | `kubernetes` | A Kubernetes tenant with create permission on Console custom resources can ... |
-| [CVE-2026-113672](https://nvd.nist.gov/vuln/detail/CVE-2026-113672) | `CRITICAL` | 9.9 | 0.8% | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
-| [CVE-2026-113708](https://nvd.nist.gov/vuln/detail/CVE-2026-113708) | `CRITICAL` | 9.9 | 0.7% | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
-| [CVE-2026-113709](https://nvd.nist.gov/vuln/detail/CVE-2026-113709) | `CRITICAL` | 9.9 | 0.4% | Non | `kubernetes` | Argo CD is a declarative, GitOps continuous delivery tool for Kubernetes. F... |
 | [CVE-2026-115188](https://nvd.nist.gov/vuln/detail/CVE-2026-115188) | `CRITICAL` | 9.9 | 0.7% | Non | `docker` | An unrestricted file upload vulnerability exists in the campaign import fea... |
 | [CVE-2026-102649](https://nvd.nist.gov/vuln/detail/CVE-2026-102649) | `CRITICAL` | 9.9 | 0.5% | Non | `kubernetes` | Burrito is a Terraform Automation Collaboration Software (TACoS) Kubernetes... |
+| [CVE-2026-120306](https://nvd.nist.gov/vuln/detail/CVE-2026-120306) | `CRITICAL` | 9.9 | N/A | Non | `kubernetes` | Beta9 turns each shell command in a tenant image definition into a Dockerfi... |
+| [CVE-2026-120307](https://nvd.nist.gov/vuln/detail/CVE-2026-120307) | `CRITICAL` | 9.9 | N/A | Non | `kubernetes` | The Beta9 worker serves the sandbox file API from outside the container. ge... |
+| [CVE-2026-46652](https://nvd.nist.gov/vuln/detail/CVE-2026-46652) | `CRITICAL` | 9.8 | 1.1% | Non | `tomcat` | The Goobi viewer is a web application that allows digitised material to be ... |
+| [CVE-2026-110879](https://nvd.nist.gov/vuln/detail/CVE-2026-110879) | `CRITICAL` | 9.8 | 1.2% | Non | `spring, jackson` | jackson-databind validates the outer class of a class-name type ID but acce... |
 
 *Données détaillées historisées chaque jour dans [`data/`](data/) • Alimenté par NVD 2.0, CISA KEV & EPSS*
 <!-- CVEILLE_SUMMARY_END -->
