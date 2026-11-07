@@ -9,7 +9,7 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### Top 8 des menaces les plus dangereuses et prioritaires
 
-> **Dernière synchronisation** : `2026-11-06T13:30:26.143834427Z`
+> **Dernière synchronisation** : `2026-11-07T12:11:17.838395030Z`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
@@ -20,7 +20,7 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 | [CVE-2026-120307](https://nvd.nist.gov/vuln/detail/CVE-2026-120307) | `CRITICAL` | 9.9 | N/A | Non | `kubernetes` | The Beta9 worker serves the sandbox file API from outside the container. ge... |
 | [CVE-2026-97693](https://nvd.nist.gov/vuln/detail/CVE-2026-97693) | `CRITICAL` | 9.9 | 0.8% | Non | `docker, postgresql` | Yuxi is a large-model-based intelligent knowledge base and knowledge graph ... |
 | [CVE-2026-122310](https://nvd.nist.gov/vuln/detail/CVE-2026-122310) | `CRITICAL` | 9.9 | 0.4% | Non | `kubernetes` | Kyverno from 1.19.1 before 1.19.2 validates a Policy's context.apiCall urlP... |
-| [CVE-2026-46652](https://nvd.nist.gov/vuln/detail/CVE-2026-46652) | `CRITICAL` | 9.8 | 1.1% | Non | `tomcat` | The Goobi viewer is a web application that allows digitised material to be ... |
+| [CVE-2026-17146](https://nvd.nist.gov/vuln/detail/CVE-2026-17146) | `CRITICAL` | 9.9 | N/A | Non | `javascript` | IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 co... |
 
 *Données détaillées historisées chaque jour dans [`data/`](data/) • Alimenté par NVD 2.0, CISA KEV & EPSS*
 <!-- CVEILLE_SUMMARY_END -->
