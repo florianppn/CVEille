@@ -1,39 +1,39 @@
 {
-  "lastSync" : "2026-11-08T12:30:50.736072542Z",
-  "newToday" : 57,
+  "lastSync" : "2026-11-09T14:46:54.857084057Z",
+  "newToday" : 49,
   "stats" : {
-    "totalTracked" : 547,
-    "criticalCount" : 25,
-    "highCount" : 155,
-    "mediumCount" : 190,
+    "totalTracked" : 575,
+    "criticalCount" : 26,
+    "highCount" : 162,
+    "mediumCount" : 200,
     "lowCount" : 24,
     "kevCount" : 0,
-    "alertCount" : 149,
+    "alertCount" : 152,
     "avgEpss" : 0.003,
     "severityDistribution" : {
-      "CRITICAL" : 25,
-      "HIGH" : 155,
-      "MEDIUM" : 190,
+      "CRITICAL" : 26,
+      "HIGH" : 162,
+      "MEDIUM" : 200,
       "LOW" : 24
     },
     "topTechnologies" : {
-      "javascript" : 256,
-      "java" : 118,
+      "javascript" : 261,
+      "java" : 137,
       "node.js" : 53,
-      "keycloak" : 35,
+      "keycloak" : 36,
       "docker" : 30,
-      "postgresql" : 27,
+      "postgresql" : 29,
       "kubernetes" : 23,
       "typescript" : 21,
       "nginx" : 13,
       "angular" : 9,
       "npm" : 7,
       "jackson" : 3,
+      "hibernate" : 2,
       "tomcat" : 1,
-      "hibernate" : 1,
       "spring" : 1
     },
-    "lastSyncTimestamp" : "2026-11-08T12:30:50.861195618Z"
+    "lastSyncTimestamp" : "2026-11-09T14:46:54.966334583Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-120338",
@@ -239,6 +239,19 @@
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-85295"
+  }, {
+    "id" : "CVE-2026-114432",
+    "description" : "The Contact Form 7 WordPress plugin before 6.2.4 does not validate the type or extension of files uploaded through a form file field, and a flaw in its temporary-file cleanup leaves the uploaded file on disk, allowing unauthenticated users to upload arbitrary files to the site. On a stock Debian or Ubuntu Apache configuration, which lists directory contents and maps .phar to the PHP handler, the stored file can be located and executed, leading to Remote Code Execution. On other configurations, including nginx and Apache with .htaccess overrides enabled, the issue is limited to an arbitrary file written into the uploads directory, which may still be served as active content such as HTML or SVG from the site's own origin.",
+    "publishedDate" : "2026-11-08T06:17:04.807",
+    "lastModifiedDate" : "2026-11-08T19:17:34.347",
+    "cvssScore" : 9.8,
+    "severity" : "CRITICAL",
+    "inKev" : false,
+    "epssScore" : 0.00462,
+    "epssPercentile" : 0.40286,
+    "matchedKeywords" : [ "nginx" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-114432"
   }, {
     "id" : "CVE-2026-63190",
     "description" : "FearlessCMS is a flat-file `content` management system centered on simplicity and open source. Prior to version 0.1.4, five debug/test PHP scripts under `admin/` perform privileged operations without `isLoggedIn()` authentication checks, CSRF protection or adequate `path` validation. On PHP's built-in development server, including the default Docker deployment, `router.php` checks an unnormalized admin URI prefix while the filesystem resolves dot segments, so `/./admin/` bypasses the admin login gate and executes those scripts directly. In `admin/debug_save_flow.php`, attacker-controlled `path` and `content` reach `file_put_contents` for arbitrary `.md` writes under `content`/ or outside it through `path` traversal, enabling site defacement and stored JavaScript in public pages; `print_r($_POST)` output without `htmlspecialchars` escaping also causes reflected cross-site scripting. The `admin/debug_content.php` `path` parameter reaches `scandir()`, `file_get_contents()` and `posix_getpwuid()`, permitting arbitrary directory enumeration and `.md` file reads that expose absolute paths, ownership, permissions, hashes and `content` previews. The `admin/preview-handler.php` endpoint accepts JSON `content` and `title` and writes enumerable files under `content/_preview/`, enabling stored cross-site scripting and disk exhaustion. The `admin/testdebug.php` endpoint appends to `admin/testdebug.log` without authentication, also enabling disk exhaustion. The `admin/test_redirect.php` script exposes a test artifact but escapes its inputs and is not itself an XSS sink. Stored script execution can steal sessions and compromise administrators when they view affected `content`. Reads and writes execute with PHP's privileges; the tested deployment runs PHP as root, amplifying filesystem impact. This issue is fixed in version 0.1.4.",
@@ -1419,6 +1432,19 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58141"
   }, {
+    "id" : "CVE-2026-124492",
+    "description" : "SunEditor before 3.4.0 contains a stored cross-site scripting vulnerability in ModalAnchorEditor's #createBookmarkList, which inserts entity-decoded h1-h6 header textContent into the bookmark list via innerHTML without escaping. Attackers can store HTML-encoded payloads in editor headers that execute JavaScript when a victim opens the link modal and types # in the URL input.",
+    "publishedDate" : "2026-11-08T14:18:18.980",
+    "lastModifiedDate" : "2026-11-08T14:18:18.980",
+    "cvssScore" : 7.6,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "epssScore" : 0.00211,
+    "epssPercentile" : 0.11458,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124492"
+  }, {
     "id" : "CVE-2026-116581",
     "description" : "Seroval facilitates JavaScript value stringification, including complex structures beyond JSON.stringify capabilities. Prior to 1.6.8, fromJSON and fromCrossJSON do not validate a sequence node's done index. A crafted done index can create an iterator that never finishes when application code consumes it to completion. An unauthenticated request to a service that deserializes untrusted input can therefore block the event loop, exhaust process memory, or make the service unavailable. This issue is fixed in version 1.6.8.",
     "publishedDate" : "2026-10-26T21:18:15.903",
@@ -1931,6 +1957,8 @@
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00394,
+    "epssPercentile" : 0.3392,
     "matchedKeywords" : [ "java" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123543"
@@ -1938,10 +1966,12 @@
     "id" : "CVE-2026-123562",
     "description" : "devalue (sveltejs/devalue) 5.8.0 before 5.9.3 contains an unhandled promise rejection in stringifyAsync: when serializing multiple promises, a later promise rejecting before an earlier one settles leaves an internal rejection unhandled, even if the caller catches the returned promise. An attacker able to influence the timing or failure of serialized asynchronous values can terminate the Node.js process.",
     "publishedDate" : "2026-11-08T02:16:48.567",
-    "lastModifiedDate" : "2026-11-08T02:16:48.567",
+    "lastModifiedDate" : "2026-11-09T14:17:11.400",
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00343,
+    "epssPercentile" : 0.28087,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123562"
@@ -1953,9 +1983,24 @@
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00343,
+    "epssPercentile" : 0.28085,
     "matchedKeywords" : [ "npm" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123569"
+  }, {
+    "id" : "CVE-2026-93879",
+    "description" : "Hibernate Validator could allow a remote attacker to cause a denial of service due to uncontrolled resource consumption resulting from improper escaping of user-controlled data in Expression Language (EL) expressions.",
+    "publishedDate" : "2026-11-08T19:17:43.763",
+    "lastModifiedDate" : "2026-11-08T19:17:43.943",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "epssScore" : 0.00328,
+    "epssPercentile" : 0.26047,
+    "matchedKeywords" : [ "hibernate" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-93879"
   }, {
     "id" : "CVE-2026-118763",
     "description" : "sigstore-js provides JavaScript libraries for interacting with Sigstore services. Prior to 0.7.2, packages/oci/src/registry.ts contains a RegistryClient.signIn() method that stores registry Authorization and Docker configuration headers as defaults on a shared HTTP client, while RegistryClient.uploadBlob() sends a fresh PUT to an absolute blob-upload Location supplied by the registry without checking that its origin or scheme matches the registry. A malicious or compromised registry can therefore direct a user pushing an artifact through attachArtifactToImage() to an attacker-controlled host and receive the registry bearer token, Basic credentials, or custom authentication headers. Redirect-time header stripping does not prevent the leak because the cross-host PUT is a new explicit request rather than a followed redirect. This is a residual of CVE-2026-59891, whose fix changed credential selection in credentials.ts but did not constrain where credentials are sent from registry.ts. Version 0.7.2 fixes the issue by separating registry credentials from client-wide defaults and sending them only to the registry origin.",
@@ -2066,22 +2111,22 @@
     "cvssScore" : 7.4,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00376,
+    "epssPercentile" : 0.31845,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124328"
   }, {
-    "id" : "CVE-2026-116006",
-    "description" : "A vulnerability was detected in YunaiV/zhijiantianya ruoyi-vue-pro up to 2026.09. The affected element is an unknown function of the file AuthController.java of the component SMS Code Verification. The manipulation of the argument mobile/code results in improper authentication. The attack can be launched remotely. The exploit is now public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
-    "publishedDate" : "2026-10-25T04:17:34.083",
-    "lastModifiedDate" : "2026-10-25T04:17:34.503",
-    "cvssScore" : 7.3,
+    "id" : "CVE-2026-124621",
+    "description" : "A vulnerability was determined in kongxin-github Java_Library_Management_System up to 70a6eb6b96fe64575d8051f1a59055bfc5dc5885. This affects the function UpdateAdmin.deleteuser/UpdateAdmin.updateadmin/UpdateAdmin.updatepass/Book.addbook/Book.modifybook/Book.deletebook/Category.addcategory/Category.setcategory/Landing.sureadmin of the file src/view/MainInterface.java of the component Swing UI Layer. This manipulation causes improper authorization. Remote exploitation of the attack is possible. The exploit has been publicly disclosed and may be utilized. This product follows a rolling release approach for continuous delivery, so version details for affected or updated releases are not provided. The project was informed of the problem early through an issue report but has not responded yet.",
+    "publishedDate" : "2026-11-09T11:17:24.960",
+    "lastModifiedDate" : "2026-11-09T12:16:38.107",
+    "cvssScore" : 7.4,
     "severity" : "HIGH",
     "inKev" : false,
-    "epssScore" : 0.00384,
-    "epssPercentile" : 0.32159,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116006"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124621"
   }, {
     "id" : "CVE-2026-116117",
     "description" : "A flaw has been found in halo-dev halo up to 2.27.0-beta.1. Affected by this vulnerability is the function run.halo.app.theme.DefaultViewNameResolver.resolveViewNameOrDefault of the file application/src/main/java/run/halo/app/theme/DefaultViewNameResolver.java of the component View Name Resolver. Executing a manipulation of the argument template can lead to path traversal. The attack may be launched remotely. The exploit has been published and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
@@ -2142,6 +2187,8 @@
     "cvssScore" : 7.3,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00259,
+    "epssPercentile" : 0.17707,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123990"
@@ -2153,9 +2200,61 @@
     "cvssScore" : 7.3,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00473,
+    "epssPercentile" : 0.41174,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123991"
+  }, {
+    "id" : "CVE-2026-124509",
+    "description" : "A vulnerability was identified in floci-io Floci up to 2.1.0. The affected element is the function S3Destination.bucketName of the file services/firehose/model/DeliveryStreamDescription.java of the component S3 Destination Configuration Handler. Such manipulation of the argument BucketARN leads to path traversal. The attack can be launched remotely. The exploit is publicly available and might be used. Upgrading to version 2.2.0 is sufficient to fix this issue. The name of the patch is b986b95074ef524019be7af51e1df172e48faa4b. You should upgrade the affected component.",
+    "publishedDate" : "2026-11-09T02:16:59.243",
+    "lastModifiedDate" : "2026-11-09T02:16:59.427",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "epssScore" : 0.00519,
+    "epssPercentile" : 0.44364,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124509"
+  }, {
+    "id" : "CVE-2026-124557",
+    "description" : "A vulnerability was detected in OtterMind Chat2DB up to 5.3.8. Impacted is the function DbMybatisGenerateServiceImpl.generateClass of the file DbMybatisGenerateServiceImpl.java of the component Class Generator. The manipulation of the argument tableName results in path traversal. The attack may be performed from remote. The exploit is now public and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-11-09T03:16:37.600",
+    "lastModifiedDate" : "2026-11-09T03:16:37.807",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "epssScore" : 0.00502,
+    "epssPercentile" : 0.43248,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124557"
+  }, {
+    "id" : "CVE-2026-124558",
+    "description" : "A vulnerability has been found in DataLinkDC Dinky up to 1.2.5. The impacted element is the function SqlGateway.onOpen of the file SqlGateway.java of the component sql-gateway Endpoint. Such manipulation of the argument connectAddress leads to server-side request forgery. It is possible to launch the attack remotely. The exploit has been disclosed to the public and may be used. The researcher claims to have submitted a GHSA on the repository of the project.",
+    "publishedDate" : "2026-11-09T03:16:37.853",
+    "lastModifiedDate" : "2026-11-09T03:16:38.063",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "epssScore" : 0.00294,
+    "epssPercentile" : 0.22198,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124558"
+  }, {
+    "id" : "CVE-2026-124590",
+    "description" : "A security vulnerability has been detected in zhangbw409 library_manager_system f6c9d9c96bf5d2a32ef741daeaa29d80e6db166b/56514767a5207caf5e04c2cea379dfaa8cb5f00b. This impacts the function BookController.addBook of the file src/main/java/com/zbw/controller/UserController.java. The manipulation of the argument userName/userPwd/userEmail/userId leads to improper authorization. The attack may be initiated remotely. The exploit has been disclosed publicly and may be used. This product uses a rolling release model to deliver continuous updates. As a result, specific version information for affected or updated releases is not available. The project was informed of the problem early through an issue report but has not responded yet.",
+    "publishedDate" : "2026-11-09T11:17:24.530",
+    "lastModifiedDate" : "2026-11-09T11:17:24.690",
+    "cvssScore" : 7.3,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124590"
   }, {
     "id" : "CVE-2026-109999",
     "description" : "The AI Marketing Expert — AI Email Marketing, AI Content Generator, SEO Analyzer, AI Workflow Automation, Social Media & Ai Chatbot plugin for WordPress is vulnerable to Stored DOM-Based Cross-Site Scripting via the 'name' parameter in all versions up to, and including, 1.2.8 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation requires only that the chatbot module is active with at least one configured bot; the attacker stores the payload via three unauthenticated REST calls, and the JavaScript widget auto-poll then delivers it to any administrator who opens wp-admin/index.php.",
@@ -2313,6 +2412,19 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-97847"
   }, {
+    "id" : "CVE-2026-18893",
+    "description" : "IBM CockroachDB PostgreSQL for IBM VPC 26.2.0 through 26.2.3, 25.4.0 through 25.4.12, and 25.2.0 through 25.2.20 is vulnerable to privilege escalation via user-defined function.",
+    "publishedDate" : "2026-11-08T19:17:38.380",
+    "lastModifiedDate" : "2026-11-08T19:17:38.500",
+    "cvssScore" : 7.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "epssScore" : 0.00137,
+    "epssPercentile" : 0.03134,
+    "matchedKeywords" : [ "postgresql" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-18893"
+  }, {
     "id" : "CVE-2026-118905",
     "description" : "Node Version Manager (nvm) is a POSIX-compliant shell function for managing multiple node.js versions. In versions 0.31.2 through 0.40.5, `nvm_ls` filters installed versions with a sed program that embeds the requested version pattern in a `\\#...#` address, escaping `.` (and, since 0.40.4, `#`) but not backslash. A version string containing `#` (or `\\#`) therefore closes the address early, and the rest of it is parsed as sed commands: with GNU sed, the `e` command runs a shell command as the user; with BSD sed, the `w` and `r` commands write and read files. This is reachable whenever an attacker-influenced version string is passed to `nvm use`, `nvm which`, `nvm ls`, `nvm version`, `nvm run`, or `nvm exec`, or to `nvm-exec` via `NODE_VERSION`, and at least one version is installed. nvm's own `.nvmrc` parser strips comments, so a bare `nvm use` is not affected; however, the bash `cdnvm` and zsh `load-nvmrc` auto-switch hooks documented in the README read `.nvmrc` as-is and pass it to `nvm ls` and `nvm version`, so a user with one of those hooks installed runs the attacker's command just by changing into a directory under a malicious `.nvmrc`; scripts that run `nvm use \"$(cat .nvmrc)\"` are affected the same way. Version 0.40.6 passes any version pattern containing `#` or a newline through the `.nvmrc` content parser first, so no `#` reaches the sed program.",
     "publishedDate" : "2026-10-29T06:17:20.343",
@@ -2351,19 +2463,6 @@
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119179"
-  }, {
-    "id" : "CVE-2026-116167",
-    "description" : "SiYuan from 2.9.0 before 3.8.7 contains a cross-site scripting vulnerability in the unauthenticated /check-auth page that assigns the to parameter to window.location.href without scheme validation. Attackers can send a crafted link with a javascript: URI that executes after victim login, invoking kernel APIs to read or modify workspace content and settings.",
-    "publishedDate" : "2026-10-25T14:16:55.733",
-    "lastModifiedDate" : "2026-10-26T17:17:22.367",
-    "cvssScore" : 6.8,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.0025,
-    "epssPercentile" : 0.16236,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116167"
   }, {
     "id" : "CVE-2026-115930",
     "description" : "The MongoDB Shell (mongosh) relies on Node.js as a third-party runtime that carries its own TLS root certificate store. This certificate store has the recoverable eMudhra intermediate CA certificates. This issue impacts MongoDB Shell (mongosh) versions prior to 2.14.0 and can be resolved by updating to mongosh 2.14.0 which bundles Node.js 24.22.1 or later. If mongosh is installed through npm, it uses the Node.js runtime installed on the host; update that runtime separately.",
@@ -2831,19 +2930,6 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108262"
   }, {
-    "id" : "CVE-2026-116206",
-    "description" : "YesWiki from 4.2.0 before 4.7.0 contains a stored cross-site scripting vulnerability that allows authenticated users to inject script into comment bodies using the wakka raw-HTML syntax. Attackers can post comments via the /api/comments endpoint that render unescaped through the Twig raw filter, executing JavaScript in administrators' and visitors' sessions.",
-    "publishedDate" : "2026-10-25T14:17:01.690",
-    "lastModifiedDate" : "2026-10-25T14:17:01.803",
-    "cvssScore" : 6.4,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00156,
-    "epssPercentile" : 0.04693,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116206"
-  }, {
     "id" : "CVE-2026-109385",
     "description" : "The UiChemy – Convert Figma, Prompts and AI Builds to Elementor, Gutenberg and Bricks plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'actions[save_builder][data][elements][...][settings][slot_{N}_link][url]' parameter in all versions up to, and including, 5.3.0 due to insufficient input sanitization and output escaping. This makes it possible for authenticated attackers, with contributor-level access and above, to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. The injected javascript: payload fires on click rather than on page load, making exploitation contingent on a privileged user such as an Editor or Administrator clicking the attacker-crafted link while reviewing or previewing the Contributor's post.",
     "publishedDate" : "2026-10-28T07:16:44.720",
@@ -2959,31 +3045,31 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-121976"
   }, {
-    "id" : "CVE-2026-115997",
-    "description" : "A flaw has been found in pig-mesh pig up to 4.1.0. This impacts the function orderItem.getColumn of the file pig-common/pig-common-data/src/main/java/com/pig4cloud/pig/common/data/resolver/SqlFilterArgumentResolver.java. Executing a manipulation of the argument ascs/descs can lead to sql injection. The attack may be launched remotely. The exploit has been published and may be used. Upgrading to version 4.1.1 will fix this issue. This patch is called 9b6311161e346d7626c81d993044072fed2dca07. It is suggested to upgrade the affected component. The vendor was contacted early about this disclosure.",
-    "publishedDate" : "2026-10-25T00:16:45.047",
-    "lastModifiedDate" : "2026-10-25T00:16:46.110",
-    "cvssScore" : 6.3,
+    "id" : "CVE-2026-124491",
+    "description" : "SunEditor before 3.4.0 contains a stored cross-site scripting vulnerability in the FileUpload plugin create() method that assigns server-returned file names to innerHTML without escaping. Attackers can upload files with HTML-laden names that bypass html.clean() and execute JavaScript in victims' browsers when content or gallery items load, enabling session theft.",
+    "publishedDate" : "2026-11-08T14:18:18.817",
+    "lastModifiedDate" : "2026-11-08T14:18:18.817",
+    "cvssScore" : 6.4,
     "severity" : "MEDIUM",
     "inKev" : false,
-    "epssScore" : 0.00234,
-    "epssPercentile" : 0.1414,
-    "matchedKeywords" : [ "java" ],
+    "epssScore" : 0.00169,
+    "epssPercentile" : 0.06342,
+    "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115997"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124491"
   }, {
-    "id" : "CVE-2026-116058",
-    "description" : "A vulnerability was found in Alfresco Activiti up to 7.21.0-rc.692. Affected by this issue is the function JuelScriptEngine.eval of the file JuelScriptEngine.java. Performing a manipulation results in code injection. The attack can be initiated remotely. The vendor was contacted early about this disclosure but did not respond in any way.",
-    "publishedDate" : "2026-10-25T16:16:50.350",
-    "lastModifiedDate" : "2026-10-26T13:41:11.497",
-    "cvssScore" : 6.3,
+    "id" : "CVE-2026-115554",
+    "description" : "IBM Tivoli Netcool/OMNIbus 8.1.0 through 8.1.0.41 is vulnerable to stored cross-site scripting. This vulnerability allows an authenticated user to embed arbitrary JavaScript code in the Web UI thus altering the intended functionality potentially leading to credentials disclosure within a trusted session.",
+    "publishedDate" : "2026-11-08T17:16:36.730",
+    "lastModifiedDate" : "2026-11-08T17:16:36.837",
+    "cvssScore" : 6.4,
     "severity" : "MEDIUM",
     "inKev" : false,
-    "epssScore" : 0.00376,
-    "epssPercentile" : 0.31331,
-    "matchedKeywords" : [ "java" ],
+    "epssScore" : 0.0015,
+    "epssPercentile" : 0.04198,
+    "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116058"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115554"
   }, {
     "id" : "CVE-2026-116575",
     "description" : "Mem0 provides persistent memory infrastructure for AI agents and applications. Prior to Python SDK 2.0.18 and TypeScript SDK 3.1.6, _build_session_scope() in mem0/memory/main.py and Memory.buildSessionScope() in the TypeScript SDK join caller-controlled user_id, agent_id, and run_id values using unescaped & and = delimiters. A caller can embed another scope component in a controlled identifier so that distinct tenant tuples produce the same session_scope key. Memory.add(), AsyncMemory.add(), and the REST POST /memories flow use that key to read and save recent raw messages, allowing cross-tenant conversation disclosure and eviction or interleaving of another tenant's history. This issue is fixed in Python SDK 2.0.18 and TypeScript SDK 3.1.6.",
@@ -3072,6 +3158,19 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-55649"
   }, {
+    "id" : "CVE-2026-124504",
+    "description" : "A vulnerability was detected in erupts erupt up to 2.3.0. Affected by this issue is the function ReportService.queryBiData of the file ReportService.java. Performing a manipulation of the argument sort results in sql injection. The attack is possible to be carried out remotely. The exploit is now public and may be used. Upgrading to version 2.4.0 can resolve this issue. The patch is named 8d2eaffc79b977c9d11222b9d435a002dceaa062. It is suggested to upgrade the affected component.",
+    "publishedDate" : "2026-11-09T01:17:02.317",
+    "lastModifiedDate" : "2026-11-09T01:17:02.540",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00205,
+    "epssPercentile" : 0.10509,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124504"
+  }, {
     "id" : "CVE-2026-49924",
     "description" : "In ShortcutInfo of ShortcutInfo.java, there is a possible way to crash the launcher via unauthorized shortcuts due to resource exhaustion. This could lead to local denial of service with no additional execution privileges needed. User interaction is not needed for exploitation.",
     "publishedDate" : "2026-11-02T20:17:43.057",
@@ -3149,19 +3248,6 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59008"
-  }, {
-    "id" : "CVE-2026-116203",
-    "description" : "YesWiki before 4.7.0 contains a stored cross-site scripting vulnerability in the filtertags action, which echoes attacker-controlled token values without output encoding. Anonymous attackers can inject markup via action-attribute parameters that bypasses the allow_raw_html gate, executing JavaScript for every page viewer.",
-    "publishedDate" : "2026-10-25T14:17:01.187",
-    "lastModifiedDate" : "2026-10-26T17:17:23.910",
-    "cvssScore" : 6.1,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00168,
-    "epssPercentile" : 0.06009,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116203"
   }, {
     "id" : "CVE-2026-33520",
     "description" : "There is a reflected cross site scripting vulnerability in Esri Portal for ArcGIS versions 12.1 and prior which may allow a remote, unauthenticated attacker to create a crafted link which when clicked could potentially execute arbitrary JavaScript code in the victim’s browser. A patch is provided for impacted ArcGIS Server software in General Availability and Extended support status, which includes versions 11.5. Other versions are in mature or retired status, which are not patch eligible. Users working with unlisted versions are advised to upgrade and apply the patch.",
@@ -3899,32 +3985,6 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2025-55002"
   }, {
-    "id" : "CVE-2026-116139",
-    "description" : "WWBN AVideo 26.0 through 29.3.0 contains a stored cross-site scripting vulnerability that allows authenticated commenters to inject JavaScript because markDownToHTML() preserves event-handler attributes in leading HTML blocks. Attackers can post a comment starting with an img tag carrying an onerror handler, which bypasses the inline sanitizer and executes in viewers' browsers under the application origin.",
-    "publishedDate" : "2026-10-25T14:16:51.610",
-    "lastModifiedDate" : "2026-10-26T17:17:21.390",
-    "cvssScore" : 5.4,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00226,
-    "epssPercentile" : 0.13149,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116139"
-  }, {
-    "id" : "CVE-2026-116169",
-    "description" : "SiYuan from 2.10.0 before 3.8.7 contains a stored cross-site scripting vulnerability that allows users with edit permission to inject script by placing javascript: URLs in math block content rendered with KaTeX trust enabled. Attackers can store \\href, \\url, or \\includegraphics payloads that mathRender assigns via innerHTML, executing script in the application origin when a reader clicks the rendered link.",
-    "publishedDate" : "2026-10-25T14:16:56.080",
-    "lastModifiedDate" : "2026-10-25T15:17:02.733",
-    "cvssScore" : 5.4,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00205,
-    "epssPercentile" : 0.10397,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116169"
-  }, {
     "id" : "CVE-2026-116212",
     "description" : "Webasyst Framework through 4.4.0 contains a stored cross-site scripting vulnerability in the Photos app that allows authenticated backend users to inject JavaScript via the album url parameter. Attackers with album edit rights can save a url value that breaks out of the unescaped attribute in DialogAlbumSettings.html, executing JavaScript in administrators' backend sessions.",
     "publishedDate" : "2026-10-26T14:16:33.863",
@@ -4175,9 +4235,63 @@
     "cvssScore" : 5.4,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00446,
+    "epssPercentile" : 0.39038,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124326"
+  }, {
+    "id" : "CVE-2026-124452",
+    "description" : "OpenEMR before 8.3.0 contains a stored cross-site scripting vulnerability in interface/forms/eye_mag/report.php that allows authenticated users to inject scripts by adding unescaped document notes. Attackers with document-note write access can store malicious JavaScript in a retina document note that executes when clinicians generate the Eye Exam patient report, exposing session cookies.",
+    "publishedDate" : "2026-11-08T14:18:12.637",
+    "lastModifiedDate" : "2026-11-08T14:18:12.637",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00168,
+    "epssPercentile" : 0.0616,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124452"
+  }, {
+    "id" : "CVE-2026-18546",
+    "description" : "IBM CockroachDB PostgreSQL for IBM VPC 26.2.0 through 26.2.3, 25.4.0 through 25.4.12, and 25.2.0 through 25.2.20 is vulnerable to server-side request forgery (SSRF). This may allow an authenticated attacker to send unauthorized requests from the system, potentially leading to network enumeration or facilitating other attacks.",
+    "publishedDate" : "2026-11-08T18:17:04.307",
+    "lastModifiedDate" : "2026-11-08T18:17:04.447",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00168,
+    "epssPercentile" : 0.06053,
+    "matchedKeywords" : [ "postgresql" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-18546"
+  }, {
+    "id" : "CVE-2026-124569",
+    "description" : "A vulnerability was found in fushengqian fuintCatering up to 6d054f5788ac8645eb491f79242bb8a625efc133. The affected element is the function updateCommissionCash of the file CommissionCashServiceImpl.java. The manipulation of the argument Status results in improper access controls. It is possible to launch the attack remotely. This product takes the approach of rolling releases to provide continious delivery. Therefore, version details for affected and updated releases are not available. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-11-09T06:17:57.803",
+    "lastModifiedDate" : "2026-11-09T06:17:58.083",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00221,
+    "epssPercentile" : 0.12717,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124569"
+  }, {
+    "id" : "CVE-2026-124572",
+    "description" : "A vulnerability has been found in DataLinkDC dinky up to 1.2.5. Affected by this issue is the function CatalogueController.upload of the file dinky-admin/src/main/java/org/dinky/controller/CatalogueController.java of the component Catalogue Upload API. The manipulation leads to path traversal. The attack is possible to be carried out remotely. The researcher claims to have submitted a GHSA on the repository of the project.",
+    "publishedDate" : "2026-11-09T07:17:30.350",
+    "lastModifiedDate" : "2026-11-09T07:17:31.857",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00316,
+    "epssPercentile" : 0.24717,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124572"
   }, {
     "id" : "CVE-2026-118259",
     "description" : "opentelemetry-java is the Java implementation of the OpenTelemetry API for recording telemetry, and SDK for managing telemetry recorded by the API. Prior to 1.67.0, W3CTraceContextPropagator.extract() uses regex delimiter processing that can exhibit quadratic backtracking while parsing tracestate headers containing long runs of spaces or tabs without a following comma. An unauthenticated attacker whose headers reach extraction can repeatedly block request or event-loop threads and cause excessive CPU consumption, with practical impact bounded by ingress header-size limits, proxy configuration, and threading. This issue is fixed in version 1.67.0.",
@@ -4322,6 +4436,32 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123676"
   }, {
+    "id" : "CVE-2026-124507",
+    "description" : "A vulnerability was found in conductor-oss conductor up to 3.32.4/3.33.0/3.34.0-rc3/4.0.0-alpha.1. This issue affects the function WorkflowSystemTask.start of the file PlannerContextFetchTask.java of the component PLANNER_CONTEXT_FETCH Task Handler. The manipulation of the argument url results in server-side request forgery. It is possible to launch the attack remotely. The exploit has been made public and could be used. The researcher claims to have submitted a GHSA on the repository of the project.",
+    "publishedDate" : "2026-11-09T01:17:03.003",
+    "lastModifiedDate" : "2026-11-09T01:17:03.167",
+    "cvssScore" : 5.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00311,
+    "epssPercentile" : 0.2419,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124507"
+  }, {
+    "id" : "CVE-2026-124508",
+    "description" : "A vulnerability was determined in floci-io Floci up to 2.4.0. Impacted is the function BuildspecParser.parseArtifacts of the file src/main/java/io/github/hectorvent/floci/services/codebuild/CodeBuildJsonHandler.java of the component Artifact Handler. This manipulation of the argument buildspecOverride.artifacts.base-directory causes path traversal. The attack can be initiated remotely. The exploit has been publicly disclosed and may be utilized. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-11-09T02:16:58.987",
+    "lastModifiedDate" : "2026-11-09T02:16:59.180",
+    "cvssScore" : 5.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.0075,
+    "epssPercentile" : 0.55251,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124508"
+  }, {
     "id" : "CVE-2026-124329",
     "description" : "A vulnerability was found in FlowCI flow-core-x up to 1.23.49. The impacted element is the function FileHelper.unzip of the file common/src/main/java/com/flowci/common/helper/FileHelper.java. The manipulation results in path traversal. The attack may be performed from remote. A high complexity level is associated with this attack. The exploitability is regarded as difficult. The exploit has been made public and could be used. The vendor was contacted early about this disclosure but did not respond in any way.",
     "publishedDate" : "2026-11-08T12:17:48.440",
@@ -4329,9 +4469,24 @@
     "cvssScore" : 5.0,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00308,
+    "epssPercentile" : 0.23832,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124329"
+  }, {
+    "id" : "CVE-2026-124330",
+    "description" : "A vulnerability was determined in FlowCI flow-core-x up to 1.23.49. This affects the function exist/save/read/remove of the file store/src/main/java/com/flowci/store/LocalFileManager.java of the component LocalFileManager. This manipulation of the argument fileName causes path traversal. It is possible to initiate the attack remotely. A high degree of complexity is needed for the attack. The exploitability is reported as difficult. The exploit has been publicly disclosed and may be utilized. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-11-08T13:16:33.400",
+    "lastModifiedDate" : "2026-11-08T13:16:34.123",
+    "cvssScore" : 5.0,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00308,
+    "epssPercentile" : 0.23832,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124330"
   }, {
     "id" : "CVE-2026-59396",
     "description" : "A denial-of-service vulnerability exists in UAA's private_key_jwt client-authentication mechanism. When UAA retrieves a remote JWKS URI, it caches the response. Invalid authentication attempts can trigger full deserialization of this cached data. An attacker with prerequisites (write access to clients or a compromised endpoint) can send anonymous requests that force repeated parsing of large cached objects, causing excessive CPU usage and potential Java heap exhaustion via OutOfMemoryError, resulting in service unavailability.",
@@ -4434,6 +4589,32 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-54442"
+  }, {
+    "id" : "CVE-2026-124435",
+    "description" : "OpenRemote before 1.32.2 contains a stored cross-site scripting vulnerability that allows authenticated users with write:admin permissions to upload HTML or SVG files containing JavaScript via the Manager configuration file upload endpoint. Attackers can lure victims to the unauthenticated image retrieval endpoint, which serves files as text/html or image/svg+xml, executing scripts within the application's origin.",
+    "publishedDate" : "2026-11-08T14:18:09.837",
+    "lastModifiedDate" : "2026-11-08T14:18:09.837",
+    "cvssScore" : 4.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.0018,
+    "epssPercentile" : 0.07611,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124435"
+  }, {
+    "id" : "CVE-2026-124552",
+    "description" : "Webmin through 2.670 contains a stored cross-site scripting vulnerability in the Shorewall and Shorewall6 modules' list.cgi, which renders table fields and COMMENT lines unescaped. Authenticated users with table edit permission can store JavaScript via savecmt.cgi or table entries that executes when other users, including root, view the list page.",
+    "publishedDate" : "2026-11-08T14:18:19.600",
+    "lastModifiedDate" : "2026-11-08T14:18:19.733",
+    "cvssScore" : 4.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00191,
+    "epssPercentile" : 0.08741,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124552"
   }, {
     "id" : "CVE-2026-116582",
     "description" : "Seroval facilitates JavaScript value stringification, including complex structures beyond JSON.stringify capabilities. Prior to 1.0.0 and from 1.5.5 until 1.6.10, the JavaScript-output APIs serialize a RegExp source containing a less-than character without the escaping needed for an HTML script element. An application is affected when it builds regular expression syntax from untrusted input, serializes that RegExp through serialize, serializeAsync, crossSerialize, crossSerializeAsync, crossSerializeStream, Serializer, or compileJSON, and embeds the result in an HTML script element. The crafted source can terminate the element and execute script in the page received by another user. This issue is fixed in version 1.6.10.",
@@ -4676,9 +4857,76 @@
     "cvssScore" : 4.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00344,
+    "epssPercentile" : 0.28145,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123992"
+  }, {
+    "id" : "CVE-2026-124505",
+    "description" : "A flaw has been found in Dianping CAT 3.0.0/3.1.0/4.0-RC1. This affects the function Handler.redirect of the file Handler.java of the component Login/Logout. Executing a manipulation of the argument rtnUrl can lead to open redirect. The attack may be performed from remote. The exploit has been published and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-11-09T01:17:02.600",
+    "lastModifiedDate" : "2026-11-09T01:17:02.757",
+    "cvssScore" : 4.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.0025,
+    "epssPercentile" : 0.16373,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124505"
+  }, {
+    "id" : "CVE-2026-124556",
+    "description" : "A security vulnerability has been detected in kekingcn kkFileView up to 5.0.3. This issue affects the function BaseUrlFilter.getBaseUrl of the file server/src/main/java/cn/keking/web/filter/BaseUrlFilter.java. The manipulation of the argument X-Base-Url leads to open redirect. The attack is possible to be carried out remotely. The exploit has been disclosed publicly and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-11-09T03:16:37.333",
+    "lastModifiedDate" : "2026-11-09T03:16:37.553",
+    "cvssScore" : 4.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00348,
+    "epssPercentile" : 0.28664,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124556"
+  }, {
+    "id" : "CVE-2026-124565",
+    "description" : "A security vulnerability has been detected in fushengqian fuint up to 36cc31b08d77facc94e8959afa02224891b4fe5f. This affects the function confirm of the file MerchantOrderController.java of the component Order Verification. Such manipulation leads to improper access controls. The attack can be executed remotely. This product implements a rolling release for ongoing delivery, which means version information for affected or updated releases is unavailable. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-11-09T05:18:27.883",
+    "lastModifiedDate" : "2026-11-09T05:18:28.270",
+    "cvssScore" : 4.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00198,
+    "epssPercentile" : 0.09626,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124565"
+  }, {
+    "id" : "CVE-2026-124566",
+    "description" : "A vulnerability was detected in fushengqian fuint up to 36cc31b08d77facc94e8959afa02224891b4fe5f. This vulnerability affects the function aliPayCallback of the file ClientPayController.java of the component Alipay Callback Handler. Performing a manipulation results in enforcement of behavioral workflow. The attack is possible to be carried out remotely. This product adopts a rolling release strategy to maintain continuous delivery. Therefore, version details for affected or updated releases cannot be specified. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-11-09T05:18:28.420",
+    "lastModifiedDate" : "2026-11-09T05:18:28.647",
+    "cvssScore" : 4.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00216,
+    "epssPercentile" : 0.12058,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124566"
+  }, {
+    "id" : "CVE-2026-124567",
+    "description" : "A flaw has been found in fushengqian fuint up to 36cc31b08d77facc94e8959afa02224891b4fe5f. This issue affects the function receipt of the file ClientOrderController.java. Executing a manipulation can lead to state issue. The attack may be performed from remote. This product utilizes a rolling release system for continuous delivery, and as such, version information for affected or updated releases is not disclosed. The vendor was contacted early about this disclosure but did not respond in any way.",
+    "publishedDate" : "2026-11-09T05:18:28.730",
+    "lastModifiedDate" : "2026-11-09T05:18:29.010",
+    "cvssScore" : 4.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "epssScore" : 0.00216,
+    "epssPercentile" : 0.12058,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124567"
   }, {
     "id" : "CVE-2026-96447",
     "description" : "A flaw was found in the TokenManager component of Keycloak, an open-source identity and access management solution. The issue occurs during the validation of stateless access tokens when the original user ID no longer exists. Keycloak incorrectly falls back to using the username to identify the user without verifying if the identity matches the original token subject. This could allow an attacker with an old token to gain access to a newly created service account if it shares the same client ID as a previously deleted one.",
@@ -4781,19 +5029,6 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59006"
-  }, {
-    "id" : "CVE-2026-116007",
-    "description" : "A flaw has been found in YunaiV/zhijiantianya ruoyi-vue-pro up to 2026.09. The impacted element is the function SmsCodeServiceImpl.validateSmsCode0 of the file /service/sms/SmsCodeServiceImpl.java of the component SMS Code Verification. This manipulation causes improper restriction of excessive authentication attempts. The attack may be initiated remotely. The complexity of an attack is rather high. The exploitability is regarded as difficult. The exploit has been published and may be used. The vendor was contacted early about this disclosure but did not respond in any way.",
-    "publishedDate" : "2026-10-25T04:17:34.610",
-    "lastModifiedDate" : "2026-10-25T04:17:34.793",
-    "cvssScore" : 3.7,
-    "severity" : "LOW",
-    "inKev" : false,
-    "epssScore" : 0.0037,
-    "epssPercentile" : 0.30678,
-    "matchedKeywords" : [ "java" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116007"
   }, {
     "id" : "CVE-2026-118258",
     "description" : "i18next-http-backend is a backend layer for i18next that loads translation resources in Node.js, browsers, and Deno. Prior to 4.0.4, interpolateUrl inserts unencoded language and namespace values into loadPath or addPath templates without rejecting ampersand (&), equals (=), or semicolon (;) query separators. When a template places lng or ns in the query string and an attacker controls that value, the attacker can add or override parameters on browser or server-side translation requests, potentially exposing other namespaces or tenants or changing backend behavior through the application's network position and credentials. This vulnerability is the result of an incomplete fix for CVE-2026-41691. This issue is fixed in version 4.0.4.",
@@ -4975,6 +5210,19 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105258"
   }, {
+    "id" : "CVE-2026-97195",
+    "description" : "The Secure Custom Fields WordPress plugin before 6.9.8 does not sanitize a persisted field definition before emitting part of it as an HTML attribute name, allowing a user able to configure its fields to store a payload that executes as JavaScript in the browser of any user who views a page rendering the affected field, which on multisite lets a site administrator who lacks the unfiltered_html capability inject script into other users' sessions.",
+    "publishedDate" : "2026-11-08T06:17:06.350",
+    "lastModifiedDate" : "2026-11-08T19:17:53.907",
+    "cvssScore" : 3.5,
+    "severity" : "LOW",
+    "inKev" : false,
+    "epssScore" : 0.00142,
+    "epssPercentile" : 0.03579,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-97195"
+  }, {
     "id" : "CVE-2026-116673",
     "description" : "systeminformation is a System and OS information library for node.js. Prior to 5.33.14, the Linux networkStats(iface) implementation uses the caller-supplied interface value in an fs.existsSync() check and to build /sys/class/net/<iface> paths, including the operstate path, without verifying that it is a single interface-name segment or that the resolved path remains under /sys/class/net. An attacker who can control iface and create a directory containing symlinked statistics files can use parent-directory components and symlink traversal to make the API return the first line of a file readable by the Node.js process. The package does not expose a network endpoint, and the demonstrated scenario requires local filesystem setup. This issue is fixed in version 5.33.14.",
     "publishedDate" : "2026-10-27T17:16:59.297",
@@ -5047,6 +5295,8 @@
     "cvssScore" : 3.1,
     "severity" : "LOW",
     "inKev" : false,
+    "epssScore" : 9.2E-4,
+    "epssPercentile" : 0.00506,
     "matchedKeywords" : [ "docker" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123508"
@@ -6855,24 +7105,128 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-69128"
   }, {
-    "id" : "CVE-2026-114432",
-    "description" : "The Contact Form 7 WordPress plugin before 6.2.4 does not validate the type or extension of files uploaded through a form file field, and a flaw in its temporary-file cleanup leaves the uploaded file on disk, allowing unauthenticated users to upload arbitrary files to the site. On a stock Debian or Ubuntu Apache configuration, which lists directory contents and maps .phar to the PHP handler, the stored file can be located and executed, leading to Remote Code Execution. On other configurations, including nginx and Apache with .htaccess overrides enabled, the issue is limited to an arbitrary file written into the uploads directory, which may still be served as active content such as HTML or SVG from the site's own origin.",
-    "publishedDate" : "2026-11-08T06:17:04.807",
-    "lastModifiedDate" : "2026-11-08T06:17:04.807",
+    "id" : "CVE-2026-124493",
+    "description" : "SunEditor before 3.4.0 contains a stored cross-site scripting vulnerability in the DocumentType constructor that injects header textContent into innerHTML without HTML escaping. Attackers can store entity-encoded HTML in h1-h6 headers that executes JavaScript when editors using document:header mode initialize, enabling session cookie theft.",
+    "publishedDate" : "2026-11-08T14:18:19.130",
+    "lastModifiedDate" : "2026-11-08T14:18:19.130",
     "severity" : "UNKNOWN",
     "inKev" : false,
-    "matchedKeywords" : [ "nginx" ],
+    "epssScore" : 0.00344,
+    "epssPercentile" : 0.2816,
+    "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-114432"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124493"
   }, {
-    "id" : "CVE-2026-97195",
-    "description" : "The Secure Custom Fields WordPress plugin before 6.9.8 does not sanitize a persisted field definition before emitting part of it as an HTML attribute name, allowing a user able to configure its fields to store a payload that executes as JavaScript in the browser of any user who views a page rendering the affected field, which on multisite lets a site administrator who lacks the unfiltered_html capability inject script into other users' sessions.",
-    "publishedDate" : "2026-11-08T06:17:06.350",
-    "lastModifiedDate" : "2026-11-08T06:17:06.350",
+    "id" : "CVE-2026-124494",
+    "description" : "SunEditor before 3.4.0 contains a stored cross-site scripting vulnerability because the html.clean() sanitizer's _normalizeURL() function decodes named entities like &colon; to an empty string. Attackers can inject href values such as javascript&colon; that pass the _isSafeURL() check but are decoded by browsers, executing JavaScript when victims click stored links.",
+    "publishedDate" : "2026-11-08T14:18:19.277",
+    "lastModifiedDate" : "2026-11-08T14:18:19.277",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "epssScore" : 0.00344,
+    "epssPercentile" : 0.2816,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124494"
+  }, {
+    "id" : "CVE-2026-113508",
+    "description" : "Apache Airflow's logout endpoint attempted to revoke the presented token on the server, but any failure during revocation was silently ignored and logout still reported success. When the auth manager redirects logout to an external logout URL (for example the FAB or Keycloak auth managers), server-side revocation is the only thing that invalidates the Airflow token; it failed on database errors and, reliably, for tokens from an external issuer accepted via `[api_auth] trusted_jwks_url` whose token identifier is longer than 32 characters. Anyone holding a copy of a user's token from before logout could keep using it against the Airflow API until it expired. Users are advised to upgrade to apache-airflow 3.4.0 or later.",
+    "publishedDate" : "2026-11-09T10:17:05.463",
+    "lastModifiedDate" : "2026-11-09T11:17:20.670",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "keycloak" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-113508"
+  }, {
+    "id" : "CVE-2026-124637",
+    "description" : "A stored Cross-Site Scripting (XSS) vulnerability was identified in the profile editing form, in the parameters: cliNom and cliCognoms, in a request to https://www.luxorgymtarrega.com/dadespersonals/modificarClient/ID. User-provided data is neither validated nor escaped before being displayed in the HTML response and stored in the database, allowing arbitrary JavaScript code to be executed in the victim’s browser.",
+    "publishedDate" : "2026-11-09T10:17:09.827",
+    "lastModifiedDate" : "2026-11-09T10:17:09.827",
     "severity" : "UNKNOWN",
     "inKev" : false,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-97195"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124637"
+  }, {
+    "id" : "CVE-2026-120367",
+    "description" : "Allocation of Resources Without Limits or Throttling vulnerability in Apache Axis2/Java. The JSON message builders, including the Gson, Moshi and HTTP/2 variants, buffered the entire request body with no size limit, so an unauthenticated caller could exhaust server memory with a large JSON request. Version 2.0.2 bounds JSON request bodies with the configurable jsonMaxRequestSize parameter. This issue affects Apache Axis2/Java: through 2.0.1. Users are recommended to upgrade to version 2.0.2, which fixes the issue.",
+    "publishedDate" : "2026-11-09T11:17:21.720",
+    "lastModifiedDate" : "2026-11-09T11:17:21.720",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120367"
+  }, {
+    "id" : "CVE-2026-120761",
+    "description" : "Improper Restriction of XML External Entity Reference vulnerability in Apache Axis2/Java. When a client built an AxisService from a WSDL URL, through ServiceClient or AxisService.createClientSideAxisService, wsdl4j import resolution was enabled and the documents named by wsdl:import and xsd:import were parsed by wsdl4j's own XML parser, which processes DOCTYPE declarations and external entities. An attacker who controls a WSDL, or a document it imports, could therefore read local files or make the JVM issue network requests. This issue affects Apache Axis2/Java: through 2.0.1. Users are recommended to upgrade to version 2.0.2, which fixes the issue.",
+    "publishedDate" : "2026-11-09T11:17:21.857",
+    "lastModifiedDate" : "2026-11-09T11:17:21.857",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120761"
+  }, {
+    "id" : "CVE-2026-120832",
+    "description" : "Server-Side Request Forgery (SSRF) vulnerability in Apache Axis2/Java. When Axis2 built a service description from a WSDL, through ServiceClient, AxisService.createClientSideAxisService or WSDLToAxisServiceBuilder, it fetched the absolute URLs in wsdl:import locations and in xsd:import and xsd:include schemaLocations with no scheme or host restriction; the AAR and WAR deployment resolvers also passed absolute schema locations on to the network. An attacker who controls a WSDL or schema processed by an Axis2 application could therefore make the JVM send requests to arbitrary internal or external hosts. This issue affects Apache Axis2/Java: through 2.0.1. Users are recommended to upgrade to version 2.0.2, which fixes the issue.",
+    "publishedDate" : "2026-11-09T11:17:21.990",
+    "lastModifiedDate" : "2026-11-09T11:17:21.990",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120832"
+  }, {
+    "id" : "CVE-2026-123753",
+    "description" : "Server-Side Request Forgery (SSRF) vulnerability in Apache Axis2/Java. An unauthenticated caller could supply a non-anonymous WS-Addressing wsa:ReplyTo or wsa:FaultTo address, and Axis2 would open a connection to that address to deliver the response or fault, allowing requests to internal hosts and delivery of response content to a host of the caller's choosing. From 2.0.2, decoupled responses are refused unless allowNonAnonymousResponseEndpoints is enabled, and enabled endpoints are restricted by scheme and screened at both the header-parsing and transport-selection layers. This issue affects Apache Axis2/Java: through 2.0.1. Users are recommended to upgrade to version 2.0.2, which fixes the issue.",
+    "publishedDate" : "2026-11-09T11:17:23.920",
+    "lastModifiedDate" : "2026-11-09T11:17:23.920",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123753"
+  }, {
+    "id" : "CVE-2026-123766",
+    "description" : "Improper Neutralization of Input During Web Page Generation (Cross-site Scripting) vulnerability in the OpenAPI module of Apache Axis2/Java. The Swagger UI page served by the OpenAPI module wrote a value derived from the request's Host header into the page without encoding, allowing script injection in the context of the Axis2 origin. This issue affects Apache Axis2/Java: 2.0.1. Users are recommended to upgrade to version 2.0.2, which fixes the issue.",
+    "publishedDate" : "2026-11-09T11:17:24.050",
+    "lastModifiedDate" : "2026-11-09T11:17:24.050",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123766"
+  }, {
+    "id" : "CVE-2026-123770",
+    "description" : "Allocation of Resources Without Limits or Throttling vulnerability in Apache Axis2/Java. The multipart/form-data and application/x-www-form-urlencoded message builders read the request body directly from the transport stream with no size limit, so the servlet container's post-size limit did not apply, and multipart temporary files were not deleted. An unauthenticated caller could exhaust memory or disk. Version 2.0.2 bounds these bodies with configurable limits and deletes temporary files. This issue affects Apache Axis2/Java: through 2.0.1. Users are recommended to upgrade to version 2.0.2, which fixes the issue.",
+    "publishedDate" : "2026-11-09T11:17:24.180",
+    "lastModifiedDate" : "2026-11-09T11:17:24.180",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123770"
+  }, {
+    "id" : "CVE-2026-123779",
+    "description" : "Direct Request ('Forced Browsing') vulnerability in Apache Axis2/Java. The exposeServiceMetadata service parameter was enforced only on the ?wsdl, ?wsdl2 and ?xsd queries. For a service that had disabled it, the packaged .wsdl and .xsd file routes, the named-WSDL ?wsdl=NAME route of the standalone HTTP server, the OpenAPI, Swagger UI and MCP catalog endpoints, the services listing, WS-MetadataExchange GetMetadata and the ping module still disclosed its metadata to anonymous callers, including operation names and request and response schemas. This issue affects Apache Axis2/Java: through 2.0.1. Users are recommended to upgrade to version 2.0.2, which fixes the issue.",
+    "publishedDate" : "2026-11-09T11:17:24.310",
+    "lastModifiedDate" : "2026-11-09T11:17:24.310",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123779"
+  }, {
+    "id" : "CVE-2026-112204",
+    "description" : "WidzialniCMS is vulnerable to Reflected XSS in the /index.php endpoint. An attacker can prepare an URL that, when opened, results in arbitrary JavaScript execution in the victim's browser, allowing e.g session cookie theft.\n\n\nThis issue has been fixed in version 2.5.",
+    "publishedDate" : "2026-11-09T13:17:04.820",
+    "lastModifiedDate" : "2026-11-09T13:17:04.820",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112204"
   } ]
 }
