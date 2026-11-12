@@ -1,39 +1,38 @@
 {
-  "lastSync" : "2026-11-11T13:18:42.038255986Z",
-  "newToday" : 114,
+  "lastSync" : "2026-11-12T14:22:42.858430819Z",
+  "newToday" : 125,
   "stats" : {
-    "totalTracked" : 612,
+    "totalTracked" : 611,
     "criticalCount" : 27,
-    "highCount" : 178,
-    "mediumCount" : 216,
-    "lowCount" : 25,
+    "highCount" : 191,
+    "mediumCount" : 217,
+    "lowCount" : 24,
     "kevCount" : 0,
-    "alertCount" : 167,
+    "alertCount" : 174,
     "avgEpss" : 0.003,
     "severityDistribution" : {
       "CRITICAL" : 27,
-      "HIGH" : 178,
-      "MEDIUM" : 216,
-      "LOW" : 25
+      "HIGH" : 191,
+      "MEDIUM" : 217,
+      "LOW" : 24
     },
     "topTechnologies" : {
-      "javascript" : 240,
-      "java" : 149,
-      "node.js" : 62,
-      "docker" : 43,
-      "postgresql" : 41,
-      "keycloak" : 36,
+      "javascript" : 236,
+      "java" : 150,
+      "node.js" : 78,
+      "docker" : 44,
+      "keycloak" : 37,
+      "postgresql" : 29,
       "kubernetes" : 25,
-      "typescript" : 20,
-      "nginx" : 17,
+      "nginx" : 18,
+      "typescript" : 18,
       "tomcat" : 12,
       "angular" : 9,
-      "npm" : 6,
-      "jackson" : 3,
+      "npm" : 5,
       "hibernate" : 2,
-      "spring" : 1
+      "jackson" : 2
     },
-    "lastSyncTimestamp" : "2026-11-11T13:18:42.129539779Z"
+    "lastSyncTimestamp" : "2026-11-12T14:22:42.980300869Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-120338",
@@ -122,19 +121,6 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123800"
-  }, {
-    "id" : "CVE-2026-110879",
-    "description" : "jackson-databind validates the outer class of a class-name type ID but accepts attacker-selected classes inside its generic arguments, even when those classes violate the declared type or would be rejected as direct type IDs. This bypasses the generic-argument validation added for CVE-2026-54512 (GHSA-j3rv-43j4-c7qm), of which this is an incomplete fix.\n\n\n\nDatabindContext._resolveAndValidateGeneric() checks the outer class against the declared base type and then passes each argument from the type ID to _validateTypeParameter(), which validates the argument against the outer base type rather than enforcing its corresponding declared generic binding. It also invokes validators with arguments that have not passed the subtype check those validators expect. Under the default DefaultBaseTypeLimitingValidator this accepts an unrelated class inside a generic subtype even when the same class is rejected as a direct type ID. Where an allowIfBaseType(...) rule approves the outer type, Jackson substitutes LaissezFaireSubTypeValidator, so the configured validator no longer restricts the embedded arguments. The element type of a plain array type ID such as [Lpkg.Gadget; is likewise left unvalidated once the array's base type is approved.\n\n\n\nAffected paths include annotation-based class-name polymorphism with a default Jackson 3.x JsonMapper, configured default typing in both Jackson 2.x and 3.x, and integrations that expose that default typing. The default-validator case requires no application-authored validator: with @JsonTypeInfo(use = Id.CLASS), a direct gadget type ID is rejected as \"Not a subtype\", while a type ID naming a generic wrapper around the same gadget is accepted and deserialized, including attacker-supplied bean properties. Where class-name default typing permits Map, a property declared as Map<String,String> accepts HashMap<FileSystemXmlApplicationContext,String>; map-key discovery then passes the attacker-controlled JSON property name to the selected class's one-string constructor. With Spring on the classpath and attacker-controlled XML the application can load, that constructor loads the XML and invokes ProcessBuilder.start() under the application account, giving arbitrary command execution.\n\n\n\nThis issue affects com.fasterxml.jackson.core:jackson-databind from 2.10.0 and tools.jackson.core:jackson-databind from 3.0.0. Releases before 2.10.0 are not affected, because PolymorphicTypeValidator was introduced in jackson-databind 2.10.0.",
-    "publishedDate" : "2026-10-28T01:16:55.180",
-    "lastModifiedDate" : "2026-10-28T15:21:31.673",
-    "cvssScore" : 9.8,
-    "severity" : "CRITICAL",
-    "inKev" : false,
-    "epssScore" : 0.01196,
-    "epssPercentile" : 0.67976,
-    "matchedKeywords" : [ "spring", "jackson" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-110879"
   }, {
     "id" : "CVE-2026-61737",
     "description" : "ng-antd-admin is an Angular and NestJS administration system template. Prior to 22.0, a hardcoded default `JWT` secret permits token forgery when a deployment has not replaced the default secret, without a startup warning. An attacker can bypass authentication and authorization, impersonate any user including administrators, and access protected API endpoints, leading to account takeover, data leakage and unauthorized operations. Version 22.0 rejects the shipped secret in production but permits it with a warning in non-production environments.",
@@ -251,6 +237,28 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-64678"
   }, {
+    "id" : "CVE-2026-126812",
+    "description" : "blueprintUE Self-Hosted Edition before 4.3.7 contains an insecure default configuration in its Docker Compose examples that sets MYSQL_ALLOW_EMPTY_PASSWORD=yes in database.env and publishes MariaDB on port 3306. Unauthenticated attackers reaching the Docker host on port 3306 can log in as root without a password to read, modify, or delete user accounts, blueprints, and all databases.",
+    "publishedDate" : "2026-11-11T21:16:45.690",
+    "lastModifiedDate" : "2026-11-11T21:16:45.690",
+    "cvssScore" : 9.8,
+    "severity" : "CRITICAL",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126812"
+  }, {
+    "id" : "CVE-2026-67449",
+    "description" : "Portabase is a database backup and restore tool for PostgreSQL, MySQL, MsSQL, MariaDB, Firebird SQL, SQLite, MongoDB, Redis, Files and Docker Volume. Prior to version 1.21.2, a path traversal in the TUS upload webhook handler (app/api/tus/hooks/route.ts) allowed an unauthenticated attacker to overwrite arbitrary files under the private data directory, including /data/private/keys/master_key.bin (the AES-256-GCM master key). This issue has been patched in version 1.21.2.",
+    "publishedDate" : "2026-11-11T22:17:28.257",
+    "lastModifiedDate" : "2026-11-11T22:17:28.257",
+    "cvssScore" : 9.8,
+    "severity" : "CRITICAL",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker", "postgresql" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-67449"
+  }, {
     "id" : "CVE-2026-121904",
     "description" : "Adobe Connect is affected by a stored Cross-Site Scripting (XSS) vulnerability that could be abused by a low-privileged attacker to inject malicious scripts into vulnerable form fields. Malicious JavaScript may be executed in a victim's browser when they browse to the page containing the vulnerable field, potentially gaining elevated access or control over the victim's account or session. Scope is changed.",
     "publishedDate" : "2026-11-10T22:18:27.280",
@@ -261,19 +269,6 @@
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-121904"
-  }, {
-    "id" : "CVE-2026-63190",
-    "description" : "FearlessCMS is a flat-file `content` management system centered on simplicity and open source. Prior to version 0.1.4, five debug/test PHP scripts under `admin/` perform privileged operations without `isLoggedIn()` authentication checks, CSRF protection or adequate `path` validation. On PHP's built-in development server, including the default Docker deployment, `router.php` checks an unnormalized admin URI prefix while the filesystem resolves dot segments, so `/./admin/` bypasses the admin login gate and executes those scripts directly. In `admin/debug_save_flow.php`, attacker-controlled `path` and `content` reach `file_put_contents` for arbitrary `.md` writes under `content`/ or outside it through `path` traversal, enabling site defacement and stored JavaScript in public pages; `print_r($_POST)` output without `htmlspecialchars` escaping also causes reflected cross-site scripting. The `admin/debug_content.php` `path` parameter reaches `scandir()`, `file_get_contents()` and `posix_getpwuid()`, permitting arbitrary directory enumeration and `.md` file reads that expose absolute paths, ownership, permissions, hashes and `content` previews. The `admin/preview-handler.php` endpoint accepts JSON `content` and `title` and writes enumerable files under `content/_preview/`, enabling stored cross-site scripting and disk exhaustion. The `admin/testdebug.php` endpoint appends to `admin/testdebug.log` without authentication, also enabling disk exhaustion. The `admin/test_redirect.php` script exposes a test artifact but escapes its inputs and is not itself an XSS sink. Stored script execution can steal sessions and compromise administrators when they view affected `content`. Reads and writes execute with PHP's privileges; the tested deployment runs PHP as root, amplifying filesystem impact. This issue is fixed in version 0.1.4.",
-    "publishedDate" : "2026-10-28T20:18:37.470",
-    "lastModifiedDate" : "2026-10-29T19:17:25.440",
-    "cvssScore" : 9.4,
-    "severity" : "CRITICAL",
-    "inKev" : false,
-    "epssScore" : 0.00544,
-    "epssPercentile" : 0.45622,
-    "matchedKeywords" : [ "javascript", "docker" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-63190"
   }, {
     "id" : "CVE-2026-105769",
     "description" : "kaniko before 1.25.20 can send a Microsoft Entra ID (Azure AD) access token for Azure Resource Manager to an attacker-controlled registry host. kaniko uses the Azure Container Registry credential helper github.com/chrismellard/docker-credential-acr-env, which decides whether a host is an ACR registry with an unanchored regular expression, so any hostname containing .azurecr.io, .azurecr.cn, .azurecr.de or .azurecr.us is accepted. kaniko consults this helper for any registry that has no credentials in the Docker config and is not a Google or Amazon ECR registry, before contacting the registry. A Dockerfile that references an image on a lookalike host, such as FROM x.azurecr.io.attacker.com/img or COPY --from=<image>, causes the helper to obtain a token from the build's Azure identity (service principal environment variables, federated workload identity token, or managed identity) and POST it to https://<host>/oauth2/exchange. The attacker can use the token against Azure Resource Manager with the identity's role assignments until it expires, and can exchange it for credentials to any ACR registry the identity can access. No RUN instruction or push is required. This issue is fixed in 1.25.20.",
@@ -389,19 +384,6 @@
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-61719"
-  }, {
-    "id" : "CVE-2026-59177",
-    "description" : "ESPHome Device Builder Dashboard is a dashboard for the ESPHome home management software. Prior to 1.0.10, the `Home Assistant` add-on's trusted `ingress` site binds to `0.0.0.0` while intentionally skipping dashboard authentication because the supervisor is expected to authenticate requests upstream. Host networking, required for mDNS, also binds this no-auth site to the `Home Assistant` host's LAN interface. Any device on that local network can therefore connect directly to the `ingress` port, bypass the supervisor, and obtain the full dashboard without credentials or operator misconfiguration. Dashboard capability includes compile-time Python execution through `external_components:`, shell execution through compile and validation subprocesses, and arbitrary access to configuration and data files, compromising the mounted `Home Assistant` configuration and managed ESPHome devices. The standalone Docker dashboard and the password-gated public port 6052 are not affected. This issue is fixed in version 1.0.10.",
-    "publishedDate" : "2026-10-28T14:17:04.747",
-    "lastModifiedDate" : "2026-10-28T15:24:56.033",
-    "cvssScore" : 8.8,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.01168,
-    "epssPercentile" : 0.6729,
-    "matchedKeywords" : [ "docker" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59177"
   }, {
     "id" : "CVE-2026-59387",
     "description" : "The Nginx routing configuration for Cloud Controller blocks unauthenticated access to /internal/v4/ and /internal/v5/ endpoints but omits an equivalent deny rule for /internal/v3/. As a result, the staging callback endpoints /internal/v3/staging/:guid/droplet_completed and /internal/v3/staging/:guid/build_completed are reachable from the public API listener without OAuth or mutual TLS.\n\n\n\n \n\n\n\nAn attacker with a valid build or droplet GUID can submit a forged staging callback, transition a droplet to STAGED, and persist arbitrary process metadata and sidecar data with no associated package or actor. A SpaceAuditor can enumerate GUIDs without write permissions, making this an effective privilege escalation beyond the intended role boundary.",
@@ -651,6 +633,28 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126617"
   }, {
+    "id" : "CVE-2026-67543",
+    "description" : "Heym builds and runs agentic systems and business-process automations on self-hosted infrastructure. Prior to version 0.0.70, heym hardens one untrusted-code path but not its sibling. The Python tool executor (python_tool_executor.py) treats user code as untrusted and mandates a Docker sandbox (no network, read-only fs, non-root, no docker socket), failing closed. The skill executor (skill_python_executor.py) runs skill Python via a local backend subprocess with no Docker isolation — only a 512 MB RLIMIT and a 7-key env denylist — so a skill executes inside the backend execution context, with filesystem access, network egress, and non-denylisted environment variables that should not be exposed to untrusted/shared skills. In the shipped Docker config (backend runs as root + /var/run/docker.sock mounted), this escalates to host root. This issue has been patched in version 0.0.70.",
+    "publishedDate" : "2026-11-11T22:17:28.997",
+    "lastModifiedDate" : "2026-11-11T22:17:29.140",
+    "cvssScore" : 8.8,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-67543"
+  }, {
+    "id" : "CVE-2026-67544",
+    "description" : "Heym builds and runs agentic systems and business-process automations on self-hosted infrastructure. Prior to version 0.0.71, Heym's workflow engine accepts an arbitrary Python code string in the playwrightCode field of a Playwright node. This string is written to a temporary .py file and executed directly by the backend process via subprocess.Popen([sys.executable, script_path]) with no sandboxing, AST validation, or role gate. Any authenticated user — including a freshly registered account — can achieve full remote code execution (RCE) on the backend host, running as the service process user (observed as root in the default Docker deployment). This issue has been patched in version 0.0.71.",
+    "publishedDate" : "2026-11-11T22:17:29.180",
+    "lastModifiedDate" : "2026-11-11T22:17:29.323",
+    "cvssScore" : 8.8,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-67544"
+  }, {
     "id" : "CVE-2026-119572",
     "description" : "Traefik from 3.7.0-ea.1 before 3.7.15 contains an authentication bypass vulnerability in the Kubernetes Ingress NGINX provider that silently disables mTLS configured via the auth-tls-secret annotation. When another Ingress declares a path on the same host without matching auth-tls settings, Traefik falls back to default TLS options, letting unauthenticated attackers reach backends requiring client certificates.",
     "publishedDate" : "2026-10-30T14:16:46.070",
@@ -714,19 +718,6 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-122102"
   }, {
-    "id" : "CVE-2026-118660",
-    "description" : "Happy DOM is a JavaScript implementation of a web browser without its graphical user interface. Prior to 21.0.0, Happy DOM loads iframe src URLs and link rel=\"stylesheet\" href URLs by default while parsing untrusted HTML on the server because disableIframePageLoading and disableCSSFileLoading default to false. An attacker who controls parsed HTML can therefore cause server-side requests to arbitrary internal or cloud endpoints without an application opt-in and may expose confidential responses or credentials returned by those endpoints. This issue is fixed in version 21.0.0.",
-    "publishedDate" : "2026-10-28T21:16:56.123",
-    "lastModifiedDate" : "2026-10-29T18:17:27.943",
-    "cvssScore" : 8.6,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00405,
-    "epssPercentile" : 0.34671,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118660"
-  }, {
     "id" : "CVE-2026-111419",
     "description" : "A sensitive information exposure vulnerability exists on the Foxit official website because JavaScript code contains third-party authorization information. This may allow unauthorized parties to obtain or misuse the exposed credentials.",
     "publishedDate" : "2026-10-29T10:17:03.440",
@@ -778,19 +769,6 @@
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-73856"
-  }, {
-    "id" : "CVE-2026-59185",
-    "description" : "identrail is a machine identity security platform for AWS, GitHub/OIDC, and Kubernetes. Prior to 1.0.2, the default-on `POST /v1/workspaces/:workspace_id/projects/:project_id/github/connect/complete` endpoint in `internal/api/router.go` accepts `installation_id` from the request body or `X-GitHub-Installation-ID` header without verifying the installation belongs to the caller's workspace. `CompleteGitHubConnection` in `internal/api/github_connect.go` rigorously binds `state` to the caller's tenant, workspace, and project, but checks only that the installation ID is positive before persisting it as the caller's connection. `ListInstallationRepositories` in `internal/connectors/github/repositories.go` invokes token creation through `internal/connectors/github/app.go` and `POST /app/installations/{installationId}/access_tokens`, using the application's JWT. An authenticated tenant who starts a legitimate connection can supply another customer's non-secret installation ID to read the victim organization's private repository inventory, content, and metadata or drive posture scans, provided identrail's GitHub App is installed there. The default-off V2 `CompleteGitHubConnector` path shares the installation-ownership gap and additionally matches pending `state` without rechecking caller scope. This issue is fixed in version 1.0.2.",
-    "publishedDate" : "2026-10-28T14:17:05.070",
-    "lastModifiedDate" : "2026-10-28T16:17:08.510",
-    "cvssScore" : 8.5,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.0032,
-    "epssPercentile" : 0.24921,
-    "matchedKeywords" : [ "kubernetes" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59185"
   }, {
     "id" : "CVE-2026-119115",
     "description" : "Incorrect authorization in the issuer resolution logic in AWS Private CA Connector for Kubernetes (aws-privateca-issuer) before v1.10.1 might allow an authenticated remote user to obtain certificates, including subordinate CA certificates, signed by a cluster-scoped AWS Private CA issuer that their approval policy does not authorize.\n\n\n\nTo remediate this issue, users should upgrade aws-privateca-issuer to version v1.10.1 or the AWS Private CA Connector for Kubernetes EKS add-on to version v1.10.1-eksbuild.1, and update any certificate requests, Certificate resources, or Ingress annotations whose issuerRef.kind is missing, incorrect, or does not match the referenced issuer, since v1.10.1 requires issuerRef.kind to be exactly AWSPCAIssuer or AWSPCAClusterIssuer and to match the issuer it references.",
@@ -1234,19 +1212,6 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59016"
   }, {
-    "id" : "CVE-2026-59179",
-    "description" : "OpenHop is a tool for creating interactive data-flow diagrams. Prior to 0.3.7, `@openhop/server` passes unauthenticated flow route parameters from `GET /api/flows/:id` and `DELETE /api/flows/:id` in `packages/server/src/routes.ts` to `FlowStore.filePath()` in `packages/server/src/store.ts` without an identifier allow-list. The router applies `decodeURIComponent` to the id, and `path.join()` then normalizes traversal outside the configured flow directory after appending the .yaml extension. An attacker can read accessible YAML files as YAML-parsed JSON or permanently delete accessible .yaml files outside that directory, exposing configuration or secrets and disrupting dependent services. In `packages/server/src/index.ts`, CORS `origin: true` permits any browser origin, enabling a malicious webpage to target a loopback-bound instance. Docker deployments default to `HOST=0.0.0.0` and permit direct unauthenticated network access. This issue is fixed in repository release 0.3.7.",
-    "publishedDate" : "2026-10-28T14:17:04.907",
-    "lastModifiedDate" : "2026-10-29T19:17:24.583",
-    "cvssScore" : 8.3,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.0039,
-    "epssPercentile" : 0.33096,
-    "matchedKeywords" : [ "docker" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59179"
-  }, {
     "id" : "CVE-2026-62331",
     "description" : "praktor is a multi-agent Claude Code orchestrator with Telegram input and output, Docker isolation, and a Mission Control UI. Prior to 0.9.1, both Telegram upload sites in `internal/telegram/bot.go` concatenate the attacker-controlled document filename into a destination path without sanitization, and `path.Join` collapses parent-directory traversal. A remote Telegram user who can message the bot can therefore write outside `uploads/` within the persistent agent workspace mounted at `/workspace/agent`. Because `allow_from: []` permits all senders by default, no prior authentication or privilege is required in that configuration. The attacker can plant or overwrite `CLAUDE.md`, instruction, skill, hook, or configuration files that the Claude agent reads and operates on across later runs, turning a document upload into stored instruction injection. The demonstrated arbitrary-write scope is the persistent agent workspace volume, not an unrestricted host-filesystem write. This issue is fixed in version 0.9.1.",
     "publishedDate" : "2026-10-30T19:18:33.450",
@@ -1285,6 +1250,28 @@
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-102339"
+  }, {
+    "id" : "CVE-2026-123863",
+    "description" : "A reachable assertion in Node.js HTTP/2 session teardown lets any unauthenticated client abort the server, over both TLS and cleartext. A client can arrange for an Http2Stream that still holds nghttp2-allocated header buffers to outlive its session: the stream is removed from the session's stream set but never detached, so when ~Http2Session() runs the memory accounting is nonzero and the CHECK_EQ(current_nghttp2_memory_, 0) assertion fails, terminating the process. The trigger needs only a default http2 server whose handler responds before the request body has ended, which is typical. It is a variant of CVE-2024-27983 that the earlier fix did not cover, because that fix only detached streams still tracked in the session. This vulnerability affects Node.js 26.x (since 26.9.0) and 24.x (since 24.22.0).",
+    "publishedDate" : "2026-11-11T19:17:32.577",
+    "lastModifiedDate" : "2026-11-11T19:17:32.577",
+    "cvssScore" : 8.2,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123863"
+  }, {
+    "id" : "CVE-2026-126774",
+    "description" : "@tinacms/mdx before 2.4.2 contains a code injection vulnerability in its MDX serializer, which writes rich-text values into MDX expressions without escaping them. Authenticated content editors can save crafted values that break out of list field or highlightColor expressions in the stored .mdx file, executing JavaScript in visitors' browsers or on build and server-side rendering hosts.",
+    "publishedDate" : "2026-11-11T19:17:37.937",
+    "lastModifiedDate" : "2026-11-11T19:17:37.937",
+    "cvssScore" : 8.2,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126774"
   }, {
     "id" : "CVE-2026-61804",
     "description" : "myTinyWMS is a free, open-source warehouse management system. Prior to version 1.6.4, `Product (Artikel)` and `Category` management store the `name` parameter without adequate backend sanitization and render raw database strings through unescaped Blade output in dynamic table cells, including `article/index.blade.php` and `category/index.blade.php`. An authenticated attacker can save malicious input through product creation or category forms. When another user, including a worker or administrator, opens the corresponding product sheet, category listing or dashboard, the stored JavaScript executes in that user's browser context. This can enable cross-user script execution, session theft and administrative takeover. This issue is fixed in version 1.6.4.",
@@ -1362,6 +1349,28 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-12574"
   }, {
+    "id" : "CVE-2026-123864",
+    "description" : "A re-entrancy flaw in Node.js HTTPS lets an unauthenticated client read memory belonging to other connections, including TLS private keys and other users' requests. TLSWrap::DoWrite() calls ClearOut() directly when asked to write zero bytes; if that write is issued from JavaScript running inside the HTTP parser's on_body callback, ClearOut() decrypts the next TLS record while the parser is still mid-body, re-entering llhttp_execute() and causing a use-after-free and an out-of-bounds heap read. The server then copies that freed or unrelated heap memory into the response for the request body. Triggering it requires a handler that calls res.flushHeaders() before the request body ends and later calls res.end() with a non-empty chunk, and reading the leaked memory requires any ordinary route that echoes or stores a request body. Cleartext node:http is not affected. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
+    "publishedDate" : "2026-11-11T19:17:32.790",
+    "lastModifiedDate" : "2026-11-11T19:17:32.790",
+    "cvssScore" : 8.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript", "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123864"
+  }, {
+    "id" : "CVE-2026-123872",
+    "description" : "A client certificate authentication bypass in Node.js TLS lets a client change the servername during TLS 1.2 renegotiation to reach endpoints it was not authorized for. On a server that applies different client-certificate policies per hostname, for example stricter admin-only client-cert auth on one host and ordinary client-cert auth on another, a client that authenticates for a permitted host can renegotiate the TLS 1.2 connection under a different servername and carry its existing authentication to the protected host, bypassing the stricter policy. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
+    "publishedDate" : "2026-11-11T19:17:34.270",
+    "lastModifiedDate" : "2026-11-11T19:17:34.270",
+    "cvssScore" : 8.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123872"
+  }, {
     "id" : "CVE-2026-96453",
     "description" : "A flaw was found in the Keycloak Admin CLI kcadm tool, which is used by administrators to manage Keycloak servers from the command line. When a custom truststore is provided to verify the server identity, the tool incorrectly accepts any self-signed certificate as long as the hostname matches. This allows a network attacker to impersonate the Keycloak server, steal administrative credentials, and perform unauthorized management actions.",
     "publishedDate" : "2026-11-05T18:17:11.270",
@@ -1374,19 +1383,6 @@
     "matchedKeywords" : [ "keycloak" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-96453"
-  }, {
-    "id" : "CVE-2026-59176",
-    "description" : "Functype is a family of TypeScript functional programming libraries. Prior to 1.4.4, the `set_functype_version` MCP tool in `functype-mcp-server` accepts an unconstrained `version` string using only `z.string()` validation in `packages/mcp-server/src/index.ts` and interpolates it into `functype@<version>` for `pnpm add`. Package-alias syntaxes such as `file:`, `npm:`, URLs, or paths can cause an arbitrary local or remote package to be installed as functype. Immediately afterward, `initDocsData(true)` in `packages/mcp-server/src/lib/docs/data.ts` resolves `functype/cli` and dynamically imports the newly installed module, executing attacker-controlled JavaScript with the MCP server process's privileges. Any MCP client able to send a `tools/call` request invoking the tool can exploit the flaw; the tool is enabled by default without authentication in `stdio` mode. A connected AI assistant susceptible to indirect prompt injection can also be induced to invoke it from a malicious document or web page. In non-default `TRANSPORT_TYPE=httpStream` deployments, a network-accessible attacker does not require local access. Successful execution can read process secrets, modify files, or terminate the server. This issue is fixed in `version` 1.4.4.",
-    "publishedDate" : "2026-10-28T14:17:04.593",
-    "lastModifiedDate" : "2026-10-28T15:24:56.033",
-    "cvssScore" : 7.8,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00212,
-    "epssPercentile" : 0.11461,
-    "matchedKeywords" : [ "npm", "javascript", "typescript" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59176"
   }, {
     "id" : "CVE-2026-120438",
     "description" : "QuickJS-NG before 0.16.0 contains an integer overflow in js_proxy_get_own_property_names() in quickjs.c that causes a heap buffer overflow on 32-bit hosts. Attackers running JavaScript can return a large array-like object from a Proxy ownKeys trap to wrap the allocation size, causing crashes or potential code execution.",
@@ -1566,31 +1562,16 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107244"
   }, {
-    "id" : "CVE-2026-116795",
-    "description" : "RE2JS is the JavaScript port of RE2, a regular expression engine that provides linear time matching. From 2.2.0 until 2.8.7, enabling LOOKBEHINDS and using repeated matching through matcher().find(), matchAll(), split(), or matcher().replaceAll() can cause quadratic total work. Machine.match restarts lookbehind scanning from offset zero for each requested start position, while Matcher-based APIs request capture slots that prevent the early exit used for captureless matching. Dense matches therefore repeatedly rescan the input, allowing attacker-influenced text to monopolize a single-threaded worker and deny service. This issue is fixed in version 2.8.7.",
-    "publishedDate" : "2026-10-28T18:17:14.303",
-    "lastModifiedDate" : "2026-10-29T16:19:37.750",
-    "cvssScore" : 7.5,
+    "id" : "CVE-2026-122095",
+    "description" : "AsiaInfo BSS Platform 9.2 before 9.2.38 has a stored cross-site scripting (XSS) vulnerability in the menu icon upload function. An authenticated user with ordinary application privileges can upload an SVG file containing embedded JavaScript, which is served from the application origin. Normal menu rendering uses an HTML <img> element and does not execute the SVG script; exploitation requires a victim to load the uploaded SVG as a document (by directly navigating to its URL, or via <object>/<iframe>), in which case the script executes under the application origin.",
+    "publishedDate" : "2026-11-11T20:17:07.023",
+    "lastModifiedDate" : "2026-11-11T20:17:07.023",
+    "cvssScore" : 7.6,
     "severity" : "HIGH",
     "inKev" : false,
-    "epssScore" : 0.00465,
-    "epssPercentile" : 0.40201,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116795"
-  }, {
-    "id" : "CVE-2026-118659",
-    "description" : "Happy DOM is a JavaScript implementation of a web browser without its graphical user interface. Prior to 21.0.2, the Happy DOM server-renderer package's ServerRendererServer accepts unauthenticated HTTP/2 requests and resolves attacker-controlled :path values against server.targetOrigin in #onIncomingRequest in packages/@happy-dom/server-renderer/src/ServerRendererServer.ts without confirming that the resolved origin remains trusted before calling fetch. A protocol-relative path can change the destination to an arbitrary HTTP or HTTPS endpoint reachable by the server, including local and internal services, and the proxy relays the fetched response headers and body to the requester. This issue is fixed in version 21.0.2.",
-    "publishedDate" : "2026-10-28T21:16:55.967",
-    "lastModifiedDate" : "2026-10-29T19:17:18.813",
-    "cvssScore" : 7.5,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.0039,
-    "epssPercentile" : 0.33083,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118659"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-122095"
   }, {
     "id" : "CVE-2026-119119",
     "description" : "Crawl4AI before 0.9.5 contains a denial of service vulnerability in the Docker API server where _clamp_untrusted() fails to cap the delay_before_return_html, mean_delay, and max_range fields of untrusted CrawlerRunConfig bodies. Unauthenticated attackers can send huge values to /crawl or /crawl/stream to hold browser pages or stall the rate limiter, exhausting the page pool and blocking other crawls.",
@@ -2169,6 +2150,83 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126609"
   }, {
+    "id" : "CVE-2026-123865",
+    "description" : "An unauthenticated HTTP/2 client can permanently leak Node.js server memory and file descriptors. If a peer triggers a protocol error, for example an oversized frame header, while the session is already shutting down, nghttp2 tears the session down internally but Node.js never notices, leaving a dangling session: the socket stays in CLOSE_WAIT and all of Node.js's HTTP/2 state for that connection is held in memory indefinitely, with no further cost to the attacker. The attacker can start the shutdown remotely by sending GOAWAY(NO_ERROR), so it is reliable against default HTTP/2 servers. It is an incomplete-fix case of CVE-2026-48937: that fix detected nghttp2 internal terminations by watching for GOAWAY sent while not shutting down, but missed terminations that arrive while the session is already shutting down. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
+    "publishedDate" : "2026-11-11T19:17:33.000",
+    "lastModifiedDate" : "2026-11-11T19:17:33.000",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123865"
+  }, {
+    "id" : "CVE-2026-123866",
+    "description" : "A use-after-free in Node.js HTTP/2 stream teardown can leak response memory, including the contents of other connections' response buffers, to a peer. When a stream is torn down while a write is still backpressured, for example by a peer RST_STREAM or by the server's own per-stream timeout destroying the stream, the stream's response buffer is freed but a reference to it is still used, so freed or unrelated heap memory is written to the socket instead of the intended response. On Node.js 26.x and 24.x the teardown can be driven purely by a remote peer once the window-size change from 26.9.0 and 24.22.0 is present, and on all supported lines the same defect is reachable through an application-initiated teardown such as a per-stream idle timeout. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
+    "publishedDate" : "2026-11-11T19:17:33.243",
+    "lastModifiedDate" : "2026-11-11T19:17:33.243",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123866"
+  }, {
+    "id" : "CVE-2026-123874",
+    "description" : "A use-after-free in Node.js HTTP/2 lets an unauthenticated client corrupt server memory, over both TLS and cleartext, when the server serves files with respondWithFile() or respondWithFD(). A client can make the server free an Http2Stream while a write request that points to it is still queued on the socket; when that write completes, the code dereferences and makes a virtual call through the freed object. The only precondition is that the application serves a file with stream.respondWithFile() or stream.respondWithFD(), with default settings otherwise. This vulnerability affects Node.js 26.x (since 26.9.0) and 24.x (since 24.22.0).",
+    "publishedDate" : "2026-11-11T19:17:34.490",
+    "lastModifiedDate" : "2026-11-11T19:17:34.490",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123874"
+  }, {
+    "id" : "CVE-2026-126051",
+    "description" : "A deferred-callback use-after-destroy in Node.js TLS server handshake handling allows a remote, unauthenticated attacker to terminate the server process. When a TLS server uses any of the SNICallback, OCSPRequest, newSession, or resumeSession hooks, or server.addContext(), the corresponding OpenSSL callbacks are deferred, and the deferred code does not handle the underlying socket being destroyed between scheduling and execution. By sending a client hello that reaches the vulnerable path (for example, no SNI together with an OCSP request) followed by padding and a socket FIN, an attacker makes OpenSSL deliver the client hello and the end-of-file in the same tick, so the socket is destroyed before the deferred callback runs and the process raises an uncaught exception instead of emitting an 'error' event. This vulnerability affects Node.js 26.x and 24.x.",
+    "publishedDate" : "2026-11-11T19:17:36.600",
+    "lastModifiedDate" : "2026-11-11T19:17:36.600",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126051"
+  }, {
+    "id" : "CVE-2026-58505",
+    "description" : "geojson-vt is a JavaScript library for slicing GeoJSON data into vector tiles on the fly, primarily designed to enable rendering and interacting with large geospatial datasets on the browser side (without a server). Prior to version 6.1.1, @maplibre/geojson-vt contains an uncontrolled recursion vulnerability in its GeoJSON conversion logic. When a GeoJSONVT instance is constructed with a deeply nested GeometryCollection object, the mutually recursive functions featureToInternal and convertGeometryCollection in src/convert.ts exhaust the Node.js call stack, causing an unhandled RangeError: Maximum call stack size exceeded that terminates the process. Because the library is widely used in server-side tile services that accept GeoJSON over the network, a remote unauthenticated attacker can trigger a denial-of-service by sending a single crafted payload. No authentication is required, and no non-default library options are needed. This issue has been patched in version 6.1.1.",
+    "publishedDate" : "2026-11-11T19:17:42.580",
+    "lastModifiedDate" : "2026-11-11T19:17:42.580",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript", "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-58505"
+  }, {
+    "id" : "CVE-2026-123044",
+    "description" : "The ContentPen WordPress plugin before 1.1.1 discloses its REST API key to unauthenticated users, who can then use it to create posts containing unfiltered JavaScript, leading to Stored XSS that executes in the browser of any visitor, including administrators.",
+    "publishedDate" : "2026-11-12T06:17:12.920",
+    "lastModifiedDate" : "2026-11-12T12:18:20.723",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123044"
+  }, {
+    "id" : "CVE-2026-127056",
+    "description" : "PapaParse before 5.7.1 contains an inefficient algorithmic complexity vulnerability that allows remote unauthenticated attackers to cause denial of service by submitting delimiter-free quoted CSV input to Papa.parse(). Attackers can supply a single-column quoted CSV with no delimiters, triggering repeated full-buffer indexOf scans per row that grow quadratically with input size, exhausting CPU and blocking the Node.js event loop or freezing a browser tab.",
+    "publishedDate" : "2026-11-12T13:17:16.177",
+    "lastModifiedDate" : "2026-11-12T13:17:16.177",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-127056"
+  }, {
     "id" : "CVE-2026-118763",
     "description" : "sigstore-js provides JavaScript libraries for interacting with Sigstore services. Prior to 0.7.2, packages/oci/src/registry.ts contains a RegistryClient.signIn() method that stores registry Authorization and Docker configuration headers as defaults on a shared HTTP client, while RegistryClient.uploadBlob() sends a fresh PUT to an absolute blob-upload Location supplied by the registry without checking that its origin or scheme matches the registry. A malicious or compromised registry can therefore direct a user pushing an artifact through attachArtifactToImage() to an attacker-controlled host and receive the registry bearer token, Basic credentials, or custom authentication headers. Redirect-time header stripping does not prevent the leak because the cross-host PUT is a new explicit request rather than a followed redirect. This is a residual of CVE-2026-59891, whose fix changed credential selection in credentials.ts but did not constrain where credentials are sent from registry.ts. Version 0.7.2 fixes the issue by separating registry credentials from client-wide defaults and sending them only to the registry origin.",
     "publishedDate" : "2026-10-29T17:18:07.230",
@@ -2408,19 +2466,6 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124590"
   }, {
-    "id" : "CVE-2026-109999",
-    "description" : "The AI Marketing Expert — AI Email Marketing, AI Content Generator, SEO Analyzer, AI Workflow Automation, Social Media & Ai Chatbot plugin for WordPress is vulnerable to Stored DOM-Based Cross-Site Scripting via the 'name' parameter in all versions up to, and including, 1.2.8 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation requires only that the chatbot module is active with at least one configured bot; the attacker stores the payload via three unauthenticated REST calls, and the JavaScript widget auto-poll then delivers it to any administrator who opens wp-admin/index.php.",
-    "publishedDate" : "2026-10-28T03:17:09.630",
-    "lastModifiedDate" : "2026-10-28T17:17:36.817",
-    "cvssScore" : 7.2,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00292,
-    "epssPercentile" : 0.21758,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-109999"
-  }, {
     "id" : "CVE-2026-90437",
     "description" : "The Gravity Forms plugin for WordPress is vulnerable to Stored Cross-Site Scripting via Post Excerpt / Post Custom Field / Rich-Text Paragraph Field Values in all versions up to, and including, 3.1.1 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. This is possible because Post Excerpt, Post Custom Field, and Rich-Text-Editor-enabled Paragraph Text fields allow raw HTML submissions via allow_html(), and an entity-encoded payload stored in a data-dialog-confirm attribute evades wp_kses_post() at save time but is decoded into executable markup by the browser when the plugin's admin JavaScript passes the attribute value to insertAdjacentHTML().",
     "publishedDate" : "2026-10-30T07:16:34.600",
@@ -2509,6 +2554,17 @@
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-12572"
+  }, {
+    "id" : "CVE-2026-62971",
+    "description" : "The OWASP core rule set (CRS) is a set of generic attack detection rules for use with compatible web application firewalls. Prior to versions 3.3.10, 4.25.1, and 4.28.0, CRS rules in the 921 (protocol-attack), 930 (LFI), 931 (RFI), 932 (RCE), 933 (PHP), 934 (generic), 941 (XSS), 942 (SQLi), and 943 (session-fixation) families inspect XML request bodies via the XPath expression XML:/*. That expression matches only element text nodes — it does not match XML attribute values. As a result, an attacker who places an attack payload inside an XML attribute (e.g. <a href=\"javascript:alert(1)=window.name\"></a> or <a value=\"' OR 1=1 --\"></a>) bypasses CRS detection entirely. This is verified empirically against a local CRS test instance and against the public CRS sandbox. The bypass affects approximately 159 rules across 9 rule files and applies at every paranoia level (PL1 through PL4), since the variable list is more or less shared across PLs. The 944 (Java) family is the only one that correctly includes XML://@* in addition to XML:/* and is therefore unaffected. This issue has been patched in versions 3.3.10, 4.25.1, and 4.28.0.",
+    "publishedDate" : "2026-11-11T18:19:47.603",
+    "lastModifiedDate" : "2026-11-11T18:19:47.603",
+    "cvssScore" : 7.2,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript", "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-62971"
   }, {
     "id" : "CVE-2026-39379",
     "description" : "GeoNetwork is a catalog application to manage spatially referenced resources. From 3.0.0 until 4.2.15 and 4.4.10, requesting a nonexistent or unauthorized service URL can cause an error page to reflect attacker-controlled request content inside an AngularJS application without adequately neutralizing it for template evaluation. A remote attacker can induce a victim, including an administrator, to open a crafted link so the reflected value is evaluated as an AngularJS template expression. Combined with known AngularJS sandbox-escape techniques, this can execute arbitrary JavaScript in the victim's authenticated browser session, disclose information, or perform actions as the victim. This issue is fixed in versions 4.2.15 and 4.4.10.",
@@ -2612,6 +2668,72 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120818"
   }, {
+    "id" : "CVE-2026-124688",
+    "description" : "In Progress® Kendo® UI for jQuery prior to 2026.4.1111 the TabStrip, PanelBar, and Menu widgets support mapping a dataSource field to `spriteCssClass`. If an attacker can control the mapped data, they can break out of the attribute and inject markup, including event-handler attributes. The resulting JavaScript executes in the application's origin when a victim loads a page that renders the affected widget, allowing access to data and actions available in the victim's authenticated session.",
+    "publishedDate" : "2026-11-11T17:17:17.783",
+    "lastModifiedDate" : "2026-11-11T17:17:17.897",
+    "cvssScore" : 7.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124688"
+  }, {
+    "id" : "CVE-2026-124689",
+    "description" : "In Progress Kendo UI for jQuery versions 2026.3.1014 up to, but not including, 2026.4.1110, ActionSheet does not encode title, subtitle, and header button label values before rendering them. An attacker who can influence these values can inject markup that executes as JavaScript when a user opens the ActionSheet. Successful exploitation may compromise the confidentiality and integrity of data available in the user's browser context. The report identifies version 2026.3.1014; the first affected release has not been established.",
+    "publishedDate" : "2026-11-11T17:17:17.933",
+    "lastModifiedDate" : "2026-11-11T17:17:18.043",
+    "cvssScore" : 7.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124689"
+  }, {
+    "id" : "CVE-2026-124690",
+    "description" : "In Progress Kendo UI for jQuery, sanitizeSvgContent() parses custom icon markup into a live DOM before filtering it. An attacker who can influence custom icon content can cause JavaScript to execute during icon creation, before an unsafe element is removed. The issue was reported in version 2026.3.1015; the first affected release has not been established. The issue is fixed in version 2026.4.1110.",
+    "publishedDate" : "2026-11-11T17:17:18.080",
+    "lastModifiedDate" : "2026-11-11T17:17:18.193",
+    "cvssScore" : 7.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124690"
+  }, {
+    "id" : "CVE-2026-124692",
+    "description" : "In Progress Kendo UI for jQuery versions 2026.3.1015 up to, but not including, 2026.4.1110, the Grid and TreeList column-reorder drag clue reparses header text as HTML. An attacker who can influence a column field or title used by an affected application can cause JavaScript to execute when a user drags a column header while column reordering is enabled. Successful exploitation may compromise the confidentiality and integrity of data available in the user's browser context. The first affected release has not been established.",
+    "publishedDate" : "2026-11-11T17:17:18.227",
+    "lastModifiedDate" : "2026-11-11T17:17:18.337",
+    "cvssScore" : 7.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124692"
+  }, {
+    "id" : "CVE-2026-124693",
+    "description" : "In Progress Kendo UI for jQuery versions 2026.3.1015 up to, but not including, 2026.4.1110, PivotGrid and PivotConfigurator axis field names are passed to a chip template without appropriate encoding. An attacker who can influence an axis field name can cause JavaScript to execute when a user views the rendered chip. The field name can be interpreted as HTML in both attribute and element contexts. Successful exploitation may compromise the confidentiality and integrity of data available in the user's browser context. The first affected release has not been established.",
+    "publishedDate" : "2026-11-11T17:17:18.370",
+    "lastModifiedDate" : "2026-11-11T17:17:18.483",
+    "cvssScore" : 7.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124693"
+  }, {
+    "id" : "CVE-2026-124694",
+    "description" : "In Progress Kendo UI for jQuery versions 2026.3.1015 up to, but not including, 2026.4.1110, PropertyGrid does not encode bound property values and items[].description in its default configuration. An attacker who can influence either value can cause JavaScript to execute when a user views the grid. Successful exploitation may compromise the confidentiality and integrity of data available in the user's browser context. The first affected release has not been established.",
+    "publishedDate" : "2026-11-11T17:17:18.517",
+    "lastModifiedDate" : "2026-11-11T17:17:18.630",
+    "cvssScore" : 7.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124694"
+  }, {
     "id" : "CVE-2026-118905",
     "description" : "Node Version Manager (nvm) is a POSIX-compliant shell function for managing multiple node.js versions. In versions 0.31.2 through 0.40.5, `nvm_ls` filters installed versions with a sed program that embeds the requested version pattern in a `\\#...#` address, escaping `.` (and, since 0.40.4, `#`) but not backslash. A version string containing `#` (or `\\#`) therefore closes the address early, and the rest of it is parsed as sed commands: with GNU sed, the `e` command runs a shell command as the user; with BSD sed, the `w` and `r` commands write and read files. This is reachable whenever an attacker-influenced version string is passed to `nvm use`, `nvm which`, `nvm ls`, `nvm version`, `nvm run`, or `nvm exec`, or to `nvm-exec` via `NODE_VERSION`, and at least one version is installed. nvm's own `.nvmrc` parser strips comments, so a bare `nvm use` is not affected; however, the bash `cdnvm` and zsh `load-nvmrc` auto-switch hooks documented in the README read `.nvmrc` as-is and pass it to `nvm ls` and `nvm version`, so a user with one of those hooks installed runs the attacker's command just by changing into a directory under a malicious `.nvmrc`; scripts that run `nvm use \"$(cat .nvmrc)\"` are affected the same way. Version 0.40.6 passes any version pattern containing `#` or a newline through the `.nvmrc` content parser first, so no `#` reaches the sed program.",
     "publishedDate" : "2026-10-29T06:17:20.343",
@@ -2650,45 +2772,6 @@
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119179"
-  }, {
-    "id" : "CVE-2026-107098",
-    "description" : "The Royal Addons for Elementor  WordPress plugin before 1.7.1070 does not sanitise and escape one of its map widget's size settings before concatenating it into an HTML attribute, allowing users with the Contributor role or above to inject JavaScript that runs in the browser of any user who views the page, including an administrator reviewing a pending submission.",
-    "publishedDate" : "2026-10-28T06:16:33.020",
-    "lastModifiedDate" : "2026-10-28T18:17:05.170",
-    "cvssScore" : 6.8,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00171,
-    "epssPercentile" : 0.06493,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-107098"
-  }, {
-    "id" : "CVE-2026-111967",
-    "description" : "The MP3 Audio Player  WordPress plugin before 5.16 does not escape one of its audio player shortcode attributes before outputting it into an HTML attribute, allowing users with Contributor-level access and above to inject arbitrary JavaScript that executes when another user, such as an administrator previewing a pending post, views the content.",
-    "publishedDate" : "2026-10-28T06:16:34.843",
-    "lastModifiedDate" : "2026-10-28T18:17:08.780",
-    "cvssScore" : 6.8,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00171,
-    "epssPercentile" : 0.06493,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111967"
-  }, {
-    "id" : "CVE-2026-113488",
-    "description" : "The GeoDirectory  WordPress plugin before 2.8.196 does not properly escape a post badge shortcode attribute for a JavaScript context before placing it in an inline event handler, allowing users with the Contributor role and above to perform Stored Cross-Site Scripting attacks against anyone who clicks the badge, including administrators.",
-    "publishedDate" : "2026-10-28T06:16:35.287",
-    "lastModifiedDate" : "2026-10-28T18:17:09.510",
-    "cvssScore" : 6.8,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00171,
-    "epssPercentile" : 0.06492,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-113488"
   }, {
     "id" : "CVE-2026-110505",
     "description" : "The Enable SVG, WebP, and ICO Upload WordPress plugin before 1.1.6 does not prevent animation elements in uploaded SVG files from changing a link's target to a javascript: URI, which could allow users with the author role and above to bypass its SVG sanitization and perform Stored Cross-Site Scripting attacks that execute in WebKit-based browsers such as Safari.",
@@ -2920,6 +3003,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-104718"
   }, {
+    "id" : "CVE-2026-123877",
+    "description" : "A certificate validation bypass in Node.js https.Agent lets a cached TLS session authenticated under one CA policy be reused by a later request with a stricter policy. https.Agent.prototype.getName() assigns the same Agent and session-cache key to a request that omits ca and one that explicitly supplies ca: [], because an omitted value appends nothing to the key while an empty array stringifies to an empty string. The two policies differ: omitting ca uses the default trust store, while supplying ca replaces it. Since they share a key, a TLS session authenticated under the broader default policy is handed to a new connection made under the later ca: [] policy, and TLS 1.3 session resumption carries the earlier authentication forward, so the second request reports authorized === true and transmits confidential data to a server its own CA policy would reject on a fresh connection. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
+    "publishedDate" : "2026-11-11T19:17:34.900",
+    "lastModifiedDate" : "2026-11-11T19:17:34.900",
+    "cvssScore" : 6.8,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123877"
+  }, {
     "id" : "CVE-2026-116468",
     "description" : "A flaw was found in the group-move and organization group reparenting endpoints of the keycloak-services component. This component is responsible for core authentication and authorization services in the Red Hat build of Keycloak. The issue occurs because the system fails to check if a target parent group confers administrative roles when a group is moved. A delegated administrator can exploit this to move a group they control under an administrative group, causing all members to inherit full realm-admin privileges and gain complete control over the realm.",
     "publishedDate" : "2026-11-11T08:17:17.077",
@@ -2930,71 +3024,6 @@
     "matchedKeywords" : [ "keycloak" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116468"
-  }, {
-    "id" : "CVE-2026-118581",
-    "description" : "A BSON encoding component of the MongoDB Java Driver does not verify that an externally supplied raw document's self-declared length agrees with the extent of the byte range it is given before that range is copied into an outgoing database command. An application that wraps untrusted raw bytes in such a document and uses it as part of a command can therefore emit a structurally inconsistent message, causing the database to interpret attacker-supplied trailing content as additional fields of the surrounding command. No authentication to the driver or database is required beyond the ability to influence those bytes through the victim application, and no user interaction is needed. The result is unintended modification of the command actually executed, which can alter the data read or written under the application's credentials.",
-    "publishedDate" : "2026-10-28T17:18:26.927",
-    "lastModifiedDate" : "2026-10-29T15:04:37.187",
-    "cvssScore" : 6.5,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00192,
-    "epssPercentile" : 0.08849,
-    "matchedKeywords" : [ "java" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118581"
-  }, {
-    "id" : "CVE-2026-105617",
-    "description" : "PostgreSQL Anonymizer doesn't invalidate plans prepared after a rule was added or a role changed. Users using such plans can still see the unmasked data until the end of the session. The problem is resolved in PostgreSQL Anonymizer 3.3.0 and later versions.",
-    "publishedDate" : "2026-10-28T18:17:03.510",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 6.5,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00217,
-    "epssPercentile" : 0.12155,
-    "matchedKeywords" : [ "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105617"
-  }, {
-    "id" : "CVE-2026-105620",
-    "description" : "PostgreSQL Anonymizer doesn't mask data returned by a sub-query in a rule. The problem is resolved in PostgreSQL Anonymizer 3.3.0 and later versions.",
-    "publishedDate" : "2026-10-28T18:17:04.003",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 6.5,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00201,
-    "epssPercentile" : 0.09951,
-    "matchedKeywords" : [ "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105620"
-  }, {
-    "id" : "CVE-2026-110181",
-    "description" : "PostgreSQL Anonymizer contains a vulnerability related to anonymization functions defined using SQL-standard function bodies. PostgreSQL analyses such functions at declaration time, while Anonymizer only attempts to check them at execution time. This problem can be exploited by any user with the TEMPORARY privilege. The issue is fixed in PostgreSQL Anonymizer 3.3.0 and later versions.",
-    "publishedDate" : "2026-10-28T18:17:05.473",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 6.5,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.0027,
-    "epssPercentile" : 0.19146,
-    "matchedKeywords" : [ "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-110181"
-  }, {
-    "id" : "CVE-2026-118661",
-    "description" : "Happy DOM is a JavaScript implementation of a web browser without its graphical user interface. Prior to 20.14.6, Happy DOM's CookieContainer in src/cookie/CookieContainer.ts does not correctly validate or match Domain cookie attributes. It can accept a Domain unrelated to the origin setting the cookie, including a public suffix, and separately treats an unrelated suffix-sharing hostname as a match because cookieMatchesURL does not enforce a DNS-label boundary. In server-side rendering and prerendering applications that contact attacker-controlled origins and then make requests to a victim origin, these behaviors can plant and deliver a forged cookie, enabling cookie injection or session fixation. This issue is fixed in version 20.14.6.",
-    "publishedDate" : "2026-10-28T21:16:56.267",
-    "lastModifiedDate" : "2026-10-29T15:52:59.287",
-    "cvssScore" : 6.5,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00272,
-    "epssPercentile" : 0.19586,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118661"
   }, {
     "id" : "CVE-2026-118760",
     "description" : "Kubeflow Pipelines enables users to build and deploy portable, scalable machine learning workflows. From 0.5.1 until 2.17.0, the frontend artifact routes did not check whether an authenticated user was authorized to access the requested namespace. A user who can reach the frontend and knows an artifact location can select another tenant's namespace, or omit the namespace and reach an unguarded direct handler, to read artifact contents such as datasets, models, or pipeline outputs. The issue applies to multi-user deployments that rely on Kubeflow Pipelines authorization for tenant isolation. Authentication at ingress identifies the caller but does not authorize access to the selected artifact namespace. The issue does not establish arbitrary Kubernetes Secret disclosure, storage modification, or server-side code execution. This issue is fixed in version 2.17.0.",
@@ -3222,18 +3251,16 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108470"
   }, {
-    "id" : "CVE-2026-109385",
-    "description" : "The UiChemy – Convert Figma, Prompts and AI Builds to Elementor, Gutenberg and Bricks plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'actions[save_builder][data][elements][...][settings][slot_{N}_link][url]' parameter in all versions up to, and including, 5.3.0 due to insufficient input sanitization and output escaping. This makes it possible for authenticated attackers, with contributor-level access and above, to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. The injected javascript: payload fires on click rather than on page load, making exploitation contingent on a privileged user such as an Editor or Administrator clicking the attacker-crafted link while reviewing or previewing the Contributor's post.",
-    "publishedDate" : "2026-10-28T07:16:44.720",
-    "lastModifiedDate" : "2026-10-29T02:16:47.113",
-    "cvssScore" : 6.4,
+    "id" : "CVE-2026-126643",
+    "description" : "A cleartext storage flaw was found in the AAP Gateway Operator. When reconciling an AutomationController, the operator reads the protected resource-server Secret (Secret/<aap-name>-resource-server, key controller_resource_server_secret) and copies its plaintext value into the generated AutomationController custom resource under spec.extra_settings (RESOURCE_SERVER.SECRET_KEY). Although the operator uses no_log to keep the value out of its own logs, serializing it into the custom resource exposes it to any principal able to read the AutomationController CR without permission to read the backing Kubernetes Secret, breaking the expected OpenShift RBAC separation between the two resources. The value may also propagate into Kubernetes API/etcd storage, GitOps and Argo diffs and history, rendered manifests, support bundles, and audit data. The resource-server secret is intended for trusted Gateway-to-Controller service authentication, and its disclosure may allow a user to impersonate a trusted Controller service and reach privileged service-index APIs.",
+    "publishedDate" : "2026-11-12T11:17:11.583",
+    "lastModifiedDate" : "2026-11-12T11:17:11.727",
+    "cvssScore" : 6.5,
     "severity" : "MEDIUM",
     "inKev" : false,
-    "epssScore" : 0.00256,
-    "epssPercentile" : 0.17186,
-    "matchedKeywords" : [ "javascript" ],
+    "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-109385"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126643"
   }, {
     "id" : "CVE-2026-93900",
     "description" : "The Simple CAPTCHA with Cloudflare Turnstile plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'id' attribute of the [gravity-simple-turnstile] shortcode in versions up to, and including, 1.44.3 This is due to insufficient input sanitization and output escaping on the shortcode attribute in the cfturnstile_gravity_shortcode() function: the value is filtered only by esc_html() and sanitize_text_field() (neither of which touches parentheses or dots) and then emitted via esc_js() in a raw JavaScript expression context outside any string literal (esc_js only escapes quotes, backslashes, and newlines). This makes it possible for authenticated attackers, with contributor-level access and above, to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page.",
@@ -3363,6 +3390,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-115554"
   }, {
+    "id" : "CVE-2026-65973",
+    "description" : "Laradocs maintains version-controlled documentation inside a Laravel codebase. From version 0.4.0 to before version 1.0.0, Laradocs is vulnerable to local command injection in server-side KaTeX rendering via an unescaped Node.js binary path in a proc_open() command string. This issue has been patched in version 1.0.0.",
+    "publishedDate" : "2026-11-11T21:16:46.720",
+    "lastModifiedDate" : "2026-11-11T21:16:46.720",
+    "cvssScore" : 6.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-65973"
+  }, {
     "id" : "CVE-2026-63121",
     "description" : "Kubewarden policies is a collection of WebAssembly policies for securing and governing Kubernetes clusters. For versions provisionally classified as affected before 2.1.2, `trusted-repos-policy` compares an image's `registry` hostname against `reject lists` and `allow lists` case-sensitively even though `registry` DNS names are case-insensitive. An image with an uppercase or mixed-case `registry` hostname can miss a rejection rule for the equivalent lowercase host, so the admission policy accepts a resource whose container runtime pulls the same prohibited image. Only reject-list configurations have this bypass: allow-list configurations fail closed by over-denying differently cased hostnames. The security consequences depend on the configured rejection policy and deployment environment. This issue is fixed in version 2.1.2.",
     "publishedDate" : "2026-10-30T22:16:58.123",
@@ -3463,6 +3501,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-125361"
   }, {
+    "id" : "CVE-2026-126995",
+    "description" : "A vulnerability was found in tjake Jlama up to 0.8.4/0.9.0-beta. Affected by this vulnerability is the function SafeTensorIndex.loadWeights of the file jlama-core/src/main/java/com/github/tjake/jlama/safetensors/SafeTensorIndex.java. Performing a manipulation of the argument weight_map results in path traversal. The attack may be initiated remotely. The exploit has been made public and could be used. The project was informed of the problem early through an issue report but has not responded yet.",
+    "publishedDate" : "2026-11-12T14:17:28.943",
+    "lastModifiedDate" : "2026-11-12T14:17:29.113",
+    "cvssScore" : 6.3,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126995"
+  }, {
     "id" : "CVE-2026-49924",
     "description" : "In ShortcutInfo of ShortcutInfo.java, there is a possible way to crash the launcher via unauthorized shortcuts due to resource exhaustion. This could lead to local denial of service with no additional execution privileges needed. User interaction is not needed for exploitation.",
     "publishedDate" : "2026-11-02T20:17:43.057",
@@ -3541,31 +3590,16 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59008"
   }, {
-    "id" : "CVE-2026-118652",
-    "description" : "Echo is a Go web framework. Prior to 4.16.0 and 5.4.0, Context.JSONP and Context.JSONPBlob concatenate an unvalidated callback value into a JavaScript response. A route that passes attacker-controlled input as the callback can return executable script syntax, allowing reflected cross-site scripting when a user loads the crafted response. The vulnerable jsonPBlob path performs no callback validation or escaping, and exploitation requires an application route that exposes attacker control over the callback argument. This issue is fixed in 4.16.0 and 5.4.0.",
-    "publishedDate" : "2026-10-28T20:17:22.250",
-    "lastModifiedDate" : "2026-10-29T15:15:16.507",
-    "cvssScore" : 6.1,
+    "id" : "CVE-2026-123871",
+    "description" : "Node.js discloses proxy credentials in ERR_PROXY_INVALID_CONFIG error messages. CVE-2026-48615 established that a proxy credential must not appear in a Node.js error message and redacted the username and password from ProxyConfig.href, but that fix missed four error paths in the same subsystem, one of them inside the same constructor, which interpolate the raw proxy URL, credentials included, into an ERR_PROXY_INVALID_CONFIG message. The proxy URL comes from the environment, but the defect is the sink: a secret that Node.js redacts everywhere else is emitted verbatim into a much wider audience than the process environment, such as stderr, container logs, log aggregation, and crash reporting services. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
+    "publishedDate" : "2026-11-11T19:17:34.070",
+    "lastModifiedDate" : "2026-11-11T19:17:34.070",
+    "cvssScore" : 6.2,
     "severity" : "MEDIUM",
     "inKev" : false,
-    "epssScore" : 0.00239,
-    "epssPercentile" : 0.15025,
-    "matchedKeywords" : [ "javascript" ],
+    "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118652"
-  }, {
-    "id" : "CVE-2026-61573",
-    "description" : "AVideo is a video-sharing Platform. Prior to 8.1.0, the anonymous login interface reflects request values into HTML and JavaScript without output encoding. In `view/index.php`, `webSiteRootURL` is returned verbatim by `Streamer::getStreamerURL()` in `objects/Streamer.php` and reaches navigation and form attributes; it also enters a single-quoted JavaScript string in `view/index.header.php`. It is not filtered by `objects/security.php`, while the `user` and `pass` fields are filtered only for single quotes, leaving double quotes and angle brackets capable of breaking out of their HTML attributes. In addition, `view/index.header.php` reflects POST fields using `json_encode` without `JSON_HEX_TAG`, allowing a closing script tag to break out, and `locale/function.php` stores the POST `lang` value in the session for unescaped reflection in `view/index.php`. An unauthenticated remote attacker who persuades a victim to open a crafted login link can execute arbitrary JavaScript in the encoder's origin. This can read the operator session identifier exposed in inline script, capture login credentials and perform actions as the operator against the encoder and its upstream platform. This issue is fixed in version 8.1.0.",
-    "publishedDate" : "2026-10-28T22:17:16.490",
-    "lastModifiedDate" : "2026-10-29T18:17:33.860",
-    "cvssScore" : 6.1,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00251,
-    "epssPercentile" : 0.16536,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-61573"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123871"
   }, {
     "id" : "CVE-2015-20130",
     "description" : "Netsweeper before 4.0.11 and 4.1.0 before 4.1.5 contains a reflected cross-site scripting vulnerability in webadmin/reporter/view_server_log.php that allows remote attackers to execute arbitrary JavaScript by injecting malicious code through the log request parameter, which is reflected into the HTML response without output encoding. Attackers can craft a malicious URL and induce a user to request it, resulting in arbitrary JavaScript execution within the victim's browser session against the Netsweeper web administration interface. Exploitation evidence was first observed by the Shadowserver Foundation on 2023-10-19.",
@@ -3800,6 +3834,50 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-109810"
+  }, {
+    "id" : "CVE-2026-108558",
+    "description" : "A reflected cross-site scripting vulnerability in the conversion-statistics pages of Revive Adserver 6.0.8 and earlier allows an unauthenticated attacker to execute JavaScript in an authenticated user's browser by persuading them to visit a crafted URL. An incorrect ownership check validates the advertiser identifier instead of the supplied website identifier, allowing malicious website input to reach HTML output without appropriate encoding. A related output issue affects the hour parameter. The issue is fixed in Revive Adserver 6.0.9 by validating the correct website identifier and normalising the hour parameter before formatting.",
+    "publishedDate" : "2026-11-11T18:18:26.227",
+    "lastModifiedDate" : "2026-11-11T18:18:26.227",
+    "cvssScore" : 6.1,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108558"
+  }, {
+    "id" : "CVE-2026-108559",
+    "description" : "A reflected cross-site scripting vulnerability in the iframe invocation options of Revive Adserver 6.0.8 and earlier allows an unauthenticated attacker to execute JavaScript in an authenticated user's browser by persuading them to visit a crafted URL. When generating invocation tags for an any-size zone, the frame_width and frame_height request parameters are included in HTML attributes without appropriate encoding. The issue is fixed in Revive Adserver 6.0.9 by HTML-encoding the affected values in the invocation-option form fields.",
+    "publishedDate" : "2026-11-11T18:18:26.370",
+    "lastModifiedDate" : "2026-11-11T18:18:26.370",
+    "cvssScore" : 6.1,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108559"
+  }, {
+    "id" : "CVE-2026-108560",
+    "description" : "A reflected cross-site scripting vulnerability in updates-history.php in Revive Adserver 6.0.8 and earlier allows an unauthenticated attacker to execute JavaScript in a victim's browser by persuading them to visit a crafted URL. Attacker-controlled values are included in XML command attributes without appropriate encoding, allowing injection of executable XHTML into the response. The preliminary session check omits GET xajax requests, exposing an unauthenticated attack path, while authenticated administrator requests also reach the unsafe output. The issue is fixed in Revive Adserver 6.0.9 by applying the session check to both GET and POST requests and encoding XML command attribute values in both response serializers.",
+    "publishedDate" : "2026-11-11T18:18:26.497",
+    "lastModifiedDate" : "2026-11-11T18:18:26.497",
+    "cvssScore" : 6.1,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108560"
+  }, {
+    "id" : "CVE-2026-108561",
+    "description" : "A stored cross-site scripting vulnerability in the report date-selection controls of Revive Adserver 6.0.8 and earlier allows an unauthenticated attacker to execute JavaScript in a victim's browser by persuading them to follow a crafted report URL and complete normal reauthentication. An attacker-controlled period_preset value can be saved in the victim's session and inserted into JavaScript without appropriate encoding. The payload can execute on the initial report view and subsequent report views using the stored defaults. The issue is fixed in Revive Adserver 6.0.9 by applying JSON encoding appropriate for the JavaScript context to date-selection values.",
+    "publishedDate" : "2026-11-11T18:18:26.630",
+    "lastModifiedDate" : "2026-11-11T18:18:26.630",
+    "cvssScore" : 6.1,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108561"
   }, {
     "id" : "CVE-2026-119051",
     "description" : "flat through 6.0.1 contains an uncontrolled resource allocation vulnerability in unflatten() that allows attackers to create huge sparse arrays via unbounded numeric keys. Attackers can supply flattened keys such as a.4294967294, causing iteration with forEach, spread or JSON.stringify to block the Node.js event loop.",
@@ -4095,6 +4173,39 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-125334"
   }, {
+    "id" : "CVE-2026-123828",
+    "description" : "A one-byte heap buffer overflow in Node.js HTTP/2 Alt-Svc handling lets a remote, unauthenticated attacker corrupt process memory. When an application passes an attacker-controlled value such as a request's :authority header to Http2Session.altsvc(), the AltSvc implementation in src/node_http2.cc allocates a buffer sized to the origin length and then writes it with a null terminator, placing one byte past the end of the allocation. A single request carrying a long but syntactically valid :authority triggers the out-of-bounds write, which aborts the process and serves as a remote heap-corruption primitive. This vulnerability affects Node.js 26.x and 24.x.",
+    "publishedDate" : "2026-11-11T19:17:30.740",
+    "lastModifiedDate" : "2026-11-11T19:17:30.740",
+    "cvssScore" : 5.9,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123828"
+  }, {
+    "id" : "CVE-2026-123868",
+    "description" : "An unauthenticated HTTP/2 client can exhaust Node.js server memory because inbound DATA queued on an undrained stream is charged to no session budget. Each inbound DATA frame creates one JavaScript Buffer view in the receiving stream's readable queue, but nothing charges that queue to current_session_memory_: the socket read buffer is accounted only during parsing and released immediately, so whatever stays queued is accounted to nothing. A peer that fills a stream's receive window with one-byte DATA frames pays about 10 wire bytes per frame while the server retains about 114 bytes per frame, so a single stream on one connection can retain hundreds of megabytes from tens of megabytes sent. maxSessionMemory neither bounds the growth nor refuses new streams, because Http2Session::CanAddStream gates admission on the same counter that never sees the queue. This vulnerability affects Node.js 26.x and 24.x.",
+    "publishedDate" : "2026-11-11T19:17:33.690",
+    "lastModifiedDate" : "2026-11-11T19:17:33.690",
+    "cvssScore" : 5.9,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript", "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123868"
+  }, {
+    "id" : "CVE-2026-123875",
+    "description" : "A NULL pointer dereference in Node.js HTTP/2 lets an unauthenticated client crash the server, over both TLS and cleartext, by cancelling file downloads. When the server serves a file with stream.respondWithFile() or stream.respondWithFD() and the client cancels the request, a StreamPipe used for the transfer is torn down in an order that leaves a NULL pointer which is then dereferenced, aborting the process. No crafted frames are needed, and a handful of cancelled requests against a default file-serving handler is enough. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
+    "publishedDate" : "2026-11-11T19:17:34.697",
+    "lastModifiedDate" : "2026-11-11T19:17:34.697",
+    "cvssScore" : 5.9,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123875"
+  }, {
     "id" : "CVE-2026-97373",
     "description" : "draw.io is a configurable diagramming and whiteboarding application. Prior to 30.3.8, the optional /proxy endpoint contains an incomplete server-side request forgery blocklist. When the endpoint is enabled, the URL validator does not reject the RFC 6598 shared address range 100.64.0.0/10. An unauthenticated remote attacker can cause the draw.io server to request internal services that are reachable in this range, potentially disclosing data from Carrier-Grade NAT, Kubernetes, cloud, or overlay-network addresses. This vulnerability is fixed in 30.3.8.",
     "publishedDate" : "2026-11-04T21:18:17.063",
@@ -4144,32 +4255,6 @@
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-125326"
-  }, {
-    "id" : "CVE-2026-105616",
-    "description" : "PostgreSQL restricts acces to the salt and shift via the `SHOW` command for users not member of `pg_read_all_settings`. But they are visible in `pg_db_role_setting` or `pg_roles` if they were set on the database, user or both. PostgreSQL Anonymizer's documentation recommends to use ALTER DATABASE / ALTER ROLE for the salt. The problem is resolved in PostgreSQL Anonymizer 3.3.0 and later versions.",
-    "publishedDate" : "2026-10-28T18:17:03.373",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 5.7,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00194,
-    "epssPercentile" : 0.09064,
-    "matchedKeywords" : [ "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105616"
-  }, {
-    "id" : "CVE-2026-105618",
-    "description" : "PostgreSQL Anonymizer's documentation recommends applying rules on partitions and inheritance tables. Direct access to the paritions / inheritance tables is masked but not thru the parent table. The problem is resolved in PostgreSQL Anonymizer 3.3.0 and later versions.",
-    "publishedDate" : "2026-10-28T18:17:03.633",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 5.7,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00178,
-    "epssPercentile" : 0.07319,
-    "matchedKeywords" : [ "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105618"
   }, {
     "id" : "CVE-2026-121746",
     "description" : "Node Version Manager (nvm) is a POSIX-compliant shell function for managing multiple node.js versions. In versions 0.40.0 through 0.40.8, `nvm use --save` and `nvm install --save` (or `-w`) write the resolved version to `$PWD/.nvmrc` with `tee`, which follows a symbolic link. A repository that commits `.nvmrc` as a symlink to a path outside itself (git recreates the link on clone) therefore makes `--save` truncate any file the user can write, such as a shell startup file or `~/.ssh/authorized_keys`, and replace its contents with the version string, or create the target of a dangling link; the link itself is left unchanged, so `git status` stays clean. The attacker does not control the content written, so this is data loss, not code execution. Version 0.41.0 refuses, with a warning, to write when `.nvmrc` in the current directory is a symlink, dangling or not, rather than writing through it or replacing it.",
@@ -4615,31 +4700,49 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123341"
   }, {
-    "id" : "CVE-2026-118259",
-    "description" : "opentelemetry-java is the Java implementation of the OpenTelemetry API for recording telemetry, and SDK for managing telemetry recorded by the API. Prior to 1.67.0, W3CTraceContextPropagator.extract() uses regex delimiter processing that can exhibit quadratic backtracking while parsing tracestate headers containing long runs of spaces or tabs without a following comma. An unauthenticated attacker whose headers reach extraction can repeatedly block request or event-loop threads and cause excessive CPU consumption, with practical impact bounded by ingress header-size limits, proxy configuration, and threading. This issue is fixed in version 1.67.0.",
-    "publishedDate" : "2026-10-28T19:17:30.510",
-    "lastModifiedDate" : "2026-10-29T16:19:37.750",
-    "cvssScore" : 5.3,
+    "id" : "CVE-2026-124686",
+    "description" : "In Progress® Kendo® UI for jQuery versions prior to 2026.4.1111, kendo.init() compiles data-* attribute values with new Function when an invalid JSON object is supplied. An attacker with low privileges who can control these attribute values can inject JavaScript that executes during declarative widget initialization when a user loads or interacts with an affected page. Successful exploitation can compromise the confidentiality and integrity of data accessible in the user's browser context. The issue was reported in version 2022.3.1109; the first affected release has not been established.",
+    "publishedDate" : "2026-11-11T16:17:25.190",
+    "lastModifiedDate" : "2026-11-11T16:17:25.317",
+    "cvssScore" : 5.4,
     "severity" : "MEDIUM",
     "inKev" : false,
-    "epssScore" : 0.0049,
-    "epssPercentile" : 0.42083,
-    "matchedKeywords" : [ "java" ],
+    "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118259"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124686"
   }, {
-    "id" : "CVE-2026-118663",
-    "description" : "@hono/node-server allows running the Hono application on Node.js. From 1.19.10 until 2.1.3, serveStatic decodes a request path a second time after Hono has already decoded it for routing, so a malformed percent-encoded sequence can make route middleware evaluate an encoded path while static file resolution uses a different directory. An unauthenticated attacker can bypass middleware mounted on a protected static prefix and read a file inside the configured static root, although the flaw does not permit traversal outside that root. This issue is fixed in version 2.1.3.",
-    "publishedDate" : "2026-10-28T21:16:56.543",
-    "lastModifiedDate" : "2026-10-29T19:17:18.953",
-    "cvssScore" : 5.3,
+    "id" : "CVE-2026-108562",
+    "description" : "A stored cross-site scripting vulnerability in maintenance-appendcode-check.php in Revive Adserver 6.0.8 and earlier allows an authenticated manager to execute JavaScript in an administrator's browser. A manager can store a malicious tracker name and cause the tracker to appear in the append-code maintenance results. When an administrator opens the affected maintenance page, the tracker name is included in HTML without appropriate encoding. The issue is fixed in Revive Adserver 6.0.9 by HTML-encoding tracker names when displaying the maintenance results.",
+    "publishedDate" : "2026-11-11T18:18:26.753",
+    "lastModifiedDate" : "2026-11-11T18:18:26.753",
+    "cvssScore" : 5.4,
     "severity" : "MEDIUM",
     "inKev" : false,
-    "epssScore" : 0.00353,
-    "epssPercentile" : 0.28918,
-    "matchedKeywords" : [ "node.js" ],
+    "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118663"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108562"
+  }, {
+    "id" : "CVE-2026-126771",
+    "description" : "OpsTree REMS through 1.0.0 contains a stored cross-site scripting vulnerability that allows authenticated attackers to inject scripts by uploading attachments with spoofed text/html Content-Type. Attackers can upload HTML files named like test.html.pdf that render in the REMS origin via Preview, executing JavaScript in victims' browsers.",
+    "publishedDate" : "2026-11-11T19:17:37.600",
+    "lastModifiedDate" : "2026-11-11T19:17:37.600",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126771"
+  }, {
+    "id" : "CVE-2026-126778",
+    "description" : "Wallos 4.4.0 before 5.10.3 contains a stored cross-site scripting vulnerability in endpoints/cronjobs/sendnotifications.php that allows registered users to inject scripts via unescaped notification service responses. Attackers can point their Mattermost webhook URL or Web Push endpoint at a controlled server returning JavaScript, which executes in the administrator's session when sendnotifications.php is opened.",
+    "publishedDate" : "2026-11-11T19:17:38.677",
+    "lastModifiedDate" : "2026-11-11T19:17:38.677",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126778"
   }, {
     "id" : "CVE-2026-117688",
     "description" : "A flaw was found in the client registration component of Keycloak, an open-source identity and access management solution. When a vault provider is used to store sensitive information, an authenticated client owner can use a specially crafted reference to trick the system into revealing secrets. By updating a client secret to point to a vault entry and then requesting the client configuration, the owner can see the secret value in plain text. This could lead to the exposure of sensitive credentials that the user should not be able to access.",
@@ -4893,19 +4996,6 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-92856"
   }, {
-    "id" : "CVE-2026-105619",
-    "description" : "PostgreSQL Anonymizer doesn't mask data accessed thru a security_invoker view. The problem is resolved in PostgreSQL Anonymizer 3.3.0 and later versions.",
-    "publishedDate" : "2026-10-28T18:17:03.780",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 4.8,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00151,
-    "epssPercentile" : 0.04188,
-    "matchedKeywords" : [ "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105619"
-  }, {
     "id" : "CVE-2026-113409",
     "description" : "The Ortto plugin for WordPress before 1.0.25 did not escape stored settings on its admin settings page, leading to stored cross-site scripting. A threat actor able to modify the plugin's configuration could execute arbitrary JavaScript in an administrator's session when they visited the impacted page.",
     "publishedDate" : "2026-10-29T02:16:50.070",
@@ -4982,31 +5072,16 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126619"
   }, {
-    "id" : "CVE-2026-105613",
-    "description" : "PostgreSQL Anonymizer's range-based dummy functions dont constraint the range size. This vulnerability can be exploited to exhaust the memory of a backend and OOM-kill it (when ovecommit is on), which results in a cluster-wide crash recovery. The problem is resolved in PostgreSQL Anonymizer 3.3.0 and later versions.",
-    "publishedDate" : "2026-10-28T18:17:03.000",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 4.7,
+    "id" : "CVE-2026-112201",
+    "description" : "A flaw was found in the login-failure storage component of Keycloak, the identity and access management solution. This issue specifically affects deployments using MySQL or MariaDB databases in a multi-node configuration. When multiple failed login attempts occur simultaneously for the same account, a synchronization error can cause the system to enter a repetitive loop that locks the user's record in the database. This results in legitimate login attempts for that user being blocked and failing with an error. Furthermore, because some failures are not correctly recorded during this loop, the system's brute-force protection may not accurately count all failed attempts.",
+    "publishedDate" : "2026-11-11T13:17:13.863",
+    "lastModifiedDate" : "2026-11-11T13:17:13.987",
+    "cvssScore" : 4.8,
     "severity" : "MEDIUM",
     "inKev" : false,
-    "epssScore" : 0.00183,
-    "epssPercentile" : 0.07881,
-    "matchedKeywords" : [ "postgresql" ],
+    "matchedKeywords" : [ "keycloak" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105613"
-  }, {
-    "id" : "CVE-2026-105614",
-    "description" : "PostgreSQL Anonymizer's `anon.image_blur()` function doesn't check the declared dimension of the provided image, allowing an attacker to provide a small image with enormous declared dimensions. This vulnerability can be exploited to exhaust the memory of a backend and OOM-kill it (when ovecommit is on), which results in a cluster-wide crash recovery. The problem is resolved in PostgreSQL Anonymizer 3.3.0 and later versions.",
-    "publishedDate" : "2026-10-28T18:17:03.127",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 4.7,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00183,
-    "epssPercentile" : 0.07881,
-    "matchedKeywords" : [ "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105614"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112201"
   }, {
     "id" : "CVE-2026-120477",
     "description" : "The Stop Spammers Classic plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'author' POST parameter in versions up to, and including, 2026.6. An unauthenticated POST handled on init stores the attacker-supplied author field (after sanitize_text_field, which does not escape single quotes) into the ss_stop_sp_reg_stats option history. The Log Report admin page then renders that stored value inside a single-quoted JavaScript string within a double-quoted onclick attribute using esc_js(); because esc_js() uses _wp_specialchars with ENT_COMPAT it does not escape single quotes, allowing the stored value to break out of the JS string literal and inject arbitrary JavaScript. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that execute whenever an administrator with manage_options access clicks the 'Report to SFS' link on an attacker-poisoned log row (the StopForumSpam API key must be configured for that link to be rendered — the field is empty by default). Successful exploitation additionally requires an action by an administrator — the attacker cannot trigger the vulnerability on their own.",
@@ -5021,6 +5096,39 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120477"
   }, {
+    "id" : "CVE-2026-108564",
+    "description" : "A reflected cross-site scripting vulnerability in the invocation-tag generation interface of Revive Adserver 6.0.8 and earlier allows an unauthenticated attacker to execute JavaScript in an authenticated user's browser by persuading them to visit a crafted URL. When Direct Selection is enabled, an attacker-controlled banner identifier can be included in HTML form fields without appropriate encoding. Direct Selection is disabled by default. The issue is fixed in Revive Adserver 6.0.9 by HTML-encoding banner identifier values in the invocation-option form fields.",
+    "publishedDate" : "2026-11-11T18:18:27.023",
+    "lastModifiedDate" : "2026-11-11T18:18:27.023",
+    "cvssScore" : 4.7,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108564"
+  }, {
+    "id" : "CVE-2026-108565",
+    "description" : "A reflected cross-site scripting vulnerability in the popup invocation options of Revive Adserver 6.0.8 and earlier allows an unauthenticated attacker to execute JavaScript in an authenticated user's browser by persuading them to visit a crafted URL. The top, left, timeout and delay request parameters are included in HTML attributes without appropriate encoding. Exploitation requires an existing popup zone, which can be created through the administrator API but is not offered by the normal zone-creation interface. The issue is fixed in Revive Adserver 6.0.9 by HTML-encoding the affected popup option values.",
+    "publishedDate" : "2026-11-11T18:18:27.147",
+    "lastModifiedDate" : "2026-11-11T18:18:27.147",
+    "cvssScore" : 4.7,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-108565"
+  }, {
+    "id" : "CVE-2026-126798",
+    "description" : "NextScan 1.1.0 through 1.2.0 contains a stored cross-site scripting vulnerability in the ns-admin URL asset detail dialog that renders crawled form request bodies (Asset_URL.data) via innerHTML without encoding. Attackers can host crafted forms on crawled sites to store JavaScript that executes when users view asset details, stealing localStorage access tokens to hijack sessions, including administrators.",
+    "publishedDate" : "2026-11-11T21:16:43.190",
+    "lastModifiedDate" : "2026-11-11T21:16:43.190",
+    "cvssScore" : 4.7,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126798"
+  }, {
     "id" : "CVE-2026-119573",
     "description" : "Traefik 3.7.11 before 3.7.15 contains an authorization bypass in the Kubernetes Ingress NGINX provider that skips the cross-namespace check on the auth-tls-secret annotation when a cached client authentication TLS option is reused. Users who can create Ingresses can reference another namespace's CA secret already used by another Ingress, enforcing it on their own routes and learning whether it exists, without disclosure of its contents.",
     "publishedDate" : "2026-10-30T14:16:46.267",
@@ -5033,32 +5141,6 @@
     "matchedKeywords" : [ "kubernetes", "nginx" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-119573"
-  }, {
-    "id" : "CVE-2026-110182",
-    "description" : "PostgreSQL Anonymizer contains a vulnerability related to the anon.partial() and anon.partial_email() functions. These function can reveal the while data if the data is small enough. The issue is fixed in PostgreSQL Anonymizer 3.3.0 and later versions.",
-    "publishedDate" : "2026-10-28T18:17:05.590",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 4.3,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00176,
-    "epssPercentile" : 0.07142,
-    "matchedKeywords" : [ "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-110182"
-  }, {
-    "id" : "CVE-2026-110183",
-    "description" : "PostgreSQL Anonymizer contains a vulnerability related to static masking and statistics persistence. Statistics pertaining to the original data remain visible in pg_stats until an ANALYZE operation is performed on the table, either manually or by autovacuum. This issue is fixed in PostgreSQL Anonymizer 3.3.0 and later versions.",
-    "publishedDate" : "2026-10-28T18:17:05.710",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 4.3,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00162,
-    "epssPercentile" : 0.05322,
-    "matchedKeywords" : [ "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-110183"
   }, {
     "id" : "CVE-2026-119121",
     "description" : "Crawl4AI from 0.9.0 before 0.9.5 contains a JavaScript injection vulnerability in the Docker API server that allows authenticated API clients to run arbitrary JavaScript in the crawl page via allowlisted css_selector and wait_for fields. Attackers can inject quotes into css_selector or supply js: conditions in wait_for, bypassing the js_code block to alter page state and returned crawl content.",
@@ -5301,6 +5383,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-96447"
   }, {
+    "id" : "CVE-2026-123867",
+    "description" : "A per-host mutual-TLS authorization bypass in Node.js lets a client authorized for the default hostname reach a protected hostname it is not authorized for. When a TLS server assigns a hostname a different client-certificate CA with server.addContext(host, { ca: protectedCA }) but no server certificate in that SNI context, the per-host client CA is never installed and the handshake falls back to the default client CA. In src/crypto/crypto_tls.cc, CertCbDone installs the SNI context's CA only when setSniContext succeeds, but setSniContext returns false for a context with no server certificate, so a CA-only SNI context silently keeps the default CA. A client holding a certificate trusted by the default CA, but not the protected CA, can therefore complete mTLS to the protected hostname and read its response even with requestCert and rejectUnauthorized enabled, while a client certified by the protected CA is rejected. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
+    "publishedDate" : "2026-11-11T19:17:33.480",
+    "lastModifiedDate" : "2026-11-11T19:17:33.480",
+    "cvssScore" : 4.2,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123867"
+  }, {
     "id" : "CVE-2026-106144",
     "description" : "Prototype Pollution in the Scheduler component (@progress/kendo-angular-scheduler and @progress/kendo-angular-common) in Progress Software Kendo UI for Angular versions prior to 25.1.0 allows a high-privileged attacker who can control a field path processed by the Scheduler to modify the prototype of built-in objects, resulting in a limited impact on confidentiality, integrity, and availability.",
     "publishedDate" : "2026-11-06T17:17:12.650",
@@ -5378,19 +5471,6 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-59006"
-  }, {
-    "id" : "CVE-2026-118258",
-    "description" : "i18next-http-backend is a backend layer for i18next that loads translation resources in Node.js, browsers, and Deno. Prior to 4.0.4, interpolateUrl inserts unencoded language and namespace values into loadPath or addPath templates without rejecting ampersand (&), equals (=), or semicolon (;) query separators. When a template places lng or ns in the query string and an attacker controls that value, the attacker can add or override parameters on browser or server-side translation requests, potentially exposing other namespaces or tenants or changing backend behavior through the application's network position and credentials. This vulnerability is the result of an incomplete fix for CVE-2026-41691. This issue is fixed in version 4.0.4.",
-    "publishedDate" : "2026-10-28T19:17:30.360",
-    "lastModifiedDate" : "2026-10-29T15:53:48.130",
-    "cvssScore" : 3.7,
-    "severity" : "LOW",
-    "inKev" : false,
-    "epssScore" : 0.0028,
-    "epssPercentile" : 0.20522,
-    "matchedKeywords" : [ "node.js" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118258"
   }, {
     "id" : "CVE-2026-118774",
     "description" : "Forge (also called node-forge) is a native implementation of Transport Layer Security in JavaScript. Prior to 1.4.1, the affected implementation used certificate.verify(child), _verifySignature(), lib/x509.js to process the relevant input or security decision. node-forge selected RSA padding and RSASSA-PSS parameters from the issuer certificate rather than the child certificate being verified. A child labeled as RSASSA-PSS could therefore be accepted with a PKCS#1 v1.5 signature when the issuer used PKCS#1 v1.5. The signature still had to be produced with the trusted issuer's private key, so this did not permit certificate identity forgery, but it could bypass policies that require a declared signature scheme. This issue is fixed in version 1.4.1.",
@@ -5542,32 +5622,6 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-121748"
   }, {
-    "id" : "CVE-2026-105612",
-    "description" : "PostgreSQL Anonymizer contains a vulnerability that data-modifying CTEs to bypass the read-only restriction of masked roles. The problem is resolved in PostgreSQL Anonymizer 3.3.0 and later versions",
-    "publishedDate" : "2026-10-28T18:17:02.850",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 3.5,
-    "severity" : "LOW",
-    "inKev" : false,
-    "epssScore" : 0.00165,
-    "epssPercentile" : 0.05689,
-    "matchedKeywords" : [ "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105612"
-  }, {
-    "id" : "CVE-2026-105615",
-    "description" : "PostgreSQL's optimized statistics on a table are visible as long as you have SELECT privilege on said table. A masked role can therefore read a limited subset of the data through the statistics view's histograms and mcvs. The vulnerability is resolved in PostgreSQL Anonymizer 3.3.0 and later versions.",
-    "publishedDate" : "2026-10-28T18:17:03.250",
-    "lastModifiedDate" : "2026-10-29T15:29:45.363",
-    "cvssScore" : 3.5,
-    "severity" : "LOW",
-    "inKev" : false,
-    "epssScore" : 0.00143,
-    "epssPercentile" : 0.03604,
-    "matchedKeywords" : [ "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105615"
-  }, {
     "id" : "CVE-2026-105258",
     "description" : "The Appointment Booking Plugin  WordPress plugin before 5.7.6 does not escape several booking-form step content settings before rendering them on the public booking form, allowing high-privilege users such as administrators to inject JavaScript that executes in the browser of any visitor who loads the form; on multisite, where administrators do not hold the unfiltered_html capability, this crosses a privilege boundary to unauthenticated visitors.",
     "publishedDate" : "2026-10-29T06:17:17.317",
@@ -5670,6 +5724,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118781"
   }, {
+    "id" : "CVE-2026-123862",
+    "description" : "An uncatchable exception in the Node.js zlib streaming API lets a peer crash a process by disconnecting while data is being compressed. zlib.params() queues a flush and completes its work in that write's callback; if the stream is destroyed first, as pipeline() does when the peer goes away, Writable still invokes the callback with an error, but the callback ignores its arguments and asserts that the native handle still exists. The handle is gone, so an ERR_INTERNAL_ASSERTION is thrown from inside stream internals and bypasses the stream's error event, the params() callback, and the pipeline() callback, terminating the process. An application is affected only if it calls deflate.params() while streaming to a peer, which is uncommon. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
+    "publishedDate" : "2026-11-11T19:17:32.360",
+    "lastModifiedDate" : "2026-11-11T19:17:32.360",
+    "cvssScore" : 2.9,
+    "severity" : "LOW",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123862"
+  }, {
     "id" : "CVE-2026-116472",
     "description" : "A security issue was discovered in ingress-nginx where a user with permission to create an Ingress may be able to cause denial of service of the ingress-nginx data plane, or possibly redirect traffic from other Ingresses. Kubernetes clusters are only affected if they are using ingress-nginx.\n\nDue to a missing check, the mirror-target Ingress annotation can be used to target an unauthenticated configuration API within the ingress-nginx controller, allowing write commands to be submitted. Corrupting the data within that configuration API results in all traffic through ingress-nginx being dropped until an Ingress configuration change or a controller restart causes the data to be recreated correctly.\n\nIn principle, this write access could also be used to redirect traffic from other Ingresses controlled by the same ingress-nginx instance. In practice, there is negligible additional risk: such redirection would require privileged information about internal ingress-nginx state, and users can already redirect traffic from other Ingresses controlled by the same ingress-nginx anyway.",
     "publishedDate" : "2026-11-05T19:17:10.690",
@@ -5696,253 +5761,16 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-121745"
   }, {
-    "id" : "CVE-2026-101274",
-    "description" : "When pretix is used as the identity provider in a Single-Sign-On (SSO) setup for customer accounts, the system did not properly validate the `response_type` requested in an authorization request against the configured grant type of the SSO client. This means that if an SSO client was configured to only allow the `code` response type, which requires knowledge of the client secret to use and would wrongfully send a response type like `id_token`, it would receive back a valid token. Exploiting this requires the attacker to run JavaScript on the page specified by `redirect_uri`, which must be from a list specified in the client configuration.",
-    "publishedDate" : "2026-10-28T11:17:13.577",
-    "lastModifiedDate" : "2026-10-28T15:24:56.033",
-    "severity" : "UNKNOWN",
+    "id" : "CVE-2026-123829",
+    "description" : "A Permission Model bypass in Node.js recursive file watching discloses the names of files and directories the process is not permitted to read. On macOS and Windows, fs.watch() and fs.promises.watch() in recursive mode are backed by the native libuv watcher: FSEventWrap::Start checks kFileSystemRead only once, on the watched root, and FSEventWrap::OnEvent then forwards every filename libuv reports (relative paths at any depth) to the JavaScript callback without checking that each path is covered by the read grant. Code running under --permission with an exact read grant on a directory can therefore learn names such as sub/secret.txt even though readdir on that subdirectory is denied. The flaw exposes names and timing metadata, not file contents, and requires macOS or Windows plus files created under the watched directory by another actor. This vulnerability affects Node.js 26.x, 24.x, and 22.x.",
+    "publishedDate" : "2026-11-11T19:17:32.143",
+    "lastModifiedDate" : "2026-11-11T19:17:32.143",
+    "cvssScore" : 2.5,
+    "severity" : "LOW",
     "inKev" : false,
-    "matchedKeywords" : [ "javascript" ],
+    "matchedKeywords" : [ "javascript", "node.js" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-101274"
-  }, {
-    "id" : "CVE-2026-112197",
-    "description" : "Vulnerability due to a lack of authentication in critical functions of the NoviGest Desktop App's Java RMI service. An attacker with network access to the service can invoke remote methods without authentication, obtain sensitive credentials, and execute arbitrary SQL queries on PostgreSQL. The elevated privileges of the database account allow these capabilities to be chained together to execute operating system commands on the server, compromising its confidentiality, integrity, and availability.",
-    "publishedDate" : "2026-10-28T11:17:15.073",
-    "lastModifiedDate" : "2026-10-28T14:43:13.110",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "matchedKeywords" : [ "java", "postgresql" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-112197"
-  }, {
-    "id" : "CVE-2026-116796",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 10.3.2 until 11.4.9, 12.6.2, and 13.1.1, Highcharts accepts an SVG anchor xlink:href attribute without applying the allowed-scheme check used for href and src. An attacker who controls a chart text option can preserve a javascript URL in serialized chart output. When exported or server-rendered SVG is parsed again and a user activates the link, script runs in the origin of that document. This issue is fixed in 11.4.9, 12.6.2 and 13.1.1.",
-    "publishedDate" : "2026-10-28T18:17:14.460",
-    "lastModifiedDate" : "2026-10-29T19:17:18.550",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00337,
-    "epssPercentile" : 0.27103,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116796"
-  }, {
-    "id" : "CVE-2026-116797",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 2.0.0 until 3.2.0, Highcharts Grid Pro input renderers copy the cells.renderer.attributes and cells.editMode.renderer.attributes maps to input or select elements with raw setAttribute calls. An attacker who controls column configuration can add event-handler attributes to every rendered row or to the control created when a cell enters edit mode. Script then runs in the hosting page origin when a user hovers over or focuses an input or begins editing. This issue is fixed in Grid Pro 3.2.0.",
-    "publishedDate" : "2026-10-28T18:17:14.607",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00316,
-    "epssPercentile" : 0.24484,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116797"
-  }, {
-    "id" : "CVE-2026-118242",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 2.3.0 until 3.2.0, Highcharts Grid creates SVG path elements from rendering.icons object definitions and previously copied every child key with setAttribute. An attacker who controls Grid configuration can supply event-handler attribute names in an icon definition. Because custom icons override built-ins, the attacker can replace default sort or pagination icons, and script runs in the hosting page origin when a user hovers over or activates the affected icon. This issue is fixed in 3.2.0.",
-    "publishedDate" : "2026-10-28T18:17:14.963",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00305,
-    "epssPercentile" : 0.23247,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118242"
-  }, {
-    "id" : "CVE-2026-118243",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 1.0.0 until 4.2.2, Highcharts Dashboards stores DataCursor listener and state maps in plain objects keyed by DataTable ID. A __proto__ table ID supplied through dataPool connector configuration resolves to Object.prototype, and sync registration creates an enumerable property there whose suffix can be influenced through the sync group option. The property is visible on every object, and lasting sync states can throw and stop features such as extremes synchronization. Exploitation requires untrusted dashboard configuration and an enabled component sync, but no user interaction beyond loading the board. This issue is fixed in 4.2.2.",
-    "publishedDate" : "2026-10-28T18:17:15.103",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00351,
-    "epssPercentile" : 0.28736,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118243"
-  }, {
-    "id" : "CVE-2026-118244",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 12.0.0 until 12.6.1 and 13.1.0, Highcharts falls back to assigning raw markup to innerHTML when DOMParser cannot return a document, before its allow-list is applied. In Chromium, the Trusted Types callback can throw while a beforeprint handler runs, so a page that redraws a chart during beforeprint can insert untrusted HTML text options into the hosting document. Event handlers in that markup then run in the page origin when printing begins. The issue affects HTML-rendered titles, labels, data labels, responsive text, and the Stock, Maps, and Gantt products shipped in the same package. This issue is fixed in 12.6.1 and 13.1.0.",
-    "publishedDate" : "2026-10-28T18:17:15.260",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00337,
-    "epssPercentile" : 0.27102,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118244"
-  }, {
-    "id" : "CVE-2026-118245",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 1.0.0 until 4.2.2, Highcharts Dashboards uses chartConstructor as an unchecked property lookup in the Highcharts namespace and invokes the selected member with the component container and chartOptions. An attacker who controls dashboard configuration can select a public utility function instead of a supported chart constructor, causing attacker-controlled options to be copied to the container as properties or attributes. Markup and event handlers can then execute in the hosting page origin when the board renders. No user interaction beyond rendering the board is required. This issue is fixed in 4.2.2.",
-    "publishedDate" : "2026-10-28T18:17:15.403",
-    "lastModifiedDate" : "2026-10-29T21:17:15.157",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00337,
-    "epssPercentile" : 0.27102,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118245"
-  }, {
-    "id" : "CVE-2026-118246",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 10.0.0 until 11.4.9, 12.6.1, and 13.1.0, Highcharts applies breadcrumbs.style as SVG attributes rather than CSS and does not filter the attribute names. An attacker who controls chart configuration can provide event-handler keys through drilldown.breadcrumbs, navigation.breadcrumbs, or hierarchical series breadcrumb options. The keys become active handlers on the breadcrumb button and execute in the hosting page origin after the user navigates to a level and hovers over or activates the button. Styled-mode charts do not apply this option and are not affected. This issue is fixed in 11.4.9, 12.6.1 and 13.1.0.",
-    "publishedDate" : "2026-10-28T18:17:15.540",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00337,
-    "epssPercentile" : 0.27102,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118246"
-  }, {
-    "id" : "CVE-2026-118247",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 1.0.0 until Dashboards 4.2.2, and from 2.0.0 until Grid Pro 3.2.0, Highcharts DataTable single-cell writers use an untrusted column ID as a key without rejecting __proto__ or constructor. DataTable.setCell, including Dashboards connector write-back and Grid Pro editing paths, can therefore write integer-indexed values onto Object.prototype or the Object constructor. In Dashboards releases with column aliases, a literal __proto__ ID is redirected by the alias map, while an alias targeting __proto__ reaches the unsafe write; later releases without aliases accept the unsafe ID directly. Those inherited values affect array and object reads and for-in enumeration throughout the page, which can alter application control flow or disrupt rendering. Exploitation requires control of the table or component column ID and a cell, point, or API write. This issue is fixed in Dashboards 4.2.2 and Grid Pro 3.2.0.",
-    "publishedDate" : "2026-10-28T18:17:15.690",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00363,
-    "epssPercentile" : 0.3009,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118247"
-  }, {
-    "id" : "CVE-2026-118248",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 1.0.0 until 4.2.2, Highcharts Dashboards edit mode walks editableOptions propertyPath segments without rejecting prototype-related keys. An attacker who controls editableOptions can provide a path through __proto__ or constructor, and a user's edit writes the configured value onto Object.prototype. The property then becomes visible to JavaScript throughout the page, with consequences determined by the consuming application. This issue is fixed in 4.2.2.",
-    "publishedDate" : "2026-10-28T18:17:15.870",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.0028,
-    "epssPercentile" : 0.20485,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118248"
-  }, {
-    "id" : "CVE-2026-118249",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 13.0.0 until 13.1.0, Highcharts builds series data columns by using point option keys directly as column IDs. Own enumerable __proto__ and constructor keys from parsed point objects can therefore direct integer-indexed writes to Object.prototype or the Object constructor. The inherited values affect reads and for-in enumeration across the page and can disrupt rendering or alter consuming application behavior without user interaction beyond rendering the chart. This issue is fixed in 13.1.0.",
-    "publishedDate" : "2026-10-28T18:17:16.273",
-    "lastModifiedDate" : "2026-10-29T21:17:15.300",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00363,
-    "epssPercentile" : 0.30091,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118249"
-  }, {
-    "id" : "CVE-2026-118250",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 6.1.0 until 11.4.9, 12.6.1, and 3.1.0, Highcharts follows dot-separated series.keys paths without filtering each segment. An attacker who controls series.keys and matching point data can use a path through __proto__ to assign arbitrary named properties to Object.prototype. Those properties are visible to all JavaScript in the page, and no user interaction is required beyond rendering the chart. This issue is fixed in 11.4.9, 12.6.1, and 3.1.0.",
-    "publishedDate" : "2026-10-28T18:17:16.543",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00363,
-    "epssPercentile" : 0.30091,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118250"
-  }, {
-    "id" : "CVE-2026-118251",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. Prior to 11.4.9, 12.6.1, and 13.1.0, Highcharts assigns credits.href to the window location when the credits label is clicked without checking the URL against the allowed-scheme list. An attacker who controls chart configuration can provide a javascript URL and run script in the origin of the hosting page when a user clicks the credits label. Highcharts Stock, Maps, and Gantt are included because they ship from the same package. This issue is fixed in 11.4.9, 12.6.1 and 13.1.0.",
-    "publishedDate" : "2026-10-28T19:17:29.340",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00433,
-    "epssPercentile" : 0.3754,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118251"
-  }, {
-    "id" : "CVE-2026-118252",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 1.0.0 until 4.2.3, Highcharts Dashboards edit-mode sidebar parses component language strings as HTML rather than inserting them as text. An attacker who controls the Dashboards language configuration can provide markup containing event handlers, which execute in the hosting page origin when a user opens the edit-mode sidebar and the affected labels render. This issue is fixed in 4.2.3.",
-    "publishedDate" : "2026-10-28T19:17:29.483",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00419,
-    "epssPercentile" : 0.36157,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118252"
-  }, {
-    "id" : "CVE-2026-118253",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 1.0.0 until 4.2.3, Highcharts Dashboards edit mode parses fullscreen language labels as HTML rather than inserting them as text. An attacker who controls Dashboards language options can supply markup with event handlers, which execute in the hosting page origin when the fullscreen control is rendered. The label is reachable only when edit mode is enabled and viewFullscreen is present in the context-menu items. This issue is fixed in 4.2.3.",
-    "publishedDate" : "2026-10-28T19:17:29.627",
-    "lastModifiedDate" : "2026-10-29T21:17:15.437",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00419,
-    "epssPercentile" : 0.36157,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118253"
-  }, {
-    "id" : "CVE-2026-118254",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 2.0.0 until 3.2.0, Highcharts Grid writes pagination language strings into the DOM as markup instead of text. An attacker who controls the Grid language configuration can provide elements with event handlers, which execute in the hosting page origin when pagination controls render. Exploitation requires pagination to be enabled but does not require additional user interaction. This issue is fixed in 3.2.0.",
-    "publishedDate" : "2026-10-28T19:17:29.763",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00419,
-    "epssPercentile" : 0.36157,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118254"
-  }, {
-    "id" : "CVE-2026-118255",
-    "description" : "Highcharts JS is a JavaScript charting library based on SVG. From 2.0.0 until 3.2.0, Highcharts Grid applies credits.href to the credits link without validating the URL scheme. An attacker who controls Grid configuration can provide a javascript URL, and activating the credits link runs script in the origin of the hosting page with access to that application's data and session state.This issue is fixed in Grid Pro 3.2.0.",
-    "publishedDate" : "2026-10-28T19:17:29.900",
-    "lastModifiedDate" : "2026-10-29T15:08:43.210",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00349,
-    "epssPercentile" : 0.28438,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118255"
-  }, {
-    "id" : "CVE-2026-118662",
-    "description" : "Vite is a frontend tooling framework for JavaScript. From 6.4.4 until 6.4.5, the Vite development server can evaluate server.fs.deny before stripping loader query parameters such as ?raw, ?import&raw, or ?import&url&inline. When the development server is exposed to the network and a sensitive file is inside server.fs.allow but matched by server.fs.deny, an unauthenticated attacker can append one of these queries and retrieve the denied file. This issue is fixed in version 6.4.5.",
-    "publishedDate" : "2026-10-28T21:16:56.403",
-    "lastModifiedDate" : "2026-10-29T16:19:37.750",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00295,
-    "epssPercentile" : 0.22102,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118662"
-  }, {
-    "id" : "CVE-2026-118664",
-    "description" : "decode-uri-component provides a more robust alternative to decodeURIComponent. Prior to 0.5.1, decodeUriComponent in index.js falls back to customDecodeURIComponent after native decoding throws, and the fallback collects every distinct percent-encoded run before performing a full-string regular-expression replacement for each entry. Malformed input containing many distinct runs can therefore make both the number of replacements and the scanned input length grow together, causing quadratic CPU consumption and blocking the Node.js event loop; request-body inputs can reach the demonstrated size, while ordinary URL header limits reduce the practical delay. This issue is fixed in version 0.5.1.",
-    "publishedDate" : "2026-10-28T21:16:56.687",
-    "lastModifiedDate" : "2026-10-29T18:17:28.070",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00318,
-    "epssPercentile" : 0.24749,
-    "matchedKeywords" : [ "node.js" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118664"
-  }, {
-    "id" : "CVE-2026-118668",
-    "description" : "langgraph-api implements the LangGraph API for rapid development and testing. From 0.1.2 until 0.15.0, JavaScript or TypeScript custom authentication Store authorization handlers can return a rewritten namespace that is not carried across the runtime boundary and applied before the Store operation. An authenticated user can therefore access another user's Store namespace when a deployment relies on namespace rewriting for isolation, allowing unauthorized reads, overwrites, searches, or deletions. Python custom authentication and handlers that reject unauthorized namespaces instead of rewriting them are not affected. This issue is fixed in version 0.15.0.",
-    "publishedDate" : "2026-10-28T21:16:57.263",
-    "lastModifiedDate" : "2026-10-29T18:17:28.190",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00369,
-    "epssPercentile" : 0.30698,
-    "matchedKeywords" : [ "javascript", "typescript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118668"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123829"
   }, {
     "id" : "CVE-2026-7190",
     "description" : "A cross-site scripting (XSS) vulnerability in the ICTBroadcast software, which affects the demo environment. The vulnerability is found in the ‘login.php’ endpoint, where the ‘editForm[extension_username]’ parameter is reflected in the response without proper filtering. Successful exploitation of this vulnerability could allow an attacker to execute arbitrary JavaScript code in the victim’s browser once the victim accesses the malicious URL.",
@@ -7562,5 +7390,75 @@
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-121374"
+  }, {
+    "id" : "CVE-2026-122096",
+    "description" : "Uncontrolled Resource Consumption vulnerability in the sketch deserialization of Apache DataSketches Java.\n\n\n\nSeveral deserializers trusted sizes and counts declared in the serialized input. A small crafted input could make an application allocate an excessive amount of memory, leading to an OutOfMemoryError. A crafted string passed to FrequentLongsSketch.getInstance(String) could also make deserialization, or a later update, loop indefinitely. Only applications that deserialize sketches from untrusted sources are affected.\n\n\n\nThis issue affects Apache DataSketches Java: through 9.0.0.\n\n\n\nUsers are recommended to upgrade to version 9.1.0, which fixes the issue.",
+    "publishedDate" : "2026-11-11T13:17:17.057",
+    "lastModifiedDate" : "2026-11-11T13:17:17.057",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-122096"
+  }, {
+    "id" : "CVE-2026-123374",
+    "description" : "Deserialization of Untrusted Data vulnerability in Apache Roller. When Roller sends a weblog update ping, its XML-RPC client deserializes Java object data contained in the ping target's response, so a party that controls that response can run code in the Roller server process. This issue affects Apache Roller from 4.0 through 6.1.6. Users are recommended to upgrade to version 6.1.7, which removes the unsafe deserialization.",
+    "publishedDate" : "2026-11-11T13:17:17.340",
+    "lastModifiedDate" : "2026-11-11T13:17:17.340",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "java" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123374"
+  }, {
+    "id" : "CVE-2026-65833",
+    "description" : "iopress is a native HTTP server for Node.js with platform-specific async I/O. Prior to version 1.0.5, the chunked-transfer-encoding HTTP request parser in @iopress/core reads past the end of the input buffer when a request declares a chunk size larger than the body actually received. This results in a heap-buffer-over-read. This issue has been patched in version 1.0.5.",
+    "publishedDate" : "2026-11-11T19:17:43.750",
+    "lastModifiedDate" : "2026-11-11T19:17:43.750",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-65833"
+  }, {
+    "id" : "CVE-2026-65843",
+    "description" : "sync-rpc runs asynchronous commands synchronously by putting them in a separate proces. Prior to version 1.3.7, if an attacker could guess the correct port and it was not blocked via a firewall, it was possible to load and execute arbitrary JavaScript files stored on the server running sync-rpc. This issue has been patched in version 1.3.7.",
+    "publishedDate" : "2026-11-11T19:17:44.120",
+    "lastModifiedDate" : "2026-11-11T19:17:44.120",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-65843"
+  }, {
+    "id" : "CVE-2026-65982",
+    "description" : "nginx-http-flv-module is a media streaming server based on nginx-rtmp-module. Prior to version 1.2.14, if a server received an HTTP/1.0 request without a header Host, which was permitted by HTTP core of Nginx, then r->headers_in.host was NULL, nginx-http-flv-module used r->headers_in.host->value to make a pseudo tcUrl, so NULL-pointer dereference happened. This issue has been patched in version 1.2.14.",
+    "publishedDate" : "2026-11-11T21:16:46.903",
+    "lastModifiedDate" : "2026-11-11T21:16:46.903",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "nginx" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-65982"
+  }, {
+    "id" : "CVE-2026-118597",
+    "description" : "Akaunting 3.3.0 contains a stored cross-site scripting vulnerability in custom invoice payment terms. An authenticated Manager can save a crafted custom payment-term value. When an authorized user opens Invoice Settings for the same company, Akaunting inserts the stored value into a client-side event-handler expression, causing attacker-controlled JavaScript to execute in the victim's authenticated origin.",
+    "publishedDate" : "2026-11-12T06:17:11.980",
+    "lastModifiedDate" : "2026-11-12T06:17:11.980",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-118597"
+  }, {
+    "id" : "CVE-2026-127046",
+    "description" : "The MISP Modules website component contains an information disclosure vulnerability in the external tools management interface. The /external_tools/list endpoint returned stored API keys (the api_key field) in its JSON response via the ExternalTools model serializer. Additionally, the browser-based edit form pre-populated the API key input field with the stored credential value, exposing it in the DOM.\n\nThe /external_tools/list endpoint is accessible without authentication (the regression tests verify the response for both authenticated and unauthenticated clients), meaning any network-reachable client could retrieve the API keys for all configured external tools. These keys are used by the server to authenticate submissions to external analysis or enrichment services, so their disclosure allows an attacker to impersonate the MISP instance or directly access those external services.\n\nThe vulnerability also affected the edit workflow: the change_config endpoint previously required the API key to be present and non-empty on every save, forcing the key to round-trip through the client. The browser JavaScript stored the key in a reactive state object and updated the in-memory tool list with the credential value, further increasing the window of exposure in client-side memory and network traffic.\n\nAffected component: the website sub-application of MISP Modules, specifically the external_tools module (serializer in models.py, list endpoint, and the external_tools_index.html template). The impact is limited to confidentiality of the stored API keys; no integrity or availability impact on the MISP Modules website itself is indicated by the patch.",
+    "publishedDate" : "2026-11-12T12:18:23.130",
+    "lastModifiedDate" : "2026-11-12T12:18:23.267",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-127046"
   } ]
 }

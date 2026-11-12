@@ -9,7 +9,7 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### Top 8 des menaces les plus dangereuses et prioritaires
 
-> **Dernière synchronisation** : `2026-11-11T13:18:42.129539779Z`
+> **Dernière synchronisation** : `2026-11-12T14:22:42.980300869Z`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
@@ -20,7 +20,7 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 | [CVE-2026-122310](https://nvd.nist.gov/vuln/detail/CVE-2026-122310) | `CRITICAL` | 9.9 | 0.4% | Non | `kubernetes` | Kyverno from 1.19.1 before 1.19.2 validates a Policy's context.apiCall urlP... |
 | [CVE-2026-17146](https://nvd.nist.gov/vuln/detail/CVE-2026-17146) | `CRITICAL` | 9.9 | 0.7% | Non | `javascript` | IBM API Connect 10.0.8.0 through 10.0.8.12 and 12.1.0.0 through 12.1.1.2 co... |
 | [CVE-2026-123800](https://nvd.nist.gov/vuln/detail/CVE-2026-123800) | `CRITICAL` | 9.9 | 0.6% | Non | `java` | SuperTokens Core is an open source authentication server. From 6.0.0 until ... |
-| [CVE-2026-110879](https://nvd.nist.gov/vuln/detail/CVE-2026-110879) | `CRITICAL` | 9.8 | 1.2% | Non | `spring, jackson` | jackson-databind validates the outer class of a class-name type ID but acce... |
+| [CVE-2026-61737](https://nvd.nist.gov/vuln/detail/CVE-2026-61737) | `CRITICAL` | 9.8 | 0.5% | Non | `angular` | ng-antd-admin is an Angular and NestJS administration system template. Prio... |
 
 *Données détaillées historisées chaque jour dans [`data/`](data/) • Alimenté par NVD 2.0, CISA KEV & EPSS*
 <!-- CVEILLE_SUMMARY_END -->
