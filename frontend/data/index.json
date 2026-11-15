@@ -1,24 +1,24 @@
 {
-  "lastSync" : "2026-11-14T12:46:49.178218551Z",
-  "newToday" : 134,
+  "lastSync" : "2026-11-15T13:14:18.336316629Z",
+  "newToday" : 23,
   "stats" : {
-    "totalTracked" : 653,
+    "totalTracked" : 651,
     "criticalCount" : 31,
-    "highCount" : 222,
+    "highCount" : 220,
     "mediumCount" : 235,
     "lowCount" : 22,
     "kevCount" : 0,
-    "alertCount" : 201,
+    "alertCount" : 200,
     "avgEpss" : 0.003,
     "severityDistribution" : {
       "CRITICAL" : 31,
-      "HIGH" : 222,
+      "HIGH" : 220,
       "MEDIUM" : 235,
       "LOW" : 22
     },
     "topTechnologies" : {
       "javascript" : 226,
-      "java" : 142,
+      "java" : 141,
       "postgresql" : 87,
       "node.js" : 84,
       "docker" : 46,
@@ -30,9 +30,9 @@
       "angular" : 8,
       "npm" : 5,
       "jackson" : 3,
-      "hibernate" : 2
+      "hibernate" : 1
     },
-    "lastSyncTimestamp" : "2026-11-14T12:46:49.300483887Z"
+    "lastSyncTimestamp" : "2026-11-15T13:14:18.450051607Z"
   },
   "cves" : [ {
     "id" : "CVE-2026-120338",
@@ -147,6 +147,17 @@
     "matchedKeywords" : [ "kubernetes" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-127080"
+  }, {
+    "id" : "CVE-2026-129433",
+    "description" : "Dokploy before 0.31.1 contains an OS command injection vulnerability in getComposeContainerCommand() that allows authenticated organization members to execute shell commands via the serviceName parameter. Attackers can store serviceName values with shell metacharacters through backup.create or backup.update tRPC procedures, executing commands as root when scheduled backups run and taking over the host via the mounted Docker socket.",
+    "publishedDate" : "2026-11-14T13:17:22.820",
+    "lastModifiedDate" : "2026-11-14T13:17:22.940",
+    "cvssScore" : 9.9,
+    "severity" : "CRITICAL",
+    "inKev" : false,
+    "matchedKeywords" : [ "docker" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129433"
   }, {
     "id" : "CVE-2026-44266",
     "description" : "Elo is a purely functional expression language for no-code tools. Prior to 1.0.1, the Ruby backend in src/compilers/ruby.ts embeds attacker-controlled text in Ruby double-quoted strings without escaping #, so Ruby interpolation forms in the string-literal emitter or the labelled subtype-constraint branch become executable Ruby. The affected entry points include the /try playground with the Ruby target, bin/eloc -t ruby -x, and defaultFormats.elo.parse() followed by Ruby emission. A failing labelled subtype constraint evaluates its message, while an ordinary string literal is evaluated when the compiled Ruby runs, allowing Ruby code and shell command execution through backticks. JavaScript, Python, and SQL emission are not affected by this Ruby-specific path. This issue is fixed in version 1.0.1.",
@@ -296,6 +307,8 @@
     "cvssScore" : 9.8,
     "severity" : "CRITICAL",
     "inKev" : false,
+    "epssScore" : 0.00414,
+    "epssPercentile" : 0.36283,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129171"
@@ -336,19 +349,6 @@
     "matchedKeywords" : [ "docker" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-57566"
-  }, {
-    "id" : "CVE-2026-103882",
-    "description" : "The Acadlix LMS – AI Quiz Maker, Online Exam & Course Plugin for WordPress plugin for WordPress is vulnerable to arbitrary file deletion due to insufficient file path validation in the post_delete_assessment_file_by_id function in all versions up to, and including, 1.1.9. This makes it possible for authenticated attackers, with subscriber-level access and above, to delete arbitrary files on the server, which can easily lead to remote code execution when the right file is deleted (such as wp-config.php). The route's permission callback only verifies a generic wp_rest nonce that the plugin itself emits inside the public acadlixOptions JavaScript object on every frontend page, effectively reducing the authentication requirement to unauthenticated.",
-    "publishedDate" : "2026-10-31T09:16:32.510",
-    "lastModifiedDate" : "2026-10-31T09:16:32.510",
-    "cvssScore" : 9.1,
-    "severity" : "CRITICAL",
-    "inKev" : false,
-    "epssScore" : 0.00787,
-    "epssPercentile" : 0.56156,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103882"
   }, {
     "id" : "CVE-2026-95860",
     "description" : "node-opcua is an OPC UA implementation for TypeScript and Node.js. From 2.42.0 until 2.180.0, namespace-level access control configured through setDefaultRolePermissions is not honored by the runtime enforcement path for nodes without explicit per-node RolePermissions. SessionContext.getApplicableRolePermissions reads a missing or null DefaultRolePermissions metadata value instead of the configured namespace field, and the null result is treated permissively. An anonymous network client can consequently write variables with CurrentWrite access or call bound methods when an operator configured a restrictive namespace default and relied on inheritance. Servers with no declared policy, nodes with explicit per-node permissions, and correctly bound programmatic namespace metadata are outside the authorization-bypass case. This issue is fixed in version 2.180.0.",
@@ -425,19 +425,6 @@
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-54141"
-  }, {
-    "id" : "CVE-2026-120203",
-    "description" : "ShowDoc 2.8.14 before 3.9.6 contains a code injection vulnerability in its Mock feature that allows authenticated users to execute shell commands through mockjs templates. Attackers can store a template via MockController::add with escaped parentheses that mockjs evaluates with eval(), then trigger it through MockController::infoByKey to run commands, as root in the official Docker image.",
-    "publishedDate" : "2026-10-31T18:17:08.237",
-    "lastModifiedDate" : "2026-10-31T18:17:08.237",
-    "cvssScore" : 8.8,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00352,
-    "epssPercentile" : 0.28839,
-    "matchedKeywords" : [ "docker" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120203"
   }, {
     "id" : "CVE-2026-120460",
     "description" : "Jpom through 2.11.12 contains a cross-workspace authorization bypass vulnerability that allows authenticated users to manage other workspaces' Docker hosts by supplying foreign Docker asset ids. Attackers with Docker permission in any workspace can control containers, images, volumes and networks, including creating privileged containers with host bind mounts.",
@@ -1643,6 +1630,8 @@
     "cvssScore" : 8.2,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00317,
+    "epssPercentile" : 0.24989,
     "matchedKeywords" : [ "nginx" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-68905"
@@ -2589,6 +2578,8 @@
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00482,
+    "epssPercentile" : 0.42137,
     "matchedKeywords" : [ "tomcat" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2024-58406"
@@ -2600,6 +2591,8 @@
     "cvssScore" : 7.5,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00303,
+    "epssPercentile" : 0.23442,
     "matchedKeywords" : [ "java" ],
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123628"
@@ -2855,19 +2848,6 @@
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126451"
-  }, {
-    "id" : "CVE-2026-109234",
-    "description" : "The Meow Lightbox plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'post_content (bbPress reply body)' parameter in all versions up to, and including, 5.6.4 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. This requires the administrator to have enabled Output Buffering, the HtmlDomParser engine, and Aggressive Resolve, as well as a stored-HTML submission surface (such as bbPress anonymous replies) whose kses allow-list preserves img attributes; given these preconditions, a one-shot unauthenticated submission can execute arbitrary JavaScript in the context of any user who views the affected page.",
-    "publishedDate" : "2026-10-31T06:16:31.510",
-    "lastModifiedDate" : "2026-10-31T06:16:31.510",
-    "cvssScore" : 7.2,
-    "severity" : "HIGH",
-    "inKev" : false,
-    "epssScore" : 0.00383,
-    "epssPercentile" : 0.32417,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-109234"
   }, {
     "id" : "CVE-2026-120512",
     "description" : "The Form Maker by 10Web – Mobile-Friendly Drag & Drop Contact Form Builder plugin for WordPress is vulnerable to Stored Cross-Site Scripting via the 'wdform_<n>_element<id> (Hidden Input field, name = user-defined, e.g. hidden_probe)' parameter in all versions up to, and including, 1.15.50 due to insufficient input sanitization and output escaping. This makes it possible for unauthenticated attackers to inject arbitrary web scripts in pages that will execute whenever a user accesses an injected page. Exploitation requires an administrator to open the Submissions screen and click the Show-on-Map link associated with the poisoned entry, at which point the attacker-controlled field_id value is echoed unescaped into a single-quoted JavaScript string in the FormMakerEditCountryinPopup popup — a step whose nonce and capability checks are automatically satisfied by the administrator's own session and the freshly minted fm_ajax_nonce embedded in the link.",
@@ -3223,6 +3203,8 @@
     "cvssScore" : 7.1,
     "severity" : "HIGH",
     "inKev" : false,
+    "epssScore" : 0.00454,
+    "epssPercentile" : 0.39983,
     "matchedKeywords" : [ "docker" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124969"
@@ -3494,19 +3476,6 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-116468"
   }, {
-    "id" : "CVE-2026-103997",
-    "description" : "The Redux Framework plugin for WordPress is vulnerable to authorization bypass in all versions up to, and including, 4.5.15. This is due to the plugin not properly verifying that a user is authorized to perform an action. This makes it possible for authenticated attackers, with subscriber-level access and above, to view the entire Redux options payload — including plaintext password field values, API keys, license keys, and SMTP credentials — exposed in the inline redux_&lt;opt_name&gt; JavaScript block on wp-admin/profile.php. The Users extension is loaded automatically for every Redux instance registered by any installed theme or plugin, meaning any site running Redux Framework is affected regardless of whether the developer explicitly configured the Users extension.",
-    "publishedDate" : "2026-10-31T08:16:47.753",
-    "lastModifiedDate" : "2026-10-31T08:16:47.753",
-    "cvssScore" : 6.5,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00276,
-    "epssPercentile" : 0.20119,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-103997"
-  }, {
     "id" : "CVE-2026-114456",
     "description" : "Multiple Snowflake client drivers implementing the `authenticator=externalbrowser` single sign-on flow could have allowed an attacker to interfere with a user's login attempt through weaknesses in the local loopback callback listener used to receive the identity provider's response. The listener reflected an arbitrary request's Origin header into its CORS response headers and accepted the first token-bearing request it received during the login window without verifying a CSRF state value bound to that specific login attempt. An attacker able to reach the listener during an active login might have leveraged this to submit a forged callback response, causing the authentication attempt to fail. The fix is available in Snowflake Connector for Python 4.8.0, Snowflake Go Driver v2.3.0, Snowflake JDBC Driver 4.4.0 (including the snowflake-jdbc-fips and snowflake-jdbc-thin artifacts), Snowflake Node.js Driver 3.4.0, Snowflake Connector for .NET 6.3.0, Snowflake ODBC Driver 4.0.0, Snowflake PHP PDO Driver 4.3.0, and libsnowflakeclient 2.11.1. Go v1 users must migrate to the latest major version of the module. Users must manually upgrade.",
     "publishedDate" : "2026-11-04T12:17:06.033",
@@ -3738,6 +3707,8 @@
     "cvssScore" : 6.5,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00336,
+    "epssPercentile" : 0.27368,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129166"
@@ -3890,6 +3861,8 @@
     "cvssScore" : 6.4,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.0019,
+    "epssPercentile" : 0.08714,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-18742"
@@ -4443,9 +4416,22 @@
     "cvssScore" : 6.1,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00275,
+    "epssPercentile" : 0.20186,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-9870"
+  }, {
+    "id" : "CVE-2026-129447",
+    "description" : "Kroki before 0.36.0 contains a reflected cross-site scripting vulnerability in the /dbml/svg endpoint that allows unauthenticated attackers to inject javascript: hyperlinks by supplying crafted DBML table url, headercolor, or TableGroup color settings. Attackers can send a crafted SVG link that, when opened and the table header clicked, executes attacker JavaScript in the Kroki origin.",
+    "publishedDate" : "2026-11-14T18:17:21.100",
+    "lastModifiedDate" : "2026-11-14T18:17:21.100",
+    "cvssScore" : 6.1,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129447"
   }, {
     "id" : "CVE-2026-120216",
     "description" : "fastify is a web framework for Node.js. In versions 5.8.0 through 5.12.7, when the server is configured with a nonzero handlerTimeout and a route returns a streaming response, a request whose stream has already sent its headers but stays open past the timeout crashes the server. When the timeout fires, Fastify tries to send a new error response on a response that has already started, raising an uncaught ERR_HTTP_HEADERS_SENT that terminates the Node.js process and interrupts any other in-flight requests. An unauthenticated remote client can trigger this with a single request to an affected streaming endpoint, so the impact is availability only, and exploitation requires the non-default handlerTimeout to be set. The default handlerTimeout of 0 is not affected. The issue is fixed in fastify 5.12.8, and users should upgrade to 5.12.8 or later. As a workaround, set handlerTimeout to 0, which disables the affected timeout path.",
@@ -4657,6 +4643,8 @@
     "cvssScore" : 5.9,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00246,
+    "epssPercentile" : 0.16015,
     "matchedKeywords" : [ "javascript", "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129319"
@@ -4718,6 +4706,8 @@
     "cvssScore" : 5.8,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00363,
+    "epssPercentile" : 0.30595,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-128080"
@@ -4771,19 +4761,6 @@
     "matchedKeywords" : [ "tomcat" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123179"
-  }, {
-    "id" : "CVE-2026-120200",
-    "description" : "Nexterm through 1.2.2-BETA contains a missing authorization vulnerability that allows authenticated users to hibernate, resume, or terminate other users' remote sessions via session lifecycle routes. Attackers who obtain a session ID can call the hibernate, resume, or DELETE connection endpoints to disrupt live SSH, RDP, VNC, or SFTP sessions.",
-    "publishedDate" : "2026-10-31T18:17:07.713",
-    "lastModifiedDate" : "2026-10-31T18:17:07.713",
-    "cvssScore" : 5.4,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00227,
-    "epssPercentile" : 0.1352,
-    "matchedKeywords" : [ "hibernate" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120200"
   }, {
     "id" : "CVE-2026-119735",
     "description" : "Munshi (by Petpooja) before 2026-07-13 contained a stored cross-site scripting vulnerability that allows authenticated users to inject malicious markup through item descriptions or messages submitted in the Purchase Inquiry thread (/purchase-inquiry/thread/{thread-id}), which is assigned to innerHTML during rendering before text cleaning completes. Attackers can store a payload that executes in the browser of another user who opens the affected thread, achieving JavaScript execution and full-page defacement that re-triggers whenever the thread is reopened.",
@@ -5335,6 +5312,17 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-126947"
   }, {
+    "id" : "CVE-2026-129430",
+    "description" : "Axeloz Filesharing before 2.14.3 contains a stored cross-site scripting vulnerability that allows authenticated users to inject script by storing raw HTML or javascript: Markdown links in bundle descriptions. Recipients viewing the public bundle preview page execute the script via Alpine x-html, letting attackers steal the owner_token from localStorage and issue owner-scoped requests against victim bundles.",
+    "publishedDate" : "2026-11-14T13:17:22.387",
+    "lastModifiedDate" : "2026-11-14T13:17:22.387",
+    "cvssScore" : 5.4,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129430"
+  }, {
     "id" : "CVE-2026-120233",
     "description" : "A security flaw has been discovered in ag-ui-protocol ag-ui up to 0.0.58. This affects an unknown function of the file sdks/typescript/packages/client/src/agent/http.ts of the component HttpAgent. Performing a manipulation results in information disclosure. The attack can be initiated remotely. The exploit has been released to the public and may be used for attacks. The pull request to fix this issue awaits acceptance.",
     "publishedDate" : "2026-11-01T16:18:14.290",
@@ -5594,6 +5582,8 @@
     "cvssScore" : 5.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00264,
+    "epssPercentile" : 0.18492,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-128116"
@@ -5605,6 +5595,8 @@
     "cvssScore" : 5.3,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00406,
+    "epssPercentile" : 0.35396,
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129173"
@@ -5755,6 +5747,8 @@
     "cvssScore" : 4.8,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00173,
+    "epssPercentile" : 0.0687,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-110199"
@@ -6496,18 +6490,6 @@
     "matchedKeywords" : [ "javascript", "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123829"
-  }, {
-    "id" : "CVE-2026-120135",
-    "description" : "Uncontrolled Recursion vulnerability in Apache Thrift Java bindings.\n\n\n\nThis issue affects Apache Thrift: before 0.24.0.\n\n\n\nUsers are recommended to upgrade to version 0.24.0, which fixes the issue.",
-    "publishedDate" : "2026-10-31T21:16:53.397",
-    "lastModifiedDate" : "2026-10-31T21:16:53.397",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "epssScore" : 0.00553,
-    "epssPercentile" : 0.46182,
-    "matchedKeywords" : [ "java" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120135"
   }, {
     "id" : "CVE-2026-111089",
     "description" : "Apache Wicket reads texts from the application's resource bundles — a localized label, a css class name — and writes some of them into the JavaScript and the markup it generates for a component. Those texts are placed inside single-quoted JavaScript string literals and inside quoted attribute values without being escaped for that context, so a text containing a quote ends the literal or the attribute, and what follows is parsed as script or as markup in the application's origin when the page loads.\n\nA resource bundle entry is authored for the application and does not say where the framework will write it. The same key is read by the framework into element text, where Wicket escapes it, and into the contexts below, where it did not. A text containing an apostrophe, which is ordinary in several languages, is enough to break the page; a text under the influence of another party is enough to run script.\n\nIn org.apache.wicket:wicket-core, org.apache.wicket.markup.html.form.upload.MultiFileUploadField writes the org.apache.wicket.mfu.delete message into a JavaScript string literal, and org.apache.wicket.markup.html.form.Form writes the hidden-fields css class into the class attribute of the container it renders for its hidden fields; on 8.0.0 through 8.19.0 and 9.0.0 through 9.24.0 Form#appendDefaultButtonField writes the same css class into a second container. In org.apache.wicket:wicket-extensions, UploadProgressBar writes its UploadProgressBar.starting text into a JavaScript string literal, FilterForm writes the hidden-fields css class into the class attribute of its hidden input markup, and on 9.0.0 through 9.24.0 and 10.0.0 through 10.11.0 TrapFocusBehavior writes its current css class into a JavaScript string literal.\n\nThe Content-Security-Policy that Apache Wicket 9.x and 10.x send by default does not prevent the JavaScript cases: the generated script is written into a script element carrying the per-response nonce, so the injected code is part of a script the policy admits. It does prevent an inline event handler injected through the attribute cases.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0, from 9.0.0 through 9.24.0, from 10.0.0 through 10.11.0. Users of Apache Wicket 7.x or older, which are no longer supported, should upgrade to a supported version. Users are recommended to upgrade to version 8.20.0, 9.25.0 or 10.12.0, which fix the issue.",
@@ -8034,6 +8016,8 @@
     "lastModifiedDate" : "2026-11-13T15:17:44.043",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00371,
+    "epssPercentile" : 0.31543,
     "matchedKeywords" : [ "java", "jackson" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-127031"
@@ -8044,6 +8028,8 @@
     "lastModifiedDate" : "2026-11-13T22:17:19.450",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00546,
+    "epssPercentile" : 0.4635,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-105623"
@@ -8054,6 +8040,8 @@
     "lastModifiedDate" : "2026-11-13T20:19:04.253",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00195,
+    "epssPercentile" : 0.0923,
     "matchedKeywords" : [ "postgresql" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-95613"
@@ -8064,6 +8052,8 @@
     "lastModifiedDate" : "2026-11-13T18:17:36.803",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00291,
+    "epssPercentile" : 0.2201,
     "matchedKeywords" : [ "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-128074"
@@ -8074,8 +8064,20 @@
     "lastModifiedDate" : "2026-11-14T07:17:19.513",
     "severity" : "UNKNOWN",
     "inKev" : false,
+    "epssScore" : 0.00173,
+    "epssPercentile" : 0.06818,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123122"
+  }, {
+    "id" : "CVE-2026-110987",
+    "description" : "The RegistrationMagic  WordPress plugin before 6.1.0.4 does not properly escape a user-supplied value before printing it inside an inline script block on several of its admin screens, allowing unauthenticated attackers to inject arbitrary JavaScript that executes in the session of an administrator who is tricked into opening a crafted link.",
+    "publishedDate" : "2026-11-15T07:16:53.717",
+    "lastModifiedDate" : "2026-11-15T07:16:53.717",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-110987"
   } ]
 }
