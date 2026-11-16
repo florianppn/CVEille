@@ -1,75 +1,41 @@
 {
-  "lastSync" : "2026-11-15T13:14:18.336316629Z",
-  "newToday" : 23,
+  "lastSync" : "2026-11-16T14:22:26.504395176Z",
+  "newToday" : 11,
   "stats" : {
-    "totalTracked" : 651,
-    "criticalCount" : 31,
-    "highCount" : 220,
+    "totalTracked" : 647,
+    "criticalCount" : 28,
+    "highCount" : 222,
     "mediumCount" : 235,
     "lowCount" : 22,
     "kevCount" : 0,
-    "alertCount" : 200,
+    "alertCount" : 198,
     "avgEpss" : 0.003,
     "severityDistribution" : {
-      "CRITICAL" : 31,
-      "HIGH" : 220,
+      "CRITICAL" : 28,
+      "HIGH" : 222,
       "MEDIUM" : 235,
       "LOW" : 22
     },
     "topTechnologies" : {
-      "javascript" : 226,
-      "java" : 141,
+      "javascript" : 227,
+      "java" : 139,
       "postgresql" : 87,
-      "node.js" : 84,
+      "node.js" : 85,
       "docker" : 46,
       "keycloak" : 33,
-      "kubernetes" : 22,
+      "kubernetes" : 20,
       "nginx" : 17,
-      "typescript" : 17,
+      "typescript" : 14,
       "tomcat" : 13,
       "angular" : 8,
       "npm" : 5,
       "jackson" : 3,
-      "hibernate" : 1
+      "hibernate" : 1,
+      "spring" : 1
     },
-    "lastSyncTimestamp" : "2026-11-15T13:14:18.450051607Z"
+    "lastSyncTimestamp" : "2026-11-16T14:22:26.595133307Z"
   },
   "cves" : [ {
-    "id" : "CVE-2026-120338",
-    "description" : "Prefab UI's Generative UI sandbox runs caller-supplied Python inside Pyodide, Python compiled to WebAssembly, in a Deno subprocess. The feature is documented as isolation for untrusted code, including LLM-written UI. From prefab-ui 0.14.0 through 0.20.2 the launcher starts Deno with unrestricted --allow-read, --allow-write, and --allow-net, and the runner leaves the Deno API on the JavaScript global object. Pyodide's js module proxies that global, so the Python can call Deno.readTextFileSync and Deno.writeTextFileSync. A caller who can supply the code can read and write files as the server OS user, and can persist code execution by writing a .pth file into the server virtualenv's site-packages. The usual remote path is FastMCP's GenerativeUI provider, which registers the MCP tool generate_prefab_ui and forwards that tool's code argument into this sandbox. On a FastMCP server with no authentication configured, any client who can reach the server can call the tool. With authentication, any client allowed to call tools can. Generative UI is opt-in, and the host must have Deno installed. Confirmed on prefab-ui 0.20.2. Fixed in 0.21.0: after the runtime and Prefab sources load, the runner revokes Deno read, write, and network permission before it accepts code, the process is started with --no-prompt so a permission request cannot grant them again, and bootstrap network access is limited to cdn.jsdelivr.net. The fix is commit 030f074 (pull request 538).",
-    "publishedDate" : "2026-11-01T16:18:14.970",
-    "lastModifiedDate" : "2026-11-02T20:17:40.677",
-    "cvssScore" : 10.0,
-    "severity" : "CRITICAL",
-    "inKev" : false,
-    "epssScore" : 0.00771,
-    "epssPercentile" : 0.55672,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120338"
-  }, {
-    "id" : "CVE-2026-120306",
-    "description" : "Beta9 turns each shell command in a tenant image definition into a Dockerfile RUN line and executes it with Buildah on the build worker. The worker image sets BUILDAH_ISOLATION=chroot, and no buildah invocation passes --isolation, so the step only changes its filesystem root. It keeps the worker pod's PID, network, IPC, and user namespaces, runs as uid 0, and holds CAP_DAC_OVERRIDE. PID 1 in that procfs is the worker entrypoint, so /proc/1/root is the worker container's filesystem and is writable. That filesystem contains the runc, buildah, and runsc binaries the worker uses to start tenant containers, the worker's Kubernetes service account token, and the host directories mounted into the pod. Worker pods are privileged. Clip v2 layered builds are the default, so a tenant with a workspace token reaches this by submitting one image build. The read-only proof confirmed the shared namespaces, CAP_DAC_OVERRIDE, and that the worker's runc binary is visible at /proc/1/root. Fixed in worker 0.1.756: Buildah RUN steps, including the WORKDIR mkdir, use OCI isolation with private PID, IPC, and network namespaces, and tenant ARG values are passed only into the build container.",
-    "publishedDate" : "2026-11-01T13:18:01.300",
-    "lastModifiedDate" : "2026-11-01T13:18:01.300",
-    "cvssScore" : 9.9,
-    "severity" : "CRITICAL",
-    "inKev" : false,
-    "matchedKeywords" : [ "kubernetes" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120306"
-  }, {
-    "id" : "CVE-2026-120307",
-    "description" : "The Beta9 worker serves the sandbox file API from outside the container. getHostPathFromContainerPath turns the tenant's container path into a worker path. If the unresolved path starts with a mount destination, including the default upload mount at /tmp/.beta9, the remainder is joined onto that mount's source with filepath.Join, which cleans parent-directory segments after the prefix check. A long enough run of those segments names any absolute path on the worker. A path that matches no mount is joined onto the container root and opened in the worker's own filesystem, so an absolute symbolic link such as /var/run pointing at /run is followed against the worker root. Upload, download, stat, list, find-in-files, replace-in-files, and delete-file all call this helper. A tenant with a workspace token and one running sandbox can read, write, list, and delete files on the hosting worker as root, including files of other tenants on that machine. A read-only proof downloaded the worker pod's Kubernetes service account token through the file API for a path that did not exist inside the sandbox. In the shipped remote-node manifests that service account is bound to cluster-admin. Fixed in worker 0.1.756: sandbox file operations and workspace sync open paths with os.OpenRoot, so parent-directory and symlink lookups stay inside the container root or the mount source.",
-    "publishedDate" : "2026-11-01T13:18:01.497",
-    "lastModifiedDate" : "2026-11-01T13:18:01.497",
-    "cvssScore" : 9.9,
-    "severity" : "CRITICAL",
-    "inKev" : false,
-    "matchedKeywords" : [ "kubernetes" ],
-    "isAlert" : true,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120307"
-  }, {
     "id" : "CVE-2026-97693",
     "description" : "Yuxi is a large-model-based intelligent knowledge base and knowledge graph agent development platform.  From 0.6.0.beta1 until 0.7.1, there is insufficient isolation between execution-capable Docker sandboxes and trusted application services. A low-privileged authenticated user who can execute commands in their own sandbox can reach other tenants' sandbox APIs, access their files and secrets, execute commands in active sandboxes, and enumerate, create, or delete sandboxes through the unauthenticated provisioner without knowing administrator, database, or MinIO credentials. Sandboxes can also reach shared internal services; if shipped default service credentials remain unchanged, an attacker can use them, and if the exposed PostgreSQL account is a superuser, obtain command execution in the PostgreSQL container. These paths can disclose or modify cross-tenant data and sandbox state or cause denial of service through sandbox deletion without a container escape or kernel vulnerability. This vulnerability is fixed in 0.7.1. Existing deployments must separately rotate persisted PostgreSQL, Neo4j, or MinIO credentials that were previously set to documented or shipped defaults because upgrading the Compose files does not automatically rotate them.",
     "publishedDate" : "2026-11-04T22:18:07.687",
@@ -2597,6 +2563,17 @@
     "isAlert" : true,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123628"
   }, {
+    "id" : "CVE-2026-124724",
+    "description" : "@fastify/busboy is a streaming parser for multipart form data used by Fastify. In versions 1.0.0 through 3.2.5, when a request reaches the configured limit on the number of multipart parts, each further part is skipped without attaching an error listener to the skipped part stream. If the request body ends in the middle of such a skipped part, the vendored Dicer parser emits an error on that stream, and because nothing is listening Node.js raises an unhandled error event and the process exits. A single crafted unauthenticated request is therefore enough to crash the server. The bug is latent in the parser on its own and was first demonstrated through @fastify/multipart versions 10.1.2 through 10.1.4, which keep feeding the request body to the parser after a limit error, and it affects any consumer that sets a finite parts limit and parses request bodies that can be terminated early. The issue is fixed in @fastify/busboy 3.2.6, and users should upgrade to 3.2.6 or later. There is no complete application level workaround because the crash happens inside the parser before application code runs, though consumers that set a finite parts limit should also attach an error listener to the parser stream.",
+    "publishedDate" : "2026-11-16T14:17:06.113",
+    "lastModifiedDate" : "2026-11-16T14:17:06.113",
+    "cvssScore" : 7.5,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "matchedKeywords" : [ "node.js" ],
+    "isAlert" : true,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124724"
+  }, {
     "id" : "CVE-2026-115714",
     "description" : "Improper Certificate Validation (CWE-295) in the operating system certificate bundle shipped in the Docker images of APM Server; Auditbeat, Filebeat, Heartbeat, Metricbeat and Packetbeat; Elastic Agent, including Fleet Server and Cloudbeat; Logstash, for TLS connections that use the operating system certificate bundle; Elastic connectors; Universal Profiling (host agent, collector and symbolizer); and Elastic Maps Server. This certificate bundle, a dependency of these products (Dependency on Vulnerable Third-Party Component, CWE-1395), could allow an attacker to intercept or modify TLS-protected traffic via Signature Spoofing by Key Theft (CAPEC-474). The certificate bundle includes root certificate authorities that signed eight eMudhra intermediate certificate authorities whose private keys are compromised. Anyone with these keys can issue a certificate for any host name that these products accept as trusted. Exploitation requires an attacker in a network position between the product and the remote party, who presents a certificate issued with one of the compromised keys.",
     "publishedDate" : "2026-11-03T17:17:56.030",
@@ -3208,6 +3185,19 @@
     "matchedKeywords" : [ "docker" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-124969"
+  }, {
+    "id" : "CVE-2026-110987",
+    "description" : "The RegistrationMagic  WordPress plugin before 6.1.0.4 does not properly escape a user-supplied value before printing it inside an inline script block on several of its admin screens, allowing unauthenticated attackers to inject arbitrary JavaScript that executes in the session of an administrator who is tricked into opening a crafted link.",
+    "publishedDate" : "2026-11-15T07:16:53.717",
+    "lastModifiedDate" : "2026-11-16T12:17:42.227",
+    "cvssScore" : 7.1,
+    "severity" : "HIGH",
+    "inKev" : false,
+    "epssScore" : 0.00173,
+    "epssPercentile" : 0.06798,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-110987"
   }, {
     "id" : "CVE-2026-120439",
     "description" : "QuickJS-NG before 0.16.0 contains an integer overflow in js_typed_array_sort() in quickjs.c that allows attackers to cause a heap buffer overflow on 32-bit hosts. Attackers who can run JavaScript can call TypedArray.prototype.sort with a comparator on a typed array near 2^30 elements, wrapping the allocation size and writing indices past the buffer to crash or potentially execute code.",
@@ -4429,9 +4419,22 @@
     "cvssScore" : 6.1,
     "severity" : "MEDIUM",
     "inKev" : false,
+    "epssScore" : 0.00215,
+    "epssPercentile" : 0.12019,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129447"
+  }, {
+    "id" : "CVE-2026-129484",
+    "description" : "Kroki before 0.36.0 contains a reflected cross-site scripting vulnerability that allows unauthenticated attackers to inject scripts via unvalidated svg-color-dark-scheme and svg-color-light-scheme options. Attackers can craft a GET /goat/svg URL whose option value closes the SVG style element, executing JavaScript in the Kroki origin when victims open it.",
+    "publishedDate" : "2026-11-15T16:16:56.327",
+    "lastModifiedDate" : "2026-11-15T16:16:56.327",
+    "cvssScore" : 6.1,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129484"
   }, {
     "id" : "CVE-2026-120216",
     "description" : "fastify is a web framework for Node.js. In versions 5.8.0 through 5.12.7, when the server is configured with a nonzero handlerTimeout and a route returns a streaming response, a request whose stream has already sent its headers but stays open past the timeout crashes the server. When the timeout fires, Fastify tries to send a new error response on a response that has already started, raising an uncaught ERR_HTTP_HEADERS_SENT that terminates the Node.js process and interrupts any other in-flight requests. An unauthenticated remote client can trigger this with a single request to an affected streaming endpoint, so the impact is availability only, and exploitation requires the non-default handlerTimeout to be set. The default handlerTimeout of 0 is not affected. The issue is fixed in fastify 5.12.8, and users should upgrade to 5.12.8 or later. As a workaround, set handlerTimeout to 0, which disables the affected timeout path.",
@@ -4761,6 +4764,17 @@
     "matchedKeywords" : [ "tomcat" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123179"
+  }, {
+    "id" : "CVE-2025-71470",
+    "description" : "MicroQuickJS (mquickjs) before commit 99eed3f contains an out-of-bounds read vulnerability because JS_Call() raises exceptions during frame setup without updating ctx->sp and ctx->fp. Attackers can supply JavaScript that calls a non-function value, causing build_backtrace() to walk stale frame pointers and crash the engine for denial of service.",
+    "publishedDate" : "2026-11-15T16:16:56.167",
+    "lastModifiedDate" : "2026-11-15T16:16:56.167",
+    "cvssScore" : 5.5,
+    "severity" : "MEDIUM",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2025-71470"
   }, {
     "id" : "CVE-2026-119735",
     "description" : "Munshi (by Petpooja) before 2026-07-13 contained a stored cross-site scripting vulnerability that allows authenticated users to inject malicious markup through item descriptions or messages submitted in the Purchase Inquiry thread (/purchase-inquiry/thread/{thread-id}), which is assigned to innerHTML during rendering before text cleaning completes. Attackers can store a payload that executes in the browser of another user who opens the affected thread, achieving JavaScript execution and full-page defacement that re-triggers whenever the thread is reopened.",
@@ -5323,18 +5337,16 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129430"
   }, {
-    "id" : "CVE-2026-120233",
-    "description" : "A security flaw has been discovered in ag-ui-protocol ag-ui up to 0.0.58. This affects an unknown function of the file sdks/typescript/packages/client/src/agent/http.ts of the component HttpAgent. Performing a manipulation results in information disclosure. The attack can be initiated remotely. The exploit has been released to the public and may be used for attacks. The pull request to fix this issue awaits acceptance.",
-    "publishedDate" : "2026-11-01T16:18:14.290",
-    "lastModifiedDate" : "2026-11-02T16:19:19.997",
-    "cvssScore" : 5.3,
+    "id" : "CVE-2026-129548",
+    "description" : "Kalmia through 0.2.0 contains a stored cross-site scripting vulnerability that allows read-only authenticated users to upload HTML or SVG files via the upload-file endpoint without type restrictions. Attackers can share links to files served unauthenticated through the file get route, executing JavaScript in the admin origin to steal administrator JWTs from localStorage.",
+    "publishedDate" : "2026-11-16T12:17:52.707",
+    "lastModifiedDate" : "2026-11-16T12:17:52.707",
+    "cvssScore" : 5.4,
     "severity" : "MEDIUM",
     "inKev" : false,
-    "epssScore" : 0.00414,
-    "epssPercentile" : 0.35661,
-    "matchedKeywords" : [ "typescript" ],
+    "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120233"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129548"
   }, {
     "id" : "CVE-2026-120440",
     "description" : "QuickJS-NG before 0.16.0 contains a memory leak vulnerability in js_atomics_store() in quickjs.c that fails to free the converted value when returning a RangeError. Attackers running JavaScript can repeatedly call Atomics.store with a valueOf that detaches or shrinks the buffer to exhaust heap memory and cause denial of service.",
@@ -5828,32 +5840,6 @@
     "matchedKeywords" : [ "java" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-129247"
-  }, {
-    "id" : "CVE-2026-120235",
-    "description" : "A security vulnerability has been detected in ag-ui-protocol ag-ui up to 0.0.58. Affected is the function parseSSEStream of the file sdks/typescript/packages/client/src/transform/sse.ts of the component SSE Parser. The manipulation leads to resource consumption. The attack may be initiated remotely. The exploit has been disclosed publicly and may be used. The identifier of the patch is 9e7b2b00bce215bbf731f1e6094f63812527c432. The affected component should be upgraded.",
-    "publishedDate" : "2026-11-01T16:18:14.757",
-    "lastModifiedDate" : "2026-11-02T18:18:48.030",
-    "cvssScore" : 4.3,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00354,
-    "epssPercentile" : 0.29059,
-    "matchedKeywords" : [ "typescript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120235"
-  }, {
-    "id" : "CVE-2026-120237",
-    "description" : "A flaw has been found in ag-ui-protocol ag-ui up to 0.0.58. Affected by this issue is the function isInterruptExpired of the file sdks/typescript/packages/client/src/interrupts/index.ts of the component Interrupt expiry. This manipulation causes resource consumption. Remote exploitation of the attack is possible. The exploit has been published and may be used. The pull request to fix this issue awaits acceptance.",
-    "publishedDate" : "2026-11-01T18:17:13.497",
-    "lastModifiedDate" : "2026-11-02T16:19:19.997",
-    "cvssScore" : 4.3,
-    "severity" : "MEDIUM",
-    "inKev" : false,
-    "epssScore" : 0.00407,
-    "epssPercentile" : 0.34937,
-    "matchedKeywords" : [ "typescript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-120237"
   }, {
     "id" : "CVE-2026-63475",
     "description" : "isomorphic-git is a pure JavaScript implementation of Git for Node.js and browsers. Prior to 1.38.6, isomorphic-git persists server-supplied circular symref= capabilities through updateRemoteRefs, and GitRefManager.resolve() follows the resulting loose symbolic references without a default depth limit or cycle detection. After a clone from a malicious or man-in-the-middle-controlled remote, operations such as log, status, checkout, and branch that resolve refs/remotes/origin/a or refs/remotes/origin/b do not terminate. The circular references remain on disk, leaving the repository unusable for the application and causing a persistent denial of service. This issue is fixed in version 1.38.6.",
@@ -6490,76 +6476,6 @@
     "matchedKeywords" : [ "javascript", "node.js" ],
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123829"
-  }, {
-    "id" : "CVE-2026-111089",
-    "description" : "Apache Wicket reads texts from the application's resource bundles — a localized label, a css class name — and writes some of them into the JavaScript and the markup it generates for a component. Those texts are placed inside single-quoted JavaScript string literals and inside quoted attribute values without being escaped for that context, so a text containing a quote ends the literal or the attribute, and what follows is parsed as script or as markup in the application's origin when the page loads.\n\nA resource bundle entry is authored for the application and does not say where the framework will write it. The same key is read by the framework into element text, where Wicket escapes it, and into the contexts below, where it did not. A text containing an apostrophe, which is ordinary in several languages, is enough to break the page; a text under the influence of another party is enough to run script.\n\nIn org.apache.wicket:wicket-core, org.apache.wicket.markup.html.form.upload.MultiFileUploadField writes the org.apache.wicket.mfu.delete message into a JavaScript string literal, and org.apache.wicket.markup.html.form.Form writes the hidden-fields css class into the class attribute of the container it renders for its hidden fields; on 8.0.0 through 8.19.0 and 9.0.0 through 9.24.0 Form#appendDefaultButtonField writes the same css class into a second container. In org.apache.wicket:wicket-extensions, UploadProgressBar writes its UploadProgressBar.starting text into a JavaScript string literal, FilterForm writes the hidden-fields css class into the class attribute of its hidden input markup, and on 9.0.0 through 9.24.0 and 10.0.0 through 10.11.0 TrapFocusBehavior writes its current css class into a JavaScript string literal.\n\nThe Content-Security-Policy that Apache Wicket 9.x and 10.x send by default does not prevent the JavaScript cases: the generated script is written into a script element carrying the per-response nonce, so the injected code is part of a script the policy admits. It does prevent an inline event handler injected through the attribute cases.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0, from 9.0.0 through 9.24.0, from 10.0.0 through 10.11.0. Users of Apache Wicket 7.x or older, which are no longer supported, should upgrade to a supported version. Users are recommended to upgrade to version 8.20.0, 9.25.0 or 10.12.0, which fix the issue.",
-    "publishedDate" : "2026-11-01T23:17:28.697",
-    "lastModifiedDate" : "2026-11-02T16:13:27.570",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-111089"
-  }, {
-    "id" : "CVE-2026-82956",
-    "description" : "Improper neutralization of input during web page generation in Apache Wicket.\n\norg.apache.wicket.ajax.AjaxNewWindowNotifyingBehavior notices that a page instance has been opened in a second browser window or tab. It asks the browser for the value of window.name, which reaches the server as the request parameter windowName, and remembers what the browser reported in a field of the behaviour. That field is part of the page's serialized state, so the remembered value stays in the page store for as long as the page instance does.\n\nOn every later render of that page instance the behaviour builds the precondition of its Ajax call by substituting the remembered value into a single-quoted JavaScript string literal, and Wicket writes that precondition into the page as raw JavaScript, because the precondition of an Ajax call listener is script supplied by the caller and is emitted without quoting or escaping. Nothing on that path escapes the value. The window name is client-supplied and Wicket applies no validation to it, so a remembered name containing a single quote ends the literal and the rest of it runs as script in the application's origin, every time that page instance is rendered.\n\nAn application is affected only where it has explicitly added AjaxNewWindowNotifyingBehavior to a component. No part of the framework installs the behaviour, so an application that does not use it is not affected. The name the behaviour generates for itself, when the browser reports no name at all, is a random UUID and is not client-supplied.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0, from 9.0.0 through 9.24.0, from 10.0.0 through 10.11.0.\n\nUsers are recommended to upgrade to version 8.20.0, 9.25.0 or 10.12.0, which fix the issue.",
-    "publishedDate" : "2026-11-01T23:17:29.130",
-    "lastModifiedDate" : "2026-11-02T16:13:27.570",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-82956"
-  }, {
-    "id" : "CVE-2026-83559",
-    "description" : "Improper encoding or escaping of output in Apache Wicket.\n\norg.apache.wicket.core.util.string.JavaScriptUtils#escapeQuotes() replaces each single quote in its input with a backslash and a single quote, and each double quote with a backslash and a double quote, so that the value can be placed inside a JavaScript string literal. It does not escape the backslash, which is the character that has to be escaped, and escaped first, for the rest of that escaping to hold. A value that already holds a backslash immediately before a quote therefore ends up with two backslashes in front of that quote: the first escapes the second, the quote itself is left unescaped, and it closes the literal. Whatever the value carries after that point is no longer text but JavaScript, and it runs in the application's origin and in the session of the user looking at the page. The method is public, is not deprecated, and its documentation states that its result can be part of a JavaScript call such as an alert; the only limitation it notes concerns JSON values, which need different escaping.\n\nAn application is affected wherever it calls the method itself and places the result inside a JavaScript string literal, from its own code or from a component of its own or of a third party, and the value it escapes holds data an attacker can influence. There is no further condition, and no component of Wicket has to be involved: the application is using the method for what its documentation offers, and the method does not deliver it.\n\nTwo components shipped with Wicket Extensions pass a value through the method. org.apache.wicket.extensions.ajax.markup.html.AjaxEditableLabel writes the editor's first error feedback message into a single-quoted JavaScript string literal in the Ajax response, so an application is affected through that component where the message shown for a failed edit holds data an attacker can influence, whether that is the submitted value itself or another variable the application sets on the validation error. A validation message can carry the submitted value, because input is a message variable that every form component supplies for its own validation errors, and the documentation shows overriding a validator's message to include it; none of the message bundles shipped with Wicket interpolates it, so an application that has not written such a message is not affected through this component. org.apache.wicket.extensions.ajax.markup.html.repeater.AjaxListPanel passes the serialized markup tag of an appended component through the method and is not affected: the tag comes from the panel's own markup file, and a quote in any of its attribute values, the component's markup id included, is written as a character reference by the tag serialization and cannot close the literal.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0, from 9.0.0 through 9.24.0, from 10.0.0 through 10.11.0. Users of Apache Wicket 7.x or older, which are no longer supported, should upgrade to a supported version.\n\nUsers are recommended to upgrade to version 8.20.0, 9.25.0 or 10.12.0, which fix the issue.",
-    "publishedDate" : "2026-11-01T23:17:29.513",
-    "lastModifiedDate" : "2026-11-02T16:13:27.570",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-83559"
-  }, {
-    "id" : "CVE-2026-83594",
-    "description" : "Memory allocation with an excessive size value in Apache Wicket.\n\norg.apache.wicket.markup.html.form.upload.resource.FileUploadToResourceField uploads files to a separately mounted resource rather than through a form, and is told the outcome afterwards over its own Ajax callback. That callback reads the request parameter filesInfo, a JSON array carrying a client file name, a size and a content type for each file, and turns it into the list of FileUploadToResourceField.UploadInfo that onUploadSuccess() receives. Nothing binds that JSON to an upload the resource performed and nothing re-derives it from the stored files, so the number of entries and every value in them are whatever the request supplied. The callback URL is rendered into the page, no prior upload is required, and both GET and POST reach it, so any client that can load the page can have the component report files that were never uploaded, without authenticating beyond whatever the page itself requires and without any user interaction.\n\nUploadInfo#get(), which the class offers as the way to obtain the bytes of an upload, allocates a byte array from UploadInfo#getSize() before it opens the file. The array is therefore sized by the number the request supplied, and the allocation happens even for a file that was never stored. One small request can cost the server close to two gigabytes of heap, and the request is trivially repeatable, so a few of them exhaust the heap for every request the Java virtual machine is serving. A size that the conversion to int turns negative instead throws NegativeArraySizeException, which the exception handler inside that method does not cover, so it escapes into the application.\n\nAn application is affected where it uses FileUploadToResourceField, which is not the ordinary upload path through FileUploadField and Form and has to be extended and mounted deliberately. The allocation additionally requires the application to call UploadInfo#get() rather than reading UploadInfo#getFile() itself. Where the application denies the ENABLE action on the field through its authorization strategy, the callback is refused like any other listener. The 8.x line does not contain this component and is not affected.\n\nThis issue affects Apache Wicket: from 9.14.0 through 9.24.0, from 10.0.0 through 10.11.0. Users are recommended to upgrade to version 9.25.0 or 10.12.0, which fix the issue.",
-    "publishedDate" : "2026-11-01T23:17:29.723",
-    "lastModifiedDate" : "2026-11-02T16:13:27.570",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "matchedKeywords" : [ "java" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-83594"
-  }, {
-    "id" : "CVE-2026-84177",
-    "description" : "Incorrect behavior order in Apache Wicket: a file path is validated before the framework appends the attributes that complete it.\n\norg.apache.wicket.request.resource.PackageResource asks the configured package resource guard about a path built from the scope class' package and the file name in the request URL, and then hands that same path to the resource stream locator together with a style, a variation and a locale. Those three attributes are decoded from the name of the first query parameter and never appear in the string the guard was given. org.apache.wicket.core.util.resource.locator.ResourceNameIterator appends them to that path, each preceded by an underscore, in the order variation, style, locale, before the file extension, so the file that is opened is not the file the guard approved.\n\norg.apache.wicket.markup.html.PackageResourceGuard decides whether an HTML file is a component's markup template by looking for a class file of the same name beside it, stripping one underscore-delimited suffix at a time as it goes. HTML is on the default allow list, so that check is the only thing separating a static HTML file, which may be served, from a markup template, which may not. Asked about the name of a template, the guard refuses it correctly. Asked about a shorter name for which no class exists, it accepts, and a style supplied in the URL then completes that name into the markup template of a component class, which is written to the response.\n\nAn application is affected if the simple name of any of its component classes contains an underscore and no shorter part of that name is itself a class, such as Report_v2 or Wizard_Step1; an application with no such class name is not affected. No unusual deployment, packaging or configuration is required, and running in deployment rather than development mode does not prevent it. Java naming conventions discourage underscores in class names and no module Wicket ships has one, so no framework markup is exposed; what an application exposes this way is its own. A component whose class name has no underscore is not reachable, and neither is its localized or styled markup, because the guard finds the class file under the base name and refuses the request. The attributes cannot change the file extension and cannot leave the component's package, so nothing beyond HTML files in that package is reachable. Access is read-only, and what is disclosed is developer-authored template content: component structure, developer comments, markup that is rendered only under some conditions, inline script, and the endpoints a template names. No user data, credential or session material is reachable this way. An attacker has to name a class in the target package and the component itself, and Wicket writes fully qualified class names into the URL of every package resource it renders.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0, from 9.0.0 through 9.24.0, from 10.0.0 through 10.11.0. Users of Apache Wicket 7.x or older, which are no longer supported, should upgrade to a supported version. Users are recommended to upgrade to version 8.20.0, 9.25.0 or 10.12.0, which fix the issue.",
-    "publishedDate" : "2026-11-01T23:17:30.317",
-    "lastModifiedDate" : "2026-11-02T16:13:27.570",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "matchedKeywords" : [ "java" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-84177"
-  }, {
-    "id" : "CVE-2026-84231",
-    "description" : "Improper neutralization of input during web page generation in Apache Wicket.\n\norg.apache.wicket.markup.html.link.ExternalLink builds a JavaScript click handler and writes it into the tag's onclick attribute whenever the markup tag the component is bound to is not an a, link or area element. The URL held in the component's model is concatenated into a single-quoted JavaScript string literal in that handler without being escaped for that context. The same happens on the neighbouring branch, taken when popup settings are attached, where the value is concatenated into the window.open() call built by org.apache.wicket.markup.html.link.PopupSettings#getPopupJavaScript(). The only escaping applied is the markup escaping that every attribute value receives as the tag is written, which replaces an apostrophe with a character reference. A browser decodes character references in an attribute value before it compiles the event handler, so the apostrophe is restored, closes the string literal, and the rest of the model value is executed as script in the application's origin.\n\nAn application is affected where it binds an ExternalLink to a markup tag that is not an anchor, such as a button or a span, and the URL in the model holds data an attacker can influence, which is the ordinary use of the component rather than a misuse of it. Nothing runs until a user activates the element.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0. Users of Apache Wicket 7.x or older, which are no longer supported, should upgrade to a supported version.\n\nUsers are recommended to upgrade to version 8.20.0, which fixes the issue.",
-    "publishedDate" : "2026-11-01T23:17:30.550",
-    "lastModifiedDate" : "2026-11-02T16:13:27.570",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-84231"
-  }, {
-    "id" : "CVE-2026-95863",
-    "description" : "Improper neutralization of input during web page generation in Apache Wicket.\n\nApache Wicket generates JavaScript that refers to the elements it renders, and\nwrites into that JavaScript two values it derives itself: a component's markup\nid, and the input name of a form component, which is built from component ids.\nBoth are placed inside single-quoted JavaScript string literals without being\nescaped for that context, so a value containing a single quote or a backslash\nends the literal, and what follows is parsed as script and runs in the\napplication's origin when the page loads.\n\nA markup id is the value passed to org.apache.wicket.Component#setMarkupId(String),\nor the id attribute written in the component's markup, or an id Wicket\ngenerates, in that order. The first two are supplied by the application in an\nHTML context, where both characters are legal and where Wicket escapes them\ncorrectly when it writes the same value into the id attribute of the element; a\ngenerated id cannot contain either. An input name is derived from the ids of the\ncomponents between the form and the form component, and a component id was\nrejected only for ':' and '~'.\n\nIn org.apache.wicket:wicket-core on 9.x and 10.x,\norg.apache.wicket.markup.head.OnEventHeaderItem#forMarkupId(String, String,\nCharSequence) quotes the id it is given into a Wicket.Event.add call, and\ncomponents in both wicket-core and wicket-extensions reach it through\n#forComponent(Component, String, CharSequence). On every affected version,\norg.apache.wicket.markup.html.form.Form writes its markup id and the id of its\nhidden-fields container into such literals,\norg.apache.wicket.markup.html.form.FormComponentUpdatingBehavior writes an input\nname, and org.apache.wicket.markup.html.form.upload.MultiFileUploadField writes\ntwo markup ids and an input name. On 8.x, Form also writes an input name into the\naction of a submitting link, and on 8.x and 9.x Form#appendDefaultButtonField\nwrites an input name into a name attribute with no escaping at all, so a value\ncontaining a double quote escapes the attribute into markup.\n\norg.apache.wicket:wicket-extensions is affected in its own right and not only\nthrough wicket-core: AjaxEditableLabel, AjaxIndicatorAppender,\nAjaxDisableComponentListener, UploadProgressBar, KittenCaptchaPanel, Palette,\nFilterForm and, on 9.x and 10.x, TrapFocusBehavior and AjaxListPanel each build\ntheir own JavaScript containing a markup id.\n\nAn application is affected where a markup id or a component id carries one of\nthose characters. Wicket does not put one there itself, so the value comes from\nthe application: an id set on a component, an id attribute in a template, or a\ncomponent id derived from data. None of those is a JavaScript context from the\napplication's point of view.\n\nThe Content-Security-Policy that Apache Wicket 9.x and 10.x send by default does\nnot prevent this. The generated script is written into a script element carrying\nthe per-response nonce, so the injected code is part of a script the policy\nadmits.\n\nThe fixed versions check an id where it enters instead of escaping each place it\nis written. A component id and a markup id may no longer contain a quote, a\nbackquote, a backslash, braces, angle brackets, a semicolon, an ampersand or a\ncontrol character, and a markup id may not contain parentheses or square\nbrackets either; a component constructed with such an id, or given such a markup\nid, fails with an exception.\n\nThis issue affects Apache Wicket: from 8.0.0 through 8.19.0, from 9.0.0 through\n9.24.0, from 10.0.0 through 10.11.0. Users of Apache Wicket 7.x or older, which\nare no longer supported, should upgrade to a supported version. Users are\nrecommended to upgrade to version 8.20.0, 9.25.0 or 10.12.0, which fix the issue.",
-    "publishedDate" : "2026-11-01T23:17:30.943",
-    "lastModifiedDate" : "2026-11-02T16:13:27.570",
-    "severity" : "UNKNOWN",
-    "inKev" : false,
-    "matchedKeywords" : [ "javascript" ],
-    "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-95863"
   }, {
     "id" : "CVE-2026-111048",
     "description" : "FOSSBilling is an open source billing and client-management platform. From 0.1.0 until 0.8.9, the admin/support/note_create endpoint stores the note parameter without sanitization in the support_ticket_note table, and src/modules/Support/templates/admin/mod_support_tickets.html.twig renders each stored support ticket note through innerHTML in the admin ticket list. A staff user with only the support.manage_tickets permission can store HTML or JavaScript that executes when another staff member opens the ticket notes. The script runs with the viewing staff member's session and privileges, can read a CSRF token and accessible client or invoice data, and can perform administrative actions available to the viewer, including a Super Administrator. The ticket detail page is not affected because its Twig rendering uses autoescaping. This issue is fixed in version 0.8.9.",
@@ -8070,14 +7986,54 @@
     "isAlert" : false,
     "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-123122"
   }, {
-    "id" : "CVE-2026-110987",
-    "description" : "The RegistrationMagic  WordPress plugin before 6.1.0.4 does not properly escape a user-supplied value before printing it inside an inline script block on several of its admin screens, allowing unauthenticated attackers to inject arbitrary JavaScript that executes in the session of an administrator who is tricked into opening a crafted link.",
-    "publishedDate" : "2026-11-15T07:16:53.717",
-    "lastModifiedDate" : "2026-11-15T07:16:53.717",
+    "id" : "CVE-2026-113446",
+    "description" : "visualTicket is vulnerable to Reflected Cross-Site Scripting via the \"culture\" and \"sf_culture\" parameters. An attacker can prepare a specially crafted URL that, when opened, results in arbitrary JavaScript execution in the error page in the victim's browser.\n\n\n\n\nThis issue was fixed in version 20260817.",
+    "publishedDate" : "2026-11-16T13:17:19.300",
+    "lastModifiedDate" : "2026-11-16T13:17:19.300",
     "severity" : "UNKNOWN",
     "inKev" : false,
     "matchedKeywords" : [ "javascript" ],
     "isAlert" : false,
-    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-110987"
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-113446"
+  }, {
+    "id" : "CVE-2026-113448",
+    "description" : "visualTicket is vulnerable to Reflected Cross-Site Scripting in logon functionality. An attacker can prepare a specially crafted URL that, when opened, results in arbitrary JavaScript execution in the victim's browser.\n\n\n\n\nThis issue was fixed in version 20260817.",
+    "publishedDate" : "2026-11-16T13:17:19.593",
+    "lastModifiedDate" : "2026-11-16T13:17:19.593",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-113448"
+  }, {
+    "id" : "CVE-2026-113450",
+    "description" : "visualTicket is vulnerable to Reflected Cross-Site Scripting via the JSONP callback parameter. An attacker can prepare a specially crafted URL that, when opened, results in arbitrary JavaScript execution in the victim's browser.\n\n\n\n\nThis issue was fixed in version 20260817.",
+    "publishedDate" : "2026-11-16T13:17:19.883",
+    "lastModifiedDate" : "2026-11-16T13:17:19.883",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-113450"
+  }, {
+    "id" : "CVE-2026-113452",
+    "description" : "visualTicket is vulnerable to  Reflected Cross-Site Scripting via the selectedDate parameter in the order summary page. An attacker can prepare a specially crafted URL that, when opened, results in arbitrary JavaScript execution in the victim's browser.\n\n\n\n\nThis issue was fixed in version 20260817.",
+    "publishedDate" : "2026-11-16T13:17:20.157",
+    "lastModifiedDate" : "2026-11-16T13:17:20.157",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "javascript" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-113452"
+  }, {
+    "id" : "CVE-2026-114737",
+    "description" : "The fix for  CVE-2026-23903 https://shiro.apache.org/security-reports.html#cve_2026_23903  was incomplete for manually-created ShiroFilterFactoryBean, which still matched paths case-sensitively by default.\nThis issue affects Apache Shiro version 3.0.1, only when ShiroFilterFactoryBean is created manually by the application and static files are served from a case-insensitive filesystem.\nApplications that let Shiro Spring (Boot) Starter create the bean are not affected.\n\nMitigation: Upgrade to version 3.0.2 or later, which fixes the issue.\nAlternatively, call setCaseInsensitive(true) on the ShiroFilterFactoryBean.",
+    "publishedDate" : "2026-11-16T14:17:05.310",
+    "lastModifiedDate" : "2026-11-16T14:17:05.310",
+    "severity" : "UNKNOWN",
+    "inKev" : false,
+    "matchedKeywords" : [ "spring" ],
+    "isAlert" : false,
+    "nvdUrl" : "https://nvd.nist.gov/vuln/detail/CVE-2026-114737"
   } ]
 }
