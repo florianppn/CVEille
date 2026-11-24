@@ -9,18 +9,18 @@ Veille quotidienne automatisée sur les vulnérabilités CVE ciblant les technol
 <!-- CVEILLE_SUMMARY_START -->
 ### Top 8 des menaces les plus dangereuses et prioritaires
 
-> **Dernière synchronisation** : `2026-11-23T16:56:21.566681703Z`
+> **Dernière synchronisation** : `2026-11-24T16:46:10.249334683Z`
 
 | CVE ID | Sévérité | CVSS | EPSS | KEV | Stack | Description |
 |---|---|---|---|---|---|---|
 | [CVE-2026-114824](https://nvd.nist.gov/vuln/detail/CVE-2026-114824) | `CRITICAL` | 10.0 | 0.4% | Non | `java` | Vulnerability in the Oracle Platform Security for Java product of Oracle Fu... |
 | [CVE-2026-71499](https://nvd.nist.gov/vuln/detail/CVE-2026-71499) | `CRITICAL` | 10.0 | 0.4% | Non | `javascript` | cf-manager is an all-in-one dashboard for managing multiple Cloudflare acco... |
-| [CVE-2026-123800](https://nvd.nist.gov/vuln/detail/CVE-2026-123800) | `CRITICAL` | 9.9 | 0.6% | Non | `java` | SuperTokens Core is an open source authentication server. From 6.0.0 until ... |
 | [CVE-2026-127073](https://nvd.nist.gov/vuln/detail/CVE-2026-127073) | `CRITICAL` | 9.9 | 0.5% | Non | `kubernetes` | OpsTree BuildPiper before 2.7.0 contains a privilege escalation vulnerabili... |
 | [CVE-2026-127080](https://nvd.nist.gov/vuln/detail/CVE-2026-127080) | `CRITICAL` | 9.9 | 0.5% | Non | `kubernetes` | OpsTree BuildPiper before 2.7.0 contains an improper authorization vulnerab... |
 | [CVE-2026-129433](https://nvd.nist.gov/vuln/detail/CVE-2026-129433) | `CRITICAL` | 9.9 | N/A | Non | `docker` | Dokploy before 0.31.1 contains an OS command injection vulnerability in get... |
 | [CVE-2026-129987](https://nvd.nist.gov/vuln/detail/CVE-2026-129987) | `CRITICAL` | 9.9 | 1.1% | Non | `postgresql` | Dokploy is a free, self-hostable Platform as a Service (PaaS). Prior to 0.3... |
 | [CVE-2026-129316](https://nvd.nist.gov/vuln/detail/CVE-2026-129316) | `CRITICAL` | 9.9 | 0.7% | Non | `docker` | Dokploy is a free, self-hostable Platform as a Service (PaaS). From 0.29.13... |
+| [CVE-2026-129989](https://nvd.nist.gov/vuln/detail/CVE-2026-129989) | `CRITICAL` | 9.9 | 0.9% | Non | `docker` | Dokploy is a free, self-hostable Platform as a Service (PaaS). Prior to 0.3... |
 
 *Données détaillées historisées chaque jour dans [`data/`](data/) • Alimenté par NVD 2.0, CISA KEV & EPSS*
 <!-- CVEILLE_SUMMARY_END -->
